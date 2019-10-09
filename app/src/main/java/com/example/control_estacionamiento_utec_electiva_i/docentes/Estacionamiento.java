@@ -12,5 +12,7 @@ public class Estacionamiento extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estacionamiento);
+
+        this.setTitle(R.string.estacionamiento);
     }
 }

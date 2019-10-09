@@ -2,19 +2,38 @@ package com.example.control_estacionamiento_utec_electiva_i.docentes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 public class PantallaInicio extends AppCompatActivity {
 
+    Button btnEstacionamiento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_inicio);
+
+        // Change the Title
+        this.setTitle(R.string.pantalla_inicio);
+
+        btnEstacionamiento = findViewById(R.id.btnStation);
+
+        btnEstacionamiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Estacionamiento.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 
