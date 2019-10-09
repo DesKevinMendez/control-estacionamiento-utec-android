@@ -2,7 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Item" />
-    <item android:title="Item" />
-    <item android:title="Item" />
+    <item
+        android:id="@+id/menuInicio"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/menuPerfil"
+        android:title="@string/view_profile" />
+    <item
+        android:id="@+id/menuCerrar"
+        android:title="@string/close" />
 </menu>

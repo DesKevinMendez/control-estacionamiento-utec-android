@@ -9,4 +9,23 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings related to teacher's Toolbar -->
+    <string name="home">Inicio</string>
+    <string name="view_profile">Ver Perfil</string>
+    <string name="close">Cerrar Sesion</string>
+
+    <!-- Strings related to pantalla inicial -->
+    <string name="name_title">Nombres:</string>
+    <string name="name_user">Fulano de Tal</string>
+    <string name="carne_title">Carnet:</string>
+    <string name="carne">25-1234-2015</string>
+    <string name="station_code">Código de estacionamiento:</string>
+    <string name="code">BJ-21</string>
+    <string name="schedule_use">Horrario de uso:</string>
+    <string name="schedule">06:30 — 09:30</string>
+    <string name="station_availability">Disponibilidad de estacionamiento:</string>
+    <string name="state">No Disponible</string>
+    <string name="btn_station">Solicitar Estacionamiento</string>
+
 </resources>
