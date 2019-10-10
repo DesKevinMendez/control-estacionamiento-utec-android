@@ -6,7 +6,7 @@
     android:gravity="center"
     android:background="@drawable/pop_bg"
     android:orientation="vertical"
-    tools:context=".PopActivity">
+    tools:context=".docentes.PopActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"

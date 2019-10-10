@@ -1,6 +1,4 @@
-package com.example.control_estacionamiento_utec_electiva_i;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.control_estacionamiento_utec_electiva_i.docentes;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,8 +9,7 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.example.control_estacionamiento_utec_electiva_i.docentes.Estacionamiento;
-import com.example.control_estacionamiento_utec_electiva_i.docentes.PantallaInicio;
+import com.example.control_estacionamiento_utec_electiva_i.R;
 
 public class PopActivity extends Activity {
 
