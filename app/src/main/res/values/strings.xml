@@ -39,5 +39,6 @@
     <string name="gm">GM</string>
     <string name="aa">AA</string>
     <string name="cl">CL</string>
+    <string name="progress">Solicitando Estacionamiento</string>
 
 </resources>
