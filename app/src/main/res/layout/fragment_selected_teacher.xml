@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.ViewAssignParking.SelectedTeacher">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="#dedede"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/tvFindUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Carnet o nombre de docente"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/btnFindUserSB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buscar usuario" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/lineHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:background="@drawable/line_horizontal"
+            android:layout_marginBottom="5dp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tvResultadosST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Resultados" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#dedede"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnUserButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="-1"
+                android:src="@drawable/ic_person_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNombreTeacher2"
+                    android:layout_width="279dp"
+                    android:layout_height="wrap_content"
+                    android:text="Kevin Méndez" />
+
+                <TextView
+                    android:id="@+id/tvCarnetTeacher2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="25-3992-2015" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonLeft2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="#dedede"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="-1"
+                android:src="@drawable/ic_person_black_24dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvNombreTeacher"
+                    android:layout_width="279dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jose Martinez" />
+
+                <TextView
+                    android:id="@+id/tvCarnetTeacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="17-8900-2019" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/imageButtonLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_chevron_right_black_24dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -10,13 +10,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 public class MainActivity extends AppCompatActivity implements
         InicioAdmin.OnFragmentInteractionListener,
         ProfileUser.OnFragmentInteractionListener,
         AssignParking.OnFragmentInteractionListener,
-        ReserveParking.OnFragmentInteractionListener{
+        ReserveParking.OnFragmentInteractionListener,
+        SelectedBuilding.OnFragmentInteractionListener,
+        SelectedSchedule.OnFragmentInteractionListener,
+        SelectedTeacher.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,8 +8,14 @@ import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -20,7 +26,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * Use the {@link AssignParking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AssignParking extends Fragment {
+public class AssignParking extends Fragment implements OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,12 +69,68 @@ public class AssignParking extends Fragment {
         }
     }
 
+    Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnAssingParking;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_assign_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_assign_parking, container, false);
+
+        btnAceptar = view.findViewById(R.id.btnAceptarAP);
+        btnDenegar = view.findViewById(R.id.btnCancelarAP);
+        btnAssingSchedule = view.findViewById(R.id.btnSelectedSchedule);
+        btnAsssingTeacher = view.findViewById(R.id.btnSelectedTeacher);
+        btnAssingParking = view.findViewById(R.id.btnSelectedParking);
+
+        btnAceptar.setOnClickListener(this);
+        btnDenegar.setOnClickListener(this);
+        btnAssingSchedule.setOnClickListener(this);
+        btnAsssingTeacher.setOnClickListener(this);
+        btnAssingParking.setOnClickListener(this);
+
+        return view;
     }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.btnAceptarAP:
+                InicioAdmin inicio = new InicioAdmin();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.contentLayaout, inicio).commit();
+
+                Toast.makeText(getActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.btnCancelarAP:
+
+                InicioAdmin denegado = new InicioAdmin();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.contentLayaout, denegado).commit();
+
+                break;
+            case R.id.btnSelectedParking:
+
+                SelectedBuilding selectedParking = new SelectedBuilding();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.contentLayaout, selectedParking).commit();
+
+                break;
+            case R.id.btnSelectedSchedule:
+                SelectedSchedule selectedSchedule = new SelectedSchedule();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.contentLayaout, selectedSchedule).commit();
+
+                break;
+            case R.id.btnSelectedTeacher:
+
+                SelectedTeacher selectedTeacher= new SelectedTeacher();
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        replace(R.id.contentLayaout, selectedTeacher).commit();
+                break;
+        }
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -93,6 +155,7 @@ public class AssignParking extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this
