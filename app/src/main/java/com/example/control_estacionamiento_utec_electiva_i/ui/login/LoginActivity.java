@@ -23,10 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.control_estacionamiento_utec_electiva_i.MainActivity;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivity;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginViewModel;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        setTitle("Login - UTEC");
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
