@@ -1,7 +1,10 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,13 +12,26 @@ import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        InicioAdmin.OnFragmentInteractionListener,
+        ProfileUser.OnFragmentInteractionListener,
+        AssignParking.OnFragmentInteractionListener,
+        ReserveParking.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Pantalla de inicio");
+
+        InicioAdmin inicioAdmin = new InicioAdmin();
+        getSupportFragmentManager().beginTransaction().add(R.id.contentLayaout, inicioAdmin);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.contentLayaout, inicioAdmin);
+        fragmentTransaction.commit();
+
+
 
     }
     @Override
@@ -31,26 +47,53 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Fragment frag = null;
         switch (id){
             case R.id.home:
+                setTitle("Pantalla de inicio");
 
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                frag = new InicioAdmin();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+
+                return true;
             case R.id.seeProfile:
-                Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show();
+                setTitle("Perfil de usuario");
+                frag = new ProfileUser();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+
+                return true;
 
             case R.id.assignParking:
-                Toast.makeText(this, "Asignar parqueo", Toast.LENGTH_SHORT).show();
+                setTitle("Asignar estacionamiento");
+                frag = new AssignParking();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+                return true;
 
             case R.id.reserveParking:
-                Toast.makeText(this, "Reservar parqueo", Toast.LENGTH_SHORT).show();
+                setTitle("Reservar estacionamiento");
+                frag = new ReserveParking();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+                return true;
+
             case R.id.logout:
                 Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show();
+                return true;
 
             default:
 
                     return super.onOptionsItemSelected(item);
         }
+
+
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
