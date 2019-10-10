@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -31,11 +32,25 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.home:
+
+                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+            case R.id.seeProfile:
+                Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show();
+
+            case R.id.assignParking:
+                Toast.makeText(this, "Asignar parqueo", Toast.LENGTH_SHORT).show();
+
+            case R.id.reserveParking:
+                Toast.makeText(this, "Reservar parqueo", Toast.LENGTH_SHORT).show();
+            case R.id.logout:
+                Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show();
+
+            default:
+
+                    return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
