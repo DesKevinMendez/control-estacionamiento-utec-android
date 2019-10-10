@@ -13,7 +13,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 
 public class PopActivity extends Activity {
 
-    private final int DURACION_SPLASH = 3000; // 3 segundos
+    private final int DURACION_POP = 3000; // 3 segundos
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,6 @@ public class PopActivity extends Activity {
                 Toast.makeText(PopActivity.this, "Solicitud exitosa", Toast.LENGTH_SHORT).show();
                 finish();
             };
-        }, DURACION_SPLASH);
+        }, DURACION_POP);
     }
 }

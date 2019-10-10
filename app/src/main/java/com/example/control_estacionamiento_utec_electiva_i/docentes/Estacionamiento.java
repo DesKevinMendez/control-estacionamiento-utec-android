@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
 
 public class Estacionamiento extends AppCompatActivity {
 
@@ -73,11 +74,17 @@ public class Estacionamiento extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menuInicio){
-            Toast.makeText(this, "opcion 1", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+            startActivity(i);
+            finish();
         } else if (id == R.id.menuPerfil){
-            Toast.makeText(this, "opcion 2", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), PerfilUsuario.class);
+            startActivity(i);
+            finish();
         } else if (id == R.id.menuCerrar){
-            Toast.makeText(this, "opcion 3", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
