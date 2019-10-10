@@ -75,15 +75,8 @@ public class InicioAdmin extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_inicio_admin,
                 container, false);
-        final Button button = (Button) view.findViewById(R.id.btnTest);
-        button.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+
         return view;
     }
 

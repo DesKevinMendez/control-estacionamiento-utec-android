@@ -1,6 +1,9 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -21,7 +26,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * Use the {@link ProfileUser#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileUser extends Fragment {
+public class ProfileUser extends Fragment implements View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -64,11 +69,50 @@ public class ProfileUser extends Fragment {
         }
     }
 
+    Button btnCancelar, btnAceptar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_user, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile_user,
+                container, false);
+        btnCancelar = view.findViewById(R.id.btnCancelarP);
+        btnAceptar = view.findViewById(R.id.btnAceptarP);
+        btnCancelar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                InicioAdmin home = new InicioAdmin();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, home).commit();
+            }
+        });
+
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("Confirmar cambio");
+                alert.setMessage("Está acción no se puede deshacer");
+                alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Toast.makeText(getActivity(), "Aceptar", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Toast.makeText(getActivity(), "Cancelar", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                alert.create().show();
+
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -93,6 +137,22 @@ public class ProfileUser extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnAceptarP:
+
+                Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnCancelarP:
+
+                Toast.makeText(getActivity(), "Hola mundo", Toast.LENGTH_SHORT).show();
+                break;
+                default:
+                    break;
+        }
     }
 
     /**

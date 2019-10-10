@@ -25,13 +25,7 @@ public class MainActivity extends AppCompatActivity implements
         setTitle("Pantalla de inicio");
 
         InicioAdmin inicioAdmin = new InicioAdmin();
-        getSupportFragmentManager().beginTransaction().add(R.id.contentLayaout, inicioAdmin);
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.contentLayaout, inicioAdmin);
-        fragmentTransaction.commit();
-
-
+        getSupportFragmentManager().beginTransaction().add(R.id.contentLayaout, inicioAdmin).commit();
 
     }
     @Override
