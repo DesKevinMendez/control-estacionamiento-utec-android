@@ -35,6 +35,9 @@ public class PerfilUsuario extends AppCompatActivity {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                startActivity(i);
                 finish();
             }
         });
@@ -52,10 +55,11 @@ public class PerfilUsuario extends AppCompatActivity {
                 } else if (confirmar.isEmpty()){
                     edClaveConfirmar.setError("Campo Requerido");
                     edClaveConfirmar.requestFocus();
-                } else if (clave.equals(confirmar)){
+                } else if (!clave.equals(confirmar)){
                     edClave.setText("");
                     edClaveConfirmar.setText("");
                     Toast.makeText(PerfilUsuario.this, "Las Claves no son Iguales", Toast.LENGTH_SHORT).show();
+                    edClave.requestFocus();
                 } else{
                     // Inicia el popup
                     Intent i = new Intent(getApplicationContext(), PopConfirm.class);

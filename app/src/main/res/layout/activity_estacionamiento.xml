@@ -14,6 +14,7 @@
         android:layout_marginTop="40dp"
 
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toStartOf="@+id/imgSB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/buildingr" />
@@ -32,10 +33,10 @@
         android:id="@+id/imgSB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
 
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toStartOf="@+id/imgGL"
         app:layout_constraintStart_toEndOf="@+id/imgBJ"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/buildingg" />
@@ -54,10 +55,11 @@
         android:id="@+id/imgGL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="40dp"
 
+        android:layout_marginEnd="12dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgSB"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/buildingr" />
@@ -80,6 +82,7 @@
         android:layout_marginTop="30dp"
 
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toStartOf="@+id/imgJL"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBJ"
         app:srcCompat="@drawable/buildingg" />
@@ -98,10 +101,10 @@
         android:id="@+id/imgJL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
 
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toStartOf="@+id/imgGM"
         app:layout_constraintStart_toEndOf="@+id/imgTF"
         app:layout_constraintTop_toBottomOf="@+id/imgSB"
         app:srcCompat="@drawable/buildingg" />
@@ -120,10 +123,11 @@
         android:id="@+id/imgGM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
 
+        android:layout_marginEnd="17dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgJL"
         app:layout_constraintTop_toBottomOf="@+id/imgGL"
         app:srcCompat="@drawable/buildingg" />
@@ -146,6 +150,7 @@
         android:layout_marginTop="30dp"
 
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toStartOf="@+id/imgCL"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTF"
         app:srcCompat="@drawable/buildingr" />
@@ -164,10 +169,11 @@
         android:id="@+id/imgCL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="30dp"
 
+        android:layout_marginEnd="145dp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgAA"
         app:layout_constraintTop_toBottomOf="@+id/imgJL"
         app:srcCompat="@drawable/buildingr" />
