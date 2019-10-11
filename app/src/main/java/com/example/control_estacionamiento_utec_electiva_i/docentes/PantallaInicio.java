@@ -31,17 +31,32 @@ public class PantallaInicio extends AppCompatActivity {
         tvState = findViewById(R.id.tvState);
         tvCode = findViewById(R.id.tvCode);
 
+        // Obtenemos datos de las siguintes Activity
+        // LoginActivity.java
+        // PerfilUsuario.java
+        // PopActivity.java
         Bundle datos = getIntent().getExtras();
 
+        // Obtenemos el usuario desde LoginActivity.java, si no se invoca desde el login
+        // Significa que viene de PerfilUsuario.java y retorna un mensaje de error
         String usuario = datos.getString("usuario");
+
+        // Retorna mensajes desde PopActivity.java
         String estado = datos.getString("estado");
         String edificio = datos.getString("edificio");
 
+        if (usuario == null){ // significa que viene desde PerfilUsuario.java
+
+            // Asignacion exitosa
+            usuario = "Asignacion Exitosa";
+
+        }
         Toast.makeText(this, usuario, Toast.LENGTH_SHORT).show();
 
-        if (estado == null && edificio == null){
+        if (estado == null && edificio == null){ // No hay valores para modificar
             tvState.setTextColor(getColor(R.color.red));
-        } else if (estado.equals("validado")){
+        }
+        else if (estado.equals("validado")){ // Se modifican los valores
             tvCode.setText(edificio + " (temporal)");
             tvState.setTextColor(getColor(R.color.green));
             tvState.setText("Disponible");
