@@ -1,5 +1,6 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,8 +10,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +28,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * Use the {@link ReserveParking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReserveParking extends Fragment {
+public class ReserveParking extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -67,9 +75,64 @@ public class ReserveParking extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reserve_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_reserve_parking, container, false);
+
+        Button btnSelectedBuilding = view.findViewById(R.id.btnSelectedBuilding);
+        Button btnAceptar = view.findViewById(R.id.btnAceparRP);
+        Button btnDenegar = view.findViewById(R.id.btnDenegarRP);
+
+        Spinner spCantidad = view.findViewById(R.id.SpCantidadEstacionamiento);
+        Spinner SpHorariosRP = view.findViewById(R.id.SpHorariosRP);
+        ArrayAdapter<CharSequence> ad = ArrayAdapter.
+                createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCantidad.setAdapter(ad);
+
+
+        ArrayAdapter<CharSequence> hr = ArrayAdapter.
+                createFromResource(getActivity(), R.array.horarios, android.R.layout.simple_spinner_item);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        SpHorariosRP.setAdapter(hr);
+
+
+        EditText etPlannedDate = (EditText) view.findViewById(R.id.etPlannedDate);
+        etPlannedDate.setOnClickListener(this);
+
+        btnSelectedBuilding.setOnClickListener(this);
+        btnAceptar.setOnClickListener(this);
+        btnDenegar.setOnClickListener(this);
+
+
+        return view;
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btnSelectedBuilding:
+
+                SelectedBuilding selectedBuilding = new SelectedBuilding();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayaout, selectedBuilding).commit();
+
+            case R.id.btnAceparRP:
+
+                InicioAdmin inicioAdmin = new InicioAdmin();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayaout, inicioAdmin).commit();
+                break;
+            case R.id.btnDenegarRP:
+
+                InicioAdmin inicioAdmin2 = new InicioAdmin();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayaout, inicioAdmin2).commit();
+                break;
+            case R.id.etPlannedDate:
+
+                break;
+        }
+
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -93,6 +156,8 @@ public class ReserveParking extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
