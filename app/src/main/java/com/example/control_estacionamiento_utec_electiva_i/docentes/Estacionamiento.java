@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
@@ -33,6 +32,7 @@ public class Estacionamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
+                i.putExtra("edificio", "SB");
                 startActivity(i);
             }
         });
@@ -41,6 +41,7 @@ public class Estacionamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
+                i.putExtra("edificio", "TF");
                 startActivity(i);
             }
         });
@@ -49,6 +50,7 @@ public class Estacionamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
+                i.putExtra("edificio", "JL");
                 startActivity(i);
             }
         });
@@ -57,6 +59,7 @@ public class Estacionamiento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), PopActivity.class);
+                i.putExtra("edificio", "GM");
                 startActivity(i);
             }
         });

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -16,6 +17,7 @@ import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivit
 public class PantallaInicio extends AppCompatActivity {
 
     Button btnEstacionamiento;
+    TextView tvState, tvCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +28,40 @@ public class PantallaInicio extends AppCompatActivity {
         this.setTitle(R.string.pantalla_inicio);
 
         btnEstacionamiento = findViewById(R.id.btnStation);
+        tvState = findViewById(R.id.tvState);
+        tvCode = findViewById(R.id.tvCode);
+
+        Bundle datos = getIntent().getExtras();
+
+        String usuario = datos.getString("usuario");
+        String estado = datos.getString("estado");
+        String edificio = datos.getString("edificio");
+
+        Toast.makeText(this, usuario, Toast.LENGTH_SHORT).show();
+
+        if (estado == null && edificio == null){
+            tvState.setTextColor(getColor(R.color.red));
+        } else if (estado.equals("validado")){
+            tvCode.setText(edificio + " (temporal)");
+            tvState.setTextColor(getColor(R.color.green));
+            tvState.setText("Disponible");
+        }
 
         btnEstacionamiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i = new Intent(getApplicationContext(), Estacionamiento.class);
+                i.putExtra("estado", "no disponible");
                 startActivity(i);
+
                 finish();
             }
         });
 
     }
+
+
 
     // Method for show and hide the menu
     public boolean onCreateOptionsMenu(Menu menu){

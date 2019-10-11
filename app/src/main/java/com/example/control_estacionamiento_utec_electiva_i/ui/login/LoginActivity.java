@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 if (usernameEditText.getText().toString().trim().equals("docente")){
                     Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                    i.putExtra("usuario", usernameEditText.getText().toString().trim());
                     startActivity(i);
                     setResult(Activity.RESULT_OK);
 

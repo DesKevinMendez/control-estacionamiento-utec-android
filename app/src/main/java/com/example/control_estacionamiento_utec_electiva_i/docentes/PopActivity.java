@@ -35,11 +35,15 @@ public class PopActivity extends Activity {
 
         getWindow().setAttributes(params);
 
+        Bundle datosEdificios = getIntent().getExtras();
+        final String edificio = datosEdificios.getString("edificio");
 
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 // Cuando pasen los 3 segundos, pasamos a la actividad PantallaInicio de la aplicación
                 Intent intent = new Intent(PopActivity.this, PantallaInicio.class);
+                intent.putExtra("estado", "validado");
+                intent.putExtra("edificio", edificio);
                 startActivity(intent);
                 Toast.makeText(PopActivity.this, "Solicitud exitosa", Toast.LENGTH_SHORT).show();
                 finish();
