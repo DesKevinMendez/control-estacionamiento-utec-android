@@ -1,6 +1,5 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,25 +9,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReserveParking.OnFragmentInteractionListener} interface
+ * {@link AssignWatchman.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ReserveParking#newInstance} factory method to
+ * Use the {@link AssignWatchman#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReserveParking extends Fragment implements View.OnClickListener {
+public class AssignWatchman extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,7 +35,7 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReserveParking() {
+    public AssignWatchman() {
         // Required empty public constructor
     }
 
@@ -50,11 +45,11 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReserveParking.
+     * @return A new instance of fragment AssignWatchman.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReserveParking newInstance(String param1, String param2) {
-        ReserveParking fragment = new ReserveParking();
+    public static AssignWatchman newInstance(String param1, String param2) {
+        AssignWatchman fragment = new AssignWatchman();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -75,59 +70,49 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_reserve_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_assign_watchman, container, false);
 
-        Button btnSelectedBuilding = view.findViewById(R.id.btnSelectedBuilding);
-        Button btnAceptar = view.findViewById(R.id.btnAceparRP);
-        Button btnDenegar = view.findViewById(R.id.btnDenegarRP);
+        Button btnAsignarVigilante = view.findViewById(R.id.btnAsignarVigilante);
+        Button btnSeleccionarEdificio = view.findViewById(R.id.btnSeleccionarEdificio);
+        Button btnDenegarAW = view.findViewById(R.id.btnDenegarAW);
+        Button btnAceptarAW = view.findViewById(R.id.btnAceptarAW);
 
-        Spinner spCantidad = view.findViewById(R.id.SpCantidadEstacionamiento);
-        Spinner SpHorariosRP = view.findViewById(R.id.SpHorariosRP);
-        ArrayAdapter<CharSequence> ad = ArrayAdapter.
-                createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCantidad.setAdapter(ad);
-
-
-        ArrayAdapter<CharSequence> hr = ArrayAdapter.
-                createFromResource(getActivity(), R.array.horarios, android.R.layout.simple_spinner_item);
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpHorariosRP.setAdapter(hr);
-
-
-        EditText etPlannedDate = (EditText) view.findViewById(R.id.etPlannedDate);
-        etPlannedDate.setOnClickListener(this);
-
-        btnSelectedBuilding.setOnClickListener(this);
-        btnAceptar.setOnClickListener(this);
-        btnDenegar.setOnClickListener(this);
-
-
+        btnAsignarVigilante.setOnClickListener(this);
+        btnSeleccionarEdificio.setOnClickListener(this);
+        btnAceptarAW.setOnClickListener(this);
+        btnDenegarAW.setOnClickListener(this);
         return view;
     }
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btnSelectedBuilding:
+            case R.id.btnAsignarVigilante:
+                SelectedTeacher selectedTeacher = new SelectedTeacher();
 
-                SelectedBuilding selectedBuilding = new SelectedBuilding();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, selectedBuilding).commit();
+                        .replace(R.id.contentLayaout, selectedTeacher).commit();
 
-            case R.id.btnAceparRP:
+                break;
 
+            case R.id.btnAceptarAW:
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.contentLayaout, inicioAdmin).commit();
                 break;
-            case R.id.btnDenegarRP:
+            case R.id.btnSeleccionarEdificio:
+
+                SelectedBuilding selectedBuilding = new SelectedBuilding();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayaout, selectedBuilding).commit();
+
+                break;
+
+            case R.id.btnDenegarAW:
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.contentLayaout, inicioAdmin2).commit();
-                break;
-            case R.id.etPlannedDate:
 
                 break;
         }
