@@ -22,6 +22,12 @@
         android:orderInCategory="100"
         android:title="Reservar estacionamiento"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/assingWatchMan"
+        android:orderInCategory="100"
+        android:title="Asignar vigilante"
+        app:showAsAction="never" />
     <item
         android:id="@+id/logout"
         android:orderInCategory="100"

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParki
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements
         InicioAdmin.OnFragmentInteractionListener,
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements
         ReserveParking.OnFragmentInteractionListener,
         SelectedBuilding.OnFragmentInteractionListener,
         SelectedSchedule.OnFragmentInteractionListener,
-        SelectedTeacher.OnFragmentInteractionListener {
+        SelectedTeacher.OnFragmentInteractionListener,
+        AssignWatchman.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +82,20 @@ public class MainActivity extends AppCompatActivity implements
                 getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
                 return true;
 
+            case R.id.assingWatchMan:
+                setTitle("Asignar vigilante");
+                frag = new AssignWatchman();
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentLayaout, frag).commit();
+                return  true;
+
             case R.id.logout:
                 Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show();
+
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+                finish();
                 return true;
 
             default:
