@@ -37,6 +37,7 @@ public class PerfilUsuario extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                i.putExtra("usuario", "Cancelado");
                 startActivity(i);
                 finish();
             }
