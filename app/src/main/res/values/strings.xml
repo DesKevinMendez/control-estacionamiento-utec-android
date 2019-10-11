@@ -9,6 +9,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
     <string name="home_menu">"Inicio"</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -26,4 +27,48 @@
         <item>"18:40"</item>
         <item>"20:10"</item>
     </string-array>
+
+
+    <!-- Strings related to teacher's Toolbar -->
+    <string name="home">Inicio</string>
+    <string name="view_profile">Ver Perfil</string>
+    <string name="close">Cerrar Sesion</string>
+
+    <!-- Strings related to pantalla inicial -->
+    <string name="pantalla_inicio">Pantalla de Inicio</string>
+    <string name="name_title">Nombres:</string>
+    <string name="name_user">Fulano de Tal</string>
+    <string name="carne_title">Carnet:</string>
+    <string name="carne">25-1234-2015</string>
+    <string name="station_code">Código de estacionamiento:</string>
+    <string name="code">BJ-21</string>
+    <string name="schedule_use">Horrario de uso:</string>
+    <string name="schedule">06:30 — 09:30</string>
+    <string name="station_availability">Disponibilidad de estacionamiento:</string>
+    <string name="state">No Disponible</string>
+    <string name="btn_station">Solicitar Estacionamiento</string>
+
+    <!-- Strings related to Estacionamiento -->
+    <string name="estacionamiento">Estacionamiento</string>
+    <string name="bj">BJ</string>
+    <string name="sb">SB</string>
+    <string name="gl">GL</string>
+    <string name="tf">TF</string>
+    <string name="jl">JL</string>
+    <string name="gm">GM</string>
+    <string name="aa">AA</string>
+    <string name="cl">CL</string>
+    <string name="progress">Solicitando Estacionamiento</string>
+
+    <!-- String related to user profile -->
+    <string name="change_pass">CAMBIAR CLAVE DE ACCESO</string>
+    <string name="perfil_usuario">Perfil de usuario</string>
+    <string name="pass_new">Escribe la nueva clave</string>
+    <string name="confirm">Confirmar</string>
+    <string name="btn_confirm">Confirmar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="confirm_pop">Confirmar cambio de clave</string>
+    <string name="message_pop">Esta accion no se puede deshacer</string>
+
+
 </resources>

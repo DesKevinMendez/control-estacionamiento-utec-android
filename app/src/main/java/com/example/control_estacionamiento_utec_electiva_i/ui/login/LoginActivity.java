@@ -26,6 +26,9 @@ import android.widget.Toast;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivity;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import com.example.control_estacionamiento_utec_electiva_i.docentes.PantallaInicio;
+
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
@@ -73,12 +76,22 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
-                setResult(Activity.RESULT_OK);
+                if (usernameEditText.getText().toString().trim().equals("docente")){
+                    Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                    i.putExtra("usuario", usernameEditText.getText().toString().trim());
+                    startActivity(i);
+                    setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
-                finish();
+                    //Complete and destroy login activity once successful
+                    finish();
+                } else {
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(i);
+                    setResult(Activity.RESULT_OK);
+
+                    //Complete and destroy login activity once successful
+                    finish();
+                }
             }
         });
 
