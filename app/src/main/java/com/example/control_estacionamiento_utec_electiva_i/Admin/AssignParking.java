@@ -96,8 +96,8 @@ public class AssignParking extends Fragment implements OnClickListener {
         switch(view.getId()){
             case R.id.btnAceptarAP:
                 InicioAdmin inicio = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        replace(R.id.contentLayaout, inicio).commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.contentLayaout, inicio).commit();
 
                 Toast.makeText(getActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show();
 
@@ -105,27 +105,27 @@ public class AssignParking extends Fragment implements OnClickListener {
             case R.id.btnCancelarAP:
 
                 InicioAdmin denegado = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction().
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.contentLayaout, denegado).commit();
 
                 break;
             case R.id.btnSelectedParking:
 
                 SelectedBuilding selectedParking = new SelectedBuilding();
-                getActivity().getSupportFragmentManager().beginTransaction().
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.contentLayaout, selectedParking).commit();
 
                 break;
             case R.id.btnSelectedSchedule:
                 SelectedSchedule selectedSchedule = new SelectedSchedule();
-                getActivity().getSupportFragmentManager().beginTransaction().
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.contentLayaout, selectedSchedule).commit();
 
                 break;
             case R.id.btnSelectedTeacher:
 
                 SelectedTeacher selectedTeacher= new SelectedTeacher();
-                getActivity().getSupportFragmentManager().beginTransaction().
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.contentLayaout, selectedTeacher).commit();
                 break;
         }

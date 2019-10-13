@@ -78,6 +78,7 @@ public class SelectedTeacher extends Fragment {
                 AssignParking assignParking = new AssignParking();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, assignParking).commit();
             }
         });

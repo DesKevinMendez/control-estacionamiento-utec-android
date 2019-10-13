@@ -90,21 +90,21 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                 SelectedTeacher selectedTeacher = new SelectedTeacher();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, selectedTeacher).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, selectedTeacher).commit();
 
                 break;
 
             case R.id.btnAceptarAW:
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, inicioAdmin).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin).commit();
                 break;
             case R.id.btnSeleccionarEdificio:
 
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, selectedBuilding).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, selectedBuilding).commit();
 
                 break;
 
@@ -112,7 +112,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, inicioAdmin2).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin2).commit();
 
                 break;
         }

@@ -113,18 +113,21 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
 
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, selectedBuilding).commit();
 
             case R.id.btnAceparRP:
 
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, inicioAdmin).commit();
                 break;
             case R.id.btnDenegarRP:
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, inicioAdmin2).commit();
                 break;
             case R.id.etPlannedDate:
