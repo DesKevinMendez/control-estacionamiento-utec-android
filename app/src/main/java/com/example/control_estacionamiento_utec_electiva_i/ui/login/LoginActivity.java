@@ -23,10 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.control_estacionamiento_utec_electiva_i.MainActivity;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginViewModel;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginViewModelFactory;
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.inicioEstudiante;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -73,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), inicioEstudiante.class);
                 startActivity(i);
                 setResult(Activity.RESULT_OK);
 
