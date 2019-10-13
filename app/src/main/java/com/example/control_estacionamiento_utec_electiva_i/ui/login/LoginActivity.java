@@ -28,6 +28,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import com.example.control_estacionamiento_utec_electiva_i.docentes.PantallaInicio;
 
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.inicioEstudiante;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                if (usernameEditText.getText().toString().trim().equals("docente")){
+
+                if (usernameEditText.getText().toString().trim().equals("docente")) {
                     Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
                     i.putExtra("usuario", usernameEditText.getText().toString().trim());
                     startActivity(i);
@@ -84,6 +86,16 @@ public class LoginActivity extends AppCompatActivity {
 
                     //Complete and destroy login activity once successful
                     finish();
+                }else if (usernameEditText.getText().toString().trim().equals("estudiante")){
+
+
+                    Intent i = new Intent(getApplicationContext(), inicioEstudiante.class);
+                    startActivity(i);
+                    setResult(Activity.RESULT_OK);
+
+                    //Complete and destroy login activity once successful
+                    finish();
+
                 } else {
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
@@ -92,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Complete and destroy login activity once successful
                     finish();
                 }
+
             }
         });
 
