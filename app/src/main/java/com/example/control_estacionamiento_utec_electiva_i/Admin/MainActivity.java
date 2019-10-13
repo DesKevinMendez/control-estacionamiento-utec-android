@@ -57,14 +57,16 @@ public class MainActivity extends AppCompatActivity implements
 
                 frag = new InicioAdmin();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.contentLayaout, frag).commit();
 
                 return true;
             case R.id.seeProfile:
                 setTitle("Perfil de usuario");
                 frag = new ProfileUser();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.contentLayaout, frag).commit();
 
                 return true;
 
@@ -79,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements
                 setTitle("Reservar estacionamiento");
                 frag = new ReserveParking();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.contentLayaout, frag).commit();
                 return true;
 
             case R.id.assingWatchMan:
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements
                 frag = new AssignWatchman();
 
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, frag).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, frag).commit();
                 return  true;
 
             case R.id.logout:

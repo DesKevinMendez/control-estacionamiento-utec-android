@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import java.util.ArrayList;
@@ -113,26 +116,45 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
 
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, selectedBuilding).commit();
+                break;
 
             case R.id.btnAceparRP:
 
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, inicioAdmin).commit();
                 break;
             case R.id.btnDenegarRP:
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null)
                         .replace(R.id.contentLayaout, inicioAdmin2).commit();
                 break;
             case R.id.etPlannedDate:
-
+                showDatePickerDialog();
                 break;
         }
 
     }
+
+    private void showDatePickerDialog() {
+        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                EditText etPlannedDate = getActivity().findViewById(R.id.etPlannedDate);
+                final String selectedDate = day + " / " + (month+1) + " / " + year;
+                etPlannedDate.setText(selectedDate);
+            }
+        });
+
+        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

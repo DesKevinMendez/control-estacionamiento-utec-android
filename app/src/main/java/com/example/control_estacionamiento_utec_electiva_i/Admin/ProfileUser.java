@@ -83,7 +83,8 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
             public void onClick(View v)
             {
                 InicioAdmin home = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, home).commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.contentLayaout, home).commit();
             }
         });
 

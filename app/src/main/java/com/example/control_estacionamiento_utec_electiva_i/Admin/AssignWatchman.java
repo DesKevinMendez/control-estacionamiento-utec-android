@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -90,21 +91,21 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                 SelectedTeacher selectedTeacher = new SelectedTeacher();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, selectedTeacher).commit();
-
+                        .addToBackStack(null).replace(R.id.contentLayaout, selectedTeacher).commit();
+                Toast.makeText(getActivity(), "Hla desde assignWathman", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnAceptarAW:
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, inicioAdmin).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin).commit();
                 break;
             case R.id.btnSeleccionarEdificio:
 
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, selectedBuilding).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, selectedBuilding).commit();
 
                 break;
 
@@ -112,7 +113,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, inicioAdmin2).commit();
+                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin2).commit();
 
                 break;
         }
