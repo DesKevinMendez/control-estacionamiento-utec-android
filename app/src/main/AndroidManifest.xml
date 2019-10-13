@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".Vigilante.reservadosVigilante" />
+        <activity android:name=".Vigilante.disponiblesVigilante" />
+        <activity android:name=".Vigilante.detallecVigilante" />
+        <activity android:name=".Vigilante.comentarioVigilante" />
+        <activity android:name=".Vigilante.marcarVigilante" />
+        <activity android:name=".Vigilante.notificacionesVigilante" />
+        <activity android:name=".Vigilante.perfilVigilante" />
+        <activity android:name=".Vigilante.inicioVigilante" />
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/app_name">

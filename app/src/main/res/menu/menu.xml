@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/idInicio"
+        android:title="Inicio"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/idPerfil"
+        android:title="Perfil" />
+    <item
+        android:id="@+id/idMarcar"
+        android:title="Marcar entrada y salida " />
+    <item
+        android:id="@+id/idNotificaciones"
+        android:icon="@drawable/notificaciones"
+        android:title="Notificaciones"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/idComentarios"
+        android:title="Comentarios" />
+    <item
+        android:id="@+id/idDisponibles"
+        android:title="Ver estacionamientos disponibles" />
+    <item
+        android:id="@+id/idReservados"
+        android:title="Ver estacionamientos reservados" />
+    <item
+        android:id="@+id/idCerrar"
+        android:title="Cerrar Sesion " />
+</menu>
