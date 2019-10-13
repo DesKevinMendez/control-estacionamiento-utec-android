@@ -30,6 +30,8 @@ import com.example.control_estacionamiento_utec_electiva_i.docentes.PantallaInic
 
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.inicioEstudiante;
 
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.inicioVigilante;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     updateUiWithUser(loginResult.getSuccess());
                 }
 
+
                 if (usernameEditText.getText().toString().trim().equals("docente")) {
                     Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
                     i.putExtra("usuario", usernameEditText.getText().toString().trim());
@@ -96,13 +99,21 @@ public class LoginActivity extends AppCompatActivity {
                     //Complete and destroy login activity once successful
                     finish();
 
-                } else {
+                } else if (usernameEditText.getText().toString().trim().equals("vigilante")){
+
+                    Intent i = new Intent(getApplicationContext(), inicioVigilante.class);
+                    startActivity(i);
+                    setResult(Activity.RESULT_OK);
+
+                } else if (usernameEditText.getText().toString().trim().equals("admin")){
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(i);
                     setResult(Activity.RESULT_OK);
 
                     //Complete and destroy login activity once successful
                     finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Usuario no encontrado", Toast.LENGTH_SHORT).show();
                 }
 
             }
