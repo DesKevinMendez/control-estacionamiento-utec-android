@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -91,7 +92,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.contentLayaout, selectedTeacher).commit();
-
+                Toast.makeText(getActivity(), "Hla desde assignWathman", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnAceptarAW:

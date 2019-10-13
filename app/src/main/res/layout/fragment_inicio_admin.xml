@@ -9,25 +9,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
+        android:padding="10dp"
         android:background="#dedede"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvAdmin"
-            android:layout_margin="15dp"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:text="ADMINISTRADOR" />
+            android:layout_marginBottom="5dp"
+            android:text="ADMINISTRADOR"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre" />
+            android:layout_marginBottom="5dp"
+            android:text="Nombre"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvNombre"
-            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kevin Méndez" />
@@ -36,11 +41,12 @@
             android:id="@+id/carnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Carnet" />
+            android:text="Carnet"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvCarnet"
-            android:layout_margin="15dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="25-3992-2015" />

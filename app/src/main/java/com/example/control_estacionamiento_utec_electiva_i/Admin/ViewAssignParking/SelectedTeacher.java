@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -71,7 +70,7 @@ public class SelectedTeacher extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_selected_teacher, container, false);
-        ImageButton btnUserButton = view.findViewById(R.id.btnUserButton);
+        ImageButton btnUserButton = view.findViewById(R.id.btnBuildSelected);
         btnUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

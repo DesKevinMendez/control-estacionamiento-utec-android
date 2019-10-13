@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
@@ -117,6 +118,7 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null)
                         .replace(R.id.contentLayaout, selectedBuilding).commit();
+                break;
 
             case R.id.btnAceparRP:
 

@@ -60,7 +60,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btnUserButton"
+                android:id="@+id/btnBuildSelected"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="-1"
