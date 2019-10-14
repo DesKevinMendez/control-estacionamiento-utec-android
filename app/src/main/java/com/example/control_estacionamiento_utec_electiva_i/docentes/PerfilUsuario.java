@@ -82,6 +82,7 @@ public class PerfilUsuario extends AppCompatActivity {
 
         if (id == R.id.menuInicio){
             Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+            i.putExtra("estado", "inicio");
             startActivity(i);
             finish();
         } else if (id == R.id.menuPerfil){

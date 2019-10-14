@@ -78,12 +78,11 @@ public class Estacionamiento extends AppCompatActivity {
 
         if (id == R.id.menuInicio){
             Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+            i.putExtra("estado", "inicio");
             startActivity(i);
-            finish();
         } else if (id == R.id.menuPerfil){
             Intent i = new Intent(getApplicationContext(), PerfilUsuario.class);
             startActivity(i);
-            finish();
         } else if (id == R.id.menuCerrar){
             Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);

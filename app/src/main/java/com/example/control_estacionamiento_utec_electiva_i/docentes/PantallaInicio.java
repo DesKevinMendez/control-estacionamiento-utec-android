@@ -55,6 +55,8 @@ public class PantallaInicio extends AppCompatActivity {
 
         if (estado == null && edificio == null){ // No hay valores para modificar
             tvState.setTextColor(getColor(R.color.red));
+        } else if (estado.equals("inicio")){
+            Toast.makeText(this, "docente", Toast.LENGTH_SHORT).show();
         }
         else if (estado.equals("validado")){ // Se modifican los valores
             tvCode.setText(edificio + " (temporal)");
@@ -90,8 +92,8 @@ public class PantallaInicio extends AppCompatActivity {
 
         if (id == R.id.menuInicio){
             Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+            i.putExtra("estado", "inicio");
             startActivity(i);
-            finish();
         } else if (id == R.id.menuPerfil){
             Intent i = new Intent(getApplicationContext(), PerfilUsuario.class);
             startActivity(i);
