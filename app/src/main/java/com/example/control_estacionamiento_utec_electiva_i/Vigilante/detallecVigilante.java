@@ -27,6 +27,7 @@ public class detallecVigilante extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inicio = new Intent(getApplicationContext(), inicioVigilante.class);
                 startActivity(inicio);
+                finish();
             }
         });
 
@@ -35,6 +36,7 @@ public class detallecVigilante extends AppCompatActivity {
             public void onClick(View v) {
                 Intent comentarios = new Intent(getApplicationContext(), comentarioVigilante.class);
                 startActivity(comentarios);
+                finish();
             }
         });
 

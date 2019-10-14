@@ -27,6 +27,7 @@ public class notificacionesVigilante extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inicio = new Intent(getApplicationContext(), inicioVigilante.class);
                 startActivity(inicio);
+                finish();
             }
         });
     }

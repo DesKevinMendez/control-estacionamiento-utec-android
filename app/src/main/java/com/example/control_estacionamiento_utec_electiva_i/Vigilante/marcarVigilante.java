@@ -27,6 +27,7 @@ public class marcarVigilante extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inicio = new Intent(getApplicationContext(), inicioVigilante.class);
                 startActivity(inicio);
+                finish();
             }
         });
 
@@ -35,6 +36,7 @@ public class marcarVigilante extends AppCompatActivity {
             public void onClick(View v) {
                 Intent inicio = new Intent(getApplicationContext(), inicioVigilante.class);
                 startActivity(inicio);
+                finish();
             }
         });
 
