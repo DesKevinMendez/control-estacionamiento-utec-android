@@ -53,7 +53,7 @@
     <string name="schedule">06:30 — 09:30</string>
     <string name="station_availability">Disponibilidad de estacionamiento:</string>
     <string name="state">No Disponible</string>
-    <string name="btn_station">Solicitar Estacionamiento</string>
+    <string name="btn_station">Estacionamientos Disponibles</string>
 
     <!-- Strings related to Estacionamiento -->
     <string name="estacionamiento">Estacionamiento</string>

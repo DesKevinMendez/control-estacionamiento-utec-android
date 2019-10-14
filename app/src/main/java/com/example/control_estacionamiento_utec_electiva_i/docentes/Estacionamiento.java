@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
@@ -15,6 +17,7 @@ import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivit
 public class Estacionamiento extends AppCompatActivity {
 
     ImageButton btnSB, btnTF, btnJL, btnGM;
+    Button regresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,41 +29,45 @@ public class Estacionamiento extends AppCompatActivity {
         btnJL = findViewById(R.id.imgJL);
         btnGM = findViewById(R.id.imgGM);
 
+        regresar = findViewById(R.id.btnRegresar);
+
         this.setTitle(R.string.estacionamiento);
 
         btnSB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PopActivity.class);
-                i.putExtra("edificio", "SB");
-                startActivity(i);
+                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnTF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PopActivity.class);
-                i.putExtra("edificio", "TF");
-                startActivity(i);
+                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnJL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PopActivity.class);
-                i.putExtra("edificio", "JL");
-                startActivity(i);
+                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
             }
         });
 
         btnGM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PopActivity.class);
-                i.putExtra("edificio", "GM");
+                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                i.putExtra("estado", "inicio");
                 startActivity(i);
+                finish();
             }
         });
 
