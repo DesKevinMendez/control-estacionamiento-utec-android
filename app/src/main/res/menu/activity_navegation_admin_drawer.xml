@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home_admin"
+            android:icon="@drawable/ic_home_nav_admin"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_profile_admin"
+            android:icon="@drawable/ic_nav_profile_admin"
+            android:title="Ver perfil" />
+        <item
+            android:id="@+id/nav_assign_parking"
+            android:icon="@drawable/ic_assign_parking_nav_admin"
+            android:title="Asignar estacionamiento" />
+        <item
+            android:id="@+id/nav_reserve_parking"
+            android:icon="@drawable/ic_reserve_parking_nav_admin"
+            android:title="Reservar estacionamiento" />
+        <item
+            android:id="@+id/nav_assing_watchman"
+            android:icon="@drawable/ic_asssing_watchman_nav_admin"
+            android:title="Asignar vigilante" />
+    </group>
+
+
+</menu>
