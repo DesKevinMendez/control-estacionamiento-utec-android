@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Admin.AssignWatchman">
 
     <LinearLayout
@@ -14,30 +15,30 @@
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Vigilante encargado" />
 
         <Button
-            android:layout_marginBottom="5dp"
             android:id="@+id/btnAsignarVigilante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Seleccionar vigilante" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Zona de establecimiento" />
 
         <Button
             android:id="@+id/btnSeleccionarEdificio"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Seleccionar edificio" />
 
         <LinearLayout

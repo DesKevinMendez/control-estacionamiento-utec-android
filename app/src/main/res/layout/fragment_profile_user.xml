@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCFFFFFF"
     tools:context=".Admin.ProfileUser">
 
     <LinearLayout
@@ -10,28 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="5dp"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvAdminProfile"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="ADMINISTRADOR" />
 
         <TextView
             android:id="@+id/nombreProfile"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Nombre" />
 
         <TextView
             android:id="@+id/tvNombreProfile"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Kevin Méndez" />
 
         <TextView
@@ -66,13 +67,14 @@
                 android:layout_height="wrap_content"
                 android:singleLine="false"
                 android:text="*******" />
+
             <TextView
                 android:id="@+id/lineHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:singleLine="false"
-                android:background="@drawable/line_horizontal"
                 android:layout_marginBottom="5dp"
+                android:background="@drawable/line_horizontal"
+                android:singleLine="false"
                 android:text="" />
 
             <TextView

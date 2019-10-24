@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Admin.ViewAssignParking.SelectedTeacher">
 
     <LinearLayout
@@ -35,13 +36,14 @@
                 android:layout_height="wrap_content"
                 android:text="Buscar usuario" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/lineHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="false"
-            android:background="@drawable/line_horizontal"
             android:layout_marginBottom="5dp"
+            android:background="@drawable/line_horizontal"
+            android:singleLine="false"
             android:text="" />
 
         <TextView

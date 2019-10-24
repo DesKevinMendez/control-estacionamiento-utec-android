@@ -78,7 +78,7 @@ public class SelectedTeacher extends Fragment {
 
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null)
-                        .replace(R.id.contentLayaout, assignParking).commit();
+                        .replace(R.id.nav_host_fragment, assignParking).commit();
             }
         });
 

@@ -87,7 +87,7 @@ public class SelectedSchedule extends Fragment {
             public void onClick(View view) {
                 AssignParking assignParking = new AssignParking();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.contentLayaout, assignParking).commit();
+                        .replace(R.id.nav_host_fragment, assignParking).commit();
             }
         });
 

@@ -80,7 +80,7 @@ public class SelectedBuilding extends Fragment {
                 AssignParking assignParking = new AssignParking();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.contentLayaout, assignParking)
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, assignParking)
                         .commit();
 
             }

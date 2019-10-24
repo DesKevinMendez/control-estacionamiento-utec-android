@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Admin.NavegationAdmin"
+            android:name=".Admin.MainActivityAdmin"
             android:label="@string/title_activity_navegation_admin"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".docentes.Estacionamiento" />
         <activity android:name=".docentes.PantallaInicio" />
-        <activity android:name=".Admin.MainActivity" />
         <activity android:name=".Estudiante.perfilEstudiante" />
         <activity android:name=".Estudiante.inicioEstudiante" />
         <activity android:name=".Vigilante.reservadosVigilante" />

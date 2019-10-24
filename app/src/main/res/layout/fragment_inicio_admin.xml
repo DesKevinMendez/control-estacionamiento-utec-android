@@ -3,15 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Admin.InicioAdmin">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:padding="10dp"
         android:background="#dedede"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tvAdmin"
@@ -32,9 +33,9 @@
 
         <TextView
             android:id="@+id/tvNombre"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Kevin Méndez" />
 
         <TextView
@@ -46,9 +47,9 @@
 
         <TextView
             android:id="@+id/tvCarnet"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="25-3992-2015" />
     </LinearLayout>
 </FrameLayout>

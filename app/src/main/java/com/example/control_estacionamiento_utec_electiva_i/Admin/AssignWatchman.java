@@ -91,21 +91,21 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                 SelectedTeacher selectedTeacher = new SelectedTeacher();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.contentLayaout, selectedTeacher).commit();
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, selectedTeacher).commit();
                 Toast.makeText(getActivity(), "Hla desde assignWathman", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnAceptarAW:
                 InicioAdmin inicioAdmin = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin).commit();
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin).commit();
                 break;
             case R.id.btnSeleccionarEdificio:
 
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.contentLayaout, selectedBuilding).commit();
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, selectedBuilding).commit();
 
                 break;
 
@@ -113,7 +113,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
                 InicioAdmin inicioAdmin2 = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.contentLayaout, inicioAdmin2).commit();
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin2).commit();
 
                 break;
         }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Admin.ReserveParking">
 
     <LinearLayout
@@ -22,44 +23,44 @@
         <Button
             android:id="@+id/btnSelectedBuilding"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Seleccionar edificio" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Cantidad de estacionamiento" />
 
         <Spinner
             android:id="@+id/SpCantidadEstacionamiento"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
 
         <TextView
-            android:layout_marginBottom="5dp"
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Horarios" />
 
         <Spinner
-            android:layout_marginBottom="5dp"
             android:id="@+id/SpHorariosRP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
 
         <EditText
             android:id="@+id/etPlannedDate"
-            android:hint="Fecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:focusable="false"
             android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha"
+            android:inputType="date"
             android:maxLines="1" />
 
         <LinearLayout
