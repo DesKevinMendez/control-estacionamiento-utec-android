@@ -1,6 +1,5 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,27 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
-import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReserveParking.OnFragmentInteractionListener} interface
+ * {@link RecerveParking.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ReserveParking#newInstance} factory method to
+ * Use the {@link RecerveParking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReserveParking extends Fragment implements View.OnClickListener {
+public class RecerveParking extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,7 +34,7 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReserveParking() {
+    public RecerveParking() {
         // Required empty public constructor
     }
 
@@ -53,11 +44,11 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReserveParking.
+     * @return A new instance of fragment RecerveParking.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReserveParking newInstance(String param1, String param2) {
-        ReserveParking fragment = new ReserveParking();
+    public static RecerveParking newInstance(String param1, String param2) {
+        RecerveParking fragment = new RecerveParking();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -78,81 +69,23 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_reserve_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_recerve_parking, container, false);
 
-        Button btnSelectedBuilding = view.findViewById(R.id.btnSelectedBuilding);
-        Button btnAceptar = view.findViewById(R.id.btnAceparRP);
-        Button btnDenegar = view.findViewById(R.id.btnDenegarRP);
 
-        Spinner spCantidad = view.findViewById(R.id.SpCantidadEstacionamiento);
-        Spinner SpHorariosRP = view.findViewById(R.id.SpHorariosRP);
+        Spinner spSeleccionarDias = view.findViewById(R.id.spSeleccionarDias);
+        Spinner spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);
+
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
                 createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCantidad.setAdapter(ad);
+        spCantidadHorariosRP.setAdapter(ad);
 
-
-        ArrayAdapter<CharSequence> hr = ArrayAdapter.
-                createFromResource(getActivity(), R.array.horarios, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> dias = ArrayAdapter.
+                createFromResource(getActivity(), R.array.dias, android.R.layout.simple_spinner_item);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpHorariosRP.setAdapter(hr);
-
-
-        EditText etPlannedDate = (EditText) view.findViewById(R.id.etPlannedDate);
-        etPlannedDate.setOnClickListener(this);
-
-        btnSelectedBuilding.setOnClickListener(this);
-        btnAceptar.setOnClickListener(this);
-        btnDenegar.setOnClickListener(this);
-
+        spSeleccionarDias.setAdapter(dias);
 
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btnSelectedBuilding:
-
-                SelectedBuilding selectedBuilding = new SelectedBuilding();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, selectedBuilding).commit();
-                break;
-
-            case R.id.btnAceparRP:
-
-                InicioAdmin inicioAdmin = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, inicioAdmin).commit();
-                break;
-            case R.id.btnDenegarRP:
-
-                InicioAdmin inicioAdmin2 = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, inicioAdmin2).commit();
-                break;
-            case R.id.etPlannedDate:
-                showDatePickerDialog();
-                break;
-        }
-
-    }
-
-    private void showDatePickerDialog() {
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 because January is zero
-                EditText etPlannedDate = getActivity().findViewById(R.id.etPlannedDate);
-                final String selectedDate = day + " / " + (month+1) + " / " + year;
-                etPlannedDate.setText(selectedDate);
-            }
-        });
-
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -178,8 +111,6 @@ public class ReserveParking extends Fragment implements View.OnClickListener {
         super.onDetach();
         mListener = null;
     }
-
-
 
     /**
      * This interface must be implemented by activities that contain this

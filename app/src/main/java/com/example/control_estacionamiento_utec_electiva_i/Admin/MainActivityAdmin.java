@@ -1,6 +1,5 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -8,7 +7,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParki
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 import android.view.MenuItem;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -24,18 +23,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.Toast;
 
 
 public class MainActivityAdmin extends AppCompatActivity implements
         InicioAdmin.OnFragmentInteractionListener,
         ProfileUser.OnFragmentInteractionListener,
         AssignParking.OnFragmentInteractionListener,
-        ReserveParking.OnFragmentInteractionListener,
+        ReserveEvents.OnFragmentInteractionListener,
         SelectedBuilding.OnFragmentInteractionListener,
         SelectedSchedule.OnFragmentInteractionListener,
         SelectedTeacher.OnFragmentInteractionListener,
-        AssignWatchman.OnFragmentInteractionListener {
+        AssignWatchman.OnFragmentInteractionListener,
+        RecerveParking.OnFragmentInteractionListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -52,7 +51,7 @@ public class MainActivityAdmin extends AppCompatActivity implements
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home_admin, R.id.nav_profile_admin, R.id.nav_assign_parking,
-                R.id.nav_reserve_parking, R.id.nav_assing_watchman)
+                R.id.nav_reserve_events, R.id.nav_assing_watchman, R.id.nav_reserve_parking)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -95,7 +94,7 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
             case R.id.reserveParking:
                 setTitle("Reservar estacionamiento");
-                frag = new ReserveParking();
+                frag = new ReserveEvents();
 
                 getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();

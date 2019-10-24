@@ -7,23 +7,29 @@
         <item
             android:id="@+id/nav_home_admin"
             android:icon="@drawable/ic_home_nav_admin"
-            android:title="@string/menu_home" />
+            android:title="@string/menu_admin_home" />
         <item
             android:id="@+id/nav_profile_admin"
             android:icon="@drawable/ic_nav_profile_admin"
-            android:title="Ver perfil" />
+            android:title="@string/menu_admin_perfil" />
         <item
             android:id="@+id/nav_assign_parking"
             android:icon="@drawable/ic_assign_parking_nav_admin"
-            android:title="Asignar estacionamiento" />
+            android:title="@string/menu_admin_asignar_estacionamiento" />
+        <item
+            android:id="@+id/nav_reserve_events"
+            android:icon="@drawable/ic_reserve_parking_nav_admin"
+            android:title="@string/menu_admin_reservar_evento" />
         <item
             android:id="@+id/nav_reserve_parking"
             android:icon="@drawable/ic_reserve_parking_nav_admin"
-            android:title="Reservar estacionamiento" />
+            android:title="@string/menu_admin_reservar_estacionamiento" />
+
         <item
             android:id="@+id/nav_assing_watchman"
             android:icon="@drawable/ic_asssing_watchman_nav_admin"
-            android:title="Asignar vigilante" />
+            android:title="@string/menu_admin_asignar_vigilante" />
+
     </group>
 
 
