@@ -1,5 +1,6 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.Toast;
 
 
 public class MainActivityAdmin extends AppCompatActivity implements
@@ -66,10 +69,8 @@ public class MainActivityAdmin extends AppCompatActivity implements
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Fragment frag = null;
-        /**switch (id){
+        switch (id){
             case R.id.home:
-                setTitle("Pantalla de inicio");
-
                 frag = new InicioAdmin();
 
                 getSupportFragmentManager().beginTransaction()
@@ -77,7 +78,6 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
                 return true;
             case R.id.seeProfile:
-                setTitle("Perfil de usuario");
                 frag = new ProfileUser();
 
                 getSupportFragmentManager().beginTransaction()
@@ -86,23 +86,28 @@ public class MainActivityAdmin extends AppCompatActivity implements
                 return true;
 
             case R.id.assignParking:
-                setTitle("Asignar estacionamiento");
                 frag = new AssignParking();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, frag).commit();
                 return true;
 
             case R.id.reserveParking:
-                setTitle("Reservar estacionamiento");
-                frag = new ReserveEvents();
+                frag = new RecerveParking();
 
                 getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
                 return true;
 
             case R.id.assingWatchMan:
-                setTitle("Asignar vigilante");
                 frag = new AssignWatchman();
+
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                return  true;
+
+            case R.id.reserveEvents:
+
+                frag = new ReserveEvents();
 
                 getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
@@ -119,8 +124,7 @@ public class MainActivityAdmin extends AppCompatActivity implements
             default:
 
                 return super.onOptionsItemSelected(item);
-        }**/
-        return super.onOptionsItemSelected(item);
+        }
 
     }
     @Override
