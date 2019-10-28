@@ -151,14 +151,15 @@
         android:id="@+id/btnStation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
 
+        android:background="@drawable/oval"
+        android:textColor="#FFFFFF"
         android:text="@string/btn_station"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvState"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvState" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

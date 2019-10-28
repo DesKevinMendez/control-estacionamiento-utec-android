@@ -71,8 +71,6 @@ public class PantallaInicio extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), Estacionamiento.class);
                 i.putExtra("estado", "no disponible");
                 startActivity(i);
-
-                finish();
             }
         });
 

@@ -110,9 +110,18 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/oval_edt"
+
+        android:elevation="20dp"
         android:ems="10"
         android:hint="@string/pass_new"
         android:inputType="textPassword"
+        android:padding="15dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+
+        android:shadowDy="-1.5"
+        android:shadowRadius="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -122,11 +131,20 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
+
+        android:background="@drawable/oval_edt"
+        android:elevation="20dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="@string/confirm"
+        android:inputType="textPassword"
+
+        android:padding="15dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="-1.5"
+        android:shadowRadius="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edClave" />
@@ -148,13 +166,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/btn_cancelar" />
+            android:background="@drawable/oval_white"
+            android:text="@string/btn_cancelar"
+            android:textColor="#98094D" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnConfirmarPerfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/oval"
             android:text="@string/btn_confirm" />
     </LinearLayout>
 
