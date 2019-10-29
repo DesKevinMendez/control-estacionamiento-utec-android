@@ -112,16 +112,12 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/oval_edt"
 
-        android:elevation="20dp"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="@string/pass_new"
         android:inputType="textPassword"
         android:padding="15dp"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
 
-        android:shadowDy="-1.5"
-        android:shadowRadius="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -135,16 +131,12 @@
         android:layout_marginEnd="24dp"
 
         android:background="@drawable/oval_edt"
-        android:elevation="20dp"
+        android:elevation="3dp"
         android:ems="10"
         android:hint="@string/confirm"
         android:inputType="textPassword"
 
         android:padding="15dp"
-        android:shadowColor="#000000"
-        android:shadowDx="1.5"
-        android:shadowDy="-1.5"
-        android:shadowRadius="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edClave" />
@@ -166,7 +158,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
             android:background="@drawable/oval_white"
+
             android:text="@string/btn_cancelar"
             android:textColor="#98094D" />
 
@@ -182,6 +176,7 @@
             android:textColor="#FFFFFF"
             android:background="@drawable/oval"
             android:text="@string/btn_confirm" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/confirm_pop"
-        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorTextLight"
+        android:layout_marginBottom="5dp"
         android:textAlignment="center"
+        android:textSize="28dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <TextView
@@ -23,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/message_pop"
+        android:textColor="#FFFFFF"
         android:layout_marginBottom="15dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -37,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/oval_white"
             android:text="@string/btn_cancelar" />
 
         <Button
@@ -44,6 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/oval"
+            android:textColor="#FFFFFF"
             android:text="@string/btn_confirm" />
     </LinearLayout>
 </LinearLayout>
