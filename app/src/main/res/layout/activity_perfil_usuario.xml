@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="@id/tvName" />
 
     <TextView
-        android:id="@+id/tvCarnetTeacher"
+        android:id="@+id/tvInfoText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -76,7 +76,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCarnetTeacher" />
+        app:layout_constraintTop_toBottomOf="@+id/tvInfoText" />
 
     <TextView
         android:id="@+id/tvClave"

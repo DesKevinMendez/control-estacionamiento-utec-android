@@ -9,34 +9,35 @@ import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
-public class TeacherAdapter  extends BaseAdapter {
+public class BuildingAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
     Context contexto;
-    String[][] datos;
+    String[][] building;
 
-    public TeacherAdapter(Context contexto, String[][] datos) {
+    public BuildingAdapter(Context contexto, String[][] building) {
         this.contexto = contexto;
-        this.datos = datos;
+        this.building = building;
 
         inflater = (LayoutInflater)contexto.getSystemService(contexto.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        final View vista = inflater.inflate(R.layout.admin_teacher_list, null);
+        final View vista = inflater.inflate(R.layout.admin_building_list, null);
 
-        TextView tvTeacher = vista.findViewById(R.id.tvBuildingName);
-        TextView tvCarnetTeacher = vista.findViewById(R.id.tvInfoText);
+        TextView tvBuilding = vista.findViewById(R.id.tvBuildingName);
+        TextView InfoBuilding = vista.findViewById(R.id.tvInfoBuilding);
 
-        tvTeacher.setText(datos[i][0]);
-        tvCarnetTeacher.setText(datos[i][1]);
+        tvBuilding.setText(building[i][0]);
+        InfoBuilding.setText("Parqueos usado " + building[i][1] + " de "+ building[i][2]);
 
         return vista;
     }
+
     @Override
     public int getCount() {
-        return datos.length;
+        return building.length;
     }
 
     @Override

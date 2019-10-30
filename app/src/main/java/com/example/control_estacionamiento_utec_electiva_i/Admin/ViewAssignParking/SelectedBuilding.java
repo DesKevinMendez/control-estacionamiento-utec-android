@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -66,25 +68,22 @@ public class SelectedBuilding extends Fragment {
         }
     }
 
-    ImageButton btnBuildSelected;
+    ListView ListBuilding;
+    String [][] building = {
+            {"Franciso Morazan", "1", "30"},
+            {"Tomas Jefferson", "20", "25"},
+            {"Benito Juarez - Sotano", "30", "30"},
+            {"Benito Juarez - Superior", "14", "25"},
+    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_selected_building, container, false);
+        ListBuilding = view.findViewById(R.id.listViewBuilding_SB);
 
-        btnBuildSelected = view.findViewById(R.id.btnBuildSelected);
-        btnBuildSelected.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AssignParking assignParking = new AssignParking();
+        ListBuilding.setAdapter(new BuildingAdapter(getActivity(), building));
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, assignParking)
-                        .commit();
-
-            }
-        });
 
         return view;
     }
