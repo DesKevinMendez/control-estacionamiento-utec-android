@@ -73,6 +73,18 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="44dp"
+        android:layout_height="42dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:srcCompat="@drawable/ver" />
+
+    <ImageView
         android:id="@+id/ivBuilding"
         android:layout_width="77dp"
         android:layout_height="89dp"
@@ -83,17 +95,6 @@
         app:layout_constraintTop_toTopOf="@+id/guideline4"
         app:layout_constraintVertical_bias="0.384"
         app:srcCompat="@drawable/ic_domain_black_24dp" />
-
-    <ImageButton
-        android:id="@+id/ibTeacher"
-        android:layout_width="42dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="12dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline7"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
 
     <TextView
         android:id="@+id/tvInfoBuilding"

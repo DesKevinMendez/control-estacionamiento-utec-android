@@ -21,6 +21,12 @@ public final class DatosTeacher {
         carnetTeacher.add("10-3453-3456");
         carnetTeacher.add("15-3453-3457");
 
+        for (int i = 0; i < 50; i++) {
+
+            teacher.add("Docente " + i);
+            carnetTeacher.add("2"+ i +"-3"+ i +"53-3"+ i +"53");
+        }
+
     }
 
     public static  ArrayList getAllTeacher() {
