@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -69,12 +70,8 @@ public class SelectedBuilding extends Fragment {
     }
 
     ListView ListBuilding;
-    String [][] building = {
-            {"Franciso Morazan", "1", "30"},
-            {"Tomas Jefferson", "20", "25"},
-            {"Benito Juarez - Sotano", "30", "30"},
-            {"Benito Juarez - Superior", "14", "25"},
-    };
+    DatosBuilding datosBuilding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,7 +79,11 @@ public class SelectedBuilding extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_selected_building, container, false);
         ListBuilding = view.findViewById(R.id.listViewBuilding_SB);
 
-        ListBuilding.setAdapter(new BuildingAdapter(getActivity(), building));
+        ListBuilding.setAdapter(new
+                BuildingAdapter(getActivity(),
+                datosBuilding.dataBuilding(),
+                datosBuilding.dataEstaDispo(),
+                datosBuilding.dataTotalEsta()));
 
 
         return view;

@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -70,11 +71,7 @@ public class SelectedTeacher extends Fragment {
     }
 
     ListView teacherList;
-    String [][] teacher = {
-            {"Jorge Acevedo", "345345345"},
-            {"Jorge Machado", "345345345"},
-            {"Liliam Marta", "345345345"},
-    };
+    DatosTeacher datosTeacher;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,8 +80,10 @@ public class SelectedTeacher extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_selected_teacher, container, false);
 
+
         teacherList = view.findViewById(R.id.lvTeachers);
-        teacherList.setAdapter(new TeacherAdapter(getActivity(), teacher));
+        teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getAllTeacher(),
+                datosTeacher.getAllCarnetsTeacher()));
 
         return view;
     }

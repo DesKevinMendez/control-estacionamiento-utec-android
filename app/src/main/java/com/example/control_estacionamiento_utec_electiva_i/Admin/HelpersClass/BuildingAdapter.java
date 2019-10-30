@@ -9,15 +9,24 @@ import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import java.util.ArrayList;
+
 public class BuildingAdapter extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
-    Context contexto;
-    String[][] building;
 
-    public BuildingAdapter(Context contexto, String[][] building) {
+    Context contexto;
+    ArrayList building;
+    ArrayList TotalEstacionamiento;
+    ArrayList EstacionamientoDisponible;
+
+    public BuildingAdapter(Context contexto, ArrayList building,
+                           ArrayList EstacionamientoDisponible ,
+                           ArrayList TotalEstacionamiento) {
         this.contexto = contexto;
         this.building = building;
+        this.TotalEstacionamiento = TotalEstacionamiento;
+        this.EstacionamientoDisponible = EstacionamientoDisponible;
 
         inflater = (LayoutInflater)contexto.getSystemService(contexto.LAYOUT_INFLATER_SERVICE);
     }
@@ -29,15 +38,17 @@ public class BuildingAdapter extends BaseAdapter {
         TextView tvBuilding = vista.findViewById(R.id.tvBuildingName);
         TextView InfoBuilding = vista.findViewById(R.id.tvInfoBuilding);
 
-        tvBuilding.setText(building[i][0]);
-        InfoBuilding.setText("Parqueos usado " + building[i][1] + " de "+ building[i][2]);
+        tvBuilding.setText(building.get(i).toString());
+        InfoBuilding.setText("Parqueos usado "
+                + EstacionamientoDisponible.get(i).toString() +
+                " de "+ TotalEstacionamiento.get(i).toString());
 
         return vista;
     }
 
     @Override
     public int getCount() {
-        return building.length;
+        return building.size();
     }
 
     @Override

@@ -9,15 +9,19 @@ import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import java.util.ArrayList;
+
 public class TeacherAdapter  extends BaseAdapter {
 
     private static LayoutInflater inflater = null;
     Context contexto;
-    String[][] datos;
+    ArrayList teacher;
+    ArrayList carnets;
 
-    public TeacherAdapter(Context contexto, String[][] datos) {
+    public TeacherAdapter(Context contexto, ArrayList teacher, ArrayList carnets) {
         this.contexto = contexto;
-        this.datos = datos;
+        this.teacher = teacher;
+        this.carnets = carnets;
 
         inflater = (LayoutInflater)contexto.getSystemService(contexto.LAYOUT_INFLATER_SERVICE);
     }
@@ -29,14 +33,14 @@ public class TeacherAdapter  extends BaseAdapter {
         TextView tvTeacher = vista.findViewById(R.id.tvBuildingName);
         TextView tvCarnetTeacher = vista.findViewById(R.id.tvInfoText);
 
-        tvTeacher.setText(datos[i][0]);
-        tvCarnetTeacher.setText(datos[i][1]);
+        tvTeacher.setText(teacher.get(i).toString());
+        tvCarnetTeacher.setText(carnets.get(i).toString());
 
         return vista;
     }
     @Override
     public int getCount() {
-        return datos.length;
+        return teacher.size();
     }
 
     @Override
