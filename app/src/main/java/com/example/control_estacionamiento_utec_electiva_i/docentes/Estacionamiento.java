@@ -64,16 +64,13 @@ public class Estacionamiento extends AppCompatActivity {
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
-                i.putExtra("estado", "inicio");
-                startActivity(i);
                 finish();
             }
         });
 
     }
 
-    // Method for show and hide the menu
+    /* Method for show and hide the menu
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.toolbar, menu);
         return true;
@@ -97,6 +94,6 @@ public class Estacionamiento extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
 }
