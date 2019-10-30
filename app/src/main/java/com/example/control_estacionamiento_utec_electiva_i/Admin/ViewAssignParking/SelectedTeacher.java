@@ -10,9 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,22 +69,22 @@ public class SelectedTeacher extends Fragment {
         }
     }
 
+    ListView teacherList;
+    String [][] teacher = {
+            {"Jorge Acevedo", "345345345"},
+            {"Jorge Machado", "345345345"},
+            {"Liliam Marta", "345345345"},
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_selected_teacher, container, false);
-        ImageButton btnUserButton = view.findViewById(R.id.btnBuildSelected);
-        btnUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AssignParking assignParking = new AssignParking();
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, assignParking).commit();
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_selected_teacher, container, false);
+
+        teacherList = view.findViewById(R.id.lvTeachers);
+        teacherList.setAdapter(new TeacherAdapter(getActivity(), teacher));
 
         return view;
     }
