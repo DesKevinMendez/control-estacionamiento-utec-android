@@ -124,6 +124,9 @@ public class SelectedTeacher extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (editable.toString().equals("")) {
+                    DatosTeacher.setClearFilter();
+                }
                 DatosTeacher.getFilterTeachers(editable.toString());
 
                 teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getFilterTeachers(editable.toString()),
