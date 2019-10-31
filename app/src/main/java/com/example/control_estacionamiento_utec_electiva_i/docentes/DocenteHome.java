@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment;
+import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.perfil.PerfilFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class DocenteHome extends AppCompatActivity {
 
@@ -54,6 +58,30 @@ public class DocenteHome extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        Fragment fragment = null;
+
+        switch (id){
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment)
+                        .commit();
+                return true;
+            case R.id.nav_perfil:
+                fragment = new PerfilFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment)
+                        .commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
     }
 
 }

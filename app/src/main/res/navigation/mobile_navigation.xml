@@ -10,9 +10,7 @@
         android:name="com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_gallery"
-            app:destination="@id/nav_perfil" />
+
     </fragment>
 
     <fragment
@@ -20,9 +18,7 @@
         android:name="com.example.control_estacionamiento_utec_electiva_i.docentes.ui.perfil.PerfilFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_perfil">
-        <action
-            android:id="@+id/action_nav_gallery_to_nav_home"
-            app:destination="@id/nav_home" />
+
     </fragment>
 
     <fragment

@@ -43,7 +43,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 //getFragmentManager().popBackStack();
                 HomeFragment fragment = new HomeFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_perfil, fragment).commit();
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
             }
         });
 
