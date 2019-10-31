@@ -6,11 +6,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -73,7 +77,7 @@ public class SelectedBuilding extends Fragment {
 
     ListView ListBuilding;
     DatosBuilding datosBuilding;
-
+    EditText tvFindBuildingSB;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,10 +96,7 @@ public class SelectedBuilding extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 datosBuilding.setBuildingSelected(i);
 
-                /*
-                getActivity().getSupportFragmentManager().beginTransaction().
-                        remove(getActivity().getSupportFragmentManager()
-                                .findFragmentById(R.id.nav_host_fragment)).commit(); */
+
                 // Pasar datos de un fragment a otro
                 Bundle datosAEnviar = new Bundle();
                 datosAEnviar.putString("edificioSeleccionado", datosBuilding.getBuildingSelected());
@@ -106,6 +107,33 @@ public class SelectedBuilding extends Fragment {
 
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.nav_host_fragment, selectedTeacher).commit();
+            }
+        });
+
+        tvFindBuildingSB = view.findViewById(R.id.tvFindBuildingSB);
+        tvFindBuildingSB.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if (editable.toString().equals("")) {
+                    DatosBuilding.setClearFilter();
+                }
+
+                ListBuilding.setAdapter(new
+                        BuildingAdapter(getActivity(),
+                        datosBuilding.getFilterBuilding(editable.toString()),
+                        datosBuilding.getFilterEstacionamientoDisponible(),
+                        datosBuilding.getFilterTotalEstacionamiento()));
             }
         });
 
