@@ -10,11 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.PopConfirm;
@@ -29,7 +26,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View root = inflater.inflate(R.layout.fragment_perfil, container, false);
 
         claveEd = root.findViewById(R.id.edClave);
         confirmarEd = root.findViewById(R.id.edConfirmar);
@@ -45,7 +42,8 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 //getFragmentManager().popBackStack();
                 HomeFragment fragment = new HomeFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.nav_gallery, fragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.nav_perfil, fragment).commit();
             }
         });
 
