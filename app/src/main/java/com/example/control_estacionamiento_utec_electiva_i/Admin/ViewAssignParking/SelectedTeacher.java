@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
@@ -75,7 +78,7 @@ public class SelectedTeacher extends Fragment {
 
     ListView teacherList;
     DatosTeacher datosTeacher;
-
+    TextView tvFindUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,6 +109,30 @@ public class SelectedTeacher extends Fragment {
                         replace(R.id.nav_host_fragment, selectedTeacher).commit();
             }
         });
+
+        tvFindUser = view.findViewById(R.id.tvFindUser);
+        tvFindUser.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                DatosTeacher.getFilterTeachers(editable.toString());
+
+                teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getFilterTeachers(editable.toString()),
+                        datosTeacher.getFilterCarnetTeacher()));
+
+            }
+        });
+
+
         return view;
     }
 
