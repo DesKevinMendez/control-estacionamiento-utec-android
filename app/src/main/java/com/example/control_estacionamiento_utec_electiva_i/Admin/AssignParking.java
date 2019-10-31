@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -69,7 +72,7 @@ public class AssignParking extends Fragment implements OnClickListener {
         }
     }
 
-    Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnAssingParking;
+    Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnSelctedBuilding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,13 +83,50 @@ public class AssignParking extends Fragment implements OnClickListener {
         btnDenegar = view.findViewById(R.id.btnCancelarAP);
         btnAssingSchedule = view.findViewById(R.id.btnSelectedSchedule);
         btnAsssingTeacher = view.findViewById(R.id.btnSelectedTeacher);
-        btnAssingParking = view.findViewById(R.id.btnSelectedParking);
+        btnSelctedBuilding = view.findViewById(R.id.btnSelectedBuildingAP);
 
         btnAceptar.setOnClickListener(this);
         btnDenegar.setOnClickListener(this);
         btnAssingSchedule.setOnClickListener(this);
         btnAsssingTeacher.setOnClickListener(this);
-        btnAssingParking.setOnClickListener(this);
+        btnSelctedBuilding.setOnClickListener(this);
+
+        // Determina si mostrar el nombre del edificio o no.
+
+        Bundle datosRecuperados = getArguments();
+        if (datosRecuperados == null && DatosTeacher.getTeacherSelected() != "" || DatosBuilding.getBuildingSelected() != ""
+            || DatosSchedule.getHoraEntrada() != "" || DatosSchedule.getHoraSalida() != "") {
+
+
+            if (DatosTeacher.getTeacherSelected() != "") {
+                btnAsssingTeacher.
+                        setText(DatosTeacher.getTeacherSelected());
+            }
+            if (DatosBuilding.getBuildingSelected() != "") {
+                btnSelctedBuilding.
+                        setText(DatosBuilding.getBuildingSelected());
+            }
+
+            if (DatosSchedule.getHoraSalida() != "" && DatosSchedule.getHoraEntrada() != "") {
+                btnAssingSchedule.setText("De " + DatosSchedule.getHoraEntrada() + " hasta " +DatosSchedule.getHoraSalida());
+
+            }
+
+        } else if (datosRecuperados != null) {
+
+            if (datosRecuperados.getString("maestroSeleccionado") != "" && DatosTeacher.getTeacherSelected() != "") {
+                btnAsssingTeacher.
+                        setText(DatosTeacher.getTeacherSelected());
+            }
+            if (datosRecuperados.getString("edificioSeleccionado") != "" && DatosBuilding.getBuildingSelected() != "") {
+                btnSelctedBuilding.
+                        setText(DatosBuilding.getBuildingSelected());
+            }
+            if (datosRecuperados.getString("horaEntrada") != "" && DatosSchedule.getHoraEntrada() != ""
+                && datosRecuperados.getString("horaSalida") != "" && DatosSchedule.getHoraSalida() != "") {
+                btnAssingSchedule.setText("De " + DatosSchedule.getHoraEntrada() + " hasta " +DatosSchedule.getHoraSalida());
+            }
+        }
 
         return view;
     }
@@ -95,6 +135,11 @@ public class AssignParking extends Fragment implements OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.btnAceptarAP:
+                // Establece teacherSelected y a buildingSelected como ""
+                DatosTeacher.setTeacherSelected(-1);
+                DatosBuilding.setBuildingSelected(-1);
+                DatosSchedule.setHoraSalida("");
+                DatosSchedule.setHoraEntrada("");
 
                 InicioAdmin inicio = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -105,16 +150,22 @@ public class AssignParking extends Fragment implements OnClickListener {
                 break;
             case R.id.btnCancelarAP:
 
+                // Establece teacherSelected y a buildingSelected como ""
+                DatosTeacher.setTeacherSelected(-1);
+                DatosBuilding.setBuildingSelected(-1);
+                DatosSchedule.setHoraSalida("");
+                DatosSchedule.setHoraEntrada("");
+
                 InicioAdmin denegado = new InicioAdmin();
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.nav_host_fragment, denegado).commit();
 
                 break;
-            case R.id.btnSelectedParking:
+            case R.id.btnSelectedBuildingAP:
 
-                SelectedBuilding selectedParking = new SelectedBuilding();
+                SelectedBuilding selectedBuilding = new SelectedBuilding();
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedParking).commit();
+                        replace(R.id.nav_host_fragment, selectedBuilding).commit();
 
                 break;
             case R.id.btnSelectedSchedule:

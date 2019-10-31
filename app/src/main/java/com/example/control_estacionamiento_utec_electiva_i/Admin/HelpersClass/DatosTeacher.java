@@ -7,6 +7,8 @@ import java.util.ArrayList;
 public final class DatosTeacher {
     private static ArrayList teacher = new ArrayList();
     private static ArrayList carnetTeacher= new ArrayList();
+    private static String teacherSelected = "";
+
 
     static {
         teacher.add("Jorge Acevedo");
@@ -35,5 +37,16 @@ public final class DatosTeacher {
 
     public static ArrayList getAllCarnetsTeacher() {
         return carnetTeacher;
+    }
+
+    public static void setTeacherSelected (int value) {
+        if (value == -1)
+            teacherSelected = "";
+         else
+            teacherSelected = teacher.get(value).toString();
+    }
+
+    public static String getTeacherSelected() {
+        return teacherSelected;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +91,19 @@ public class SelectedTeacher extends Fragment {
         teacherList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
+
+                DatosTeacher.setTeacherSelected(i);
+                // Pasar datos de un fragment a otro
+                Log.i("MAESTROSELECCIONADO", DatosTeacher.getTeacherSelected());
+
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("maestroSeleccionado", DatosTeacher.getTeacherSelected());
+
+                AssignParking selectedTeacher= new AssignParking();
+                selectedTeacher.setArguments(datosAEnviar);
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                        replace(R.id.nav_host_fragment, selectedTeacher).commit();
             }
         });
         return view;

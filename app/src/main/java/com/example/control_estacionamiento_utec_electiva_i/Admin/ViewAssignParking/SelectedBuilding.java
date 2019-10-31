@@ -90,7 +90,22 @@ public class SelectedBuilding extends Fragment {
         ListBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
+                datosBuilding.setBuildingSelected(i);
+
+                /*
+                getActivity().getSupportFragmentManager().beginTransaction().
+                        remove(getActivity().getSupportFragmentManager()
+                                .findFragmentById(R.id.nav_host_fragment)).commit(); */
+                // Pasar datos de un fragment a otro
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("edificioSeleccionado", datosBuilding.getBuildingSelected());
+
+                AssignParking selectedTeacher= new AssignParking();
+                selectedTeacher.setArguments(datosAEnviar);
+
+
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                        replace(R.id.nav_host_fragment, selectedTeacher).commit();
             }
         });
 

@@ -7,6 +7,7 @@ public final class DatosBuilding {
     private static ArrayList edificios = new ArrayList();
     private static ArrayList totalEstacionamiento = new ArrayList();
     private static ArrayList estacionamientoDisponible = new ArrayList();
+    private static String buildingSelected = "";
 
     static {
           edificios.add("Benito Juarez");
@@ -50,4 +51,13 @@ public final class DatosBuilding {
         return totalEstacionamiento;
     }
 
+    public static void setBuildingSelected(int value) {
+        if (value == -1)
+            buildingSelected = "";
+        else
+            buildingSelected = edificios.get(value).toString();
+    }
+    public static String getBuildingSelected() {
+        return buildingSelected;
+    }
 }
