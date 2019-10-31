@@ -10,13 +10,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.PopConfirm;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment;
 
-public class PerfilFragment extends Fragment {
+public class PerfilFragment extends Fragment implements View.OnClickListener {
 
     EditText claveEd, confirmarEd;
     Button cancelarPerfilBtn, confirmarPerfilBtn;
@@ -33,12 +37,15 @@ public class PerfilFragment extends Fragment {
         cancelarPerfilBtn = root.findViewById(R.id.btnCancelarPerfil);
         confirmarPerfilBtn = root.findViewById(R.id.btnConfirmarPerfil);
 
+
+        final DrawerLayout drawer = root.findViewById(R.id.drawer_layout);
+
         cancelarPerfilBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getFragmentManager().popBackStack();
                 HomeFragment fragment = new HomeFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null)
-                        .replace(R.id.nav_home, fragment).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.nav_gallery, fragment).commit();
             }
         });
 
@@ -69,5 +76,10 @@ public class PerfilFragment extends Fragment {
         });
 
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
