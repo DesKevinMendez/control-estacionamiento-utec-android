@@ -10,8 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -22,7 +30,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * Use the {@link RecerveParking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RecerveParking extends Fragment {
+public class RecerveParking extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,6 +73,10 @@ public class RecerveParking extends Fragment {
         }
     }
 
+    Button btnSeleccionarDocenteRP, btnSeleccionarEstacionamientoRP, btnSeleccionarHorarioRP,
+            btnAceptarRP, btnDenegarRP;
+    Spinner spSeleccionarDias, spCantidadHorariosRP;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,8 +84,8 @@ public class RecerveParking extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recerve_parking, container, false);
 
 
-        Spinner spSeleccionarDias = view.findViewById(R.id.spSeleccionarDias);
-        Spinner spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);
+        spSeleccionarDias = view.findViewById(R.id.spSeleccionarDias);
+        spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);
 
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
                 createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
@@ -85,16 +97,82 @@ public class RecerveParking extends Fragment {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spSeleccionarDias.setAdapter(dias);
 
+        btnSeleccionarDocenteRP = view.findViewById(R.id.btnSeleccionarDocenteRP);
+        btnSeleccionarEstacionamientoRP = view.findViewById(R.id.btnSeleccionarEstacionamientoRP);
+        btnSeleccionarHorarioRP = view.findViewById(R.id.btnSeleccionarHorarioRP);
+        btnAceptarRP = view.findViewById(R.id.btnAceptarRP);
+        btnDenegarRP = view.findViewById(R.id.btnDenegarRP);
+
+
+        Bundle datosRecuperados = getArguments();
+        if (datosRecuperados != null){
+            if (DatosTeacher.getTeacherSelected() != "") {
+                btnSeleccionarDocenteRP.
+                        setText(DatosTeacher.getTeacherSelected());
+            }
+            if (DatosBuilding.getBuildingSelected() != "") {
+                btnSeleccionarEstacionamientoRP.
+                        setText(DatosBuilding.getBuildingSelected());
+            }
+
+            if (!DatosSchedule.getHoraSalida().isEmpty() && !DatosSchedule.getHoraEntrada().isEmpty()){
+                btnSeleccionarHorarioRP.setText("Desde "+ DatosSchedule.getHoraEntrada()
+                        + " hasta "+ DatosSchedule.getHoraSalida());
+            }
+        }
+
+        btnSeleccionarDocenteRP.setOnClickListener(this);
+        btnSeleccionarEstacionamientoRP.setOnClickListener(this);
+        btnSeleccionarHorarioRP.setOnClickListener(this);
+        btnAceptarRP.setOnClickListener(this);
+        btnDenegarRP.setOnClickListener(this);
+
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnSeleccionarDocenteRP:
+
+                changeFragments(new SelectedTeacher(),
+                        "actionOfReserverParking", "ReserveParking");
+
+                break;
+            case R.id.btnSeleccionarEstacionamientoRP:
+
+                changeFragments(new SelectedBuilding(),
+                        "actionOfReserverParking", "ReserveParking");
+
+                break;
+            case R.id.btnSeleccionarHorarioRP:
+                changeFragments(new SelectedSchedule(),
+                        "actionOfReserverParking", "ReserveParking");
+
+                break;
+            case R.id.btnAceptarRP:
+                Toast.makeText(getActivity(), "btnAceptarRP", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.btnDenegarRP:
+
+                Toast.makeText(getActivity(), "btnDenegarRP", Toast.LENGTH_SHORT).show();
+                break;
+                default:
+                    break;
         }
     }
 
+    public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(putStringName, putStringDescription);
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -111,6 +189,7 @@ public class RecerveParking extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

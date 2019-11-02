@@ -23,6 +23,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ReserveEvents;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -107,6 +108,10 @@ public class SelectedBuilding extends Fragment {
 
                     } else if (datosRecuperados.getString("actionOfAssignParking") != null) {
                         changeFragments(new AssignParking());
+
+                    } else if (datosRecuperados.getString("actionOfReserverParking") != null){
+                        changeFragments(new RecerveParking());
+
                     }
                     return;
 

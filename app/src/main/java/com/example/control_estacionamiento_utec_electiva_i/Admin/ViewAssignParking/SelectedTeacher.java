@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import java.util.ArrayList;
@@ -95,16 +96,19 @@ public class SelectedTeacher extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+                DatosTeacher.setTeacherSelected(i);
+
                 Bundle datosRecuperados = getArguments();
                 if (datosRecuperados != null) {
                     if (datosRecuperados.getString("actionOfAssignParking") != null) {
-                        DatosTeacher.setTeacherSelected(i);
 
                         changeFragments(new AssignParking(),
                                 "maestroSeleccionado", DatosTeacher.getTeacherSelected());
 
                     } else if (datosRecuperados.getString("actionOfReserverParking") != null) {
-                        Toast.makeText(getActivity(), "Hola", Toast.LENGTH_SHORT).show();
+
+                        changeFragments(new RecerveParking(),
+                                "maestroSeleccionado", DatosTeacher.getTeacherSelected());
                     }
                 }
 

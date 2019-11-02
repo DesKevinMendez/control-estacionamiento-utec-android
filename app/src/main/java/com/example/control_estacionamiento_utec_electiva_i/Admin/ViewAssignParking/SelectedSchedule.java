@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -102,22 +104,35 @@ public class SelectedSchedule extends Fragment implements AdapterView.OnItemSele
 
                 } else {
 
-                    AssignParking assignParking = new AssignParking();
-                    Bundle datosAEnviar = new Bundle();
-                    datosAEnviar.putString("horaEntrada", DatosSchedule.getHoraEntrada());
-                    datosAEnviar.putString("horaSalida", DatosSchedule.getHoraSalida());
+                    Bundle datosRecuperados = getArguments();
+                    if (datosRecuperados != null) {
+                        if (datosRecuperados.getString("actionOfAssignParking") != null) {
+                            changeFragments(new AssignParking());
 
-                    assignParking.setArguments(datosAEnviar);
+                        }
 
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.nav_host_fragment, assignParking).commit();
+                        if (datosRecuperados.getString("actionOfReserverParking") != null) {
+                            changeFragments(new RecerveParking());
+                        }
+                    }
+
                 }
             }
         });
 
         return view;
     }
+    public void changeFragments(Fragment fragment) {
 
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString("scheduleSelected", DatosSchedule.getHoraEntrada() + " " + DatosSchedule.getHoraSalida());
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         TextView tvHoraInicioSS = getActivity().findViewById(R.id.tvHoraInicioSS);
