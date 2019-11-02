@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -67,45 +70,67 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
         }
     }
 
+    Button btnAsignarVigilante, btnSeleccionarEdificio, btnDenegarAW, btnAceptarAW;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_assign_watchman, container, false);
 
-        Button btnAsignarVigilante = view.findViewById(R.id.btnAsignarVigilante);
-        Button btnSeleccionarEdificio = view.findViewById(R.id.btnSeleccionarEdificio);
-        Button btnDenegarAW = view.findViewById(R.id.btnDenegarAW);
-        Button btnAceptarAW = view.findViewById(R.id.btnAceptarAW);
+        btnAsignarVigilante = view.findViewById(R.id.btnAsignarVigilante);
+        btnSeleccionarEdificio = view.findViewById(R.id.btnSeleccionarEdificio);
+        btnDenegarAW = view.findViewById(R.id.btnDenegarAW);
+        btnAceptarAW = view.findViewById(R.id.btnAceptarAW);
+
+        Bundle datosRecuperados = getArguments();
+        if (datosRecuperados != null ) {
+            if (!DatosBuilding.getBuildingSelected().isEmpty()) {
+                btnSeleccionarEdificio.
+                        setText(DatosBuilding.getBuildingSelected());
+            }
+            if (!DatosTeacher.getTeacherSelected().isEmpty()) {
+                btnAsignarVigilante.
+                        setText(DatosTeacher.getTeacherSelected());
+            }
+
+        }
+
 
         btnAsignarVigilante.setOnClickListener(this);
         btnSeleccionarEdificio.setOnClickListener(this);
         btnAceptarAW.setOnClickListener(this);
         btnDenegarAW.setOnClickListener(this);
+
         return view;
     }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnAsignarVigilante:
-                SelectedTeacher selectedTeacher = new SelectedTeacher();
+                changeFragments(new SelectedTeacher(),
+                        "actionOfAssignWatchman", "AssignWatchman");
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, selectedTeacher).commit();
-                Toast.makeText(getActivity(), "Hla desde assignWathman", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnAceptarAW:
-                InicioAdmin inicioAdmin = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin).commit();
+
+                if (btnAsignarVigilante.getText().toString().equals("Seleccionar vigilante")) {
+                    Toast.makeText(getActivity(), "Debes de seleccionar un vigilante", Toast.LENGTH_SHORT).show();
+
+                } else if (btnSeleccionarEdificio.getText().toString().equals("Seleccionar edificio")) {
+                    Toast.makeText(getActivity(), "Debes de seleccionar un parqueo", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    InicioAdmin inicioAdmin = new InicioAdmin();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin).commit();
+                }
                 break;
             case R.id.btnSeleccionarEdificio:
 
-                SelectedBuilding selectedBuilding = new SelectedBuilding();
-
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, selectedBuilding).commit();
+                changeFragments(new SelectedBuilding(),
+                        "actionOfAssignWatchman", "AssignWatchman");
 
                 break;
 
@@ -119,11 +144,15 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
         }
 
     }
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(putStringName, putStringDescription);
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
     }
 
     @Override

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
@@ -108,6 +109,11 @@ public class SelectedTeacher extends Fragment {
                     } else if (datosRecuperados.getString("actionOfReserverParking") != null) {
 
                         changeFragments(new RecerveParking(),
+                                "maestroSeleccionado", DatosTeacher.getTeacherSelected());
+
+                    } else if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
+
+                        changeFragments(new AssignWatchman(),
                                 "maestroSeleccionado", DatosTeacher.getTeacherSelected());
                     }
                 }
