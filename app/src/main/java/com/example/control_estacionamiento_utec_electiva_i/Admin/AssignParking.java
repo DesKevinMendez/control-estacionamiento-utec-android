@@ -163,7 +163,13 @@ public class AssignParking extends Fragment implements OnClickListener {
                 break;
             case R.id.btnSelectedBuildingAP:
 
+                // Pasar datos de un fragment a otro
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("actionOfReserverParking", "ReserveParking");
+
                 SelectedBuilding selectedBuilding = new SelectedBuilding();
+                selectedBuilding.setArguments(datosAEnviar);
+
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                         replace(R.id.nav_host_fragment, selectedBuilding).commit();
 

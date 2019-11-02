@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ReserveEvents;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 /**
@@ -91,6 +93,7 @@ public class SelectedBuilding extends Fragment {
                 datosBuilding.dataEstaDispo(),
                 datosBuilding.dataTotalEsta()));
 
+
         ListBuilding.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -101,12 +104,27 @@ public class SelectedBuilding extends Fragment {
                 Bundle datosAEnviar = new Bundle();
                 datosAEnviar.putString("edificioSeleccionado", datosBuilding.getBuildingSelected());
 
-                AssignParking selectedTeacher= new AssignParking();
-                selectedTeacher.setArguments(datosAEnviar);
+                Bundle datosRecuperados = getArguments();
+                if (datosRecuperados != null) {
 
+                    if (datosRecuperados.getString("actionOfReserverEvents") != null) {
 
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedTeacher).commit();
+                        ReserveEvents reserveEvents = new ReserveEvents();
+                        reserveEvents.setArguments(datosAEnviar);
+                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                                replace(R.id.nav_host_fragment, reserveEvents).commit();
+
+                    } else if (datosRecuperados.getString("actionOfReserverParking") != null) {
+
+                        AssignParking selectedTeacher= new AssignParking();
+                        selectedTeacher.setArguments(datosAEnviar);
+                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                                replace(R.id.nav_host_fragment, selectedTeacher).commit();
+                    }
+                    return;
+
+                }
+
             }
         });
 
