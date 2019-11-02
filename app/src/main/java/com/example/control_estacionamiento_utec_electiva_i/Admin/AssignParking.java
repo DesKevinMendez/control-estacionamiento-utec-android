@@ -133,6 +133,7 @@ public class AssignParking extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View view) {
+
         switch(view.getId()){
             case R.id.btnAceptarAP:
                 // Establece teacherSelected y a buildingSelected como ""
@@ -163,32 +164,34 @@ public class AssignParking extends Fragment implements OnClickListener {
                 break;
             case R.id.btnSelectedBuildingAP:
 
-                // Pasar datos de un fragment a otro
-                Bundle datosAEnviar = new Bundle();
-                datosAEnviar.putString("actionOfReserverParking", "ReserveParking");
+                changeFragments(new SelectedBuilding(),
+                        "actionOfAssignParking", "ReserveParking");
 
-                SelectedBuilding selectedBuilding = new SelectedBuilding();
-                selectedBuilding.setArguments(datosAEnviar);
-
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedBuilding).commit();
 
                 break;
             case R.id.btnSelectedSchedule:
-                SelectedSchedule selectedSchedule = new SelectedSchedule();
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedSchedule).commit();
+
+                changeFragments(new SelectedSchedule(),
+                        "actionOfAssignParking", "SelectedSchedule");
 
                 break;
             case R.id.btnSelectedTeacher:
-
-                SelectedTeacher selectedTeacher= new SelectedTeacher();
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedTeacher).commit();
+                changeFragments(new SelectedTeacher(),
+                        "actionOfAssignParking", "SelectedTeacher");
                 break;
         }
     }
 
+    public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(putStringName, putStringDescription);
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

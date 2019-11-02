@@ -99,27 +99,14 @@ public class SelectedBuilding extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 datosBuilding.setBuildingSelected(i);
 
-
-                // Pasar datos de un fragment a otro
-                Bundle datosAEnviar = new Bundle();
-                datosAEnviar.putString("edificioSeleccionado", datosBuilding.getBuildingSelected());
-
-                Bundle datosRecuperados = getArguments();
+              Bundle datosRecuperados = getArguments();
                 if (datosRecuperados != null) {
 
                     if (datosRecuperados.getString("actionOfReserverEvents") != null) {
+                        changeFragments(new ReserveEvents());
 
-                        ReserveEvents reserveEvents = new ReserveEvents();
-                        reserveEvents.setArguments(datosAEnviar);
-                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                                replace(R.id.nav_host_fragment, reserveEvents).commit();
-
-                    } else if (datosRecuperados.getString("actionOfReserverParking") != null) {
-
-                        AssignParking selectedTeacher= new AssignParking();
-                        selectedTeacher.setArguments(datosAEnviar);
-                        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                                replace(R.id.nav_host_fragment, selectedTeacher).commit();
+                    } else if (datosRecuperados.getString("actionOfAssignParking") != null) {
+                        changeFragments(new AssignParking());
                     }
                     return;
 
@@ -158,12 +145,18 @@ public class SelectedBuilding extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void changeFragments(Fragment fragment) {
+
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString("edificioSeleccionado", datosBuilding.getBuildingSelected());
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
     }
+
 
     @Override
     public void onAttach(Context context) {

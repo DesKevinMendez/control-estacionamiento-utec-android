@@ -95,18 +95,19 @@ public class SelectedTeacher extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                DatosTeacher.setTeacherSelected(i);
-                // Pasar datos de un fragment a otro
-                Log.i("MAESTROSELECCIONADO", DatosTeacher.getTeacherSelected());
+                Bundle datosRecuperados = getArguments();
+                if (datosRecuperados != null) {
+                    if (datosRecuperados.getString("actionOfAssignParking") != null) {
+                        DatosTeacher.setTeacherSelected(i);
 
-                Bundle datosAEnviar = new Bundle();
-                datosAEnviar.putString("maestroSeleccionado", DatosTeacher.getTeacherSelected());
+                        changeFragments(new AssignParking(),
+                                "maestroSeleccionado", DatosTeacher.getTeacherSelected());
 
-                AssignParking selectedTeacher= new AssignParking();
-                selectedTeacher.setArguments(datosAEnviar);
+                    } else if (datosRecuperados.getString("actionOfReserverParking") != null) {
+                        Toast.makeText(getActivity(), "Hola", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, selectedTeacher).commit();
             }
         });
 
@@ -139,11 +140,15 @@ public class SelectedTeacher extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(putStringName, putStringDescription);
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
     }
 
     @Override
