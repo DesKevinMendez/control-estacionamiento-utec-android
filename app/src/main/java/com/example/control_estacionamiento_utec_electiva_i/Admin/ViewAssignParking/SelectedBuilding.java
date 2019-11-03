@@ -8,22 +8,17 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ReserveEvents;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -86,7 +81,7 @@ public class SelectedBuilding extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_selected_building, container, false);
+        View view =  inflater.inflate(R.layout.fragment_selected_building_admin, container, false);
         ListBuilding = view.findViewById(R.id.listViewBuilding_SB);
 
         ListBuilding.setAdapter(new

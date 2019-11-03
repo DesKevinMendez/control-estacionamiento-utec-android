@@ -43,7 +43,7 @@ public class AssignParking extends Fragment implements OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_assign_parking, container, false);
+        View view = inflater.inflate(R.layout.fragment_assign_parking_admin, container, false);
 
         btnAceptar = view.findViewById(R.id.btnAceptarAP);
         btnDenegar = view.findViewById(R.id.btnCancelarAP);

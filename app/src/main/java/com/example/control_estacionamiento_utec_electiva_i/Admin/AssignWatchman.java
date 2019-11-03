@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -44,7 +43,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_assign_watchman, container, false);
+        View view = inflater.inflate(R.layout.fragment_assign_watchman_admin, container, false);
 
         btnAsignarVigilante = view.findViewById(R.id.btnAsignarVigilante);
         btnSeleccionarEdificio = view.findViewById(R.id.btnSeleccionarEdificio);

@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -77,7 +76,7 @@ public class SelectedSchedule extends Fragment implements AdapterView.OnItemSele
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_selected_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_selected_schedule_admin, container, false);
 
         Spinner horarioInicio = view.findViewById(R.id.SpHoraInicio);
         Spinner horarioSalida = view.findViewById(R.id.SpHoraSalida);

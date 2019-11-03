@@ -9,37 +9,37 @@
         android:id="@+id/nav_home_admin"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.InicioAdmin"
         android:label="@string/menu_admin_home"
-        tools:layout="@layout/fragment_inicio_admin" />
+        tools:layout="@layout/fragment_inicio_admin_admin" />
 
     <fragment
         android:id="@+id/nav_profile_admin"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.ProfileUser"
         android:label="@string/menu_admin_perfil"
-        tools:layout="@layout/fragment_profile_user" />
+        tools:layout="@layout/fragment_profile_user_admin" />
 
     <fragment
         android:id="@+id/nav_assign_parking"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking"
         android:label="@string/menu_admin_asignar_estacionamiento"
-        tools:layout="@layout/fragment_assign_parking" />
+        tools:layout="@layout/fragment_assign_parking_admin" />
 
     <fragment
         android:id="@+id/nav_reserve_events"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.ReserveEvents"
         android:label="@string/menu_admin_reservar_evento"
-        tools:layout="@layout/fragment_reserve_events" />
+        tools:layout="@layout/fragment_reserve_events_admin" />
 
     <fragment
         android:id="@+id/nav_assing_watchman"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman"
         android:label="@string/menu_admin_asignar_vigilante"
-        tools:layout="@layout/fragment_assign_watchman" />
+        tools:layout="@layout/fragment_assign_watchman_admin" />
 
 
     <fragment
         android:id="@+id/nav_reserve_parking"
         android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking"
         android:label="@string/menu_admin_reservar_estacionamiento"
-        tools:layout="@layout/fragment_recerve_parking" />
+        tools:layout="@layout/fragment_recerve_parking_admin" />
 
 </navigation>

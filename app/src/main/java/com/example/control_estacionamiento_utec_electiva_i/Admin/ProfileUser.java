@@ -41,7 +41,7 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_profile_user,
+        final View view = inflater.inflate(R.layout.fragment_profile_user_admin,
                 container, false);
         tvActualyPassword = view.findViewById(R.id.tvActualyPassword);
         tvNewPassword = view.findViewById(R.id.tvNewPassword);
