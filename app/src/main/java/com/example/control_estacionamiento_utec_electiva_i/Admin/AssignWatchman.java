@@ -18,6 +18,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,31 +44,14 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AssignWatchman.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AssignWatchman newInstance(String param1, String param2) {
-        AssignWatchman fragment = new AssignWatchman();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(5).setChecked(true);
     }
 
     Button btnAsignarVigilante, btnSeleccionarEdificio, btnDenegarAW, btnAceptarAW;

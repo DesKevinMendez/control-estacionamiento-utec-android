@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.google.android.material.navigation.NavigationView;
 
 
 /**
@@ -43,31 +44,13 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileUser.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileUser newInstance(String param1, String param2) {
-        ProfileUser fragment = new ProfileUser();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     Button btnCancelar, btnAceptar;

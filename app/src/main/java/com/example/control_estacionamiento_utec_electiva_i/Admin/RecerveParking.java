@@ -21,6 +21,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParki
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,10 +68,9 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(4).setChecked(true);
     }
 
     Button btnSeleccionarDocenteRP, btnSeleccionarEstacionamientoRP, btnSeleccionarHorarioRP,
