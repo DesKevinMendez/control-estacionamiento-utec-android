@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:focusable="true"
+    android:clickable="true"
     android:id="@+id/fragment_selected_building"
     tools:context=".Admin.ViewAssignParking.SelectedBuilding">
 
