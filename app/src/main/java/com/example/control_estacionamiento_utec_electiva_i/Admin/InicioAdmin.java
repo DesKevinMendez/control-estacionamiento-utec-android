@@ -18,14 +18,6 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link InicioAdmin.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link InicioAdmin#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class InicioAdmin extends Fragment {
     private OnFragmentInteractionListener mListener;
 
