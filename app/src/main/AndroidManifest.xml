@@ -18,10 +18,14 @@
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".docentes.PerfilUsuario" />
         <activity
-            android:name=".docentes.PopActivity"
+            android:name=".docentes.DocenteHome"
+            android:label="@string/title_activity_docente"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".docentes.PopConfirm"
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".docentes.Estacionamiento" />
-        <activity android:name=".docentes.PantallaInicio" />
+        <activity android:name=".Admin.MainActivity" />
         <activity android:name=".Estudiante.perfilEstudiante" />
         <activity android:name=".Estudiante.inicioEstudiante" />
         <activity android:name=".Vigilante.reservadosVigilante" />

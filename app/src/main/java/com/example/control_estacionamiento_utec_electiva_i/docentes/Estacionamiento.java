@@ -64,39 +64,11 @@ public class Estacionamiento extends AppCompatActivity {
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
-                i.putExtra("estado", "inicio");
-                startActivity(i);
                 finish();
             }
         });
 
     }
 
-    // Method for show and hide the menu
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return true;
-    }
-
-    // Method to assign the corresponding functions to the options of menu
-    public  boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-
-        if (id == R.id.menuInicio){
-            Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
-            i.putExtra("estado", "inicio");
-            startActivity(i);
-        } else if (id == R.id.menuPerfil){
-            Intent i = new Intent(getApplicationContext(), PerfilUsuario.class);
-            startActivity(i);
-        } else if (id == R.id.menuCerrar){
-            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(i);
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 }

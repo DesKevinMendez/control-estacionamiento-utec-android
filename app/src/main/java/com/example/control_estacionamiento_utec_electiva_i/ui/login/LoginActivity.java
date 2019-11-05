@@ -26,7 +26,7 @@ import android.widget.Toast;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
-import com.example.control_estacionamiento_utec_electiva_i.docentes.PantallaInicio;
+import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.inicioEstudiante;
 
@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 if (usernameEditText.getText().toString().trim().equals("docente")) {
-                    Intent i = new Intent(getApplicationContext(), PantallaInicio.class);
+                    Intent i = new Intent(getApplicationContext(), DocenteHome.class);
                     i.putExtra("usuario", usernameEditText.getText().toString().trim());
                     startActivity(i);
                     setResult(Activity.RESULT_OK);

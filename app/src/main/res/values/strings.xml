@@ -109,12 +109,6 @@
     <string name="confirm_pop">Confirmar cambio de clave</string>
     <string name="message_pop">Esta accion no se puede deshacer</string>
     <string name="title_activity_navegation_admin">NavegationAdmin</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
     <string name="menu_admin_home">Inicio</string>
     <string name="menu_admin_perfil">Perfil</string>
@@ -122,6 +116,19 @@
     <string name="menu_admin_reservar_evento">Reservar evento</string>
     <string name="menu_admin_reservar_estacionamiento">Reservar estacionamiento</string>
     <string name="menu_admin_asignar_vigilante">Asignar vigilante</string>
+
+    <string name="title_activity_docente">docente</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Fulano de Tal</string>
+    <string name="nav_header_subtitle">25-1234-2015</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Ver Perfil</string>
+    <string name="menu_slideshow"></string>
+
 
 
 </resources>
