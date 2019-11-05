@@ -20,13 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/parking_admin" />
+            android:text="@string/parking_admin"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSelectedBuilding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:textColor="@color/colorPrimary"
             android:text="@string/selectedBuilding" />
 
         <TextView
@@ -34,7 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/parking_lenght_admin" />
+            android:text="@string/parking_lenght_admin"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/SpCantidadEstacionamiento"
@@ -47,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/schedule_admin" />
+            android:text="@string/schedule_admin"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/SpHorariosRP"
@@ -74,15 +79,24 @@
                 android:id="@+id/btnDenegarRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:text="@string/denegar_admin" />
+                android:background="@drawable/oval_white"
+                android:text="@string/denegar_admin"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnAceparRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:text="@string/aceptar_admin" />
+                android:background="@drawable/oval"
+                android:text="@string/aceptar_admin"
+                android:textColor="@color/colorSecundary" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

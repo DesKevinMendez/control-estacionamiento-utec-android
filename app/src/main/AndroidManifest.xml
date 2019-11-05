@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Admin.MainActivityAdmin"
             android:label="@string/title_activity_navegation_admin"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".docentes.PopConfirm"
             android:theme="@style/AppTheme.PopMe" />
@@ -20,7 +21,7 @@
         <activity
             android:name=".docentes.DocenteHome"
             android:label="@string/title_activity_docente"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".docentes.PopConfirm"
             android:theme="@style/AppTheme.PopMe" />

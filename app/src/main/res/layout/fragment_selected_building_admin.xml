@@ -15,29 +15,30 @@
         android:layout_margin="5dp"
         android:orientation="vertical"
         android:padding="10dp">
-
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:background="#dedede"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:layout_margin="5dp">
 
-            <EditText
-                android:id="@+id/tvFindBuildingSB"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Buscar edificio"
-                android:inputType="textPersonName" />
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <EditText
+                    android:id="@+id/tvFindBuildingSB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:padding="15dp"
+                    android:ems="10"
+                    android:hint="Buscar edificio"
+                    android:inputType="textPersonName" />
 
-            <Button
-                android:id="@+id/btnFindUserSB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Buscar edificio" />
-        </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
             android:id="@+id/lineHorizontal"
@@ -53,12 +54,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Resultados" />
+            android:text="Resultados"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/listViewBuilding_SB"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
     </LinearLayout>
 </FrameLayout>

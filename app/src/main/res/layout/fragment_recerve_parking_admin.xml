@@ -20,7 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/days_admin" />
+            android:text="@string/days_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/spSeleccionarDias"
@@ -33,26 +35,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/teacher_admin" />
+            android:text="@string/teacher_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSeleccionarDocenteRP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:textColor="@color/colorPrimary"
             android:text="@string/selectedTeacher" />
 
         <TextView
             android:id="@+id/textView68"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/estacionamiento" />
+            android:text="@string/estacionamiento"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSeleccionarEstacionamientoRP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/oval_white"
             android:text="@string/selectedBuilding" />
 
         <TextView
@@ -60,7 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/parking_lenght_admin" />
+            android:text="@string/parking_lenght_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
         <Spinner
@@ -73,13 +85,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/schedule_admin" />
+            android:text="@string/schedule_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSeleccionarHorarioRP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/oval_white"
             android:text="@string/selectedScedule" />
 
         <LinearLayout
@@ -92,14 +108,22 @@
                 android:id="@+id/btnDenegarRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/oval_white"
+                android:textColor="@color/colorPrimary"
                 android:text="@string/denegar_admin" />
 
             <Button
                 android:id="@+id/btnAceptarRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
+                android:background="@drawable/oval"
+                android:textColor="@color/colorSecundary"
                 android:text="@string/aceptar_admin" />
 
         </LinearLayout>

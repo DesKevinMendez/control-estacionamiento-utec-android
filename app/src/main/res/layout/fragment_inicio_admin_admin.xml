@@ -8,50 +8,58 @@
     android:focusable="true"
     tools:context=".Admin.InicioAdmin">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:background="#dedede"
-        android:orientation="vertical"
-        android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tvAdmin"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="ADMINISTRADOR"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/nombre"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Nombre"
-            android:textStyle="bold" />
+            android:layout_margin="5dp">
 
-        <TextView
-            android:id="@+id/tvNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="Kevin Méndez" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/carnet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Carnet"
-            android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tvAdmin"
+                    android:layout_width="match_parent"
 
-        <TextView
-            android:id="@+id/tvInfoText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="25-3992-2015" />
-    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="ADMINISTRADOR"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Nombre"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Kevin Méndez" />
+
+                <TextView
+                    android:id="@+id/carnet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Carnet"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvInfoText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="25-3992-2015" />
+            </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
 </FrameLayout>
