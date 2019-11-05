@@ -1,11 +1,13 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -99,36 +101,34 @@ public class AssignParking extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View view) {
-
         switch(view.getId()){
             case R.id.btnAceptarAP:
-                // Establece teacherSelected y a buildingSelected como ""
-                DatosTeacher.setTeacherSelected(-1);
-                DatosBuilding.setBuildingSelected(-1);
-                DatosSchedule.setHoraSalida("");
-                DatosSchedule.setHoraEntrada("");
+                if (btnAssingSchedule.getText().toString().equals(getString(R.string.selectedScedule))){
 
-                InicioAdmin inicio = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, inicio).commit();
+                    Toast.makeText(getActivity(), "Debe de seleccionar horarios", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show();
+                } else if(btnAsssingTeacher.getText().equals(getString(R.string.selectedTeacher))) {
+
+                    Toast.makeText(getActivity(), "Debe de seleccionar usuario", Toast.LENGTH_SHORT).show();
+
+                } else if (btnSelctedBuilding.getText().equals(getString(R.string.selectedBuilding))) {
+
+                    Toast.makeText(getActivity(), "Debe de seleccionar edificio", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    changeFragments(new InicioAdmin());
+                    Toast.makeText(getActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.btnCancelarAP:
 
-                // Establece teacherSelected y a buildingSelected como ""
-                DatosTeacher.setTeacherSelected(-1);
-                DatosBuilding.setBuildingSelected(-1);
-                DatosSchedule.setHoraSalida("");
-                DatosSchedule.setHoraEntrada("");
-
-                InicioAdmin denegado = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
-                        replace(R.id.nav_host_fragment, denegado).commit();
+                changeFragments(new InicioAdmin());
 
                 break;
             case R.id.btnSelectedBuildingAP:
+
 
                 changeFragments(new SelectedBuilding(),
                         "actionOfAssignParking", "ReserveParking");
@@ -153,6 +153,18 @@ public class AssignParking extends Fragment implements OnClickListener {
         Bundle datosAEnviar = new Bundle();
         datosAEnviar.putString(putStringName, putStringDescription);
         fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
+
+    public void changeFragments(Fragment fragment){
+        // Establece teacherSelected y a buildingSelected como ""
+        DatosTeacher.setTeacherSelected(-1);
+        DatosBuilding.setBuildingSelected(-1);
+        DatosSchedule.setHoraSalida("");
+        DatosSchedule.setHoraEntrada("");
 
         getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.nav_host_fragment, fragment).commit();

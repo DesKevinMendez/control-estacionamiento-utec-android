@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosEvents;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -110,25 +112,19 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
 
             case R.id.btnAceparRP:
                 String fecha = etPlannedDate.getText().toString().trim();
-                if (btnSelectedBuilding.getText().toString().equals("Seleccionar edificio")) {
-                    Toast.makeText(getContext(), "Selecciona un edificio", Toast.LENGTH_SHORT).show();
+                if (btnSelectedBuilding.getText().toString().equals(getString(R.string.selectedBuilding))) {
+                    Toast.makeText(getContext(), "Seleccione parqueo", Toast.LENGTH_SHORT).show();
 
                 } else if (fecha.isEmpty()){
                     Toast.makeText(getContext(), "Selecciona fecha", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    InicioAdmin inicioAdmin = new InicioAdmin();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .addToBackStack(null)
-                            .replace(R.id.nav_host_fragment, inicioAdmin).commit();
+                    changeFragments(new InicioAdmin());
                 }
                 break;
             case R.id.btnDenegarRP:
+                changeFragments(new InicioAdmin());
 
-                InicioAdmin inicioAdmin2 = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, inicioAdmin2).commit();
                 break;
 
 
@@ -140,7 +136,16 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
         }
 
     }
+    public void changeFragments(Fragment fragment){
+        // Establece teacherSelected y a buildingSelected como ""
+        DatosBuilding.setBuildingSelected(-1);
+        DatosSchedule.setHoraSalida("");
+        DatosSchedule.setHoraEntrada("");
 
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
     private void showDatePickerDialog() {
         DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override

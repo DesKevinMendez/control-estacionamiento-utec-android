@@ -53,6 +53,21 @@
         <item>"Sábado"</item>
     </string-array>
 
+    <!-- String related to admin views -->
+    <string name="selectedTeacher">"Seleccione un docente"</string>
+    <string name="selectedBuilding">"Seleccione parqueo"</string>
+    <string name="selectedScedule">"Seleccione horarios"</string>
+    <string name="selectedWatchman">"Seleccione vigilante"</string>
+    <string name="aceptar_admin">"Aceptar"</string>
+    <string name="denegar_admin">"Denegar"</string>
+    <string name="teacher_admin">"Maestro"</string>
+    <string name="watchman_admin">"Vigilante"</string>
+    <string name="schedule_admin">"Horarios"</string>
+    <string name="parking_admin">"Parqueo"</string>
+    <string name="parking_lenght_admin">"Cantidad estacionamientos"</string>
+    <string name="days_admin">"Días"</string>
+
+
 
     <!-- Strings related to teacher's Toolbar -->
     <string name="home">Inicio</string>

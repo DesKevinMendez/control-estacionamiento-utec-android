@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -82,17 +83,19 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
             case R.id.btnAceptarAW:
 
-                if (btnAsignarVigilante.getText().toString().equals("Seleccionar vigilante")) {
+                if (btnAsignarVigilante.getText()
+                        .toString().equals(getString(R.string.selectedWatchman))) {
+
                     Toast.makeText(getActivity(), "Debes de seleccionar un vigilante", Toast.LENGTH_SHORT).show();
 
-                } else if (btnSeleccionarEdificio.getText().toString().equals("Seleccionar edificio")) {
+                } else if (btnSeleccionarEdificio.getText()
+                        .toString().equals(getString(R.string.selectedBuilding))) {
+
                     Toast.makeText(getActivity(), "Debes de seleccionar un parqueo", Toast.LENGTH_SHORT).show();
 
                 } else {
 
-                    InicioAdmin inicioAdmin = new InicioAdmin();
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin).commit();
+                    changeFragments(new InicioAdmin());
                 }
                 break;
             case R.id.btnSeleccionarEdificio:
@@ -104,14 +107,23 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
             case R.id.btnDenegarAW:
 
-                InicioAdmin inicioAdmin2 = new InicioAdmin();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, inicioAdmin2).commit();
+                changeFragments(new InicioAdmin());
 
                 break;
         }
 
     }
+
+    public void changeFragments(Fragment fragment){
+        // Establece teacherSelected y a buildingSelected como ""
+        DatosTeacher.setTeacherSelected(-1);
+        DatosBuilding.setBuildingSelected(-1);
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
+
     public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {
         // Pasar datos de un fragment a otro
         Bundle datosAEnviar = new Bundle();

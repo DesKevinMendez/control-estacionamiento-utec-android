@@ -20,37 +20,37 @@
             android:id="@+id/tvHorarioAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Horario" />
+            android:text="@string/schedule_admin" />
 
         <Button
             android:id="@+id/btnSelectedSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar horario" />
+            android:text="@string/selectedScedule" />
 
         <TextView
             android:id="@+id/tvDocenteAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Docente" />
+            android:text="@string/teacher_admin" />
 
         <Button
             android:id="@+id/btnSelectedTeacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar maestro" />
+            android:text="@string/selectedTeacher" />
 
         <TextView
             android:id="@+id/tvZoneAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zona de estacionamiento" />
+            android:text="@string/estacionamiento" />
 
         <Button
             android:id="@+id/btnSelectedBuildingAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar edificio" />
+            android:text="@string/selectedBuilding" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,14 +63,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Denegar" />
+                android:text="@string/denegar_admin" />
 
             <Button
                 android:id="@+id/btnAceptarAP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Aceptar" />
+                android:text="@string/aceptar_admin" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

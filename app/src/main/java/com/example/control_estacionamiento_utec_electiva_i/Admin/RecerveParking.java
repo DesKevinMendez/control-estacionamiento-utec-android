@@ -117,16 +117,44 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.btnAceptarRP:
-                Toast.makeText(getActivity(), "btnAceptarRP", Toast.LENGTH_SHORT).show();
+
+                if (btnSeleccionarDocenteRP.getText().equals(getString(R.string.selectedTeacher))){
+
+                    Toast.makeText(getActivity(), "Debe de seleccionar un maestro", Toast.LENGTH_SHORT).show();
+
+                } else if (btnSeleccionarEstacionamientoRP.getText().equals(getString(R.string.selectedBuilding))){
+
+                    Toast.makeText(getActivity(), "Debe de seleccionar estacionamiento", Toast.LENGTH_SHORT).show();
+
+                } else if (btnSeleccionarHorarioRP.getText().equals(getString(R.string.selectedScedule))){
+
+                    Toast.makeText(getActivity(), "Debe de seleccionar horarios", Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    changeFragments(new InicioAdmin());
+                }
+
 
                 break;
             case R.id.btnDenegarRP:
+                changeFragments(new InicioAdmin());
 
-                Toast.makeText(getActivity(), "btnDenegarRP", Toast.LENGTH_SHORT).show();
                 break;
                 default:
                     break;
         }
+    }
+    public void changeFragments(Fragment fragment){
+        // Establece teacherSelected y a buildingSelected como ""
+        DatosTeacher.setTeacherSelected(-1);
+        DatosBuilding.setBuildingSelected(-1);
+        DatosSchedule.setHoraSalida("");
+        DatosSchedule.setHoraEntrada("");
+
+        getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
     }
 
     public void changeFragments(Fragment fragment, String putStringName, String putStringDescription) {

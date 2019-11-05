@@ -20,28 +20,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Vigilante encargado" />
+            android:text="@string/watchman_admin" />
 
         <Button
             android:id="@+id/btnAsignarVigilante"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Seleccionar vigilante" />
+            android:text="@string/selectedWatchman" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Zona de establecimiento" />
+            android:text="@string/parking_admin" />
 
         <Button
             android:id="@+id/btnSeleccionarEdificio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Seleccionar edificio" />
+            android:text="@string/selectedBuilding" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="Denegar" />
+                android:text="@string/denegar_admin" />
 
             <Button
                 android:id="@+id/btnAceptarAW"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_weight="1"
-                android:text="Aceptar" />
+                android:text="@string/aceptar_admin" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>
