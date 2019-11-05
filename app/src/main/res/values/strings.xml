@@ -12,9 +12,6 @@
 
     <string name="home_menu">"Inicio"</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string-array name="horarios">
         <item>"6:30"</item>
         <item>"8:00"</item>
@@ -26,6 +23,16 @@
         <item>"17:30"</item>
         <item>"18:40"</item>
         <item>"20:10"</item>
+    </string-array>
+
+
+    <string-array name="itemMenu">
+        <item>"Inicio"</item>
+        <item>"Perfil"</item>
+        <item>"Asignar estacionamiento"</item>
+        <item>"Reservar evento"</item>
+        <item>"Reservar estacionamiento"</item>
+        <item>"Asigna vigilante"</item>
     </string-array>
 
     <string-array name="cantidad_parqueo">

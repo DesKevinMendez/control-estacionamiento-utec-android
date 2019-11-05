@@ -1,6 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,7 +10,12 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParki
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import android.util.Log;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,6 +33,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivityAdmin extends AppCompatActivity implements
         InicioAdmin.OnFragmentInteractionListener,
@@ -37,29 +46,85 @@ public class MainActivityAdmin extends AppCompatActivity implements
         SelectedSchedule.OnFragmentInteractionListener,
         SelectedTeacher.OnFragmentInteractionListener,
         AssignWatchman.OnFragmentInteractionListener,
-        RecerveParking.OnFragmentInteractionListener {
+        RecerveParking.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener{
 
-    private AppBarConfiguration mAppBarConfiguration;
 
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navegation_admin);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Inicio");
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home_admin, R.id.nav_profile_admin, R.id.nav_assign_parking,
-                R.id.nav_reserve_events, R.id.nav_assing_watchman, R.id.nav_reserve_parking)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+            case R.id.nav_home_admin:
+
+                changeFragments(new InicioAdmin(), 0);
+
+                break;
+            case R.id.nav_profile_admin:
+
+                changeFragments(new ProfileUser(), 1);
+
+                break;
+
+            case R.id.nav_assign_parking:
+
+                changeFragments(new AssignParking(), 2);
+
+                break;
+            case R.id.nav_reserve_events:
+
+                changeFragments(new ReserveEvents(), 3);
+
+                break;
+            case R.id.nav_reserve_parking:
+
+                changeFragments(new RecerveParking(), 4);
+
+                break;
+            case R.id.nav_assing_watchman:
+
+                changeFragments(new AssignWatchman(), 5);
+
+                break;
+
+            default:
+                throw new IllegalArgumentException("menu option not implemented!!");
+        }
+
+        drawerLayout.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -68,53 +133,43 @@ public class MainActivityAdmin extends AppCompatActivity implements
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Fragment frag = null;
         switch (id){
             case R.id.home:
-                frag = new InicioAdmin();
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new InicioAdmin(), 0);
 
                 return true;
             case R.id.seeProfile:
-                frag = new ProfileUser();
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new ProfileUser(), 1);
 
                 return true;
 
             case R.id.assignParking:
-                frag = new AssignParking();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new AssignParking(), 2);
+
                 return true;
 
             case R.id.reserveParking:
-                frag = new RecerveParking();
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new RecerveParking(), 3);
+
                 return true;
 
             case R.id.assingWatchMan:
-                frag = new AssignWatchman();
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new AssignWatchman(), 4);
+
                 return  true;
 
             case R.id.reserveEvents:
 
-                frag = new ReserveEvents();
+                changeFragments(new ReserveEvents(), 5);
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
                 return  true;
 
             case R.id.logout:
-                Toast.makeText(this, "Cerrar sesion", Toast.LENGTH_SHORT).show();
 
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
@@ -127,6 +182,17 @@ public class MainActivityAdmin extends AppCompatActivity implements
         }
 
     }
+
+    public void changeFragments(Fragment fragment, int indexItemSelected) {
+
+        Resources r = getResources();
+        ArrayList<String> listado = new ArrayList<>(Arrays.asList(r.getStringArray(R.array.itemMenu)));
+        getSupportActionBar().setTitle(listado.get(indexItemSelected));
+        navigationView.getMenu().getItem(indexItemSelected).setChecked(true);
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -134,12 +200,6 @@ public class MainActivityAdmin extends AppCompatActivity implements
         return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
