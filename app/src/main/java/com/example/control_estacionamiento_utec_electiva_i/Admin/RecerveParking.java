@@ -54,12 +54,12 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
         spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);
 
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
-                createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
+                createFromResource(getActivity(), R.array.cantidad_parqueo, R.layout.spinner_item_design);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCantidadHorariosRP.setAdapter(ad);
 
         ArrayAdapter<CharSequence> dias = ArrayAdapter.
-                createFromResource(getActivity(), R.array.dias, android.R.layout.simple_spinner_item);
+                createFromResource(getActivity(), R.array.dias, R.layout.spinner_item_design);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spSeleccionarDias.setAdapter(dias);
 

@@ -67,6 +67,7 @@
             android:clickable="true"
             android:focusable="false"
             android:hint="Fecha"
+            android:theme="@style/EditTextTheme"
             android:inputType="date"
             android:maxLines="1" />
 

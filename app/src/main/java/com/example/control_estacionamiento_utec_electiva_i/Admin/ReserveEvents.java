@@ -2,6 +2,7 @@ package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -67,13 +68,13 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
         SpHorariosRP = view.findViewById(R.id.SpHorariosRP);
 
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
-                createFromResource(getActivity(), R.array.cantidad_parqueo, android.R.layout.simple_spinner_item);
+                createFromResource(getActivity(), R.array.cantidad_parqueo, R.layout.spinner_item_design);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCantidad.setAdapter(ad);
 
 
         ArrayAdapter<CharSequence> hr = ArrayAdapter.
-                createFromResource(getActivity(), R.array.horarios, android.R.layout.simple_spinner_item);
+                createFromResource(getActivity(), R.array.horarios, R.layout.spinner_item_design);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         SpHorariosRP.setAdapter(hr);
 
@@ -147,18 +148,22 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
 
     }
     private void showDatePickerDialog() {
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 because January is zero
+        Calendar mcurrentDate = Calendar.getInstance();
+        int mYear = mcurrentDate.get(Calendar.YEAR);
+        int mMonth = mcurrentDate.get(Calendar.MONTH);
+        int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog mDatePicker;
+        mDatePicker = new DatePickerDialog(getActivity(), R.style.CustomDatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                 TextView PlannedDate = getActivity().findViewById(R.id.etPlannedDate);
-                String selectedDate = day + " / " + (month+1) + " / " + year;
+                String selectedDate = selectedday + " / " + (selectedmonth+1) + " / " + selectedyear;
                 PlannedDate.setText(selectedDate);
                 DatosEvents.setFecha(selectedDate);
             }
-        });
+        }, mYear, mMonth, mDay);
+        mDatePicker.show();
 
-        newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
     }
 
     // TODO: Rename method, update argument and hook method into UI event
