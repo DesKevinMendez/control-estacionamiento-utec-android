@@ -27,14 +27,14 @@ public final class DatosTeacher {
         carnetTeacher.add("70-3450-3456");
         carnetTeacher.add("85-3453-3457");
 
-        for (int i = 0; i < 50; i++) {
 
-            teacher.add("Docente " + i);
-            carnetTeacher.add("2"+ i +"-3"+ i +"53-3"+ i +"53");
-        }
 
     }
 
+    public static void setDataTeacher(String teachers, String carnet) {
+        teacher.add(teachers);
+        carnetTeacher.add(carnet);
+    }
     public static ArrayList getFilterTeachers(String value) {
         setClearFilter();
 
