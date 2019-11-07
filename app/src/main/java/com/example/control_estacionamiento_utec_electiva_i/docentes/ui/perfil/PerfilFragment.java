@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.PopConfirm;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment;
 
@@ -41,9 +42,13 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 //getFragmentManager().popBackStack();
-                HomeFragment fragment = new HomeFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
+
+                //HomeFragment fragment = new HomeFragment();
+                //getActivity().getSupportFragmentManager().beginTransaction()
+                //        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
+
+                Intent home = new Intent(getContext(), DocenteHome.class);
+                startActivity(home);
             }
         });
 
