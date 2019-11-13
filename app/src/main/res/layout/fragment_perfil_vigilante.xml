@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Vigilante.PerfilVigilante">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombres:"
+                    android:textColor="#0F0F0F" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fulano de tal " />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Carné:"
+                    android:textColor="#0F0F0F" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="25-6789-2019" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Clave actual:"
+                    android:textColor="#0F0F0F" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="***************" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Estacionamiento asiganado"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/tvContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Edificio Benito Juarez, Sotano" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Disponibilidad de estacionamientos"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Disponible"
+                    android:textColor="#008106" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tvAcceso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:text="Cambiar clave de acceso"
+                android:textColor="#0F0F0F" />
+
+            <EditText
+                android:id="@+id/edtActual"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/oval_edt"
+                android:elevation="3dp"
+                android:ems="10"
+                android:hint="Escribe la clave actual"
+                android:inputType="textPassword"
+                android:paddingStart="20dp" />
+
+            <EditText
+                android:id="@+id/edtClave"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/oval_edt"
+                android:elevation="3dp"
+
+                android:ems="10"
+                android:hint="Escribe la nueva clave "
+                android:inputType="textPassword"
+                android:paddingStart="20dp" />
+
+            <EditText
+                android:id="@+id/edtConfirmar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/oval_edt"
+                android:elevation="3dp"
+
+                android:ems="10"
+                android:hint="Confirmar la nueva clave"
+                android:inputType="textPassword"
+                android:paddingStart="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancelar2"
+                android:layout_width="160dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/oval_white"
+
+                android:text="Cancelar"
+                android:textColor="#98094D"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <Button
+                android:id="@+id/btnConfirmar2"
+                android:layout_width="160dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="35dp"
+                android:background="@drawable/oval"
+                android:text="Confirmar"
+
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

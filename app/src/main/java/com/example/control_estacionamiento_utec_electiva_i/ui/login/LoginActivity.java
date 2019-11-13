@@ -24,13 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivity;
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.EstudiantesDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
-import com.example.control_estacionamiento_utec_electiva_i.Estudiante.inicioEstudiante;
-
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.inicioVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.vigilanteNavigationDrawer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -92,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else if (usernameEditText.getText().toString().trim().equals("estudiante")){
 
 
-                    Intent i = new Intent(getApplicationContext(), inicioEstudiante.class);
+                    Intent i = new Intent(getApplicationContext(), EstudiantesDrawer.class);
                     startActivity(i);
                     setResult(Activity.RESULT_OK);
 
@@ -101,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else if (usernameEditText.getText().toString().trim().equals("vigilante")){
 
-                    Intent i = new Intent(getApplicationContext(), inicioVigilante.class);
+                    Intent i = new Intent(getApplicationContext(), vigilanteNavigationDrawer.class);
                     startActivity(i);
                     setResult(Activity.RESULT_OK);
 
