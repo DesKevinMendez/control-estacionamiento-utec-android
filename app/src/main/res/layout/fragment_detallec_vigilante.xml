@@ -6,175 +6,198 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Vigilante.DetallecVigilante">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp">
-
-            <TextView
-                android:id="@+id/textView43"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="Datos de usuario"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView44"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombre:"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Fulano de tal" />
-
-            <TextView
-                android:id="@+id/textView46"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="3454-5"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView47"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/textView48"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Edificio asignado: "
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView49"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Benito Juarez" />
-
-            <TextView
-                android:id="@+id/textView50"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Tipo de parqueo: "
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView51"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Reservado" />
-
-            <TextView
-                android:id="@+id/textView52"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Hora de entrada: "
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView53"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="6:30 am" />
-
-            <TextView
-                android:id="@+id/textView54"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Hora de salida: "
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView55"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="8:30 am" />
-
-            <TextView
-                android:id="@+id/textView56"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Estado"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/textView57"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Estacionado "
-                android:textColor="#00569E" />
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/edtComentario"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="122dp"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:gravity="start|top"
-                android:hint="Describir comportamiento del usuario, o cualquier detalle que considere relevante"
-                android:inputType="textMultiLine"/>
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                app:cardElevation="3dp"
+                app:cardMaxElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/textView43"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:text="Datos de usuario"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre:"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fulano de tal" />
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="3454-5"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView47"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView48"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Edificio asignado: "
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Benito Juarez" />
+
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Tipo de parqueo: "
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView51"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Reservado" />
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Hora de entrada: "
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6:30 am" />
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Hora de salida: "
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="8:30 am" />
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Estado"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView57"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estacionado "
+                        android:textColor="#00569E" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                app:cardElevation="3dp"
+                app:cardMaxElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/edtComentario"
+                        android:layout_width="match_parent"
+                        android:layout_height="122dp"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="Describir comportamiento del usuario, o cualquier detalle que considere relevante"
+                        android:inputType="textMultiLine" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDenegar2"
+                    android:layout_width="148dp"
+                    android:layout_height="41dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="52dp"
+                    android:background="@drawable/oval_white"
+                    android:text="Cancelar"
+                    android:textColor="#98094D"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+                <Button
+                    android:id="@+id/btnAceptar2"
+                    android:layout_width="149dp"
+                    android:layout_height="41dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="52dp"
+                    android:background="@drawable/oval"
+                    android:text="Enviar"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.56"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            </LinearLayout>
+
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnDenegar2"
-                android:layout_width="148dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginTop="52dp"
-                android:background="@drawable/oval_white"
-                android:text="Cancelar"
-                android:textColor="#98094D"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-            <Button
-                android:id="@+id/btnAceptar2"
-                android:layout_width="149dp"
-                android:layout_height="41dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="52dp"
-                android:background="@drawable/oval"
-                android:text="Enviar"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.56"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-        </LinearLayout>
-
-    </LinearLayout>
 </FrameLayout>
