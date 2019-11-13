@@ -127,6 +127,25 @@
             app:layout_constraintTop_toBottomOf="@+id/llPass" />
 
         <EditText
+            android:id="@+id/edClaveA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/oval_edt"
+
+            android:elevation="3dp"
+            android:ems="10"
+            android:hint="@string/pass_old"
+            android:inputType="textPassword"
+            android:padding="15dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
             android:id="@+id/edClave"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -143,7 +162,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/edClaveA" />
 
         <EditText
             android:id="@+id/edConfirmar"

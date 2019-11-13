@@ -1,206 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".docentes.Estacionamiento">
-
-    <ImageButton
-        android:id="@+id/imgBJ"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llMain"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:orientation="vertical">
 
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/imgSB"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/buildingr" />
 
-    <TextView
-        android:id="@+id/tvBJ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="@string/bj"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBJ" />
+        <ListView
+            android:id="@+id/listviewEd"
+            android:layout_width="match_parent"
+            android:layout_height="646dp">
 
-    <ImageButton
-        android:id="@+id/imgSB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        </ListView>
 
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/imgGL"
-        app:layout_constraintStart_toEndOf="@+id/imgBJ"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/buildingg" />
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="91dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="90dp"
+            android:background="@drawable/oval"
+            android:layout_gravity="center_horizontal"
 
-    <TextView
-        android:id="@+id/tvSB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:text="@string/sb"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toEndOf="@+id/tvBJ"
-        app:layout_constraintTop_toBottomOf="@+id/imgSB" />
+            android:paddingRight="140dp"
+            android:paddingLeft="140dp"
 
-    <ImageButton
-        android:id="@+id/imgGL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+            android:text="Regresar"
+            android:textColor="#ffffff" />
 
-        android:layout_marginEnd="12dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgSB"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/buildingr" />
-
-    <TextView
-        android:id="@+id/tvGL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:text="@string/gl"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toEndOf="@+id/tvSB"
-        app:layout_constraintTop_toBottomOf="@+id/imgGL" />
-
-    <ImageButton
-        android:id="@+id/imgTF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/imgJL"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBJ"
-        app:srcCompat="@drawable/buildingg" />
-
-    <TextView
-        android:id="@+id/tvTF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="@string/tf"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTF" />
-
-    <ImageButton
-        android:id="@+id/imgJL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/imgGM"
-        app:layout_constraintStart_toEndOf="@+id/imgTF"
-        app:layout_constraintTop_toBottomOf="@+id/imgSB"
-        app:srcCompat="@drawable/buildingg" />
-
-    <TextView
-        android:id="@+id/tvJL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:text="@string/jl"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toEndOf="@+id/tvTF"
-        app:layout_constraintTop_toBottomOf="@+id/imgJL" />
-
-    <ImageButton
-        android:id="@+id/imgGM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginEnd="17dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgJL"
-        app:layout_constraintTop_toBottomOf="@+id/imgGL"
-        app:srcCompat="@drawable/buildingg" />
-
-    <TextView
-        android:id="@+id/tvGM"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:text="@string/gm"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toEndOf="@+id/tvJL"
-        app:layout_constraintTop_toBottomOf="@+id/imgGM" />
-
-    <ImageButton
-        android:id="@+id/imgAA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toStartOf="@+id/imgCL"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgTF"
-        app:srcCompat="@drawable/buildingr" />
-
-    <TextView
-        android:id="@+id/tvAA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="@string/aa"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgAA" />
-
-    <ImageButton
-        android:id="@+id/imgCL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginEnd="145dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imgAA"
-        app:layout_constraintTop_toBottomOf="@+id/imgJL"
-        app:srcCompat="@drawable/buildingr" />
-
-    <TextView
-        android:id="@+id/tvCL"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:text="@string/cl"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintStart_toEndOf="@+id/tvAA"
-        app:layout_constraintTop_toBottomOf="@+id/imgCL" />
-
-    <Button
-        android:id="@+id/btnRegresar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="91dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="90dp"
-        android:background="@drawable/oval"
-        android:text="Regresar"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCL" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

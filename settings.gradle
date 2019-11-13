@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='control-estacionamiento-utec-electiva-I'
+rootProject.name='control-estacionamientos-utec-electiva-I'

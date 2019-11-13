@@ -20,7 +20,7 @@ import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.Home
 
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
-    EditText claveEd, confirmarEd;
+    EditText claveEd, confirmarEd, actualClaveEd;
     Button cancelarPerfilBtn, confirmarPerfilBtn;
 
 
@@ -31,6 +31,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
         claveEd = root.findViewById(R.id.edClave);
         confirmarEd = root.findViewById(R.id.edConfirmar);
+        actualClaveEd = root.findViewById(R.id.edClaveA);
 
         cancelarPerfilBtn = root.findViewById(R.id.btnCancelarPerfil);
         confirmarPerfilBtn = root.findViewById(R.id.btnConfirmarPerfil);
@@ -58,6 +59,7 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
 
                 String clave = claveEd.getText().toString().trim();
                 String confirmar = confirmarEd.getText().toString().trim();
+                String actual = actualClaveEd.getText().toString().trim();
 
                 if (clave.isEmpty()){
                     claveEd.setError("Campo Requerido");
@@ -65,6 +67,12 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 } else if (confirmar.isEmpty()){
                     confirmarEd.setError("Campo Requerido");
                     confirmarEd.requestFocus();
+                } else if (actual.isEmpty()){
+                    actualClaveEd.setError("Campo Requerido");
+                    actualClaveEd.requestFocus();
+                } else if(!actual.equals("1234")){
+                    actualClaveEd.setError("Contraseña Inválida");
+                    actualClaveEd.setText("");
                 } else if (!clave.equals(confirmar)){
                     claveEd.setText("");
                     confirmarEd.setText("");

@@ -4,64 +4,45 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Estacionamiento extends AppCompatActivity {
 
-    ImageButton btnSB, btnTF, btnJL, btnGM;
-    Button regresar;
+    Button btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estacionamiento);
 
-        btnSB = findViewById(R.id.imgSB);
-        btnTF = findViewById(R.id.imgTF);
-        btnJL = findViewById(R.id.imgJL);
-        btnGM = findViewById(R.id.imgGM);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
-        regresar = findViewById(R.id.btnRegresar);
+        ListView listView = findViewById(R.id.listviewEd);
+        List<Estacionamientos> list = new LinkedList<>();
+        list.add(new Estacionamientos("Benito Juarez","No disponible"));
+        list.add(new Estacionamientos("Gabriela Mistral","Disponible"));
+        list.add(new Estacionamientos("Giuseppe Garibaldi","No disponible"));
+        list.add(new Estacionamientos("Garcia Lorca","Disponible"));
+        list.add(new Estacionamientos("Villa Fermina","No disponible"));
+        list.add(new Estacionamientos("Simon Bolivar","Disponible"));
+        AdaptadorEstacionamiento adapter = new AdaptadorEstacionamiento(this, R.layout.estacionamientos, list);
+        listView.setAdapter(adapter);
 
-        this.setTitle(R.string.estacionamiento);
-
-        btnSB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnTF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnJL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        btnGM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Estacionamiento.this, "Disponible", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        regresar.setOnClickListener(new View.OnClickListener() {
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -70,5 +51,6 @@ public class Estacionamiento extends AppCompatActivity {
 
     }
 
-
 }
+
+

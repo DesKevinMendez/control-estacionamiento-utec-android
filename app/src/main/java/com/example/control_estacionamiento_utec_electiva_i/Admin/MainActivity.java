@@ -71,14 +71,14 @@ public class MainActivity extends AppCompatActivity implements
                 return true;
 
             case R.id.assignParking:
-                setTitle("Asignar estacionamiento");
+                setTitle("Asignar estacionamientos");
                 frag = new AssignParking();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.contentLayaout, frag).commit();
                 return true;
 
             case R.id.reserveParking:
-                setTitle("Reservar estacionamiento");
+                setTitle("Reservar estacionamientos");
                 frag = new ReserveParking();
 
                 getSupportFragmentManager().beginTransaction()
