@@ -1,15 +1,11 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,12 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
@@ -32,9 +22,6 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParki
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class AssignParking extends Fragment implements OnClickListener {
 
@@ -50,6 +37,7 @@ public class AssignParking extends Fragment implements OnClickListener {
         super.onCreate(savedInstanceState);
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(2).setChecked(true);
+
     }
 
     Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnSelctedBuilding;
@@ -107,60 +95,10 @@ public class AssignParking extends Fragment implements OnClickListener {
                 btnAssingSchedule.setText("De " + DatosSchedule.getHoraEntrada() + " hasta " +DatosSchedule.getHoraSalida());
             }
         }
-        HTTPrequestTeacher();
 
         return view;
     }
 
-    ProgressDialog progressDialog;
-    public void HTTPrequestTeacher() {
-        progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Espere...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-
-        progressDialog.show();
-
-        String url = "https://api.androidhive.info/contacts/";
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray mJsonArray = response.getJSONArray("contacts");
-                    for (int i = 0; i < mJsonArray.length() ; i++) {
-
-                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                        String name = mJsonObject.getString("name");
-
-                        JSONObject infoPhone = mJsonObject.getJSONObject("phone");
-                        String phone = infoPhone.getString("mobile");
-
-                        DatosTeacher.setDataTeacher(name, phone);
-
-                    }
-                } catch (JSONException e){
-
-                    Log.e("VOLLEY","Error de parcing en AssignParking- method: HTTPrequestTeacher "+ e.toString());
-                    e.printStackTrace();
-
-                }
-                progressDialog.dismiss();
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-
-                Log.e("VOLLEY", error.getMessage());
-            }
-        });
-
-        queue.add(request);
-
-    }
     @Override
     public void onClick(View view) {
         switch(view.getId()){
