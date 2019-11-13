@@ -1,14 +1,14 @@
-package com.example.control_estacionamiento_utec_electiva_i.docentes.ui.slideshow;
+package com.example.control_estacionamiento_utec_electiva_i.docentes.ui.cerrar_sesion;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class CerrarSesionViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public CerrarSesionViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is slideshow fragment");
     }
