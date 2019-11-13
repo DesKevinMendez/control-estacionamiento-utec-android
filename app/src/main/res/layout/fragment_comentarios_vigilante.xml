@@ -155,6 +155,8 @@
                     android:text="Comentar"
                     android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.777"
+                    app:layout_constraintStart_toEndOf="@+id/btnRegresar"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
