@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Admin.AssignParking">
 
     <LinearLayout
@@ -11,47 +12,67 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
         android:padding="5dp">
 
         <TextView
             android:id="@+id/tvHorarioAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Horario" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/schedule_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSelectedSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar horario" />
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:text="@string/selectedScedule"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tvDocenteAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Docente" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/teacher_admin"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSelectedTeacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar maestro" />
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:text="@string/selectedTeacher"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/tvZoneAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Zona de estacionamiento" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/estacionamiento"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/btnSelectedParking"
+            android:id="@+id/btnSelectedBuildingAP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar edificio" />
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:text="@string/selectedBuilding"
+            android:textColor="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
@@ -59,15 +80,22 @@
                 android:id="@+id/btnCancelarAP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:text="Denegar" />
+                android:background="@drawable/oval_white"
+                android:text="@string/denegar_admin"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnAceptarAP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:text="Aceptar" />
+                android:background="@drawable/oval"
+                android:elevation="40dp"
+                android:text="@string/aceptar_admin"
+                android:textColor="@color/colorSecundary" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

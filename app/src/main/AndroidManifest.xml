@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.control_estacionamiento_utec_electiva_i">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +10,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".Admin.MainActivityAdmin"
+            android:label="@string/title_activity_navegation_admin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".docentes.PopConfirm"
+            android:theme="@style/AppTheme.PopMe" />
+        <activity android:name=".docentes.PerfilUsuario" />
         <activity
             android:name=".Estudiante.EstudiantesDrawer"
             android:label="@string/title_activity_estudiantes_drawer"

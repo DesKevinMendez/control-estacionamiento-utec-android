@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.ReserveParking">
+    android:background="#FFFFFF"
+    android:focusable="true"
+    android:clickable="true"
+    tools:context=".Admin.ReserveEvents">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,49 +20,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Zona de establecimiento" />
+            android:text="@string/parking_admin"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSelectedBuilding"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
             android:layout_height="wrap_content"
-            android:text="Seleccionar edificio" />
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/oval_white"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/selectedBuilding" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cantidad de estacionamiento" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/parking_lenght_admin"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/SpCantidadEstacionamiento"
-            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
 
         <TextView
-            android:layout_marginBottom="5dp"
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Horarios" />
+            android:layout_marginBottom="5dp"
+            android:text="@string/schedule_admin"
+            android:textStyle="bold" />
 
         <Spinner
-            android:layout_marginBottom="5dp"
             android:id="@+id/SpHorariosRP"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
 
         <EditText
             android:id="@+id/etPlannedDate"
-            android:hint="Fecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:focusable="false"
             android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha"
+            android:theme="@style/EditTextTheme"
+            android:inputType="date"
             android:maxLines="1" />
 
         <LinearLayout
@@ -71,15 +80,24 @@
                 android:id="@+id/btnDenegarRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:text="Denegar" />
+                android:background="@drawable/oval_white"
+                android:text="@string/denegar_admin"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnAceparRP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:text="Aceptar" />
+                android:background="@drawable/oval"
+                android:text="@string/aceptar_admin"
+                android:textColor="@color/colorSecundary" />
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

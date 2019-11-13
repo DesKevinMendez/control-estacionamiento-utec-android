@@ -23,8 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivity;
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.EstudiantesDrawer;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK);
 
                 } else if (usernameEditText.getText().toString().trim().equals("admin")){
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent i = new Intent(getApplicationContext(), MainActivityAdmin.class);
                     startActivity(i);
                     setResult(Activity.RESULT_OK);
 
