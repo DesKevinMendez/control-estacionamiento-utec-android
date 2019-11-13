@@ -53,7 +53,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 app:cardElevation="3dp"
                 app:cardMaxElevation="3dp">
 
@@ -143,19 +143,17 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="100dp">
 
                 <Button
                     android:id="@+id/btnDetalle"
                     android:layout_width="160dp"
                     android:layout_height="38dp"
-                    android:layout_marginTop="64dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="28dp"
                     android:background="@drawable/oval"
                     android:text="Comentar"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.777"
                     app:layout_constraintStart_toEndOf="@+id/btnRegresar"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -163,8 +161,8 @@
                     android:id="@+id/btnRegresar"
                     android:layout_width="160dp"
                     android:layout_height="37dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="64dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="32dp"
                     android:background="@drawable/oval_white"
                     android:text="Regresar"
                     android:textColor="#98094D"

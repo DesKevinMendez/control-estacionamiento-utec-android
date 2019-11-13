@@ -174,29 +174,25 @@
                     android:id="@+id/btnDenegar2"
                     android:layout_width="148dp"
                     android:layout_height="41dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="28dp"
                     android:background="@drawable/oval_white"
                     android:text="Cancelar"
                     android:textColor="#98094D"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.302" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btnAceptar2"
                     android:layout_width="149dp"
                     android:layout_height="41dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="28dp"
                     android:background="@drawable/oval"
                     android:text="Enviar"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.435"
                     app:layout_constraintStart_toEndOf="@+id/btnDenegar2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.491" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

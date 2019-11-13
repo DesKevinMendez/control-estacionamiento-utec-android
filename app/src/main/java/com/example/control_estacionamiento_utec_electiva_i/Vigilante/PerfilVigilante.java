@@ -74,6 +74,10 @@ public class PerfilVigilante extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //'https://randomuser.me/api/'
+
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil_vigilante, container, false);
 
