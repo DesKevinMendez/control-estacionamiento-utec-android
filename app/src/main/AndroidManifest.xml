@@ -10,24 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Estudiante.EstudiantesDrawer"
+            android:label="@string/title_activity_estudiantes_drawer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Vigilante.Detalle" />
+        <activity
+            android:name=".Vigilante.vigilanteNavigationDrawer"
+            android:label="@string/title_activity_vigilante_navigation_drawer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".docentes.DocenteHome"
             android:label="@string/title_activity_docente"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".docentes.PopConfirm"
             android:theme="@style/AppTheme.PopMe" />
         <activity android:name=".docentes.Estacionamiento" />
         <activity android:name=".Admin.MainActivity" />
-        <activity android:name=".Estudiante.perfilEstudiante" />
-        <activity android:name=".Estudiante.inicioEstudiante" />
-        <activity android:name=".Vigilante.reservadosVigilante" />
-        <activity android:name=".Vigilante.disponiblesVigilante" />
-        <activity android:name=".Vigilante.detallecVigilante" />
-        <activity android:name=".Vigilante.comentarioVigilante" />
-        <activity android:name=".Vigilante.marcarVigilante" />
-        <activity android:name=".Vigilante.notificacionesVigilante" />
-        <activity android:name=".Vigilante.perfilVigilante" />
-        <activity android:name=".Vigilante.inicioVigilante" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".ui.login.LoginActivity"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group >
+        <item
+            android:id="@+id/inicioEstudiante"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/perfilEstudiante"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/cerrar"
+            android:title="Cerrar sesion" />
+    </group>
+</menu>

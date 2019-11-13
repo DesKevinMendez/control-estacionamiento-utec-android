@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group >
+        <item
+            android:id="@+id/inicioVigilante"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/perfilVigilante"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/disponiblesVigilante"
+            android:title="Estacionamientos Disponibles" />
+        <item
+            android:id="@+id/reservadosVigilante"
+            android:title="Estacionamientos Reservados" />
+        <item
+            android:id="@+id/comentariosVigilante"
+            android:title="Comentarios" />
+        <item
+            android:id="@+id/notificacionesVigilante"
+            android:title="Notificaciones" />
+        <item
+            android:id="@+id/cerrar"
+            android:title="Cerrar Sesion" />
+    </group>
+</menu>
