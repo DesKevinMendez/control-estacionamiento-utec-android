@@ -12,9 +12,6 @@
 
     <string name="home_menu">"Inicio"</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string-array name="horarios">
         <item>"6:30"</item>
         <item>"8:00"</item>
@@ -27,6 +24,17 @@
         <item>"18:40"</item>
         <item>"20:10"</item>
     </string-array>
+
+
+    <string-array name="itemMenu">
+        <item>"Inicio"</item>
+        <item>"Perfil"</item>
+        <item>"Asignar estacionamiento"</item>
+        <item>"Reservar evento"</item>
+        <item>"Reservar estacionamiento"</item>
+        <item>"Asigna vigilante"</item>
+    </string-array>
+
     <string-array name="cantidad_parqueo">
         <item>1</item>
         <item>2</item>
@@ -34,6 +42,30 @@
         <item>4</item>
         <item>5</item>
     </string-array>
+
+    <string-array name="dias">
+        <item>"Domingo"</item>
+        <item>"Lunes"</item>
+        <item>"Martes"</item>
+        <item>"Miércoles"</item>
+        <item>"Jueves"</item>
+        <item>"Viernes"</item>
+        <item>"Sábado"</item>
+    </string-array>
+
+    <!-- String related to admin views -->
+    <string name="selectedTeacher">"Seleccione un docente"</string>
+    <string name="selectedBuilding">"Seleccione parqueo"</string>
+    <string name="selectedScedule">"Seleccione horarios"</string>
+    <string name="selectedWatchman">"Seleccione vigilante"</string>
+    <string name="aceptar_admin">"Aceptar"</string>
+    <string name="denegar_admin">"Denegar"</string>
+    <string name="teacher_admin">"Maestro"</string>
+    <string name="watchman_admin">"Vigilante"</string>
+    <string name="schedule_admin">"Horarios"</string>
+    <string name="parking_admin">"Parqueo"</string>
+    <string name="parking_lenght_admin">"Cantidad estacionamientos"</string>
+    <string name="days_admin">"Días"</string>
 
 
     <!-- Strings related to teacher's Toolbar -->
@@ -77,6 +109,15 @@
     <string name="btn_cancelar">Cancelar</string>
     <string name="confirm_pop">Confirmar cambio de clave</string>
     <string name="message_pop">Esta accion no se puede deshacer</string>
+    <string name="title_activity_navegation_admin">NavegationAdmin</string>
+
+    <string name="menu_admin_home">Inicio</string>
+    <string name="menu_admin_perfil">Perfil</string>
+    <string name="menu_admin_asignar_estacionamiento">Asignar estacionamiento</string>
+    <string name="menu_admin_reservar_evento">Reservar evento</string>
+    <string name="menu_admin_reservar_estacionamiento">Reservar estacionamiento</string>
+    <string name="menu_admin_asignar_vigilante">Asignar vigilante</string>
+
     <string name="title_activity_docente">docente</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -93,6 +134,7 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_estudiantes_drawer">EstudiantesDrawer</string>
+
 
 
 </resources>

@@ -6,162 +6,171 @@
     android:layout_height="match_parent"
     tools:context=".Vigilante.ComentariosVigilante">
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="10dp">
-
-            <EditText
-                android:id="@+id/editText6"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/oval_edt"
-                android:elevation="3dp"
-                android:ems="10"
-
-                android:hint="Numero de placa"
-                android:inputType="textPersonName"
-                android:paddingStart="20dp" />
-
-            <Button
-                android:id="@+id/btnBuscar"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-
-                android:layout_marginTop="20dp"
-                android:background="@drawable/oval"
-                android:text="Buscar"
-                android:textColor="#FFFFFF" />
-        </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/lnComentario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp">
 
-                <TextView
-                    android:id="@+id/textView33"
+                <EditText
+                    android:id="@+id/editText6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/oval_edt"
+                    android:elevation="3dp"
+                    android:ems="10"
+
+                    android:hint="Numero de placa"
+                    android:inputType="textPersonName"
+                    android:paddingStart="20dp" />
+
+                <Button
+                    android:id="@+id/btnBuscar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre:"
-                    android:textColor="#000000" />
+                    android:layout_gravity="center"
 
-                <TextView
-                    android:id="@+id/textView34"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fulano de tal" />
-
-                <TextView
-                    android:id="@+id/textView35"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Numero de placa:"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/textView36"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="5653-2" />
-
-                <TextView
-                    android:id="@+id/textView37"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Edificio asignado:"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/textView38"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Benito Juarez" />
-
-                <TextView
-                    android:id="@+id/textView39"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Horario:"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/textView40"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="6:30 am - 8:30 am" />
-
-                <TextView
-                    android:id="@+id/textView41"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Estado:"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/textView42"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Estacionado"
-                    android:textColor="#00569E" />
-
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/oval"
+                    android:text="Buscar"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardElevation="3dp"
+                app:cardMaxElevation="3dp">
 
-            <Button
-                android:id="@+id/btnDetalle"
-                android:layout_width="160dp"
-                android:layout_height="38dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/oval"
-                android:text="Comentar"
-                android:textColor="#FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:id="@+id/lnComentario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
 
-            <Button
-                android:id="@+id/btnRegresar"
-                android:layout_width="160dp"
-                android:layout_height="37dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="64dp"
-                android:background="@drawable/oval_white"
-                android:text="Regresar"
-                android:textColor="#98094D"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre:"
+                        android:textColor="#000000" />
 
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView34"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fulano de tal" />
+
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Numero de placa:"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView36"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5653-2" />
+
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Edificio asignado:"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Benito Juarez" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Horario:"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6:30 am - 8:30 am" />
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Estado:"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estacionado"
+                        android:textColor="#00569E" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+                <Button
+                    android:id="@+id/btnDetalle"
+                    android:layout_width="160dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/oval"
+                    android:text="Comentar"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toEndOf="@+id/btnRegresar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btnRegresar"
+                    android:layout_width="160dp"
+                    android:layout_height="37dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="32dp"
+                    android:background="@drawable/oval_white"
+                    android:text="Regresar"
+                    android:textColor="#98094D"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

@@ -5,13 +5,11 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.slideshow.SlideshowFragment;
 import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
 
 import android.view.MenuItem;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
