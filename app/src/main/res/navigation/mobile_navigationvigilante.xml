@@ -35,10 +35,10 @@
         android:name="com.example.control_estacionamiento_utec_electiva_i.Vigilante.NotificacionesVigilante"
         android:label="Notificaciones"
         tools:layout="@layout/fragment_notificaciones_vigilante" />
-    <activity
+    <fragment
         android:id="@+id/cerrar"
-        android:name="com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
+        android:name="com.example.control_estacionamiento_utec_electiva_i.docentes.ui.cerrar_sesion.CerrarSesionFragment"
+        android:label="fragment_cerrar_sesion_docente"
+        tools:layout="@layout/fragment_cerrar_sesion_docente" />
 
 </navigation>

@@ -35,20 +35,18 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         PerfilVigilante.OnFragmentInteractionListener
 {
 
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
     private AppBarConfiguration mAppBarConfiguration;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigilante_navigation_drawer);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        drawerLayout = findViewById(R.id.drawer_layout);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -63,6 +61,16 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+
+            super.onBackPressed();
+        }
+    }
 
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -120,21 +128,9 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 return true;
 
             default:
-
                 return super.onOptionsItemSelected(item);
         }
 
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-
-            super.onBackPressed();
-        }
     }
 
 
