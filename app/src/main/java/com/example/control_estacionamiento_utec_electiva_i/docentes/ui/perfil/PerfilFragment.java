@@ -70,10 +70,10 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                 } else if (actual.isEmpty()){
                     actualClaveEd.setError("Campo Requerido");
                     actualClaveEd.requestFocus();
-                } else if(!actual.equals("1234")){
+                } /*else if(!actual.equals("1234")){
                     actualClaveEd.setError("Contraseña Inválida");
                     actualClaveEd.setText("");
-                } else if (!clave.equals(confirmar)){
+                }*/ else if (!clave.equals(confirmar)){
                     claveEd.setText("");
                     confirmarEd.setText("");
                     Toast.makeText(getContext(), "Las claves no son iguales", Toast.LENGTH_SHORT).show();

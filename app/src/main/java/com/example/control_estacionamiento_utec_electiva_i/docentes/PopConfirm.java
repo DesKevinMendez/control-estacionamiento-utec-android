@@ -19,7 +19,6 @@ import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivit
 public class PopConfirm extends Activity {
 
     Button btnConfirmar, btnCancelar;
-    EditText edtClave, edtConfirmar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +56,7 @@ public class PopConfirm extends Activity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(i);
+                Toast.makeText(PopConfirm.this, "Se guardó clave nueva", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
