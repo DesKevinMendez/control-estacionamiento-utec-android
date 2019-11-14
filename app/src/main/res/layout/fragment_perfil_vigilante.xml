@@ -188,31 +188,32 @@
                     android:id="@+id/btnCancelar2"
                     android:layout_width="160dp"
                     android:layout_height="46dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="28dp"
 
                     android:layout_marginTop="24dp"
                     android:background="@drawable/oval_white"
                     android:text="Cancelar"
                     android:textColor="#98094D"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnConfirmar2"
-                    app:layout_constraintHorizontal_bias="0.142"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.433" />
+                    app:layout_constraintVertical_bias="0.466" />
 
                 <Button
                     android:id="@+id/btnConfirmar2"
                     android:layout_width="160dp"
                     android:layout_height="46dp"
+                    android:layout_marginStart="36dp"
+
                     android:layout_marginTop="36dp"
 
                     android:background="@drawable/oval"
-
                     android:text="Confirmar"
                     android:textColor="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnCancelar2"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="219dp" />
+                    app:layout_constraintVertical_bias="0.055" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
