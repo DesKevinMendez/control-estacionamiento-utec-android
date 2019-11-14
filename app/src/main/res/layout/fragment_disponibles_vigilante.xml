@@ -206,11 +206,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:layout_gravity="center"
+                android:layout_margin="10dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/oval_white"
                 android:text="Regresar"
-                android:textColor="#98094D"
 
+                android:textColor="#98094D"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />

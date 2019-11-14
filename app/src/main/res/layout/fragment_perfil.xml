@@ -6,21 +6,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="#FFFFFF"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:id="@+id/llUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:orientation="vertical"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="#FFFFFF"
             android:elevation="3dp"
             android:ems="10"
+            android:orientation="vertical"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,14 +77,14 @@
             android:id="@+id/llPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-
-            android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="#FFFFFF"
             android:elevation="3dp"
             android:ems="10"
+            android:orientation="vertical"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +189,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="30dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -200,10 +199,11 @@
                 android:id="@+id/btnCancelarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+
                 android:layout_weight="1"
 
                 android:background="@drawable/oval_white"
-
                 android:text="@string/btn_cancelar"
                 android:textColor="#98094D" />
 
@@ -215,10 +215,11 @@
                 android:id="@+id/btnConfirmarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
-                android:textColor="#FFFFFF"
                 android:background="@drawable/oval"
-                android:text="@string/btn_confirm" />
+                android:text="@string/btn_confirm"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
 
