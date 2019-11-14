@@ -180,41 +180,35 @@
 
             </LinearLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnCancelar2"
-                    android:layout_width="160dp"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="28dp"
-
-                    android:layout_marginTop="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_weight="1"
                     android:background="@drawable/oval_white"
                     android:text="Cancelar"
-                    android:textColor="#98094D"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.466" />
+
+                    android:textColor="#98094D" />
 
                 <Button
                     android:id="@+id/btnConfirmar2"
-                    android:layout_width="160dp"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
 
-                    android:layout_marginTop="36dp"
-
+                    android:layout_marginRight="25dp"
+                    android:layout_weight="1"
                     android:background="@drawable/oval"
                     android:text="Confirmar"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/btnCancelar2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.055" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

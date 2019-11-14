@@ -9,6 +9,7 @@ import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivit
 
 import android.view.MenuItem;
 
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -34,7 +35,8 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         PerfilVigilante.OnFragmentInteractionListener
 {
 
-
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -44,7 +46,8 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        drawerLayout = findViewById(R.id.drawer_layout);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -121,6 +124,17 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+
+            super.onBackPressed();
+        }
     }
 
 
