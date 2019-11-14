@@ -23,6 +23,7 @@ public class CerrarSesionFragment extends Fragment {
 
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
+        this.getActivity().finish();
 
         return root;
     }
