@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -42,6 +43,8 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     Button btnSeleccionarDocenteRP, btnSeleccionarEstacionamientoRP, btnSeleccionarHorarioRP,
             btnAceptarRP, btnDenegarRP;
     Spinner spSeleccionarDias, spCantidadHorariosRP;
+    EditText edtComentario;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +71,8 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
         btnSeleccionarHorarioRP = view.findViewById(R.id.btnSeleccionarHorarioRP);
         btnAceptarRP = view.findViewById(R.id.btnAceptarRP);
         btnDenegarRP = view.findViewById(R.id.btnDenegarRP);
+
+        edtComentario = view.findViewById(R.id.edtComentario);
 
 
         Bundle datosRecuperados = getArguments();
@@ -117,7 +122,7 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.btnAceptarRP:
-
+                String comentario = edtComentario.getText().toString().trim();
                 if (btnSeleccionarDocenteRP.getText().equals(getString(R.string.selectedTeacher))){
 
                     Toast.makeText(getActivity(), "Debe de seleccionar un maestro", Toast.LENGTH_SHORT).show();
@@ -129,6 +134,12 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
                 } else if (btnSeleccionarHorarioRP.getText().equals(getString(R.string.selectedScedule))){
 
                     Toast.makeText(getActivity(), "Debe de seleccionar horarios", Toast.LENGTH_SHORT).show();
+
+                } else if (comentario.isEmpty()){
+
+                    edtComentario.setError("Comentario requerido");
+                    edtComentario.setCursorVisible(true);
+                    edtComentario.requestFocus();
 
                 } else {
 
