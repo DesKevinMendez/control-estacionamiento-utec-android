@@ -8,6 +8,11 @@
     android:focusable="true"
     tools:context=".Admin.RecerveParking">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,8 +32,8 @@
         <Spinner
             android:id="@+id/spSeleccionarDias"
             android:layout_width="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp" />
 
         <TextView
             android:id="@+id/textView67"
@@ -45,8 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:background="@drawable/oval_white"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/selectedTeacher" />
+            android:text="@string/selectedTeacher"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView68"
@@ -62,9 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/colorPrimary"
             android:background="@drawable/oval_white"
-            android:text="@string/selectedBuilding" />
+            android:text="@string/selectedBuilding"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView69"
@@ -95,9 +100,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/colorPrimary"
             android:background="@drawable/oval_white"
-            android:text="@string/selectedScedule" />
+            android:text="@string/selectedScedule"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/textView71"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Comentario"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:theme="@style/EditTextTheme"
+            android:hint="Detalles de reserva de estacionamiento"
+            android:inputType="textMultiLine" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -110,11 +134,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:layout_weight="1"
                 android:layout_marginBottom="15dp"
+                android:layout_weight="1"
                 android:background="@drawable/oval_white"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/denegar_admin" />
+                android:text="@string/denegar_admin"
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnAceptarRP"
@@ -124,10 +148,12 @@
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
                 android:background="@drawable/oval"
-                android:textColor="@color/colorSecundary"
-                android:text="@string/aceptar_admin" />
+                android:text="@string/aceptar_admin"
+                android:textColor="@color/colorSecundary" />
 
         </LinearLayout>
 
     </LinearLayout>
+
+    </ScrollView>
 </FrameLayout>
