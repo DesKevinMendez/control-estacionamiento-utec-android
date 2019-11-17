@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -24,6 +25,8 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * create an instance of this fragment.
  */
 public class NotificacionesVigilante extends Fragment {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -63,6 +66,11 @@ public class NotificacionesVigilante extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+
+
+
         }
     }
 
@@ -72,6 +80,10 @@ public class NotificacionesVigilante extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notificaciones_vigilante, container, false);
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
+
+
+
+
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,16 +1,23 @@
 package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 
 /**
@@ -22,6 +29,9 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
  * create an instance of this fragment.
  */
 public class InicioVigilante extends Fragment {
+
+    SQLiteDatabase base;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,13 +72,22 @@ public class InicioVigilante extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio_vigilante, container, false);
+        View view = inflater.inflate(R.layout.fragment_notificaciones_vigilante, container, false);
+        /*
+        DatosVigilante objDatos = new DatosVigilante(getContext(), "sistemas", null, 1);
+        base = objDatos.getWritableDatabase();
+        Log.i("MENSAJE", "SE CREO LA BASE");
+         */
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

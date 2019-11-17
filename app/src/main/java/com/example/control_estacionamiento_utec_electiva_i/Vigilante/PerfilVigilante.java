@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
@@ -81,7 +80,7 @@ public class PerfilVigilante extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil_vigilante, container, false);
 
-        final EditText edtActual = view.findViewById(R.id.edtActual);
+        final EditText edtActual = view.findViewById(R.id.edtPlaca);
         final EditText edtClave = view.findViewById(R.id.edtClave);
         final EditText edtConfirmar = view.findViewById(R.id.edtConfirmar);
         Button btnCancelar = view.findViewById(R.id.btnCancelar2);

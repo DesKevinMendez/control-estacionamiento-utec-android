@@ -78,7 +78,7 @@ public class PerfilEstudiante extends Fragment {
 
         Button btnCancelar = view.findViewById(R.id.btnCancelar);
         Button btnConfirmar = view.findViewById(R.id.btnConfirmar);
-        final EditText edtActual = view.findViewById(R.id.edtActual);
+        final EditText edtActual = view.findViewById(R.id.edtPlaca);
         final EditText edtClave = view.findViewById(R.id.edtClave);
         final EditText edtConfirmar = view.findViewById(R.id.edtConfirmar);
 
