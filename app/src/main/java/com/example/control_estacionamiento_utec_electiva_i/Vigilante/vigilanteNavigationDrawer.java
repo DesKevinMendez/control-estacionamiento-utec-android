@@ -1,12 +1,15 @@
 package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
 
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.core.view.GravityCompat;
@@ -37,15 +40,20 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
-
+    SQLiteDatabase base;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigilante_navigation_drawer);
+
+        DatosVigilante objDatos = new DatosVigilante(getApplicationContext(), "sistemas", null, 1);
+        base = objDatos.getWritableDatabase();
+        Log.i("MENSAJE", "SE CREO LA BASE DE DATOS VIGILANTE");
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

@@ -71,21 +71,45 @@ public class InicioVigilante extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
         }
 
 
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notificaciones_vigilante, container, false);
-        /*
-        DatosVigilante objDatos = new DatosVigilante(getContext(), "sistemas", null, 1);
-        base = objDatos.getWritableDatabase();
-        Log.i("MENSAJE", "SE CREO LA BASE");
-         */
+        View view = inflater.inflate(R.layout.fragment_inicio_vigilante, container, false);
+        Button btnBuscar = view.findViewById(R.id.btnBuscar);
+
+        final TextView tvNombre = view.findViewById(R.id.tvNombre);
+        final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
+        final TextView tvEdificio = view.findViewById(R.id.tvEdificio);
+        final TextView tvTipo = view.findViewById(R.id.tvTipo);
+        final TextView tvEntrada = view.findViewById(R.id.tvEntrada);
+        final TextView tvSalida = view.findViewById(R.id.tvSalida);
+
+      /*  btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String consultaDisponible = "select * from usuarios";
+                Cursor cUsuarios = base.rawQuery(consultaDisponible,null);
+
+                if(cUsuarios.moveToNext()) {
+                    tvNombre.setText(cUsuarios.getString(2));
+                    tvPlaca.setText(cUsuarios.getString(1));
+                    tvEdificio.setText(cUsuarios.getString(4));
+                    tvTipo.setText(cUsuarios.getString(5));
+                    //tvEntrada.setText(cUsuarios.getString());
+                    //tvSalida.setText(cUsuarios.getString());
+                }
+
+            }
+        });  */
 
         return view;
     }

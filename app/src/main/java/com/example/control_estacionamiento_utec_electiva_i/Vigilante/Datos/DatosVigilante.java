@@ -10,24 +10,29 @@ import androidx.annotation.Nullable;
 
 public class DatosVigilante extends SQLiteOpenHelper {
 
-    public DatosVigilante(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+    public DatosVigilante(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("create table usuarios(id_usuarios primary key autoincrement, carnet text, numero_placa text, nombres text, apellidos text, edificio_asignado, tipo_parqueo text)");
+        db.execSQL("create table usuarios(id_usuarios integer primary key autoincrement, carnet text, numero_placa text, nombres text, apellidos text, edificio_asignado, tipo_parqueo text)");
         Log.i("MENSAJE: ", "SE CREO LA TABLA USUARIOS");
 
-        db.execSQL("create table horarios(id_horario text primary key autoincrement, carnet text, hora_inicio text, hora_fin text)");
+
+        db.execSQL("create table horarios(id_horario integer primary key autoincrement, carnet text, hora_inicio text, hora_fin text)");
         Log.i("MENSAJE: ", "SE CREO LA TABLA HORARIOS");
 
-        db.execSQL("create table vigilante(id_perfil text primary key autoincrement, nombres text, apellidos text, carnet text, clave text)");
+        db.execSQL("create table vigilante(id_perfil integer primary key autoincrement, nombres text, apellidos text, carnet text, clave text)");
         Log.i("MENSAJE: ", "SE CREO LA TABLA VIGILANTE");
 
-        db.execSQL("create table historial(id_historial text primary key autoincrement, carnet text, notificaciones text)");
+        db.execSQL("create table historial(id_historial integer primary key autoincrement, carnet text, notificaciones text)");
         Log.i("MENSAJE: ", "SE CREO LA TABLA HISTORIAL");
+
+        db.execSQL("create table Parqueo(id_parqueo integer primary key autoincrement, nombre_parqueo text, estado integer)");
+        Log.i("MENSAJE: ", "SE CREO LA TABLA PARQUEO");
+
 
 
         db.execSQL("insert into usuarios(carnet, numero_placa, nombres, apellidos, edificio_asignado, tipo_parqueo) values('17-2890-2014','167897-7','Juan Jose','Hernandez Ponce','Estacionamiento estudiante','estudiante')");
@@ -44,9 +49,19 @@ public class DatosVigilante extends SQLiteOpenHelper {
         db.execSQL("insert into vigilante(nombres, apellidos, carnet, clave) values('Milton Josue','Ceren Gonzalez','30-4467-2012','password')");
 
 
-        db.execSQL("insert into historial(carnet, comentarios) values('17-2890-2014','El usuario no se presento en el parqueo')");
-        db.execSQL("insert into historial(carnet, comentarios) values('25-5044-2015','El usuario excedio el tiempo de parqueo')");
-        db.execSQL("insert into historial(carnet, comentarios) values('12-7645-2017','El usuario se estaciono indevidamente')");
+        db.execSQL("insert into historial(carnet, notificaciones) values('17-2890-2014','El usuario no se presento en el parqueo')");
+        db.execSQL("insert into historial(carnet, notificaciones) values('25-5044-2015','El usuario excedio el tiempo de parqueo')");
+        db.execSQL("insert into historial(carnet, notificaciones) values('12-7645-2017','El usuario se estaciono indevidamente')");
+
+
+        db.execSQL("insert into Parqueo(nombre_parqueo, estado) values('Polideportivo',1)");
+        db.execSQL("insert into Parqueo(nombre_parqueo, estado) values('Benito Juarez',1)");
+        db.execSQL("insert into Parqueo(nombre_parqueo, estado) values('Simon Bolivar',0)");
+        db.execSQL("insert into Parqueo(nombre_parqueo, estado) values('Villa Fermina',0)");
+        db.execSQL("insert into Parqueo(nombre_parqueo, estado) values('Edificio Comunicaciones',0)");
+
+        Log.i("MENSAJE: ", "SE INSERTARON LOS DATOS");
+
 
     }
 

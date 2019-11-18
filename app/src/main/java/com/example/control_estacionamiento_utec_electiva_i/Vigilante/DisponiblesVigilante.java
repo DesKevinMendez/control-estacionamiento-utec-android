@@ -2,6 +2,8 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,9 +12,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +35,8 @@ public class DisponiblesVigilante extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    SQLiteDatabase base;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,6 +82,19 @@ public class DisponiblesVigilante extends Fragment {
         View view = inflater.inflate(R.layout.fragment_disponibles_vigilante, container, false);
 
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
+        /*Spinner listaDisponibles = view.findViewById(R.id.listaDisponibles);
+        Spinner listaOcupados = view.findViewById(R.id.listaOcupados);
+
+        ArrayList disponibles = new ArrayList();
+        ArrayList ocupados = new ArrayList();
+
+        String consultaDisponible = "select * from Parqueo";
+        Cursor cdisponible = base.rawQuery(consultaDisponible,null);
+
+        listaDisponibles.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,disponibles));
+
+*/
+
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +102,9 @@ public class DisponiblesVigilante extends Fragment {
                 startActivity(inicio);
             }
         });
+
+
+
 
         return view;
     }

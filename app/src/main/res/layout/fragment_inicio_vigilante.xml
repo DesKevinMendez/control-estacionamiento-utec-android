@@ -83,7 +83,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Fulano de tal" />
@@ -97,7 +97,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/tvPlaca"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="4534-7" />
@@ -111,7 +111,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/tvEdificio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Benito Juarez" />
@@ -125,7 +125,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView21"
+                        android:id="@+id/tvTipo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Reservado" />
@@ -139,7 +139,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/tvEntrada"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="6:30 am" />
@@ -153,7 +153,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView25"
+                        android:id="@+id/tvSalida"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="8:30 am" />
