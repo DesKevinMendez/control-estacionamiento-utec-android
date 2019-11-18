@@ -41,7 +41,7 @@
                         android:textColor="#0F0F0F" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Fulano de tal " />
@@ -55,7 +55,7 @@
                         android:textColor="#0F0F0F" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tvCarnet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="25-6789-2019" />
@@ -69,8 +69,10 @@
                         android:textColor="#0F0F0F" />
 
                     <TextView
+                        android:id="@+id/tvClave"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textPassword"
                         android:text="***************" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -100,7 +102,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/tvContrasena"
+                        android:id="@+id/tvEdificio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Edificio Benito Juarez, Sotano" />
@@ -114,7 +116,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/tvEstado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Disponible"

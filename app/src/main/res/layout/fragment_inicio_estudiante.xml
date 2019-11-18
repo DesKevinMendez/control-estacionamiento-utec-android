@@ -47,7 +47,7 @@
                         android:text="Fulano de tal" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -80,7 +80,7 @@
                     android:paddingBottom="10dp">
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tvCarnet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Estacionamiento asignado: "

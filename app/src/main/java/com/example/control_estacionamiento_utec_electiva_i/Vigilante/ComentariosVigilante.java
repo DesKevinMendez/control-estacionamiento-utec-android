@@ -2,6 +2,8 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,8 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 
 /**
@@ -31,6 +36,11 @@ public class ComentariosVigilante extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+
+    SQLiteDatabase base;
+    DatosVigilante objDatos;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -68,6 +78,8 @@ public class ComentariosVigilante extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
     }
 
 
@@ -79,6 +91,42 @@ public class ComentariosVigilante extends Fragment {
 
          Button btnDetalle =view.findViewById(R.id.btnDetalle);
          Button btnRegresar =view.findViewById(R.id.btnRegresar);
+         Button btnBuscar = view.findViewById(R.id.btnBuscar);
+         final EditText edtPlaca = view.findViewById(R.id.edtPlaca);
+
+        final TextView tvNombre = view.findViewById(R.id.tvNombre);
+        final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
+        final TextView tvEdificio = view.findViewById(R.id.tvEdificio);
+        final TextView tvHorario = view.findViewById(R.id.tvHorario);
+        final TextView tvEstado = view.findViewById(R.id.tvEstado);
+
+
+         btnBuscar.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 String Placa = edtPlaca.getText().toString().trim();
+
+                 String consultaDisponible = "select * from usuarios where numero_placa = '"+Placa+"'";
+                 base= objDatos.getWritableDatabase();
+                 Cursor cUsuarios = base.rawQuery(consultaDisponible,null);
+
+                 String horario = "";
+
+                 if(cUsuarios.moveToNext()) {
+                     tvNombre.setText(cUsuarios.getString(3));
+                     tvPlaca.setText(cUsuarios.getString(2));
+                     tvEdificio.setText(cUsuarios.getString(4));
+                     horario= (cUsuarios.getString(6));
+                     horario+= "  -  ";
+                     horario+=(cUsuarios.getString(7));
+                     tvHorario.setText(horario);
+
+                     //tvSalida.setText(cUsuarios.getString(7));
+                 }
+
+             }
+         });
+
 
          btnRegresar.setOnClickListener(new View.OnClickListener() {
              @Override

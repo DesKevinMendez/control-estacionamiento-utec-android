@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
@@ -31,6 +32,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Datos
 public class InicioVigilante extends Fragment {
 
     SQLiteDatabase base;
+    DatosVigilante objDatos;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,8 +74,9 @@ public class InicioVigilante extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
 
-
         }
+
+        objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
 
 
     }
@@ -86,6 +89,8 @@ public class InicioVigilante extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inicio_vigilante, container, false);
         Button btnBuscar = view.findViewById(R.id.btnBuscar);
 
+        final EditText edtPlaca = view.findViewById(R.id.edtPlaca);
+
         final TextView tvNombre = view.findViewById(R.id.tvNombre);
         final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
         final TextView tvEdificio = view.findViewById(R.id.tvEdificio);
@@ -93,23 +98,27 @@ public class InicioVigilante extends Fragment {
         final TextView tvEntrada = view.findViewById(R.id.tvEntrada);
         final TextView tvSalida = view.findViewById(R.id.tvSalida);
 
-      /*  btnBuscar.setOnClickListener(new View.OnClickListener() {
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String consultaDisponible = "select * from usuarios";
+        String Placa = edtPlaca.getText().toString().trim();
+
+                String consultaDisponible = "select * from usuarios where numero_placa = '"+Placa+"'";
+                base= objDatos.getWritableDatabase();
                 Cursor cUsuarios = base.rawQuery(consultaDisponible,null);
 
                 if(cUsuarios.moveToNext()) {
-                    tvNombre.setText(cUsuarios.getString(2));
-                    tvPlaca.setText(cUsuarios.getString(1));
+                    tvNombre.setText(cUsuarios.getString(3));
+                    tvPlaca.setText(cUsuarios.getString(2));
                     tvEdificio.setText(cUsuarios.getString(4));
                     tvTipo.setText(cUsuarios.getString(5));
-                    //tvEntrada.setText(cUsuarios.getString());
-                    //tvSalida.setText(cUsuarios.getString());
+                    tvEntrada.setText(cUsuarios.getString(6));
+                    tvSalida.setText(cUsuarios.getString(7));
                 }
 
             }
-        });  */
+        });
 
         return view;
     }

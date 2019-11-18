@@ -32,7 +32,7 @@
                 android:paddingBottom="10dp">
 
                 <TextView
-                    android:id="@+id/tvContrasena"
+                    android:id="@+id/tvEdificio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombres:"
@@ -45,7 +45,7 @@
                     android:text="Fulano de Tal" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tvEstado"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Carne:"

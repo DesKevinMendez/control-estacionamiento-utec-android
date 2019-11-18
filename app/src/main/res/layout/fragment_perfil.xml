@@ -113,7 +113,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvNombre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -143,7 +143,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 
         <EditText
             android:id="@+id/edClave"
