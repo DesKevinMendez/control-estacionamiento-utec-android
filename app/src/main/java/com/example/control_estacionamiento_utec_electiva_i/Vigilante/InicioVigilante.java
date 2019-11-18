@@ -80,7 +80,7 @@ public class InicioVigilante extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notificaciones_vigilante, container, false);
+        View view = inflater.inflate(R.layout.fragment_inicio_vigilante, container, false);
         /*
         DatosVigilante objDatos = new DatosVigilante(getContext(), "sistemas", null, 1);
         base = objDatos.getWritableDatabase();
