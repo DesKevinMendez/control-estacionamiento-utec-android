@@ -58,6 +58,13 @@ public class HttpLoginRequest implements Globals {
                             mJsonRole.getString("nombre"));
 
 
+                    JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
+                    JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
+
+                    user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
+                            mJsonObjectEdificioReserva.getString("alias"),
+                            mJsonObjectEdificioReserva.getInt("num_reservados"));
+
                     user.setLoggedUser(true);
 
                     Log.i("VOLLEY", mJsonRole.getString("nombre"));

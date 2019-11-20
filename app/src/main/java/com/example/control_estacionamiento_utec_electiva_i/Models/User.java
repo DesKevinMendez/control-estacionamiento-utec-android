@@ -12,6 +12,22 @@ public final class User {
     private static int rol_id;
     private static int estado;
     private static String name_role;
+    private static String nombre_edificio_parqueo_asignado;
+    private static String alias_edificio_parqueo_asignado;
+    private static int num_reservados_edificio_parqueo_asignado;
+
+    public static String getNombre_edificio_parqueo_asignado() {
+        return nombre_edificio_parqueo_asignado;
+    }
+
+    public static String getAlias_edificio_parqueo_asignado() {
+        return alias_edificio_parqueo_asignado;
+    }
+
+    public static int getNum_reservados_edificio_parqueo_asignado() {
+        return num_reservados_edificio_parqueo_asignado;
+    }
+
 
     public static String getName_role() {
         return name_role;
@@ -38,6 +54,13 @@ public final class User {
         rol_id = rol_ids;
         estado = estados;
         name_role = name_roles;
+    }
+
+    public static void setDataParqueoAsignado(String edificio, String alias, int cantidad_resevado){
+        nombre_edificio_parqueo_asignado = edificio;
+        alias_edificio_parqueo_asignado = alias;
+        num_reservados_edificio_parqueo_asignado = cantidad_resevado;
+
     }
 
     public static int getId() {

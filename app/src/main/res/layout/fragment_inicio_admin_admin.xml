@@ -10,6 +10,11 @@
     tools:context=".Admin.InicioAdmin">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +36,7 @@
                     android:layout_marginBottom="5dp"
                     android:gravity="center_horizontal"
                     android:text="ADMINISTRADOR"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -39,13 +45,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:text="Nombre"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvNombreIA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/carnet"
@@ -53,16 +61,149 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Placa"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvInfoPlaca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textSize="16sp" />
 
             </LinearLayout>
-    </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardElevation="3dp"
+            app:cardMaxElevation="3dp">
+
+            <LinearLayout
+                android:id="@+id/llDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="#FFFFFF"
+                android:elevation="3dp"
+                android:ems="10"
+                android:orientation="vertical"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llUser">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="DETALLE PARQUEO"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCodeStation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="Estacionamiento reservado"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvEstacionamientoReservadoA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="@string/code"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvScheduleUse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="@string/schedule_use"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvScheduleAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="@string/schedule"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvAvailabilityStation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="@string/station_availability"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvStateEstacionamientoAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+
+                    android:text="@string/state"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#F00"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvCantidadParqueoRes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="24dp"
+
+                    android:text="Cantidad de parqueo reservado"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCantidadReservadoAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginBottom="30dp"
+
+                    android:text="@string/state"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="#353030"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
 
 </FrameLayout>

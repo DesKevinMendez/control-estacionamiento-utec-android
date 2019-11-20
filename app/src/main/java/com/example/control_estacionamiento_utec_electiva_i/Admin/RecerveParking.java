@@ -21,6 +21,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -35,6 +36,12 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+
+        if (DatosBuilding.getTotalEdificios() == 0){
+            httpRequestAdmin.HTTPrequestBuilding(getActivity());
+        }
 
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(4).setChecked(true);
@@ -51,7 +58,6 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recerve_parking_admin, container, false);
-
 
         spSeleccionarDias = view.findViewById(R.id.spSeleccionarDias);
         spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);

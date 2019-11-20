@@ -24,6 +24,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
@@ -39,6 +40,11 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+
+        if (DatosBuilding.getTotalEdificios() == 0){
+            httpRequestAdmin.HTTPrequestBuilding(getActivity());
+        }
 
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(3).setChecked(true);

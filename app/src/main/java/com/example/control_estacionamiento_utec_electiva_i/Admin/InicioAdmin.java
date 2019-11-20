@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -35,7 +36,8 @@ public class InicioAdmin extends Fragment {
         navigationView.getMenu().getItem(0).setChecked(true);
     }
 
-    TextView tvInfoPlaca, tvNombreIA;
+    TextView tvInfoPlaca, tvNombreIA, tvEstacionamientoReservadoA,
+            tvScheduleAdmin, tvStateEstacionamientoAdmin, tvCantidadReservadoAdmin;
     User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,11 +49,24 @@ public class InicioAdmin extends Fragment {
 
         tvInfoPlaca = view.findViewById(R.id.tvInfoPlaca);
         tvNombreIA = view.findViewById(R.id.tvNombreIA);
+        tvEstacionamientoReservadoA = view.findViewById(R.id.tvEstacionamientoReservadoA);
+
+        tvScheduleAdmin = view.findViewById(R.id.tvScheduleAdmin);
+        tvStateEstacionamientoAdmin = view.findViewById(R.id.tvStateEstacionamientoAdmin);
+        tvCantidadReservadoAdmin = view.findViewById(R.id.tvCantidadReservadoAdmin);
 
         tvNombreIA.setText(user.getNombres()+ " "+ user.getApellidos());
 
+        // Muestra info de estacionamiento
+        tvEstacionamientoReservadoA.setText(user.getNombre_edificio_parqueo_asignado() +" - " +
+                user.getAlias_edificio_parqueo_asignado());
+
+        tvCantidadReservadoAdmin.setText(String.valueOf(user.getNum_reservados_edificio_parqueo_asignado()));
+
+
         Resources r = getResources();
-        if (!user.getNum_placa().equals(null)){
+
+        if (!user.getNum_placa().equals("")){
             tvInfoPlaca.setText("Placa no disponible");
             tvInfoPlaca.setTextColor(r.getColor(R.color.red));
         } else {
