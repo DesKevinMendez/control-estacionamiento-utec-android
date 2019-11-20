@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.InicioVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -36,6 +38,7 @@ public class EstudiantesDrawer extends AppCompatActivity implements
     private AppBarConfiguration mAppBarConfiguration;
 
     DrawerLayout drawer;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +91,12 @@ public class EstudiantesDrawer extends AppCompatActivity implements
                 return true;
 
             case R.id.cerrar:
-                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                // Establece la sesion de usuario con falso, y limpia la data del usuario
+                user.setLoggedUser(false);
+                
+                user.setDataUser(0, null, null, null, null,
+                        null, 0, 0, null);
+                Intent login = new Intent(getApplicationContext(), Login.class);
                 startActivity(login);
                 finish();
                 return true;

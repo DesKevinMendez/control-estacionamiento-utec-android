@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 import com.google.android.material.navigation.NavigationView;
 
 public class Detalle extends AppCompatActivity implements

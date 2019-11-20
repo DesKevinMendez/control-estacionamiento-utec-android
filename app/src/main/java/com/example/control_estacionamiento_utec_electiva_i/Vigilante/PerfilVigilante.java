@@ -18,9 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 
 
 /**
@@ -78,6 +80,7 @@ public class PerfilVigilante extends Fragment {
         objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
     }
 
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -145,7 +148,13 @@ public class PerfilVigilante extends Fragment {
                 } else if (confirmar.equals("")){
                     edtConfirmar.setError("Campo requerido");
                 } else if(clave.equals(confirmar)){
-                    Intent login = new Intent(getActivity(), LoginActivity.class);
+                    // Establece la sesion de usuario con falso, y limpia la data del usuario
+                    user.setLoggedUser(false);
+                    
+                    user.setDataUser(0, null, null, null, null,
+                            null, 0, 0, null);
+                            
+                    Intent login = new Intent(getActivity(), Login.class);
                     startActivity(login);
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());

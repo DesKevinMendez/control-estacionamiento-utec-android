@@ -9,19 +9,26 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 
 public class CerrarSesionFragment extends Fragment {
 
     private CerrarSesionViewModel slideshowViewModel;
-
+    User user;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_cerrar_sesion_docente, container, false);
-
-        Intent i = new Intent(getContext(), LoginActivity.class);
+        // Establece la sesion de usuario con falso, y limpia la data del usuario
+        user.setLoggedUser(false);
+        
+        user.setDataUser(0, null, null, null, null,
+                null, 0, 0, null);
+                
+        Intent i = new Intent(getContext(), Login.class);
         startActivity(i);
         this.getActivity().finish();
 

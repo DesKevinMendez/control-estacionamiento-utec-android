@@ -8,6 +8,8 @@ import android.os.Bundle;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import android.util.Log;
@@ -22,7 +24,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.control_estacionamiento_utec_electiva_i.ui.login.LoginActivity;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -52,6 +54,7 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,10 +173,16 @@ public class MainActivityAdmin extends AppCompatActivity implements
                 return  true;
 
             case R.id.logout:
-
-                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                // Establece la sesion de usuario con falso, y limpia la data del usuario
+                user.setLoggedUser(false);
+                
+                user.setDataUser(0, null, null, null, null,
+                        null, 0, 0, null);
+                        
+                Intent login = new Intent(getApplicationContext(), Login.class);
                 startActivity(login);
                 finish();
+                
                 return true;
 
             default:
