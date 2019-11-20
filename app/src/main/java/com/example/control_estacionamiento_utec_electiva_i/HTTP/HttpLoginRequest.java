@@ -25,19 +25,20 @@ public class HttpLoginRequest implements Globals {
     User user;
     public void LoginRequest(Context context, String mail, String pass) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo maestros...");
+        progressDialog.setMessage("Iniciando sesión...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
         progressDialog.show();
 
-        String url = BASE_URL+" login";
+        String url = BASE_URL+"login";
         Map<String, String> params = new HashMap();
         params.put("email", mail);
         params.put("password", pass);
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
+        Log.i("VOLLEY", url);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -75,9 +76,8 @@ public class HttpLoginRequest implements Globals {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-
                 progressDialog.dismiss();
-                Log.e("VOLLEY", error.getMessage());
+
             }
         });
 
