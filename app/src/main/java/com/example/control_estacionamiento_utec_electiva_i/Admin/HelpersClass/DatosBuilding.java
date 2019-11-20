@@ -8,6 +8,7 @@ import java.util.Iterator;
 public final class DatosBuilding {
 
     private static ArrayList edificios = new ArrayList();
+    private static ArrayList IdEdificios = new ArrayList();
     private static ArrayList totalEstacionamiento = new ArrayList();
     private static ArrayList estacionamientoDisponible = new ArrayList();
 
@@ -17,34 +18,16 @@ public final class DatosBuilding {
 
     private static String buildingSelected = "";
 
-    static {
-          edificios.add("Benito Juarez");
-          edificios.add("Francisoo Morazan");
-          edificios.add("Tomas Jefferson");
-          edificios.add("Villa fermina");
-          edificios.add("Simon Bolivar");
 
-          totalEstacionamiento.add("20");
-          totalEstacionamiento.add("25");
-          totalEstacionamiento.add("30");
-          totalEstacionamiento.add("10");
-          totalEstacionamiento.add("15");
-
-          estacionamientoDisponible.add("10");
-          estacionamientoDisponible.add("20");
-          estacionamientoDisponible.add("10");
-          estacionamientoDisponible.add("10");
-          estacionamientoDisponible.add("14");
-
-    }
     public static int getTotalEdificios() {
         return edificios.size();
     }
 
-    public static void saveInfoEdificio(String edificio, int totalEstac, int disponibleEsta) {
+    public static void setInfoEdificio(String edificio, int totalEstac, int disponibleEsta, int idEdificio) {
         edificios.add(edificio);
         totalEstacionamiento.add(totalEstac);
         estacionamientoDisponible.add(disponibleEsta);
+        IdEdificios.add(idEdificio);
     }
 
     public static ArrayList dataBuilding() {
@@ -90,6 +73,7 @@ public final class DatosBuilding {
         filterEdificios.clear();
         filterTotalEstacionamiento.clear();
         filterEstacionamientoDisponible.clear();
+        IdEdificios.clear();
     }
     public static void setBuildingSelected(int value) {
         if (value == -1) {

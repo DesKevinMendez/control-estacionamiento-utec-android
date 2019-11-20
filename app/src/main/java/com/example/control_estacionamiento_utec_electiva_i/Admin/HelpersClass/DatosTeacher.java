@@ -8,11 +8,11 @@ import java.util.Iterator;
 
 public final class DatosTeacher {
     private static ArrayList teacher = new ArrayList();
+    private static ArrayList IdTeacher = new ArrayList();
     private static ArrayList carnetTeacher= new ArrayList();
     private static ArrayList FilterCarnetTeacher= new ArrayList();
     private static ArrayList filterteacher = new ArrayList();
     private static String teacherSelected = "";
-
 
     static {
         teacher.add("Jorge Acevedo");
@@ -27,13 +27,16 @@ public final class DatosTeacher {
         carnetTeacher.add("70-3450-3456");
         carnetTeacher.add("85-3453-3457");
 
-
-
     }
 
-    public static void setDataTeacher(String teachers, String carnet) {
+    public static void setDataTeacher(String teachers, String carnet, int id) {
         teacher.add(teachers);
-        carnetTeacher.add(carnet);
+        IdTeacher.add(id);
+        if (carnet.equals(null)){
+            carnetTeacher.add("No disponible");
+        }else {
+            carnetTeacher.add(carnet);
+        }
     }
     public static ArrayList getFilterTeachers(String value) {
         setClearFilter();
@@ -44,7 +47,6 @@ public final class DatosTeacher {
                 it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
         }
         for (String teachers : teacherFilter) {
-            Log.i("TEACHERS",teachers);
             filterteacher.add(teachers);
             FilterCarnetTeacher.add(carnetTeacher.get(teacher.indexOf(teachers)).toString());
             Log.i("TEACHERCOUNTS", String.valueOf(filterteacher.size()));
@@ -53,13 +55,16 @@ public final class DatosTeacher {
         return teacherFilter;
     }
 
+    public static int getTotalTeacher(){
+        return teacher.size();
+    }
+    public static void clearDataTeacher(){
+        IdTeacher.clear();
+        teacher.clear();
+        carnetTeacher.clear();
+    }
     public static ArrayList getFilterCarnetTeacher() {
         return FilterCarnetTeacher;
-    }
-
-    public static void setInfoTeacher(String value) {
-        teacher.add(value);
-        carnetTeacher.add(value);
     }
 
     public static void setClearFilter() {

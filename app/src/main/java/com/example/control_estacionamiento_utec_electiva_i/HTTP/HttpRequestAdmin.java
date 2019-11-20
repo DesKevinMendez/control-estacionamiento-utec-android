@@ -10,7 +10,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
@@ -23,6 +25,11 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class HttpRequestAdmin implements Globals {
 
@@ -30,34 +37,35 @@ public class HttpRequestAdmin implements Globals {
     User user;
     public void HTTPrequestBuilding(Context context) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo maestros...");
+        progressDialog.setMessage("Obteniendo edificios...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
         progressDialog.show();
 
-        String url = BASE_URL +"edificios'";
+        String url = BASE_URL+"edificios?api_token="+user.getApi_token();
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray mJsonArray = response.getJSONArray("contacts");
+                    JSONArray mJsonArray = response.getJSONArray("edificios");
                     for (int i = 0; i < mJsonArray.length() ; i++) {
 
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
-                        String name = mJsonObject.getString("name");
+                        String nombreEdificio = mJsonObject.getString("nombre");
+                        int totalEstacionamiento = mJsonObject.getInt("num_parqueos");
+                        int num_disponible = mJsonObject.getInt("num_disponible");
+                        int idEdificio = mJsonObject.getInt("id");
 
-                        JSONObject infoPhone = mJsonObject.getJSONObject("phone");
-                        String phone = infoPhone.getString("mobile");
-
-                        DatosTeacher.setDataTeacher(name, phone);
+                        DatosBuilding.setInfoEdificio(nombreEdificio, totalEstacionamiento,
+                                num_disponible, idEdificio);
 
                     }
                 } catch (JSONException e){
 
-                    Log.e("VOLLEY","Error de parcing en AssignParking - method: HTTPrequestTeacher "+ e.toString());
+                    Log.i("VOLLEY","Error de parcing en AssignParking - method: HTTPrequestTeacher "+ e.toString());
                     e.printStackTrace();
 
                 }
@@ -69,7 +77,6 @@ public class HttpRequestAdmin implements Globals {
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
 
-                Log.e("VOLLEY", error.getMessage());
             }
         });
 
@@ -77,6 +84,53 @@ public class HttpRequestAdmin implements Globals {
 
     }
 
+    public void HTTPrequestUsers(Context context) {
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Obteniendo usuarios...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"users?api_token="+user.getApi_token();
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray mJsonArray = response.getJSONArray("usuarios");
+                    for (int i = 0; i < mJsonArray.length() ; i++) {
+
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        String nombre = mJsonObject.getString("nombres");
+                        String apellido = mJsonObject.getString("apellidos");
+                        String placa = mJsonObject.getString("num_placa");
+                        int idEdificio = mJsonObject.getInt("id");
+
+                        DatosTeacher.setDataTeacher(nombre+" "+apellido, placa, idEdificio);
+
+                    }
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error de parcing en AssignParking - method: HTTPrequestTeacher "+ e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
     public void HTTPrequesteChangePassword(final Context context, String passActual, String newPass,
                                            String confiNewPass){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
@@ -124,7 +178,6 @@ public class HttpRequestAdmin implements Globals {
 
 
                 progressDialog.dismiss();
-                Log.e("VOLLEY", error.getMessage());
             }
         });
 

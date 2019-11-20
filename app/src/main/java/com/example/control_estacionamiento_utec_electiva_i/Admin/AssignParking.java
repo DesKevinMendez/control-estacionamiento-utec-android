@@ -19,6 +19,8 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -41,6 +43,7 @@ public class AssignParking extends Fragment implements OnClickListener {
     }
 
     Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnSelctedBuilding;
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +55,17 @@ public class AssignParking extends Fragment implements OnClickListener {
         btnAssingSchedule = view.findViewById(R.id.btnSelectedSchedule);
         btnAsssingTeacher = view.findViewById(R.id.btnSelectedTeacher);
         btnSelctedBuilding = view.findViewById(R.id.btnSelectedBuildingAP);
+
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+
+        if (DatosBuilding.getTotalEdificios() == 0){
+            httpRequestAdmin.HTTPrequestBuilding(getActivity());
+        }
+        /*
+        if (DatosTeacher.getTotalTeacher() == 0){
+            httpRequestAdmin.HTTPrequestUsers(getActivity());
+        }*/
 
         btnAceptar.setOnClickListener(this);
         btnDenegar.setOnClickListener(this);
