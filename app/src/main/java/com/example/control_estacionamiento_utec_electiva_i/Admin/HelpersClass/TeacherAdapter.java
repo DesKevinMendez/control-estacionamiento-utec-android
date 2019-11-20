@@ -31,7 +31,7 @@ public class TeacherAdapter  extends BaseAdapter {
         final View vista = inflater.inflate(R.layout.admin_teacher_list, null);
 
         TextView tvTeacher = vista.findViewById(R.id.tvBuildingName);
-        TextView tvCarnetTeacher = vista.findViewById(R.id.tvInfoText);
+        TextView tvCarnetTeacher = vista.findViewById(R.id.tvInfoPlacaCarnet);
 
         tvTeacher.setText(teacher.get(i).toString());
         tvCarnetTeacher.setText(carnets.get(i).toString());

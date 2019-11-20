@@ -4,6 +4,7 @@ package com.example.control_estacionamiento_utec_electiva_i.Admin;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,7 +39,8 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
     }
 
     Button btnCancelar, btnAceptar;
-    TextView tvActualyPassword, tvNewPassword, tvPasswordConfirmed;
+    TextView tvActualyPassword, tvNewPassword, tvPasswordConfirmed, tvNombreProfile, tvPlacaProfile;
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +49,20 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
         tvActualyPassword = view.findViewById(R.id.tvActualyPassword);
         tvNewPassword = view.findViewById(R.id.tvNewPassword);
         tvPasswordConfirmed = view.findViewById(R.id.tvPasswordConfirmed);
+
+        tvPlacaProfile = view.findViewById(R.id.tvPlacaProfile);
+        tvNombreProfile = view.findViewById(R.id.tvNombreProfile);
+
+        Resources r = getResources();
+
+        if (!user.getNum_placa().equals(null)){
+            tvPlacaProfile.setText("Placa no disponible");
+            tvPlacaProfile.setTextColor(r.getColor(R.color.red));
+        } else {
+            tvPlacaProfile.setText(user.getNum_placa());
+        }
+
+        tvNombreProfile.setText(user.getNombres()+ " "+ user.getApellidos());
 
         btnCancelar = view.findViewById(R.id.btnCancelarP);
         btnAceptar = view.findViewById(R.id.btnAceptarP);

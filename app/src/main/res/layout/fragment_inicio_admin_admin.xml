@@ -42,25 +42,25 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvNombre"
+                    android:id="@+id/tvNombreIA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="Kevin Méndez" />
+                    android:text="TextView" />
 
                 <TextView
                     android:id="@+id/carnet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Carnet"
+                    android:layout_marginTop="10dp"
+                    android:text="Placa"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tvInfoText"
+                    android:id="@+id/tvInfoPlaca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:text="25-3992-2015" />
+                    android:text="TextView" />
+
             </LinearLayout>
     </androidx.cardview.widget.CardView>
 

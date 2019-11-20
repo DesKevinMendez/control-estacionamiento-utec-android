@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -18,7 +19,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpLoginRequest {
+public class HttpLoginRequest implements Globals {
 
     ProgressDialog progressDialog;
     User user;
@@ -30,7 +31,7 @@ public class HttpLoginRequest {
 
         progressDialog.show();
 
-        String url = "http://18.190.109.241/api/login";
+        String url = BASE_URL+" login";
         Map<String, String> params = new HashMap();
         params.put("email", mail);
         params.put("password", pass);
