@@ -1,9 +1,11 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
@@ -71,9 +75,9 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String passActual = tvActualyPassword.getText().toString().trim();
-                String nuevaPass = tvNewPassword.getText().toString().trim();
-                String confiNuevaPass = tvPasswordConfirmed.getText().toString().trim();
+                final String passActual = tvActualyPassword.getText().toString().trim();
+                final String nuevaPass = tvNewPassword.getText().toString().trim();
+                final String confiNuevaPass = tvPasswordConfirmed.getText().toString().trim();
                 if (!nuevaPass.equals(confiNuevaPass)) {
                     Toast.makeText(getActivity(), "Las nuevas constraseñas no coinciden", Toast.LENGTH_SHORT).show();
                     tvNewPassword.requestFocus();
@@ -99,11 +103,13 @@ public class ProfileUser extends Fragment implements View.OnClickListener{
                     alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            tvNewPassword.setText("");
-                            tvPasswordConfirmed.setText("");
-                            tvActualyPassword.setText("");
+                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                            httpRequestAdmin.HTTPrequesteChangePassword(getActivity(), passActual,
+                                    nuevaPass, confiNuevaPass);
 
-                            Toast.makeText(getActivity(), "La contraseña ha sido actualizada", Toast.LENGTH_LONG).show();
+                            tvPasswordConfirmed.setText("");
+                            tvNewPassword.setText("");
+                            tvActualyPassword.setText("");
                         }
                     });
                     alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

@@ -1,9 +1,11 @@
 package com.example.control_estacionamiento_utec_electiva_i.HTTP;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +16,7 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
@@ -140,11 +143,11 @@ public class HttpRequestAdmin implements Globals {
 
         progressDialog.show();
 
-        String url = BASE_URL+"login";
+        String url = BASE_URL+"perfil/actualizar-contrasena?api_token="+user.getApi_token();
         Map<String, String> params = new HashMap();
-        params.put("email", passActual);
-        params.put("password", newPass);
-        params.put("password", confiNewPass);
+        params.put("password", passActual);
+        params.put("new_password", newPass);
+        params.put("new_password_confirmation", confiNewPass);
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -153,14 +156,20 @@ public class HttpRequestAdmin implements Globals {
             public void onResponse(JSONObject response) {
 
                 try {
+                    Log.i("VOLLEY", "Se cambio contraseña");
+                    /*
                     // Establece la sesion de usuario con falso, y limpia la data del usuario
                     user.setLoggedUser(false);
 
                     user.setDataUser(0, null, null, null, null,
                             null, 0, 0, null);
-                    JSONObject mJsonObject = response.getJSONObject("data");
+
+
                     Intent login = new Intent(context, Login.class);
                     context.startActivity(login);
+                    */
+                    String data = response.getString("success");
+                    Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
 
                 } catch (JSONException e){
 
@@ -176,6 +185,7 @@ public class HttpRequestAdmin implements Globals {
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                Toast.makeText(context, "Error! Intentelo de nuevo", Toast.LENGTH_SHORT).show();
 
                 progressDialog.dismiss();
             }
