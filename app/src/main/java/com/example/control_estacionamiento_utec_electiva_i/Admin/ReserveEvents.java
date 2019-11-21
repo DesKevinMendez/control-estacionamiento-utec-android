@@ -40,11 +40,6 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
-
-        if (DatosBuilding.getTotalEdificios() == 0){
-            httpRequestAdmin.HTTPrequestBuilding(getActivity());
-        }
 
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(3).setChecked(true);
@@ -102,19 +97,22 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch (view.getId()){
             case R.id.btnSelectedBuilding:
 
-                // Pasar datos de un fragment a otro
-                Bundle datosAEnviar = new Bundle();
-                datosAEnviar.putString("actionOfReserverEvents", "ReserveEvents");
+                if (DatosBuilding.getTotalEdificios() == 0){
 
-                SelectedBuilding selectedBuilding = new SelectedBuilding();
-                selectedBuilding.setArguments(datosAEnviar);
+                    httpRequestAdmin.HTTPrequestBuilding(getActivity(), "actionOfReserverEvents", "ReserveEvents");
 
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null)
-                        .replace(R.id.nav_host_fragment, selectedBuilding).commit();
+                } else {
+                    // Pasar datos de un fragment a otro
+                    changeFragments(new SelectedBuilding(), "actionOfReserverEvents", "ReserveEvents");
+
+                }
+
+
                 break;
 
             case R.id.btnAceparRP:
@@ -143,6 +141,19 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
         }
 
     }
+
+    public void changeFragments(Fragment fragment, String actionOfReserverEvents, String ReserveEvents){
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(actionOfReserverEvents, ReserveEvents);
+
+        fragment.setArguments(datosAEnviar);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
+
     public void changeFragments(Fragment fragment){
         // Establece teacherSelected y a buildingSelected como ""
         DatosBuilding.setBuildingSelected(-1);

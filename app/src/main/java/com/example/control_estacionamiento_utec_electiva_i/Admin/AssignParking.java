@@ -56,12 +56,6 @@ public class AssignParking extends Fragment implements OnClickListener {
         btnAsssingTeacher = view.findViewById(R.id.btnSelectedTeacher);
         btnSelctedBuilding = view.findViewById(R.id.btnSelectedBuildingAP);
 
-
-        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
-
-        if (DatosBuilding.getTotalEdificios() == 0){
-            httpRequestAdmin.HTTPrequestBuilding(getActivity());
-        }
         /*
         if (DatosTeacher.getTotalTeacher() == 0){
             httpRequestAdmin.HTTPrequestUsers(getActivity());
@@ -115,6 +109,8 @@ public class AssignParking extends Fragment implements OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch(view.getId()){
             case R.id.btnAceptarAP:
                 if (btnAssingSchedule.getText().toString().equals(getString(R.string.selectedScedule))){
@@ -143,21 +139,34 @@ public class AssignParking extends Fragment implements OnClickListener {
                 break;
             case R.id.btnSelectedBuildingAP:
 
+                if (DatosBuilding.getTotalEdificios() == 0){
 
-                changeFragments(new SelectedBuilding(),
-                        "actionOfAssignParking", "ReserveParking");
+                    httpRequestAdmin.HTTPrequestBuilding(getActivity(), "actionOfAssignParking",
+                            "ReserveParking");
+
+                } else {
+                    changeFragments(new SelectedBuilding(),
+                            "actionOfAssignParking", "ReserveParking");
+                }
 
 
                 break;
             case R.id.btnSelectedSchedule:
 
-                changeFragments(new SelectedSchedule(),
-                        "actionOfAssignParking", "SelectedSchedule");
+                    changeFragments(new SelectedSchedule(),
+                            "actionOfAssignParking", "SelectedSchedule");
 
                 break;
             case R.id.btnSelectedTeacher:
-                changeFragments(new SelectedTeacher(),
-                        "actionOfAssignParking", "SelectedTeacher");
+                if (DatosTeacher.getTotalTeacher() == 0 ){
+
+                    httpRequestAdmin.HTTPrequestTeachers(getActivity(), "actionOfAssignParking",
+                            "SelectedTeacher");
+
+                } else {
+                    changeFragments(new SelectedTeacher(),
+                            "actionOfAssignParking", "SelectedTeacher");
+                }
                 break;
         }
     }
@@ -172,6 +181,7 @@ public class AssignParking extends Fragment implements OnClickListener {
                 replace(R.id.nav_host_fragment, fragment).commit();
 
     }
+
 
     public void changeFragments(Fragment fragment){
         // Establece teacherSelected y a buildingSelected como ""

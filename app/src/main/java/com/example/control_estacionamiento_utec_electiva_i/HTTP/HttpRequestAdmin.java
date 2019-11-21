@@ -4,8 +4,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,9 +18,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
@@ -34,11 +41,11 @@ import java.util.concurrent.TimeoutException;
 
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
-public class HttpRequestAdmin implements Globals {
+public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     ProgressDialog progressDialog;
     User user;
-    public void HTTPrequestBuilding(Context context) {
+    public void HTTPrequestBuilding(final Context context, final String putStringName, final String putStringDescription) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Obteniendo edificios...");
         progressDialog.setIndeterminate(true);
@@ -65,6 +72,9 @@ public class HttpRequestAdmin implements Globals {
                         DatosBuilding.setInfoEdificio(nombreEdificio, totalEstacionamiento,
                                 num_disponible, idEdificio);
 
+                        changeFragments(context, new SelectedBuilding(),
+                                putStringName, putStringDescription);
+
                     }
                 } catch (JSONException e){
 
@@ -87,9 +97,9 @@ public class HttpRequestAdmin implements Globals {
 
     }
 
-    public void HTTPrequestUsers(Context context) {
+    public void HTTPrequestTeachers(final Context context, final String putStringName, final String putStringDescription) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
-        progressDialog.setMessage("Obteniendo usuarios...");
+        progressDialog.setMessage("Obteniendo maestros...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
 
@@ -112,6 +122,11 @@ public class HttpRequestAdmin implements Globals {
                         int idEdificio = mJsonObject.getInt("id");
 
                         DatosTeacher.setDataTeacher(nombre+" "+apellido, placa, idEdificio);
+
+
+                        changeFragments(context, new SelectedTeacher(),
+                                putStringName, putStringDescription);
+
 
                     }
                 } catch (JSONException e){
@@ -192,5 +207,18 @@ public class HttpRequestAdmin implements Globals {
         });
 
         queue.add(request);
+    }
+
+    public void changeFragments(Context context, Fragment fragment, String putStringName, String putStringDescription) {
+
+        AppCompatActivity activity = (AppCompatActivity) context;
+        // Pasar datos de un fragment a otro
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString(putStringName, putStringDescription);
+        fragment.setArguments(datosAEnviar);
+
+        activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
     }
 }

@@ -17,6 +17,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -74,10 +75,21 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View view) {
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch (view.getId()){
             case R.id.btnAsignarVigilante:
-                changeFragments(new SelectedTeacher(),
-                        "actionOfAssignWatchman", "AssignWatchman");
+
+                // TO DO pendiente la parte de vigilantes
+                if (DatosTeacher.getTotalTeacher() == 0 ){
+
+                    httpRequestAdmin.HTTPrequestTeachers(getActivity(),
+                            "actionOfAssignWatchman", "AssignWatchman");
+
+                } else {
+                    changeFragments(new SelectedTeacher(),
+                            "actionOfAssignWatchman", "AssignWatchman");
+                }
 
                 break;
 
@@ -100,8 +112,15 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btnSeleccionarEdificio:
 
-                changeFragments(new SelectedBuilding(),
-                        "actionOfAssignWatchman", "AssignWatchman");
+                if (DatosBuilding.getTotalEdificios() == 0){
+
+                    httpRequestAdmin.HTTPrequestBuilding(getActivity(),
+                            "actionOfAssignWatchman", "AssignWatchman");
+
+                } else {
+                    changeFragments(new SelectedBuilding(),
+                            "actionOfAssignWatchman", "AssignWatchman");
+                }
 
                 break;
 

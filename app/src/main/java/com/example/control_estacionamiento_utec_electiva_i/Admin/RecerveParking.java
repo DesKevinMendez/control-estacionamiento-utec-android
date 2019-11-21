@@ -37,11 +37,6 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
-
-        if (DatosBuilding.getTotalEdificios() == 0){
-            httpRequestAdmin.HTTPrequestBuilding(getActivity());
-        }
 
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(4).setChecked(true);
@@ -109,17 +104,35 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+
+
+        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch (view.getId()) {
             case R.id.btnSeleccionarDocenteRP:
 
-                changeFragments(new SelectedTeacher(),
-                        "actionOfReserverParking", "ReserveParking");
+                if (DatosBuilding.getTotalEdificios() == 0){
+
+                    httpRequestAdmin.HTTPrequestTeachers(getActivity(), "actionOfReserverParking",
+                            "ReserveParking");
+
+                } else {
+                    changeFragments(new SelectedTeacher(),
+                            "actionOfReserverParking", "ReserveParking");
+                }
 
                 break;
             case R.id.btnSeleccionarEstacionamientoRP:
 
-                changeFragments(new SelectedBuilding(),
-                        "actionOfReserverParking", "ReserveParking");
+
+                if (DatosBuilding.getTotalEdificios() == 0){
+                    httpRequestAdmin.HTTPrequestBuilding(getActivity(),
+                            "actionOfReserverParking", "ReserveParking");
+                } else {
+
+                    changeFragments(new SelectedBuilding(),
+                            "actionOfReserverParking", "ReserveParking");
+                }
+
 
                 break;
             case R.id.btnSeleccionarHorarioRP:

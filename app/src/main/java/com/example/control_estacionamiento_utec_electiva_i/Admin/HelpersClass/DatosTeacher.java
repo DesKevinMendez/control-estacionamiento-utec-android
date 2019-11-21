@@ -14,7 +14,7 @@ public final class DatosTeacher {
     private static ArrayList filterteacher = new ArrayList();
     private static String teacherSelected = "";
 
-    static {
+    /*static {
         teacher.add("Jorge Acevedo");
         teacher.add("Jorge Machado");
         teacher.add("Ingrid Gonzales");
@@ -27,7 +27,7 @@ public final class DatosTeacher {
         carnetTeacher.add("70-3450-3456");
         carnetTeacher.add("85-3453-3457");
 
-    }
+    }*/
 
     public static void setDataTeacher(String teachers, String carnet, int id) {
         teacher.add(teachers);
@@ -58,11 +58,13 @@ public final class DatosTeacher {
     public static int getTotalTeacher(){
         return teacher.size();
     }
+
     public static void clearDataTeacher(){
         IdTeacher.clear();
         teacher.clear();
         carnetTeacher.clear();
     }
+
     public static ArrayList getFilterCarnetTeacher() {
         return FilterCarnetTeacher;
     }
