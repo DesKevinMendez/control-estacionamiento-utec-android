@@ -105,13 +105,17 @@ public class Login extends AppCompatActivity {
                             mJsonObject.getInt("rol_id"),
                             mJsonRole.getString("nombre"));
 
+                    if (mJsonObject.getString("reserva").length() > 4){
+                        JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
+                        JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
 
-                    JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
-                    JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
+                        user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
+                                mJsonObjectEdificioReserva.getString("alias"),
+                                mJsonObjectEdificioReserva.getInt("num_reservados"));
 
-                    user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
-                            mJsonObjectEdificioReserva.getString("alias"),
-                            mJsonObjectEdificioReserva.getInt("num_reservados"));
+                    } else {
+                        user.setDataParqueoAsignado("No asignado", "desconocido", 0);
+                    }
 
                     user.setLoggedUser(true);
                     render();
@@ -141,6 +145,7 @@ public class Login extends AppCompatActivity {
 
     }
 
+    private boolean isNull(Object obj) { return obj == null; }
     public void render(){
         if (user.getLoggedUser()){
             // Administrador 1
