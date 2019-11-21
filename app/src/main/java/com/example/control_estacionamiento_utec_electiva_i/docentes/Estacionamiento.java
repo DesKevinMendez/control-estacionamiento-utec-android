@@ -29,6 +29,8 @@ public class Estacionamiento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estacionamiento);
 
+        setTitle("Estacionamientos");
+
         btnRegresar = findViewById(R.id.btnRegresar);
 
         ListView listView = findViewById(R.id.listviewEd);
