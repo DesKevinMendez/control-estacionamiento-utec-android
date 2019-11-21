@@ -16,9 +16,6 @@
             android:label="@string/title_activity_navegation_admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".docentes.PopConfirm"
-            android:theme="@style/AppTheme.PopMe" />
-        <activity
             android:name=".Estudiante.EstudiantesDrawer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Vigilante.Detalle" />

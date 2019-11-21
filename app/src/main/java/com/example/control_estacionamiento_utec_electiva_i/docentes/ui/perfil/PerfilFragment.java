@@ -1,5 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.docentes.ui.perfil;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
-import com.example.control_estacionamiento_utec_electiva_i.docentes.PopConfirm;
-import com.example.control_estacionamiento_utec_electiva_i.docentes.ui.home.HomeFragment;
 
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
@@ -42,11 +44,6 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         cancelarPerfilBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getFragmentManager().popBackStack();
-
-                //HomeFragment fragment = new HomeFragment();
-                //getActivity().getSupportFragmentManager().beginTransaction()
-                //        .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
 
                 Intent home = new Intent(getContext(), DocenteHome.class);
                 startActivity(home);
@@ -57,9 +54,9 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
 
-                String clave = claveEd.getText().toString().trim();
-                String confirmar = confirmarEd.getText().toString().trim();
-                String actual = actualClaveEd.getText().toString().trim();
+                final String clave = claveEd.getText().toString().trim();
+                final String confirmar = confirmarEd.getText().toString().trim();
+                final String actual = actualClaveEd.getText().toString().trim();
 
                 if (actual.isEmpty()){
                     actualClaveEd.setError("Campo Requerido");
@@ -79,9 +76,35 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "Las claves no son iguales", Toast.LENGTH_SHORT).show();
                     claveEd.requestFocus();
                 } else{
-                    // Inicia el popup
-                    Intent i = new Intent(getContext(), PopConfirm.class);
-                    startActivity(i);
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                    alert.setTitle("Confirmar cambio");
+                    alert.setMessage("Está acción no se puede deshacer");
+                    alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                            httpRequestAdmin.HTTPrequesteChangePassword(getActivity(), actual,
+                                    clave, confirmar);
+
+                            actualClaveEd.setText("");
+                            claveEd.setText("");
+                            confirmarEd.setText("");
+                            actualClaveEd.requestFocus();
+
+                        }
+                    });
+                    alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            actualClaveEd.setText("");
+                            claveEd.setText("");
+                            confirmarEd.setText("");
+                            actualClaveEd.requestFocus();
+                            Toast.makeText(getActivity(), "Cancelar", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    alert.create().show();
                 }
             }
         });

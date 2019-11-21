@@ -97,7 +97,7 @@ public class PerfilVigilante extends Fragment {
         Button btnCancelar = view.findViewById(R.id.btnCancelar2);
         Button btnConfirmar = view.findViewById(R.id.btnConfirmar2);
         final TextView tvNombre=view.findViewById(R.id.tvNombre);
-        final TextView tvCarnet=view.findViewById(R.id.tvCarnet);
+        final TextView tvCarnet=view.findViewById(R.id.tvCarnetDocente);
         final TextView tvClave=view.findViewById(R.id.tvClave);
         final TextView tvEdificio=view.findViewById(R.id.tvEdificio);
         final TextView tvEstado=view.findViewById(R.id.tvEstado);
