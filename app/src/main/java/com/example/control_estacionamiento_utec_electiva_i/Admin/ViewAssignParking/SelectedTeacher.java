@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -40,6 +41,7 @@ public class SelectedTeacher extends Fragment {
 
     ListView teacherList;
     DatosTeacher datosTeacher;
+    DatosVigilante datosVigilante;
     TextView tvFindUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,18 +50,37 @@ public class SelectedTeacher extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_selected_teacher_admin, container, false);
 
-
         teacherList = view.findViewById(R.id.lvTeachers);
-        teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getAllTeacher(),
-                datosTeacher.getAllCarnetsTeacher()));
+
+        final Bundle datosRecuperados = getArguments();
+        if (datosRecuperados != null) {
+            if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
+
+                teacherList.setAdapter(new TeacherAdapter(getActivity(), datosVigilante.getAllvigilante(),
+                        datosVigilante.getAllCarnetsvigilante()));
+
+            } else {
+
+                teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getAllTeacher(),
+                        datosTeacher.getAllCarnetsTeacher()));
+            }
+        }
+
 
         teacherList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                DatosTeacher.setTeacherSelected(i);
+                if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
 
-                Bundle datosRecuperados = getArguments();
+                    DatosVigilante.setvigilanteSelected(i);
+
+                } else {
+
+                    DatosTeacher.setTeacherSelected(i);
+
+                }
+
                 if (datosRecuperados != null) {
                     if (datosRecuperados.getString("actionOfAssignParking") != null) {
 
@@ -97,11 +118,23 @@ public class SelectedTeacher extends Fragment {
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().equals("")) {
                     DatosTeacher.setClearFilter();
+                    DatosVigilante.setClearFilter();
                 }
-                DatosTeacher.getFilterTeachers(editable.toString());
 
-                teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getFilterTeachers(editable.toString()),
-                        datosTeacher.getFilterCarnetTeacher()));
+                if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
+
+                    DatosVigilante.getFiltervigilantes(editable.toString());
+
+                    teacherList.setAdapter(new TeacherAdapter(getActivity(), datosVigilante.getFiltervigilantes(editable.toString()),
+                            datosVigilante.getFilterCarnetvigilante()));
+
+                } else {
+
+                    DatosTeacher.getFilterTeachers(editable.toString());
+                    teacherList.setAdapter(new TeacherAdapter(getActivity(), datosTeacher.getFilterTeachers(editable.toString()),
+                            datosTeacher.getFilterCarnetTeacher()));
+
+                }
 
             }
         });

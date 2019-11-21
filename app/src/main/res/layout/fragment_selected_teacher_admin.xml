@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:elevation="2dp"
                     android:ems="10"
-                    android:hint="Carnet o nombre de docente"
+                    android:hint="Nombre"
                     android:inputType="textPersonName"
                     android:padding="15dp" />
 

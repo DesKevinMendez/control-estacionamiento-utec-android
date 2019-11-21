@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
@@ -58,9 +59,9 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                 btnSeleccionarEdificio.
                         setText(DatosBuilding.getBuildingSelected());
             }
-            if (!DatosTeacher.getTeacherSelected().isEmpty()) {
+            if (!DatosVigilante.getvigilanteSelected().isEmpty()) {
                 btnAsignarVigilante.
-                        setText(DatosTeacher.getTeacherSelected());
+                        setText(DatosVigilante.getvigilanteSelected());
             }
 
         }
@@ -81,9 +82,9 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
             case R.id.btnAsignarVigilante:
 
                 // TO DO pendiente la parte de vigilantes
-                if (DatosTeacher.getTotalTeacher() == 0 ){
+                if (DatosVigilante.getTotalvigilante() == 0 ){
 
-                    httpRequestAdmin.HTTPrequestTeachers(getActivity(),
+                    httpRequestAdmin.HTTPrequestWatchMan(getActivity(),
                             "actionOfAssignWatchman", "AssignWatchman");
 
                 } else {
@@ -171,18 +172,6 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
         mListener = null;
     }
 
-
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -97,6 +98,59 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
+
+    public void HTTPrequestWatchMan(final Context context, final String putStringName, final String putStringDescription) {
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Obteniendo vigilantes...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"users-por-rol/vigilante?api_token="+user.getApi_token();
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray mJsonArray = response.getJSONArray("usuarios");
+                    for (int i = 0; i < mJsonArray.length() ; i++) {
+
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        String nombre = mJsonObject.getString("nombres");
+                        String apellido = mJsonObject.getString("apellidos");
+                        String placa = mJsonObject.getString("num_placa");
+                        int idVigilante = mJsonObject.getInt("id");
+
+                        DatosVigilante.setDatavigilante(nombre+" "+apellido, placa, idVigilante);
+
+                        changeFragments(context, new SelectedTeacher(),
+                                putStringName, putStringDescription);
+
+
+                    }
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error de parcing en AssignParking - method: HTTPrequestTeacher "+ e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Error al obtener los vigilantes :(", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
     public void HTTPrequestTeachers(final Context context, final String putStringName, final String putStringDescription) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Obteniendo maestros...");
@@ -105,7 +159,7 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
         progressDialog.show();
 
-        String url = BASE_URL+"users?api_token="+user.getApi_token();
+        String url = BASE_URL+"users-por-rol/docente?api_token="+user.getApi_token();
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -141,6 +195,9 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(context, "Error al obtener los maestros :(", Toast.LENGTH_SHORT).show();
+
                 progressDialog.dismiss();
 
             }
@@ -149,6 +206,8 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         queue.add(request);
 
     }
+
+
     public void HTTPrequesteChangePassword(final Context context, String passActual, String newPass,
                                            String confiNewPass){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
