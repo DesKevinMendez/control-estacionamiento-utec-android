@@ -61,11 +61,7 @@
                 android:textStyle="bold" />
 
             <TextView
-<<<<<<< HEAD
-                android:id="@+id/edtCarnet"
-=======
                 android:id="@+id/tvCarnetDocente"
->>>>>>> afb1049b6a383f5363fef699298f7de9649f07bf
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"

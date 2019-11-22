@@ -16,7 +16,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/edtCarnet"
+            android:id="@+id/textview4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -33,11 +33,8 @@
             android:text="@string/selectedWatchman" />
 
         <TextView
-<<<<<<< HEAD
-            android:id="@+id/edtCarnet"
-=======
-            android:id="@+id/tvCarnetDocente"
->>>>>>> afb1049b6a383f5363fef699298f7de9649f07bf
+
+            android:id="@+id/tvCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
