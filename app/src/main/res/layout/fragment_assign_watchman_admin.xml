@@ -16,7 +16,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textview4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -33,7 +33,8 @@
             android:text="@string/selectedWatchman" />
 
         <TextView
-            android:id="@+id/tvCarnetDocente"
+
+            android:id="@+id/tvCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

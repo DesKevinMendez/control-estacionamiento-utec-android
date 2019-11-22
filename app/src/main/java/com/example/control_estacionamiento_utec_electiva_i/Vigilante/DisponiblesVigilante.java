@@ -2,6 +2,7 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -12,12 +13,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.InicioEstudiante;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Adaptador;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 import java.util.ArrayList;
 
@@ -35,9 +42,6 @@ public class DisponiblesVigilante extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    SQLiteDatabase base;
-
-
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -73,7 +77,11 @@ public class DisponiblesVigilante extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
+    ListView lvEdificios;
+    DatosVigilante datosVigilante;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,18 +90,19 @@ public class DisponiblesVigilante extends Fragment {
         View view = inflater.inflate(R.layout.fragment_disponibles_vigilante, container, false);
 
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
-        /*Spinner listaDisponibles = view.findViewById(R.id.listaDisponibles);
-        Spinner listaOcupados = view.findViewById(R.id.listaOcupados);
+        lvEdificios = view.findViewById(R.id.lvEdificios);
+        ArrayList prueba = new ArrayList();
 
-        ArrayList disponibles = new ArrayList();
-        ArrayList ocupados = new ArrayList();
 
-        String consultaDisponible = "select * from Parqueo";
-        Cursor cdisponible = base.rawQuery(consultaDisponible,null);
+        lvEdificios.setAdapter(new
+                        Adaptador(getActivity(),
+                            datosVigilante.dataBuilding(),
+                            datosVigilante.dataEstaDispo()));
 
-        listaDisponibles.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,disponibles));
 
-*/
+
+        Toast.makeText(getActivity(),String.valueOf(lvEdificios), Toast.LENGTH_SHORT).show();
+
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,8 +111,6 @@ public class DisponiblesVigilante extends Fragment {
                 startActivity(inicio);
             }
         });
-
-
 
 
         return view;

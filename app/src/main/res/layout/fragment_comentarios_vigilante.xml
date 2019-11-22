@@ -27,7 +27,7 @@
                 android:paddingBottom="10dp">
 
                 <EditText
-                    android:id="@+id/edtPlaca"
+                    android:id="@+id/edtNumeroPlaca"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/oval_edt"
@@ -158,7 +158,7 @@
                     android:textColor="#98094D" />
 
                 <Button
-                    android:id="@+id/btnDetalle"
+                    android:id="@+id/btnComentar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"

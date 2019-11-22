@@ -49,10 +49,6 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigilante_navigation_drawer);
 
-        DatosVigilante objDatos = new DatosVigilante(getApplicationContext(), "sistemas", null, 1);
-        base = objDatos.getWritableDatabase();
-        Log.i("MENSAJE", "SE CREO LA BASE DE DATOS VIGILANTE");
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));

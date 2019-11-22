@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,7 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -77,42 +78,37 @@ public class PerfilVigilante extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
     }
 
     User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        //'https://randomuser.me/api/'
-
-
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil_vigilante, container, false);
 
-        final EditText edtActual = view.findViewById(R.id.edtPlaca);
-        final EditText edtClave = view.findViewById(R.id.edtClave);
-        final EditText edtConfirmar = view.findViewById(R.id.edtConfirmar);
+        final EditText edtActual = view.findViewById(R.id.edtClaveActual);
+        final EditText edtClave = view.findViewById(R.id.edtClaveNueva);
+        final EditText edtConfirmar = view.findViewById(R.id.edtConfirmarClave);
         Button btnCancelar = view.findViewById(R.id.btnCancelar2);
         Button btnConfirmar = view.findViewById(R.id.btnConfirmar2);
         final TextView tvNombre=view.findViewById(R.id.tvNombre);
         final TextView tvCarnet=view.findViewById(R.id.tvCarnetDocente);
         final TextView tvClave=view.findViewById(R.id.tvClave);
         final TextView tvEdificio=view.findViewById(R.id.tvEdificio);
-        final TextView tvEstado=view.findViewById(R.id.tvEstado);
+        final TextView tvDisponibilidad=view.findViewById(R.id.tvDisponibilidad);
 
 
-        String consultaDisponible = "select * from vigilante";
-        base= objDatos.getWritableDatabase();
-        Cursor cUsuarios = base.rawQuery(consultaDisponible,null);
+        tvNombre.setText(user.getNombres()+" "+user.getApellidos());
+        tvCarnet.setText("Falta Agregarlo");
+        tvEdificio.setText(user.getNombre_edificio_parqueo_asignado());
+        tvClave.setText("falta agregarlo");
+        //tvDisponibilidad.setText(user.getEstado());
 
-        if(cUsuarios.moveToNext()) {
-            tvNombre.setText(cUsuarios.getString(1));
-            tvCarnet.setText(cUsuarios.getString(2));
-            tvEdificio.setText(cUsuarios.getString(3));
-            tvClave.setText(cUsuarios.getString(4));
-        }
+        int estado = user.getEstado();
+        String estadoS = String.valueOf(estado);
+
+        tvDisponibilidad.setText(estadoS);
+
 
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
@@ -137,9 +133,9 @@ public class PerfilVigilante extends Fragment {
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String clave = edtClave.getText().toString().trim();
-                String confirmar = edtConfirmar.getText().toString().trim();
-                String actual = edtActual.getText().toString().trim();
+                final String clave = edtClave.getText().toString().trim();
+                final String confirmar = edtConfirmar.getText().toString().trim();
+                final String actual = edtActual.getText().toString().trim();
 
                 if (actual.equals("")){
                     edtClave.setError("Campo requerido");
@@ -148,14 +144,47 @@ public class PerfilVigilante extends Fragment {
                 } else if (confirmar.equals("")){
                     edtConfirmar.setError("Campo requerido");
                 } else if(clave.equals(confirmar)){
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                    alert.setTitle("Confirmar cambio");
+                    alert.setMessage("Está acción no se puede deshacer");
+                    alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                            httpRequestAdmin.HTTPrequesteChangePassword(getActivity(), actual,
+                                    clave, confirmar);
+
+                            edtActual.setText("");
+                            edtClave.setText("");
+                            edtConfirmar.setText("");
+                            edtActual.requestFocus();
+                            Intent login = new Intent(getActivity(), Login.class);
+                            startActivity(login);
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edtActual.setText("");
+                            edtClave.setText("");
+                            edtConfirmar.setText("");
+                            edtActual.requestFocus();
+                            Toast.makeText(getActivity(), "Cancelar", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+                    alert.create().show();
+
+
                     // Establece la sesion de usuario con falso, y limpia la data del usuario
-                    user.setLoggedUser(false);
+                    //user.setLoggedUser(false);
                     
-                    user.setDataUser(0, null, null, null, null,
-                            null, 0, 0, null);
-                            
-                    Intent login = new Intent(getActivity(), Login.class);
-                    startActivity(login);
+                    //user.setDataUser(0, null, null, null, null,
+                           // null, 0, 0, null);
+
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                     alert.setTitle("ERROR");

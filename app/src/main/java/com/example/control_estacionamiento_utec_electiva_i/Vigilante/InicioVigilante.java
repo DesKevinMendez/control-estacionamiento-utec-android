@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,8 +75,6 @@ public class InicioVigilante extends Fragment {
 
         }
 
-        objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
-
 
     }
 
@@ -103,51 +100,14 @@ public class InicioVigilante extends Fragment {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            String Placa = edtPlaca.getText().toString().trim();
 
-                if (Placa.isEmpty()){
-                    edtPlaca.setError("Campo requerido");
-                    edtPlaca.requestFocus();
-                } else {
-                    String consultaDisponible = "select * from usuarios where numero_placa = '" + Placa + "'";
-                    base = objDatos.getWritableDatabase();
-                    Cursor cUsuarios = base.rawQuery(consultaDisponible, null);
-
-                    if (cUsuarios.moveToNext()) {
-                        tvNombre.setText(cUsuarios.getString(3));
-                        tvPlaca.setText(cUsuarios.getString(2));
-                        tvEdificio.setText(cUsuarios.getString(4));
-                        tvTipo.setText(cUsuarios.getString(5));
-                        tvEntrada.setText(cUsuarios.getString(6));
-                        tvSalida.setText(cUsuarios.getString(7));
-                    } else {
-                        Toast.makeText(getContext(), "No hay registro", Toast.LENGTH_SHORT).show();
-                        edtPlaca.setText("");
-                    }
-                }
             }
         });
 
         btnValidar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Placa = edtPlaca.getText().toString().trim();
 
-                if (Placa.isEmpty()){
-                    edtPlaca.setError("Campo requerido");
-                    edtPlaca.requestFocus();
-                } else {
-                    String consultaDisponible = "select * from usuarios where numero_placa = '" + Placa + "'";
-                    base = objDatos.getWritableDatabase();
-                    Cursor cUsuarios = base.rawQuery(consultaDisponible, null);
-
-                    if (cUsuarios.moveToNext())
-                        Toast.makeText(getContext(), "Validación Exitosa", Toast.LENGTH_SHORT).show();
-                    else {
-                        Toast.makeText(getContext(), "No hay registro", Toast.LENGTH_SHORT).show();
-                        edtPlaca.setText("");
-                    }
-                }
             }
         });
 

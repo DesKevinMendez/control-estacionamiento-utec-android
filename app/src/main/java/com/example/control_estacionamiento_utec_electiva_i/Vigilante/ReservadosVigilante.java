@@ -2,6 +2,7 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Adaptador;
 
 
 /**
@@ -72,7 +75,10 @@ public class ReservadosVigilante extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reservados_vigilante, container, false);
 
-        Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
+        Button btnRegresar = view.findViewById(R.id.btnRegresar);
+        ListView lvEdificios = view.findViewById(R.id.lvEdificios);
+
+
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

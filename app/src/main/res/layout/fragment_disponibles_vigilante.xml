@@ -41,7 +41,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView28"
+                        android:id="@+id/tvEstado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Estacionamiento diponibles"
@@ -56,7 +56,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView30"
+                        android:id="@+id/tvEstacionamientosOcupados"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="15" />
@@ -70,7 +70,7 @@
                         android:textColor="#000000" />
 
                     <TextView
-                        android:id="@+id/textView32"
+                        android:id="@+id/tvEstacionamientoDisponibles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="15" />
@@ -79,119 +79,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardElevation="3dp"
-                app:cardMaxElevation="3dp">
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <ListView
+                    android:id="@+id/lvEdificios"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imageButton12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="16dp"
-                        android:backgroundTint="#00A80A"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/edificio" />
-
-                    <TextView
-                        android:id="@+id/textView63"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:text="SB"
-                        android:textColor="#0A9114"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageButton12" />
-
-                    <TextView
-                        android:id="@+id/textView60"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="44dp"
-                        android:layout_marginTop="4dp"
-                        android:text="Estacionamientos Disponibles"
-                        android:textColor="#0A9114"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton12"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Spinner
-                        android:id="@+id/listaDisponibles"
-                        android:layout_width="250dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton12"
-                        app:layout_constraintTop_toBottomOf="@+id/textView60" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardElevation="3dp"
-                app:cardMaxElevation="3dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imageButton14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="12dp"
-                        android:backgroundTint="#FC0101"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/edificio" />
-
-                    <TextView
-                        android:id="@+id/textView26"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:text="Estacionamientos no disponibles"
-                        android:textColor="#FC0101"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton14"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView64"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:text="EF"
-                        android:textColor="#FC0101"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imageButton14" />
-
-                    <Spinner
-                        android:id="@+id/listaOcupados"
-                        android:layout_width="243dp"
-                        android:layout_height="26dp"
-                        android:layout_marginStart="28dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toEndOf="@+id/imageButton14"
-                        app:layout_constraintTop_toBottomOf="@+id/textView26" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp" />
             </androidx.cardview.widget.CardView>
 
             <Button
