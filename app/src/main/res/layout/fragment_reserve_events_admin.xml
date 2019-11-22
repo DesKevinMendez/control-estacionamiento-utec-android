@@ -33,7 +33,7 @@
             android:text="@string/selectedBuilding" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/edtCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -47,7 +47,7 @@
             android:layout_marginBottom="5dp" />
 
         <TextView
-            android:id="@+id/tvNombre"
+            android:id="@+id/edtCarnet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

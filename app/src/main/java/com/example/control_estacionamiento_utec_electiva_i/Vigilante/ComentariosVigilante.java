@@ -7,10 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,7 +76,6 @@ public class ComentariosVigilante extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        objDatos = new DatosVigilante(getContext(),"sistemas",null,1);
     }
 
 
@@ -89,10 +85,10 @@ public class ComentariosVigilante extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comentarios_vigilante, container, false);
 
-         Button btnDetalle =view.findViewById(R.id.btnDetalle);
+         Button btnDetalle =view.findViewById(R.id.btnComentar);
          Button btnRegresar =view.findViewById(R.id.btnRegresar);
          Button btnBuscar = view.findViewById(R.id.btnBuscar);
-         final EditText edtPlaca = view.findViewById(R.id.edtPlaca);
+         final EditText edtPlaca = view.findViewById(R.id.edtClaveActual);
 
         final TextView tvNombre = view.findViewById(R.id.tvNombre);
         final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
@@ -101,6 +97,7 @@ public class ComentariosVigilante extends Fragment {
         final TextView tvEstado = view.findViewById(R.id.tvEstado);
 
 
+        /*
          btnBuscar.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -121,11 +118,10 @@ public class ComentariosVigilante extends Fragment {
                      horario+=(cUsuarios.getString(7));
                      tvHorario.setText(horario);
 
-                     //tvSalida.setText(cUsuarios.getString(7));
                  }
 
              }
-         });
+         });*/
 
 
          btnRegresar.setOnClickListener(new View.OnClickListener() {

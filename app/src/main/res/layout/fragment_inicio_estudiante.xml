@@ -41,24 +41,25 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Fulano de tal" />
-
-                    <TextView
                         android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:text="TextView" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
                         android:text="Carne:"
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/tvCarnet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="25-2453-2015" />
+                        android:text="TextView" />
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -80,14 +81,14 @@
                     android:paddingBottom="10dp">
 
                     <TextView
-                        android:id="@+id/tvCarnet"
+                        android:id="@+id/edtCarnet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Estacionamiento asignado: "
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/tvEstacionamiento"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Polideportivo UTEC" />
@@ -101,7 +102,7 @@
                         android:textColor="#000" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/tvDisponibilidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Disponible"

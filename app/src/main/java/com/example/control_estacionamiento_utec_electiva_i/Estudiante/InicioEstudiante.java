@@ -9,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -64,11 +68,26 @@ public class InicioEstudiante extends Fragment {
         }
     }
 
+    User user;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio_estudiante, container, false);
+        View view = inflater.inflate(R.layout.fragment_inicio_estudiante, container, false);
+        TextView tvNombre = view.findViewById(R.id.tvNombre);
+        TextView tvCarnet = view.findViewById(R.id.tvCarnet);
+        TextView tvEstacionamiento = view.findViewById(R.id.tvEstacionamiento);
+        TextView tvDisponibilidad = view.findViewById(R.id.tvDisponibilidad);
+
+        tvNombre.setText(user.getNombres() + " "+ user.getApellidos());
+        tvCarnet.setText("falta agregar");
+        tvEstacionamiento.setText(user.getNombre_edificio_parqueo_asignado());
+
+        int estad = user.getEstado();
+        String estado = String.valueOf(estad);
+        tvDisponibilidad.setText(estado);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

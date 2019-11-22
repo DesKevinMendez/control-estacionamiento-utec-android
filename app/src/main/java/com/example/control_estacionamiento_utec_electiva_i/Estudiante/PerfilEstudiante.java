@@ -1,6 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.Estudiante;
 
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,11 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import org.w3c.dom.Text;
 
 
 /**
@@ -79,11 +84,17 @@ public class PerfilEstudiante extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_perfil_estudiante, container, false);
 
+
+        TextView tvNombre = view.findViewById(R.id.tvNombre);
+        TextView tvCarnet = view.findViewById(R.id.tvCarnet);
         Button btnCancelar = view.findViewById(R.id.btnCancelar);
         Button btnConfirmar = view.findViewById(R.id.btnConfirmar);
-        final EditText edtActual = view.findViewById(R.id.edtPlaca);
-        final EditText edtClave = view.findViewById(R.id.edtClave);
-        final EditText edtConfirmar = view.findViewById(R.id.edtConfirmar);
+        final EditText edtActual = view.findViewById(R.id.edtClaveActual);
+        final EditText edtClave = view.findViewById(R.id.edtClaveNueva);
+        final EditText edtConfirmar = view.findViewById(R.id.edtConfirmarClave);
+
+        tvNombre.setText(user.getNombres() + " " + user.getApellidos());
+        //tvCarnet.setText(user.getCarnet());
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +118,9 @@ public class PerfilEstudiante extends Fragment {
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String clave = edtClave.getText().toString().trim();
-                String confirmar = edtConfirmar.getText().toString().trim();
-                String actual = edtActual.getText().toString().trim();
+                final String clave = edtClave.getText().toString().trim();
+                final String confirmar = edtConfirmar.getText().toString().trim();
+                final String actual = edtActual.getText().toString().trim();
 
                 if (actual.isEmpty()){
                     edtClave.setError("Campo requerido");
@@ -118,14 +129,49 @@ public class PerfilEstudiante extends Fragment {
                 } else if (confirmar.isEmpty()){
                     edtConfirmar.setError("Campo requerido");
                 } else if(clave.equals(confirmar)){
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                    alert.setTitle("Confirmar cambio");
+                    alert.setMessage("Está acción no se puede deshacer");
+                    alert.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                            httpRequestAdmin.HTTPrequesteChangePassword(getActivity(), actual,
+                                    clave, confirmar);
+
+                            edtActual.setText("");
+                            edtClave.setText("");
+                            edtConfirmar.setText("");
+                            edtActual.requestFocus();
+                            Intent login = new Intent(getActivity(), Login.class);
+                            startActivity(login);
+                        }
+                    });
+
+                    alert.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            edtActual.setText("");
+                            edtClave.setText("");
+                            edtConfirmar.setText("");
+                            edtActual.requestFocus();
+                            Toast.makeText(getActivity(), "Cancelar", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+                    alert.create().show();
+
                     // Establece la sesion de usuario con falso, y limpia la data del usuario
-                    user.setLoggedUser(false);
-                    
-                    user.setDataUser(0, null, null, null, null,
-                            null, 0, 0, null);
+                    //user.setLoggedUser(false);
+
+                    //user.setDataUser(0, null, null, null, null,
+                           // null, 0, 0, null);
+
                             
-                    Intent login = new Intent(getActivity(), Login.class);
-                    startActivity(login);
+                    //Intent login = new Intent(getActivity(), Login.class);
+                    //startActivity(login);
                 } else {
                     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                     alert.setTitle("ERROR");
@@ -142,7 +188,6 @@ public class PerfilEstudiante extends Fragment {
                 }
             }
         });
-
         return view;
     }
 

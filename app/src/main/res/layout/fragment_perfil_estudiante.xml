@@ -39,7 +39,7 @@
                     android:textColor="#000" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tvNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Fulano de Tal" />
@@ -52,23 +52,23 @@
                     android:textColor="#000" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tvCarnet"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="25-1234-2019" />
 
                 <TextView
-                    android:id="@+id/tvNombres"
+                    android:id="@+id/texto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Contraseña actual:"
                     android:textColor="#000" />
 
                 <TextView
-                    android:id="@+id/tvNombre"
+                    android:id="@+id/tvClave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="123" />
+                    android:text="***********" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -91,7 +91,7 @@
                 android:textColor="#000" />
 
             <EditText
-                android:id="@+id/edtPlaca"
+                android:id="@+id/edtClaveActual"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
@@ -104,7 +104,7 @@
                 android:paddingStart="20dp" />
 
             <EditText
-                android:id="@+id/edtClave"
+                android:id="@+id/edtClaveNueva"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
@@ -116,7 +116,7 @@
                 android:paddingStart="20dp" />
 
             <EditText
-                android:id="@+id/edtConfirmar"
+                android:id="@+id/edtConfirmarClave"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="15dp"
