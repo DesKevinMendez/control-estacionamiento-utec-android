@@ -77,7 +77,7 @@
     <string name="pantalla_inicio">Pantalla de Inicio</string>
     <string name="name_title">Nombres:</string>
     <string name="name_user">Fulano de Tal</string>
-    <string name="carne_title">Carnet:</string>
+    <string name="carne_title">Correo:</string>
     <string name="carne">25-1234-2015</string>
     <string name="station_code">Código de estacionamiento:</string>
     <string name="code">BJ-21</string>

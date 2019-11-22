@@ -55,7 +55,7 @@
                         android:textColor="#0F0F0F" />
 
                     <TextView
-                        android:id="@+id/tvCarnet"
+                        android:id="@+id/tvCarnetDocente"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="25-6789-2019" />
