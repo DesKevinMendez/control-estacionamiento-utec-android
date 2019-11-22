@@ -25,6 +25,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Estudiante.InicioEstu
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Adaptador;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
 
 import java.util.ArrayList;
 
@@ -91,17 +92,13 @@ public class DisponiblesVigilante extends Fragment {
 
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
         lvEdificios = view.findViewById(R.id.lvEdificios);
-        ArrayList prueba = new ArrayList();
+
 
 
         lvEdificios.setAdapter(new
                         Adaptador(getActivity(),
                             datosVigilante.dataBuilding(),
                             datosVigilante.dataEstaDispo()));
-
-
-
-        Toast.makeText(getActivity(),String.valueOf(lvEdificios), Toast.LENGTH_SHORT).show();
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {

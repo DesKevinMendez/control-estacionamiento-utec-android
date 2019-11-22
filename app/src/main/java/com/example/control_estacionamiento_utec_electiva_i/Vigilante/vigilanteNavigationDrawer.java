@@ -14,6 +14,8 @@ import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Datos
 import android.util.Log;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -21,6 +23,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -37,12 +40,14 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         NotificacionesVigilante.OnFragmentInteractionListener,
         DisponiblesVigilante.OnFragmentInteractionListener,
         ReservadosVigilante.OnFragmentInteractionListener,
-        PerfilVigilante.OnFragmentInteractionListener
+        PerfilVigilante.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener
+
 {
 
     private AppBarConfiguration mAppBarConfiguration;
     DrawerLayout drawer;
-    SQLiteDatabase base;
+    NavigationView navigationView;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,37 +56,25 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         setSupportActionBar(toolbar);
+        toolbar.setTitle("Inicio");
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.inicioVigilante, R.id.perfilVigilante, R.id.comentariosVigilante,
-                R.id.disponiblesVigilante, R.id.reservadosVigilante, R.id.notificacionesVigilante, R.id.cerrar)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
     }
+
 
     @Override
-    public void onBackPressed() {
-
-        if (drawer.isDrawerOpen(GravityCompat.START)){
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-
-            super.onBackPressed();
-        }
-    }
-
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+// Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
@@ -108,10 +101,10 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 return true;
 
             case R.id.disponiblesVigilante:
-                frag = new DisponiblesVigilante();
+                Log.i("TEST", "Angel puto");
+                PeticionesVigilante peticion = new PeticionesVigilante();
+                peticion.ObtenerEdificios(vigilanteNavigationDrawer.this);
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
                 return  true;
 
             case R.id.reservadosVigilante:
@@ -122,10 +115,9 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 return  true;
 
             case R.id.perfilVigilante:
-                frag = new PerfilVigilante();
 
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                changeFragments(new PerfilVigilante(), 1);
+
                 return  true;
 
             case R.id.cerrar:
@@ -133,15 +125,42 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 user.setLoggedUser(false);
                 user.setDataUser(0, null, null, null, null,
                         null, 0, 0, null);
-                        
+
                 Intent login = new Intent(getApplicationContext(), Login.class);
                 startActivity(login);
                 finish();
-                return true;
+                break;
 
             default:
-                return super.onOptionsItemSelected(item);
+                throw new IllegalArgumentException("menu option not implemented!!");
         }
+
+        drawer.closeDrawer(GravityCompat.START);
+
+        return true;
+
+
+    }
+    public void changeFragments(Fragment fragment, int indexItemSelected) {
+
+        navigationView.getMenu().getItem(indexItemSelected).setChecked(true);
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+
+            super.onBackPressed();
+        }
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
 
     }
 

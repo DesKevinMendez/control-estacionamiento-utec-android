@@ -17,6 +17,9 @@ public final class DatosVigilante  {
         IdEdificios.add(idEdificio);
     }
 
+    static {
+
+    }
     public static ArrayList dataBuilding() {
         return edificios;
     }
@@ -27,6 +30,10 @@ public final class DatosVigilante  {
 
     public static ArrayList dataTotalEsta() {
         return totalEstacionamiento;
+    }
+
+    public static String getEdificioDisponible(int i){
+        return estacionamientoDisponible.get(i).toString();
     }
 
 

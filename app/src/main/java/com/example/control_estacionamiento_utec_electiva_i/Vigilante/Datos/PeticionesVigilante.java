@@ -3,9 +3,11 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.DisponiblesVigilante;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,7 +29,7 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
     ProgressDialog progressDialog;
 
     public void ObtenerEdificios(Context context){
-
+        final AppCompatActivity mcontext = (AppCompatActivity) context;
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Cargando datos");
         progressDialog.setIndeterminate(true);
@@ -52,6 +55,11 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
 
                         DatosVigilante.setInfoEdificio(nombreEdificio, totalEstacionamiento,
                                 num_disponible, idEdificio);
+                        Log.i("TEST", "LLEGA");
+
+                        mcontext.getSupportFragmentManager().beginTransaction()
+                                .addToBackStack(null).replace(R.id.nav_host_fragment,
+                                new DisponiblesVigilante()).commit();
 
                     }
                 } catch (JSONException e){
@@ -78,9 +86,5 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
 
 
 
-
-    public PeticionesVigilante(Context context) {
-        String url = BASE_URL;
-    }
 
 }

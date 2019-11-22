@@ -38,11 +38,18 @@ public class Adaptador extends BaseAdapter {
 
         TextView tvEdificio = vista.findViewById(R.id.tvEdificio);
         TextView tvEstado = vista.findViewById(R.id.tvEstado);
-        //ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
+        ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
 
         tvEdificio.setText(edificio.get(i).toString());
         tvEstado.setText(estado.get(i).toString());
-        //imgEdificio.setImageResource(i);
+
+        if (!DatosVigilante.getEdificioDisponible(i).equals("0")){
+            imgEdificio.setImageResource(R.drawable.buildingg);
+        }else {
+            imgEdificio.setImageResource(R.drawable.buildingr);
+        }
+
+
 
         return vista;
     }
