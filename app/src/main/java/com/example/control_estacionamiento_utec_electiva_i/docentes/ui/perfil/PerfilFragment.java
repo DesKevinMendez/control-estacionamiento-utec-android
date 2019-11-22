@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,20 +17,29 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestDocente;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
 public class PerfilFragment extends Fragment implements View.OnClickListener {
 
+    User user;
+
     EditText claveEd, confirmarEd, actualClaveEd;
     Button cancelarPerfilBtn, confirmarPerfilBtn;
+    TextView tvName, tvMail, tvPass;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_perfil, container, false);
+
+        tvName = root.findViewById(R.id.tvNameDocenteP);
+        tvMail = root.findViewById(R.id.tvCarnetDocenteP);
+        tvPass = root.findViewById(R.id.tvClaveP);
 
         claveEd = root.findViewById(R.id.edClave);
         confirmarEd = root.findViewById(R.id.edConfirmar);
@@ -38,6 +48,9 @@ public class PerfilFragment extends Fragment implements View.OnClickListener {
         cancelarPerfilBtn = root.findViewById(R.id.btnCancelarPerfil);
         confirmarPerfilBtn = root.findViewById(R.id.btnConfirmarPerfil);
 
+        tvName.setText(user.getNombres() + " " + user.getApellidos());
+        tvMail.setText(user.getEmail());
+        //tvPass.setText(user.getClave());
 
         final DrawerLayout drawer = root.findViewById(R.id.drawer_layout);
 

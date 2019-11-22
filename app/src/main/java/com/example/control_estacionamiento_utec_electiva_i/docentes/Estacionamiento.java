@@ -24,6 +24,7 @@ public class Estacionamiento extends AppCompatActivity {
 
     Button btnRegresar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +35,11 @@ public class Estacionamiento extends AppCompatActivity {
         btnRegresar = findViewById(R.id.btnRegresar);
 
         ListView listView = findViewById(R.id.listviewEd);
-        List<Estacionamientos> list = new LinkedList<>();
-        list.add(new Estacionamientos("Benito Juarez","No disponible"));
-        list.add(new Estacionamientos("Gabriela Mistral","Disponible"));
-        list.add(new Estacionamientos("Giuseppe Garibaldi","No disponible"));
-        list.add(new Estacionamientos("Garcia Lorca","Disponible"));
-        list.add(new Estacionamientos("Villa Fermina","No disponible"));
-        list.add(new Estacionamientos("Simon Bolivar","Disponible"));
-        AdaptadorEstacionamiento adapter = new AdaptadorEstacionamiento(this, R.layout.estacionamientos, list);
-        listView.setAdapter(adapter);
+
+
+        listView.setAdapter(new AdaptadorEstacionamiento(getApplicationContext(),
+                Estacionamientos.getNombreEdificio(),
+                Estacionamientos.getEstacionamientosDisponibles()));
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override

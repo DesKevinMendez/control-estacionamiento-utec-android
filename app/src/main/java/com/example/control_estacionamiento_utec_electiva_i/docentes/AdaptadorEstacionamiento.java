@@ -1,10 +1,12 @@
 package com.example.control_estacionamiento_utec_electiva_i.docentes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,45 +16,61 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 import java.util.ArrayList;
 import java.util.List;
 
-class AdaptadorEstacionamiento extends ArrayAdapter<Estacionamientos> {
+class AdaptadorEstacionamiento extends BaseAdapter {
 
-    public AdaptadorEstacionamiento(Context context, int textViewResourceId,
-                         List<Estacionamientos> objects) {
-        super(context, textViewResourceId, objects);
+    private static LayoutInflater inflater = null;
+
+    Context context;
+    ArrayList edificios;
+    ArrayList disponibles;
+
+
+    public AdaptadorEstacionamiento(Context context, ArrayList edificios,
+                                    ArrayList disponibles) {
+        this.context = context;
+        this.edificios = edificios;
+        this.disponibles = disponibles;
+
+        inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return getViewOptimize(position, convertView, parent);
-    }
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        final View vista = inflater.inflate(R.layout.estacionamientos, null);
 
-    public View getViewOptimize(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = null;
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.estacionamientos, null);
-            viewHolder = new ViewHolder();
-            viewHolder.image = convertView.findViewById(R.id.imageViewEdi);
-            viewHolder.name = convertView.findViewById(R.id.textViewE);
-            viewHolder.estado = convertView.findViewById(R.id.textViewS);
-            convertView.setTag(viewHolder);
+        TextView tvEdificio = vista.findViewById(R.id.textViewE);
+        TextView tvEstado = vista.findViewById(R.id.textViewS);
+        ImageView imgEdificio = vista.findViewById(R.id.imageViewEdi);
+
+        tvEdificio.setText(edificios.get(i).toString());
+        tvEstado.setText(disponibles.get(i).toString());
+        String valor = Estacionamientos.getEdificioDisponible(i);
+        Log.i("TOTAL", valor);
+        if (!valor.equals("0")){
+
+            imgEdificio.setImageResource(R.drawable.buildingg);
+
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+
+            imgEdificio.setImageResource(R.drawable.buildingr);
         }
-        Estacionamientos estacionamientos = getItem(position);
-        viewHolder.name.setText(estacionamientos.getNombreEdificio());
-        viewHolder.estado.setText(estacionamientos.getEstadoEdificio());
-        if (estacionamientos.getEstadoEdificio().equals("Disponible"))
-            viewHolder.image.setImageResource(R.drawable.buildingg);
-        else
-            viewHolder.image.setImageResource(R.drawable.buildingr);
-        return convertView;
+
+        return vista;
     }
 
-    private class ViewHolder {
-        public TextView name;
-        public TextView estado;
-        public ImageView image;
+
+    @Override
+    public int getCount() {
+        return edificios.size();
     }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) { return 0; }
+
+
 }

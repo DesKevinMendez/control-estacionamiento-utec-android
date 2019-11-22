@@ -1,28 +1,27 @@
 package com.example.control_estacionamiento_utec_electiva_i.docentes;
 
-public class Estacionamientos {
+import java.util.ArrayList;
 
-    private String nombreEdificio;
-    private String estadoEdificio;
+public final class Estacionamientos {
 
-    public Estacionamientos(String nombreEdificio, String estadoEdificio) {
-        this.nombreEdificio = nombreEdificio;
-        this.estadoEdificio = estadoEdificio;
+    private static ArrayList nombreEdificio = new ArrayList();
+    private static ArrayList totalEstacionamiento = new ArrayList();
+    private static ArrayList estacionamientosDisponibles = new ArrayList();
+
+    public static void setInfoEdificios(String nombreEd, int totalEs,
+                                 int estacionamientoD) {
+        nombreEdificio.add(nombreEd);
+        totalEstacionamiento.add(totalEs);
+        estacionamientosDisponibles.add(estacionamientoD);
     }
 
-    public String getNombreEdificio() {
-        return nombreEdificio;
+    public static String getEdificioDisponible(int i){
+         return estacionamientosDisponibles.get(i).toString();
     }
 
-    public String getEstadoEdificio() {
-        return estadoEdificio;
-    }
+    public static ArrayList getNombreEdificio(){ return nombreEdificio; }
 
-    public void setNombreEdificio(String nombreEdificio) {
-        this.nombreEdificio = nombreEdificio;
-    }
+    public static int getTotalEstacionamiento() { return totalEstacionamiento.size(); }
 
-    public void setEstadoEdificio(String estadoEdificio) {
-        this.estadoEdificio = estadoEdificio;
-    }
+    public static ArrayList getEstacionamientosDisponibles() { return estacionamientosDisponibles; }
 }
