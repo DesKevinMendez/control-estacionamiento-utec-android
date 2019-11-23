@@ -9,20 +9,19 @@ public final class DatosVigilante  {
     private static ArrayList estacionamientoDisponible = new ArrayList();
     private static ArrayList totalEstacionamiento = new ArrayList();
 
-
     public static void setInfoEdificio(String edificio, int totalEstac, int disponibleEsta, int idEdificio) {
+
         edificios.add(edificio);
         totalEstacionamiento.add(totalEstac);
         estacionamientoDisponible.add(disponibleEsta);
         IdEdificios.add(idEdificio);
     }
 
-    static {
 
-    }
     public static ArrayList dataBuilding() {
         return edificios;
     }
+
 
     public static ArrayList dataEstaDispo() {
         return estacionamientoDisponible;

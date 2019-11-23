@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ClearCacheRequest;
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.InicioEstudiante;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestDocente;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Adaptador;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
@@ -79,10 +81,12 @@ public class DisponiblesVigilante extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
     }
 
     ListView lvEdificios;
     DatosVigilante datosVigilante;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,13 +96,12 @@ public class DisponiblesVigilante extends Fragment {
 
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
         lvEdificios = view.findViewById(R.id.lvEdificios);
-
-
-
         lvEdificios.setAdapter(new
-                        Adaptador(getActivity(),
-                            datosVigilante.dataBuilding(),
-                            datosVigilante.dataEstaDispo()));
+                Adaptador(getActivity(),
+                datosVigilante.dataBuilding(),
+                datosVigilante.dataEstaDispo()));
+
+
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
