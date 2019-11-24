@@ -33,6 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 
+
 public class vigilanteNavigationDrawer extends AppCompatActivity implements
         InicioVigilante.OnFragmentInteractionListener,
         ComentariosVigilante.OnFragmentInteractionListener,
@@ -42,7 +43,6 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         ReservadosVigilante.OnFragmentInteractionListener,
         PerfilVigilante.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener
-
 {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -53,8 +53,6 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigilante_navigation_drawer);
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Inicio");
@@ -71,7 +69,7 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
     }
 
-
+    final PeticionesVigilante peticion = new PeticionesVigilante();
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 // Handle action bar item clicks here. The action bar will
@@ -82,43 +80,46 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         switch (id){
             case R.id.inicioVigilante:
                 frag = new InicioVigilante();
-
+                getSupportActionBar().setTitle("Inicio");
                 getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
-                return true;
+                break;
 
             case R.id.comentariosVigilante:
                 frag = new ComentariosVigilante();
-
+                getSupportActionBar().setTitle("Comentarios");
                 getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, frag).commit();
-                return true;
+                break;
+
 
             case R.id.notificacionesVigilante:
                 frag = new NotificacionesVigilante();
-
+                getSupportActionBar().setTitle("Notificaciones");
                 getSupportFragmentManager().beginTransaction()
                         .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
-                return true;
+                break;
 
             case R.id.disponiblesVigilante:
-                Log.i("TEST", "Angel puto");
-                PeticionesVigilante peticion = new PeticionesVigilante();
+                Log.i("TEST", "Estacionamientos disponibles");
+                getSupportActionBar().setTitle("Estacionamiento Disponibles");
+                //PeticionesVigilante peticion = new PeticionesVigilante();
                 peticion.ObtenerEdificios(vigilanteNavigationDrawer.this);
 
-                return  true;
+                break;
 
             case R.id.reservadosVigilante:
-                frag = new ReservadosVigilante();
-
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
-                return  true;
+                Log.i("TEST", "Estacionamientos reservados");
+                getSupportActionBar().setTitle("Estacionamiento Reservados");
+                //PeticionesVigilante peticion2 = new PeticionesVigilante();
+                peticion.ObtenerReservados(vigilanteNavigationDrawer.this);
+                break;
 
             case R.id.perfilVigilante:
-
-                changeFragments(new PerfilVigilante(), 1);
-
-                return  true;
+                frag = new PerfilVigilante();
+                getSupportActionBar().setTitle("Perfil");
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                break;
 
             case R.id.cerrar:
                 // Establece la sesion de usuario con falso, y limpia la data del usuario
@@ -141,13 +142,6 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
 
     }
-    public void changeFragments(Fragment fragment, int indexItemSelected) {
-
-        navigationView.getMenu().getItem(indexItemSelected).setChecked(true);
-        getSupportFragmentManager().beginTransaction()
-                .addToBackStack(null).replace(R.id.nav_host_fragment, fragment).commit();
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -160,6 +154,8 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         }
     }
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        drawer.closeDrawer(GravityCompat.START);
         return super.onOptionsItemSelected(item);
 
     }

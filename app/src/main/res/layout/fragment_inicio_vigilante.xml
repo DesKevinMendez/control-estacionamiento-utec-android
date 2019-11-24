@@ -33,6 +33,7 @@
                     android:background="@drawable/oval_edt"
                     android:elevation="3dp"
                     android:ems="10"
+                    android:focusable="auto"
                     android:hint="Numero de placa"
                     android:inputType="number|phone"
                     android:textAlignment="center" />

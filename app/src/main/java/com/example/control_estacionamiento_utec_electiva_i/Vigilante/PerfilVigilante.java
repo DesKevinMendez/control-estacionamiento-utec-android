@@ -99,10 +99,8 @@ public class PerfilVigilante extends Fragment {
 
 
         tvNombre.setText(user.getNombres()+" "+user.getApellidos());
-        tvCarnet.setText("Falta Agregarlo");
         tvEdificio.setText(user.getNombre_edificio_parqueo_asignado());
         tvClave.setText("falta agregarlo");
-        //tvDisponibilidad.setText(user.getEstado());
 
         int estado = user.getEstado();
         String estadoS = String.valueOf(estado);
