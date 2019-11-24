@@ -43,7 +43,10 @@ class AdaptadorEstacionamiento extends BaseAdapter {
         ImageView imgEdificio = vista.findViewById(R.id.imageViewEdi);
 
         tvEdificio.setText(edificios.get(i).toString());
-        tvEstado.setText(disponibles.get(i).toString());
+        if (!disponibles.get(i).toString().equals("0"))
+            tvEstado.setText("Disponibles: " + disponibles.get(i).toString());
+        else
+            tvEstado.setText("No Disponibles");
         String valor = Estacionamientos.getEdificioDisponible(i);
         Log.i("TOTAL", valor);
         if (!valor.equals("0")){
