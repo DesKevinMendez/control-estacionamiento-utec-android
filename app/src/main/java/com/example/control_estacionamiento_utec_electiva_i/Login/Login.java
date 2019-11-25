@@ -110,7 +110,14 @@ public class Login extends AppCompatActivity {
                     } else {
                         user.setNum_placa("No disponible");
                     }
-                    Log.i("PLACA", user.getNum_placa());
+
+                    if (mJsonObject.getString("carnet").length() > 4){
+                        user.setCarnet(mJsonObject.getString("carnet"));
+                    } else {
+                        user.setCarnet("No disponible");
+                    }
+                    Log.i("CARNET", mJsonObject.getString("carnet"));
+                    Log.i("CARNET", user.getCarnet());
 
                     if (mJsonObject.getString("reserva").length() > 4){
                         JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
