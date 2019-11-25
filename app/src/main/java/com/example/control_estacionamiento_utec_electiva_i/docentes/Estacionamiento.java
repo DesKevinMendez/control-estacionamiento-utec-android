@@ -44,6 +44,8 @@ public class Estacionamiento extends AppCompatActivity {
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent home = new Intent(getApplicationContext(), DocenteHome.class);
+                startActivity(home);
                 finish();
             }
         });

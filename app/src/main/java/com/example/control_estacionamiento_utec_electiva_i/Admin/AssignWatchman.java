@@ -82,6 +82,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
             case R.id.btnAsignarVigilante:
 
                 // TO DO pendiente la parte de vigilantes
+
                 if (DatosVigilante.getTotalvigilante() == 0 ){
 
                     httpRequestAdmin.HTTPrequestWatchMan(getActivity(),
@@ -107,6 +108,11 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Debes de seleccionar un parqueo", Toast.LENGTH_SHORT).show();
 
                 } else {
+                    Toast.makeText(getContext(), "ID vigilante: "+DatosVigilante.getVigilanteIDSelected(),
+                            Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getContext(), "ID edificio: "+DatosBuilding.getBuildingIdSelected(),
+                            Toast.LENGTH_SHORT).show();
 
                     changeFragments(new InicioAdmin());
                 }

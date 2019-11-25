@@ -207,7 +207,6 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
-
     public void HTTPrequesteChangePassword(final Context context, String passActual, String newPass,
                                            String confiNewPass){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);

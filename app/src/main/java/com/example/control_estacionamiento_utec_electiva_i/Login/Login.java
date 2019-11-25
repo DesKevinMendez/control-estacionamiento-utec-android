@@ -105,6 +105,20 @@ public class Login extends AppCompatActivity {
                             mJsonObject.getInt("rol_id"),
                             mJsonRole.getString("nombre"));
 
+                    if (mJsonObject.getString("num_placa").length() > 4){
+                        user.setNum_placa(mJsonObject.getString("num_placa"));
+                    } else {
+                        user.setNum_placa("No disponible");
+                    }
+
+                    if (mJsonObject.getString("carnet").length() > 4){
+                        user.setCarnet(mJsonObject.getString("carnet"));
+                    } else {
+                        user.setCarnet("No disponible");
+                    }
+                    Log.i("CARNET", mJsonObject.getString("carnet"));
+                    Log.i("CARNET", user.getCarnet());
+
                     if (mJsonObject.getString("reserva").length() > 4){
                         JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
                         JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
