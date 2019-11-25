@@ -103,10 +103,11 @@ public class PerfilVigilante extends Fragment {
         tvClave.setText("falta agregarlo");
 
         int estado = user.getEstado();
-        String estadoS = String.valueOf(estado);
-
-        tvDisponibilidad.setText(estadoS);
-
+        if (estado==0){
+            tvDisponibilidad.setText("Estacionamiento lleno");
+        } else {
+            tvDisponibilidad.setText("Estacionamientos disponibles");
+        }
 
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {

@@ -101,8 +101,8 @@ public class Login extends AppCompatActivity {
                             mJsonObject.getString("nombres"),
                             mJsonObject.getString("apellidos"),
                             mJsonObject.getString("api_token"),
-                            mJsonObject.getInt("estado"),
                             mJsonObject.getInt("rol_id"),
+                            mJsonObject.getInt("estado"),
                             mJsonRole.getString("nombre"));
 
                     if (mJsonObject.getString("num_placa").length() > 4){

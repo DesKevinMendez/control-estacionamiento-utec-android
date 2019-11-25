@@ -139,6 +139,7 @@ public class InicioVigilante extends Fragment {
             @Override
             public void onClick(View v) {
                 PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
             }
         });
 

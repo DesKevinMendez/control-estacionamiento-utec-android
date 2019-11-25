@@ -216,7 +216,7 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
         @Override
         public void onErrorResponse(VolleyError error) {
 
-            Toast.makeText(context, "Error al obtener el usuario F ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Error al obtener el usuario ", Toast.LENGTH_SHORT).show();
 
             progressDialog.dismiss();
 
@@ -231,35 +231,30 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
 
 
 
-
-
-
-
     public void ValidarEntrada(final Context context, int edificioId, int userId){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Cargando Datos...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();
-        Log.i("LOGI","SE CREO EL METODO VALIDAR");
+        Log.i("LOGI","SE CREO EL METODO VALIDAR ENTRADA");
 
-        String url = BASE_URL+"users/validar-entrada?api_token="+user.getApi_token();
+        String url = BASE_URL+"users/validar-entrada?api_token="+user.getApi_token()+"&edificio_id"+edificioId+"&user_id"+userId;
         Map<String, Integer> params = new HashMap();
         params.put("edificio_id", edificioId);
         params.put("user_id", userId);
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        Log.i("MENS","SE REALIZO LA PETICION");
+        Log.i("LOGI","SE REALIZO LA PETICION");
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    String data = response.getString("");
+                    Toast.makeText(context, data, Toast.LENGTH_LONG).show();
                     Log.i("LOGI", "Se valido la entrada");
-
-                    String data = response.getString("Realizado con exito");
-                    Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
                 } catch (JSONException e){
 
                     Log.i("VOLLEY","Error "+ e.toString());
@@ -272,7 +267,7 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(context, "Error al validar ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al validar entrada", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
 
             }
@@ -281,6 +276,54 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
         queue.add(request);
 
     }
+
+
+
+    public void ValidarSalida(final Context context, int userId){
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Cargando Datos...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Log.i("LOGI","SE CREO EL METODO VALIDAR");
+
+        String url = BASE_URL+"users/validar-salida?api_token="+user.getApi_token();
+        Map<String, Integer> params = new HashMap();
+        params.put("user_id", userId);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        Log.i("MENS","SE REALIZO LA PETICION");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String data = response.getString("");
+                    Toast.makeText(context, data, Toast.LENGTH_LONG).show();
+                    Log.i("LOGI", "Se valido la Salida");
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error "+ e.toString());
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(context, "Error al validar salida ", Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
 
 
 

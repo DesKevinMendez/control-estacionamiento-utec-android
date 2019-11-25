@@ -11,8 +11,8 @@ public final class User {
     private static String carnet = "";
     private static int reserva_id;
     private static String api_token = "";
-    private static int rol_id;
     private static int estado;
+    private static int rol_id;
     private static String name_role;
     private static String nombre_edificio_parqueo_asignado;
     private static String alias_edificio_parqueo_asignado;
