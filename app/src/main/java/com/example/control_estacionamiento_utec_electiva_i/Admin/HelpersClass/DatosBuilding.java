@@ -18,6 +18,15 @@ public final class DatosBuilding {
 
     private static String buildingSelected = "";
 
+    private static String buildingIdSelected = "";
+
+    public static String getBuildingIdSelected() {
+        return buildingIdSelected;
+    }
+
+    public static void setBuildingIdSelected(int vigilanteIDSelected) {
+        DatosBuilding.buildingIdSelected = IdEdificios.get(vigilanteIDSelected).toString();
+    }
 
     public static int getTotalEdificios() {
         return edificios.size();

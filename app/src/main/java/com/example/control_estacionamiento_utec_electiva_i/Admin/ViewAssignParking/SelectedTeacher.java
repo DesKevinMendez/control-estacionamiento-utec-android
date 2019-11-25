@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
@@ -74,6 +75,7 @@ public class SelectedTeacher extends Fragment {
                 if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
 
                     DatosVigilante.setvigilanteSelected(i);
+                    DatosVigilante.setVigilanteIDSelected(i);
 
                 } else {
 

@@ -14,6 +14,16 @@ public final class DatosVigilante {
     private static ArrayList filtervigilante = new ArrayList();
     private static String vigilanteSelected = "";
 
+    private static String vigilanteIDSelected = "";
+
+    public static String getVigilanteIDSelected() {
+        return vigilanteIDSelected;
+    }
+
+    public static void setVigilanteIDSelected(int vigilanteIDSelected) {
+        DatosVigilante.vigilanteIDSelected = Idvigilante.get(vigilanteIDSelected).toString();
+    }
+
     public static void setDatavigilante(String vigilantes, String carnet, int id) {
         vigilante.add(vigilantes);
         Idvigilante.add(id);
