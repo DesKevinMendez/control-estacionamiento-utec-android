@@ -80,7 +80,7 @@ public class InicioEstudiante extends Fragment {
         TextView tvDisponibilidad = view.findViewById(R.id.tvDisponibilidad);
 
         tvNombre.setText(user.getNombres() + " "+ user.getApellidos());
-        tvCarnet.setText("falta agregar");
+        tvCarnet.setText(user.getCarnet());
         tvEstacionamiento.setText(user.getNombre_edificio_parqueo_asignado());
 
         int estad = user.getEstado();
