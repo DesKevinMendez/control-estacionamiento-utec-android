@@ -1,14 +1,12 @@
 package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 
 import android.util.Log;
@@ -110,8 +108,8 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
             case R.id.reservadosVigilante:
                 Log.i("TEST", "Estacionamientos reservados");
                 getSupportActionBar().setTitle("Estacionamiento Reservados");
-                //PeticionesVigilante peticion2 = new PeticionesVigilante();
-                peticion.ObtenerReservados(vigilanteNavigationDrawer.this);
+                PeticionesVigilante peticion2 = new PeticionesVigilante();
+                peticion2.ObtenerReservados(vigilanteNavigationDrawer.this);
                 break;
 
             case R.id.perfilVigilante:

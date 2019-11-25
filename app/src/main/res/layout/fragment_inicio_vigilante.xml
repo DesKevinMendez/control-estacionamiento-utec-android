@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:text="Benito Juarez" />
 
-                    <TextView
+                  <!--  <TextView
                         android:id="@+id/textView20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                         android:id="@+id/tvTipo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Reservado" />
+                        android:text="Reservado" /> -->
 
                     <TextView
                         android:id="@+id/textView22"
@@ -173,7 +173,19 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/oval"
 
-                android:text="Validar Entrada / Salida"
+                android:text="Validar Entrada "
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnValidarSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/oval"
+                android:text="Validar Salida"
                 android:textColor="#FFFFFF" />
 
         </LinearLayout>
