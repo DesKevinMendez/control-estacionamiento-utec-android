@@ -7,6 +7,7 @@ public final class User {
     private static String num_placa = "";
     private static String nombres = "";
     private static String apellidos = "";
+    private static String numPlaca = "";
     private static int reserva_id;
     private static String api_token = "";
     private static int rol_id;
@@ -15,6 +16,14 @@ public final class User {
     private static String nombre_edificio_parqueo_asignado;
     private static String alias_edificio_parqueo_asignado;
     private static int num_reservados_edificio_parqueo_asignado;
+
+    public static String getNumPlaca() {
+        return numPlaca;
+    }
+
+    public static void setNum_placa(String num_placa) {
+        User.num_placa = num_placa;
+    }
 
     public static String getNombre_edificio_parqueo_asignado() {
         return nombre_edificio_parqueo_asignado;
