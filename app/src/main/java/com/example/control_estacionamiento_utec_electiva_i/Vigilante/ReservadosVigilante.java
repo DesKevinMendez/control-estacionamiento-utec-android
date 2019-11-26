@@ -81,7 +81,10 @@ public class ReservadosVigilante extends Fragment {
         Button btnRegresar = view.findViewById(R.id.btnRegresar);
         ListView lvEdificios = view.findViewById(R.id.lvEdificios);
 
-
+        lvEdificios.setAdapter(new
+                Adaptador(getActivity(),
+                datosVigilante.dataBuilding(),
+                datosVigilante.dataEstaDispo()));
 
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {

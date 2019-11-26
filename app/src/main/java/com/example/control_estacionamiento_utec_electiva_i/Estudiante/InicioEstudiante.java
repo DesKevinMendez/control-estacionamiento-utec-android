@@ -84,8 +84,11 @@ public class InicioEstudiante extends Fragment {
         tvEstacionamiento.setText(user.getNombre_edificio_parqueo_asignado());
 
         int estad = user.getEstado();
-        String estado = String.valueOf(estad);
-        tvDisponibilidad.setText(estado);
+        if (estad==0){
+            tvDisponibilidad.setText("Estacionamiento lleno");
+        } else {
+            tvDisponibilidad.setText("Estacionamientos disponibles");
+        }
 
         return view;
     }

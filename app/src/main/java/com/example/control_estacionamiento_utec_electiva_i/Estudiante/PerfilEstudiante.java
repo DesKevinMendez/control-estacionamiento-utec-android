@@ -94,7 +94,7 @@ public class PerfilEstudiante extends Fragment {
         final EditText edtConfirmar = view.findViewById(R.id.edtConfirmarClave);
 
         tvNombre.setText(user.getNombres() + " " + user.getApellidos());
-        //tvCarnet.setText(user.getCarnet());
+        tvCarnet.setText(user.getCarnet());
 
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override

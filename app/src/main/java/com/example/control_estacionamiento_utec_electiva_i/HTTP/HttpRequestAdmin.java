@@ -224,7 +224,7 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

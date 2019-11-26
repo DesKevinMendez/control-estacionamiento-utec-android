@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
 
 
 /**
@@ -78,6 +80,10 @@ public class InicioVigilante extends Fragment {
 
     }
 
+    //DatosVigilante datosVigilante;
+    public static int idUsuario=0;
+    public static int idEdificio=0;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,13 +92,14 @@ public class InicioVigilante extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inicio_vigilante, container, false);
         Button btnBuscar = view.findViewById(R.id.btnBuscar);
         Button btnValidar = view.findViewById(R.id.btnValidar);
+        Button btnValidarSalida = view.findViewById(R.id.btnValidarSalida);
 
         final EditText edtPlaca = view.findViewById(R.id.edtPlaca);
 
         final TextView tvNombre = view.findViewById(R.id.tvNombre);
         final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
         final TextView tvEdificio = view.findViewById(R.id.tvEdificio);
-        final TextView tvTipo = view.findViewById(R.id.tvTipo);
+        //final TextView tvTipo = view.findViewById(R.id.tvTipo);
         final TextView tvEntrada = view.findViewById(R.id.tvEntrada);
         final TextView tvSalida = view.findViewById(R.id.tvSalida);
 
@@ -100,6 +107,22 @@ public class InicioVigilante extends Fragment {
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Placa;
+
+                Placa = edtPlaca.getText().toString().trim();
+                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
+                DatosVigilante datosVigilante = new DatosVigilante();
+
+                tvNombre.setText(datosVigilante.getNombreUser() +" "+datosVigilante.getApellidoUser());
+                tvPlaca.setText(datosVigilante.getPlacaUser());
+                tvEdificio.setText(datosVigilante.getEdificioAsignadoUser());
+                //tvTipo.setText("Usuario");
+                tvEntrada.setText(datosVigilante.getHoraEntradaUser());
+                tvSalida.setText(datosVigilante.getHoraSalidaUser());
+
+                idUsuario = datosVigilante.getIdUserUser();
+                idEdificio= datosVigilante.getIdEdificioUser();
 
             }
         });
@@ -107,7 +130,16 @@ public class InicioVigilante extends Fragment {
         btnValidar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.ValidarEntrada(getActivity(),idUsuario,idEdificio);
+            }
+        });
 
+        btnValidarSalida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
             }
         });
 
