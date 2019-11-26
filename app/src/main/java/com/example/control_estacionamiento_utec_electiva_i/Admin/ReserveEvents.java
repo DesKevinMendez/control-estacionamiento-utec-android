@@ -1,6 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.icu.util.Calendar;
 import android.net.Uri;
@@ -15,22 +16,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosEvents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
-import com.example.control_estacionamiento_utec_electiva_i.Helpers.DatePickerFragment;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class ReserveEvents extends Fragment implements View.OnClickListener {
+public class ReserveEvents extends Fragment implements View.OnClickListener,
+        RadioGroup.OnCheckedChangeListener
+    {
     private OnFragmentInteractionListener mListener;
 
     public ReserveEvents() {
@@ -44,9 +48,12 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
         NavigationView navigationView = (NavigationView) getActivity().findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(3).setChecked(true);
     }
+
     Button btnSelectedBuilding, btnAceptar, btnDenegar;
-    Spinner spCantidad, SpHorariosRP;
-    EditText etPlannedDate;
+    Spinner spCantidad, SpHorarioEntradaRP, SpHorarioSalidaRP;
+    EditText etPlannedDate, edtHorariosEntrada, edtHorariosSalida;
+    RadioGroup grdbHorarios;
+    RadioButton rdbSelccionable, rdbEditable;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,12 +68,17 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
             btnSelectedBuilding.setText(DatosBuilding.getBuildingSelected());
         }
 
+        grdbHorarios = view.findViewById(R.id.grdbHorarios);
+        rdbSelccionable = view.findViewById(R.id.rdbSelccionable);
+        rdbEditable = view.findViewById(R.id.rdbEditable);
+
         btnAceptar = view.findViewById(R.id.btnAceparRP);
         btnDenegar = view.findViewById(R.id.btnDenegarRP);
 
 
         spCantidad = view.findViewById(R.id.SpCantidadEstacionamiento);
-        SpHorariosRP = view.findViewById(R.id.SpHorariosRP);
+        SpHorarioEntradaRP = view.findViewById(R.id.SpHorarioEntradaRP);
+        SpHorarioSalidaRP = view.findViewById(R.id.spHorarioSalidaRP);
 
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
                 createFromResource(getActivity(), R.array.cantidad_parqueo, R.layout.spinner_item_design);
@@ -77,21 +89,27 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
         ArrayAdapter<CharSequence> hr = ArrayAdapter.
                 createFromResource(getActivity(), R.array.horarios, R.layout.spinner_item_design);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        SpHorariosRP.setAdapter(hr);
+        SpHorarioEntradaRP.setAdapter(hr);
+        SpHorarioSalidaRP.setAdapter(hr);
 
 
         etPlannedDate = view.findViewById(R.id.etPlannedDate);
+        edtHorariosEntrada = view.findViewById(R.id.edtHorariosEntrada);
+        edtHorariosSalida = view.findViewById(R.id.edtHorariosSalida);
 
         if (!DatosEvents.getFecha().isEmpty()) {
             etPlannedDate.setText(DatosEvents.getFecha());
         }
         etPlannedDate.setOnClickListener(this);
+        edtHorariosEntrada.setOnClickListener(this);
+        edtHorariosSalida.setOnClickListener(this);
+
 
         btnSelectedBuilding.setOnClickListener(this);
         btnAceptar.setOnClickListener(this);
         btnDenegar.setOnClickListener(this);
 
-
+        grdbHorarios.setOnCheckedChangeListener(this);
         return view;
     }
 
@@ -133,14 +151,50 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
                 break;
 
 
-                case R.id.etPlannedDate:
+            case R.id.etPlannedDate:
+
                 showDatePickerDialog();
+                break;
+
+            case R.id.edtHorariosEntrada:
+                showClockPickerDialog(R.id.edtHorariosEntrada);
+
+                break;
+
+            case R.id.edtHorariosSalida:
+                showClockPickerDialog(R.id.edtHorariosSalida);
+
                 break;
             default:
                 break;
         }
 
     }
+
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+        switch (checkedId){
+            case R.id.rdbEditable:
+                SpHorarioSalidaRP.setVisibility(View.GONE);
+                SpHorarioEntradaRP.setVisibility(View.GONE);
+
+                edtHorariosSalida.setVisibility(View.VISIBLE);
+                edtHorariosEntrada.setVisibility(View.VISIBLE);
+
+                break;
+            case R.id.rdbSelccionable:
+                SpHorarioSalidaRP.setVisibility(View.VISIBLE);
+                SpHorarioEntradaRP.setVisibility(View.VISIBLE);
+
+                edtHorariosSalida.setVisibility(View.GONE);
+                edtHorariosEntrada.setVisibility(View.GONE);
+
+                break;
+                default:
+                    break;
+        }
+    }
+
 
     public void changeFragments(Fragment fragment, String actionOfReserverEvents, String ReserveEvents){
         Bundle datosAEnviar = new Bundle();
@@ -183,6 +237,28 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
 
     }
 
+    public void showClockPickerDialog(final int idInput) {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), R.style.CustomDatePickerDialogTheme,
+                new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
+                switch (idInput){
+                    case R.id.edtHorariosEntrada:
+                        edtHorariosEntrada.setText(hourOfDay + ":" + minutes);
+
+                        break;
+
+                    case R.id.edtHorariosSalida:
+
+                        edtHorariosSalida.setText(hourOfDay + ":" + minutes);
+
+                        break;
+                }
+            }
+        }, 0, 0, false);
+        timePickerDialog.show();
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -208,17 +284,6 @@ public class ReserveEvents extends Fragment implements View.OnClickListener {
     }
 
 
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

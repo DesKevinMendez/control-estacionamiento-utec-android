@@ -25,15 +25,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="@string/days_admin"
             android:textSize="18sp"
+            android:text="Fecha"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spSeleccionarDias"
+        <EditText
+            android:id="@+id/edtFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp" />
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Fecha de reserva"
+            android:inputType="date"
+            android:maxLines="1"
+            android:theme="@style/EditTextTheme" />
 
         <TextView
             android:id="@+id/textView67"
@@ -42,7 +47,8 @@
             android:layout_marginBottom="5dp"
             android:text="@string/teacher_admin"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Anfitrión" />
 
         <Button
             android:id="@+id/btnSeleccionarDocenteRP"
@@ -109,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:text="Comentario"
+            android:text="Información de visitante"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -118,11 +124,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="15dp"
-            android:ems="10"
-            android:theme="@style/EditTextTheme"
             android:cursorVisible="false"
-            android:hint="Detalles de reserva de estacionamiento"
-            android:inputType="textMultiLine" />
+            android:ems="10"
+            android:hint="Escribe placa, DUI o cualquier identificador del visitante"
+            android:inputType="textMultiLine"
+            android:theme="@style/EditTextTheme" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -8,96 +8,205 @@
     android:clickable="true"
     tools:context=".Admin.ReserveEvents">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="@string/parking_admin"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnSelectedBuilding"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/oval_white"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/selectedBuilding" />
-
-        <TextView
-            android:id="@+id/edtCarnet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="@string/parking_lenght_admin"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/SpCantidadEstacionamiento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/edtCarnet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="@string/schedule_admin"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/SpHorariosRP"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp" />
-
-        <EditText
-            android:id="@+id/etPlannedDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="false"
-            android:hint="Fecha"
-            android:theme="@style/EditTextTheme"
-            android:inputType="date"
-            android:maxLines="1" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/parking_admin"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnDenegarRP"
-                android:layout_width="wrap_content"
+                android:id="@+id/btnSelectedBuilding"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_marginBottom="15dp"
-                android:layout_weight="1"
                 android:background="@drawable/oval_white"
-                android:text="@string/denegar_admin"
+                android:text="@string/selectedBuilding"
                 android:textColor="@color/colorPrimary" />
 
-            <Button
-                android:id="@+id/btnAceparRP"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/edtHorarioRE"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="@string/parking_lenght_admin"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="15dp"
-                android:layout_weight="1"
-                android:background="@drawable/oval"
-                android:text="@string/aceptar_admin"
-                android:textColor="@color/colorSecundary" />
+            <Spinner
+                android:id="@+id/SpCantidadEstacionamiento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Modo de entrada de horario"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/grdbHorarios"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rdbSelccionable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Seleccionable" />
+
+                    <RadioButton
+                        android:id="@+id/rdbEditable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Editable" />
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Horario entrada"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/SpHorarioEntradaRP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp" />
+
+                <EditText
+                    android:id="@+id/edtHorariosEntrada"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:hint="Horarios entrada"
+                    android:inputType="textPersonName"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Horarios salida"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spHorarioSalidaRP"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp" />
+
+                <EditText
+                    android:id="@+id/edtHorariosSalida"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:hint="Horarios salida"
+                    android:inputType="textPersonName"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Fecha"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etPlannedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Fecha de evento"
+                android:inputType="date"
+                android:maxLines="1"
+                android:theme="@style/EditTextTheme" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:text="Información de reserva de evento"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Especifique el motivo de la reserva"
+                android:inputType="textMultiLine" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnDenegarRP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/oval_white"
+                    android:text="@string/denegar_admin"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/btnAceparRP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/oval"
+                    android:text="@string/aceptar_admin"
+                    android:textColor="@color/colorSecundary" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

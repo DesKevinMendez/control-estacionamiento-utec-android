@@ -1,6 +1,8 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
+import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,13 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosEvents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.InfoSetViews.ReserveParkingDataSend;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -44,9 +50,9 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
     Button btnSeleccionarDocenteRP, btnSeleccionarEstacionamientoRP, btnSeleccionarHorarioRP,
             btnAceptarRP, btnDenegarRP;
-    Spinner spSeleccionarDias, spCantidadHorariosRP;
+    Spinner  spCantidadHorariosRP;
     EditText edtComentario;
-
+    EditText edtFecha;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,7 +60,6 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recerve_parking_admin, container, false);
 
-        spSeleccionarDias = view.findViewById(R.id.spSeleccionarDias);
         spCantidadHorariosRP = view.findViewById(R.id.spCantidadHorariosRP);
 
         ArrayAdapter<CharSequence> ad = ArrayAdapter.
@@ -62,10 +67,7 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCantidadHorariosRP.setAdapter(ad);
 
-        ArrayAdapter<CharSequence> dias = ArrayAdapter.
-                createFromResource(getActivity(), R.array.dias, R.layout.spinner_item_design);
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spSeleccionarDias.setAdapter(dias);
+        edtFecha = view.findViewById(R.id.edtFecha);
 
         btnSeleccionarDocenteRP = view.findViewById(R.id.btnSeleccionarDocenteRP);
         btnSeleccionarEstacionamientoRP = view.findViewById(R.id.btnSeleccionarEstacionamientoRP);
@@ -93,18 +95,22 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
             }
         }
 
+        if (!ReserveParkingDataSend.getFechaReserva().equals("")){
+            edtFecha.setText(ReserveParkingDataSend.getFechaReserva());
+        }
         btnSeleccionarDocenteRP.setOnClickListener(this);
         btnSeleccionarEstacionamientoRP.setOnClickListener(this);
         btnSeleccionarHorarioRP.setOnClickListener(this);
         btnAceptarRP.setOnClickListener(this);
         btnDenegarRP.setOnClickListener(this);
 
+        edtFecha.setOnClickListener(this);
+
         return view;
     }
 
     @Override
     public void onClick(View view) {
-
 
         HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch (view.getId()) {
@@ -167,6 +173,11 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
 
                 break;
+            case R.id.edtFecha:
+
+                showDatePickerDialog();
+
+                break;
             case R.id.btnDenegarRP:
                 changeFragments(new InicioAdmin());
 
@@ -174,6 +185,26 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
                 default:
                     break;
         }
+    }
+
+    private void showDatePickerDialog() {
+        Calendar mcurrentDate = Calendar.getInstance();
+        int mYear = mcurrentDate.get(Calendar.YEAR);
+        int mMonth = mcurrentDate.get(Calendar.MONTH);
+        int mDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog mDatePicker;
+        mDatePicker = new DatePickerDialog(getActivity(), R.style.CustomDatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
+            public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                TextView PlannedDate = getActivity().findViewById(R.id.edtFecha);
+                String selectedDate = selectedday + " / " + (selectedmonth+1) + " / " + selectedyear;
+                PlannedDate.setText(selectedDate);
+                ReserveParkingDataSend.setFechaReserva(selectedDate);
+
+            }
+        }, mYear, mMonth, mDay);
+        mDatePicker.show();
+
     }
     public void changeFragments(Fragment fragment){
         // Establece teacherSelected y a buildingSelected como ""
@@ -215,16 +246,6 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     }
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
