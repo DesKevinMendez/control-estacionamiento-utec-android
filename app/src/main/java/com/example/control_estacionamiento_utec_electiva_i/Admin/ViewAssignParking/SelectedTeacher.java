@@ -21,6 +21,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.VigilanteAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -57,8 +58,8 @@ public class SelectedTeacher extends Fragment {
         if (datosRecuperados != null) {
             if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
 
-                teacherList.setAdapter(new TeacherAdapter(getActivity(), datosVigilante.getAllvigilante(),
-                        datosVigilante.getAllCarnetsvigilante()));
+                teacherList.setAdapter(new VigilanteAdapter(getActivity(), datosVigilante.getAllvigilante(),
+                        datosVigilante.getEstacionaminetoAsignado(), datosVigilante.getAliasEstacionaminetoAsignado()));
 
             } else {
 
@@ -73,9 +74,10 @@ public class SelectedTeacher extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 if (datosRecuperados.getString("actionOfAssignWatchman") != null) {
+                    String buscar = tvFindUser.getText().toString().trim();
 
+                    DatosVigilante.setVigilanteIDSelected(buscar, i);
                     DatosVigilante.setvigilanteSelected(i);
-                    DatosVigilante.setVigilanteIDSelected(i);
 
                 } else {
 
@@ -128,8 +130,9 @@ public class SelectedTeacher extends Fragment {
 
                     DatosVigilante.getFiltervigilantes(editable.toString());
 
-                    teacherList.setAdapter(new TeacherAdapter(getActivity(), datosVigilante.getFiltervigilantes(editable.toString()),
-                            datosVigilante.getFilterCarnetvigilante()));
+                    teacherList.setAdapter(new VigilanteAdapter(getActivity(),
+                            datosVigilante.getFiltervigilantes(editable.toString()),
+                            datosVigilante.getFilterEstacionaminetoAsignado(), datosVigilante.getFilterAliasEstacionaminetoAsignado()));
 
                 } else {
 
@@ -174,16 +177,6 @@ public class SelectedTeacher extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

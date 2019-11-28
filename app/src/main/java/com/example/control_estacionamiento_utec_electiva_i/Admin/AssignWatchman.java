@@ -49,8 +49,6 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,9 +129,7 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
 
                     HTTPrequestAssignWathMan(getActivity(), DatosVigilante.getVigilanteIDSelected()
                             ,DatosBuilding.getBuildingIdSelected());
-                    /*httpRequestAdmin.HTTPrequestAssignWathMan(getActivity(), DatosVigilante.getVigilanteIDSelected()
-                    ,DatosBuilding.getBuildingIdSelected());*/
-                    //changeFragments(new InicioAdmin());
+
                 }
                 break;
             case R.id.btnSeleccionarEdificio:
@@ -181,6 +177,9 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
             public void onResponse(JSONObject response) {
 
                 changeFragments(new InicioAdmin());
+                DatosVigilante.setClearFilter();
+                DatosVigilante.clearDatavigilante();
+                Toast.makeText(context, "Vigilante asignado", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
             }

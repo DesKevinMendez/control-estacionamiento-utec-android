@@ -131,16 +131,31 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
                         String placa = mJsonObject.getString("num_placa");
                         int idVigilante = mJsonObject.getInt("id");
 
+                        if (mJsonObject.getJSONArray("edificios").length() != 0){
+
+                            JSONArray edificios = mJsonObject.getJSONArray("edificios");
+
+                            for (int j = 0; j < edificios.length(); j++){
+                                   JSONObject data = edificios.getJSONObject(j);
+
+                                DatosVigilante.setDataEstacionemientoAsignadoVigilante(data.getString("nombre"),
+                                        data.getString("alias"));
+                            }
+
+                        } else {
+                            DatosVigilante.setDataEstacionemientoAsignadoVigilante("No asignado",
+                                 "No");
+                        }
+
                         DatosVigilante.setDatavigilante(nombre+" "+apellido, placa, idVigilante);
 
-                        changeFragments(context, new SelectedTeacher(),
-                                putStringName, putStringDescription);
-
-
                     }
+
+                    changeFragments(context, new SelectedTeacher(),
+                            putStringName, putStringDescription);
                 } catch (JSONException e){
 
-                    Log.i("VOLLEY","Error de parcing en AssignParking - method: HTTPrequestTeacher "+ e.toString());
+                    Log.i("VOLLEY", e.toString());
                     e.printStackTrace();
 
                 }

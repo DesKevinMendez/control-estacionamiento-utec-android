@@ -9,9 +9,12 @@ public final class DatosVigilante {
 
     private static ArrayList vigilante = new ArrayList();
     private static ArrayList Idvigilante = new ArrayList();
-    private static ArrayList carnetvigilante= new ArrayList();
-    private static ArrayList FilterCarnetvigilante= new ArrayList();
-    private static ArrayList filtervigilante = new ArrayList();
+    private static ArrayList filtervigilante= new ArrayList();
+    private static ArrayList FilterEstacionaminetoAsignado= new ArrayList();
+    private static ArrayList FilterIdVigilante = new ArrayList();
+    private static ArrayList filterAliasEstacionaminetoAsignado = new ArrayList();
+    private static ArrayList EstacionaminetoAsignado = new ArrayList();
+    private static ArrayList AliasEstacionaminetoAsignado = new ArrayList();
     private static String vigilanteSelected = "";
 
     private static String vigilanteIDSelected = "";
@@ -20,19 +23,30 @@ public final class DatosVigilante {
         return vigilanteIDSelected;
     }
 
-    public static void setVigilanteIDSelected(int vigilanteIDSelected) {
-        DatosVigilante.vigilanteIDSelected = Idvigilante.get(vigilanteIDSelected).toString();
+    public static void setVigilanteIDSelected(String filtro, int vigilanteIDSelected) {
+        if (filtro.isEmpty()){
+
+            DatosVigilante.vigilanteIDSelected = Idvigilante.get(vigilanteIDSelected).toString();
+
+        }else {
+
+            DatosVigilante.vigilanteIDSelected = FilterIdVigilante.get(vigilanteIDSelected).toString();
+
+        }
     }
+
 
     public static void setDatavigilante(String vigilantes, String carnet, int id) {
         vigilante.add(vigilantes);
         Idvigilante.add(id);
-        if (carnet.equals(null)){
-            carnetvigilante.add("No disponible");
-        }else {
-            carnetvigilante.add(carnet);
-        }
+
     }
+
+    public static  void setDataEstacionemientoAsignadoVigilante(String edificio, String alias){
+        EstacionaminetoAsignado.add(edificio);
+        AliasEstacionaminetoAsignado.add(alias);
+    }
+
     public static ArrayList getFiltervigilantes(String value) {
         setClearFilter();
 
@@ -43,11 +57,20 @@ public final class DatosVigilante {
         }
         for (String vigilantes : vigilanteFilter) {
             filtervigilante.add(vigilantes);
-            FilterCarnetvigilante.add(carnetvigilante.get(vigilante.indexOf(vigilantes)).toString());
-            Log.i("vigilanteCOUNTS", String.valueOf(filtervigilante.size()));
+            FilterEstacionaminetoAsignado.add(EstacionaminetoAsignado.get(vigilante.indexOf(vigilantes)).toString());
+            filterAliasEstacionaminetoAsignado.add(AliasEstacionaminetoAsignado.get(vigilante.indexOf(vigilantes)).toString());
+            FilterIdVigilante.add(Idvigilante.get(vigilante.indexOf(vigilantes)).toString());
         }
 
         return vigilanteFilter;
+    }
+
+    public static ArrayList getFilterEstacionaminetoAsignado(){
+        return FilterEstacionaminetoAsignado;
+    }
+
+    public static ArrayList getFilterAliasEstacionaminetoAsignado(){
+        return filterAliasEstacionaminetoAsignado;
     }
 
     public static int getTotalvigilante(){
@@ -57,25 +80,28 @@ public final class DatosVigilante {
     public static void clearDatavigilante(){
         Idvigilante.clear();
         vigilante.clear();
-        carnetvigilante.clear();
-    }
-
-    public static ArrayList getFilterCarnetvigilante() {
-        return FilterCarnetvigilante;
+        EstacionaminetoAsignado.clear();
+        AliasEstacionaminetoAsignado.clear();
     }
 
     public static void setClearFilter() {
         filtervigilante.clear();
-        FilterCarnetvigilante.clear();
+        FilterIdVigilante.clear();
+        FilterEstacionaminetoAsignado.clear();
+        filterAliasEstacionaminetoAsignado.clear();
     }
     public static  ArrayList getAllvigilante() {
         return vigilante;
     }
 
-
-    public static ArrayList getAllCarnetsvigilante() {
-        return carnetvigilante;
+    public static  ArrayList getEstacionaminetoAsignado() {
+        return EstacionaminetoAsignado;
     }
+
+    public static  ArrayList getAliasEstacionaminetoAsignado() {
+        return AliasEstacionaminetoAsignado;
+    }
+
 
     public static void setvigilanteSelected (int value) {
         Log.i("vigilanteSELECTED",  String.valueOf(value) +" " + String.valueOf(filtervigilante.size()));
