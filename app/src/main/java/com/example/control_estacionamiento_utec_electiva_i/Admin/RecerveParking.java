@@ -215,28 +215,8 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
                     Log.i("Horarios", DatosSchedule.getHoraEntrada() + " " + DatosSchedule.getHoraSalida());
                     Log.i("Motivo de reserva", comentario);
 
-                    String[] horaEntrada = DatosSchedule.getHoraEntrada().split(":");
-                    String[] horaSalida = DatosSchedule.getHoraSalida().split(":");
-                    String HoraEntrada = "";
-                    String HoraSalida = "";
-
-                    if (Integer.valueOf(horaEntrada[0]) <10 ){
-                        HoraEntrada = "0"+horaEntrada[0]+":"+horaEntrada[1];
-                    } else {
-                        HoraEntrada = DatosSchedule.getHoraEntrada();
-                    }
-
-                    if (Integer.valueOf(horaSalida[0])< 10){
-                        HoraSalida = "0"+horaSalida[0]+":"+horaSalida[1];
-
-                    }else {
-                        HoraSalida = DatosSchedule.getHoraSalida();
-                    }
-                    Log.i("FORMATO", HoraEntrada);
-                    Log.i("FORMATO", HoraSalida);
-
                     HTTPrequestResereParking(DatosTeacher.getTeacherIdSelected(), DatosBuilding.getBuildingIdSelected(),
-                            fecha, HoraEntrada, HoraSalida,
+                            fecha, DatosSchedule.getHoraEntrada(), DatosSchedule.getHoraSalida(),
                             cantidadReservaEstacionamiento, comentario);
 
                 }

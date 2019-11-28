@@ -103,13 +103,33 @@ public class SelectedSchedule extends Fragment implements AdapterView.OnItemSele
 
         switch (adapterView.getId()) {
             case R.id.SpHoraInicio:
+
+                String[] horaEntrada = adapterView.getItemAtPosition(i).toString().split(":");
+                String HoraEntrada = "";
+
+                if (Integer.valueOf(horaEntrada[0]) <10 ){
+                    HoraEntrada = "0"+horaEntrada[0]+":"+horaEntrada[1];
+                } else {
+                    HoraEntrada = adapterView.getItemAtPosition(i).toString();
+                }
+
                 tvHoraInicioSS.setText(adapterView.getItemAtPosition(i).toString());
-                DatosSchedule.setHoraEntrada(adapterView.getItemAtPosition(i).toString());
+                DatosSchedule.setHoraEntrada(HoraEntrada);
                 break;
 
             case R.id.SpHoraSalida:
+                String[] horaSalida = adapterView.getItemAtPosition(i).toString().split(":");
+                String HoraSalida = "";
+
+                if (Integer.valueOf(horaSalida[0])< 10){
+                    HoraSalida = "0"+horaSalida[0]+":"+horaSalida[1];
+
+                }else {
+                    HoraSalida = adapterView.getItemAtPosition(i).toString();
+                }
+
                 tvHoraSalidaSS.setText(adapterView.getItemAtPosition(i).toString());
-                DatosSchedule.setHoraSalida(adapterView.getItemAtPosition(i).toString());
+                DatosSchedule.setHoraSalida(HoraSalida);
                 break;
 
             default:
