@@ -22,6 +22,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.InicioAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
@@ -340,6 +341,17 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         Bundle datosAEnviar = new Bundle();
         datosAEnviar.putString(putStringName, putStringDescription);
         fragment.setArguments(datosAEnviar);
+
+        activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).
+                replace(R.id.nav_host_fragment, fragment).commit();
+
+    }
+
+    public void changeFragments(Context context, Fragment fragment){
+        // Establece teacherSelected y a buildingSelected como ""
+        AppCompatActivity activity = (AppCompatActivity) context;
+        DatosTeacher.setTeacherSelected(-1);
+        DatosBuilding.setBuildingSelected(-1);
 
         activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.nav_host_fragment, fragment).commit();

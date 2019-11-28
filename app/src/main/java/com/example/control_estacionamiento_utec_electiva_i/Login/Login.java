@@ -25,6 +25,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.vigilanteNavigationDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -119,16 +120,20 @@ public class Login extends AppCompatActivity {
                     Log.i("CARNET", mJsonObject.getString("carnet"));
                     Log.i("CARNET", user.getCarnet());
 
-                    if (mJsonObject.getJSONArray("reservas").length() != 0){
-                        JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
-                        JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
-
-                        user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
-                                mJsonObjectEdificioReserva.getString("alias"),
-                                mJsonObjectEdificioReserva.getInt("num_reservados"));
-
+                    if (mJsonObject.getInt("rol_id") == 5) {
+                        JSONArray vigilanteInfoEdificion = mJsonObject.getJSONArray("edificios");
                     } else {
-                        user.setDataParqueoAsignado("No asignado", "desconocido", 0);
+                        if (mJsonObject.getJSONArray("reservas").length() != 0){
+                            JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
+                            JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
+
+                            user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
+                                    mJsonObjectEdificioReserva.getString("alias"),
+                                    mJsonObjectEdificioReserva.getInt("num_reservados"));
+
+                        } else {
+                            user.setDataParqueoAsignado("No asignado", "desconocido", 0);
+                        }
                     }
 
                     user.setLoggedUser(true);
