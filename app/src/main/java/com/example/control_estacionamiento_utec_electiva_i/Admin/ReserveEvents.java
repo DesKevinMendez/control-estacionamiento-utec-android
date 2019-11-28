@@ -9,9 +9,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -51,10 +53,11 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
 
     Button btnSelectedBuilding, btnAceptar, btnDenegar;
     Spinner spCantidad, SpHorarioEntradaRP, SpHorarioSalidaRP;
-    EditText etPlannedDate, edtHorariosEntrada, edtHorariosSalida;
+    EditText etPlannedDate, edtHorariosEntrada, edtHorariosSalida, edtMotivoReservaRE;
     RadioGroup grdbHorarios;
     RadioButton rdbSelccionable, rdbEditable;
 
+    String cantidadReserva, HorarioEntrada, HorariosSalida;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
         etPlannedDate = view.findViewById(R.id.etPlannedDate);
         edtHorariosEntrada = view.findViewById(R.id.edtHorariosEntrada);
         edtHorariosSalida = view.findViewById(R.id.edtHorariosSalida);
+        edtMotivoReservaRE = view.findViewById(R.id.edtMotivoReservaRE);
 
         if (!DatosEvents.getFecha().isEmpty()) {
             etPlannedDate.setText(DatosEvents.getFecha());
@@ -110,7 +114,49 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
         btnDenegar.setOnClickListener(this);
 
         grdbHorarios.setOnCheckedChangeListener(this);
+
+        Spinners(spCantidad, R.id.SpCantidadEstacionamiento);
+        Spinners(SpHorarioEntradaRP, R.id.SpHorarioEntradaRP);
+        Spinners(SpHorarioSalidaRP, R.id.spHorarioSalidaRP);
+
+
         return view;
+    }
+
+
+    public void Spinners(final Spinner spinner, final int SpinnerID){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                switch (SpinnerID){
+                    case R.id.SpHorarioEntradaRP:
+                        HorarioEntrada = spinner.getItemAtPosition(position).toString();
+
+                        break;
+                    case R.id.spHorarioSalidaRP:
+
+                        HorariosSalida = spinner.getItemAtPosition(position).toString();
+                       
+                        break;
+                    case R.id.SpCantidadEstacionamiento:
+
+                        cantidadReserva = spinner.getItemAtPosition(position).toString();
+
+                        break;
+                        default:
+                            break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                HorarioEntrada = "";
+                HorariosSalida = "";
+                cantidadReserva = "";
+            }
+
+        });
     }
 
     @Override
@@ -135,13 +181,56 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
 
             case R.id.btnAceparRP:
                 String fecha = etPlannedDate.getText().toString().trim();
+                String motivoReserva = edtMotivoReservaRE.getText().toString().trim();
+
+                final String[] horaSalidaArray;
+                final String[] horaEntradaArray;
+
+                if (rdbEditable.isChecked()){
+
+
+                    String entrada = edtHorariosEntrada.getText().toString().trim();
+                    String salida = edtHorariosSalida.getText().toString().trim();
+                    if (entrada.isEmpty()){
+                        edtHorariosEntrada.setError("Seleccione horario de entrada");
+                        return;
+                    } else if (salida.isEmpty()){
+                        edtHorariosSalida.setError("Seleccione horario de salida");
+                        return;
+                    }
+
+                    HorarioEntrada = entrada;
+                    HorariosSalida = salida;
+
+                }
+
+                horaSalidaArray = HorariosSalida.split(":");
+                horaEntradaArray = HorarioEntrada.split(":");
+
                 if (btnSelectedBuilding.getText().toString().equals(getString(R.string.selectedBuilding))) {
                     Toast.makeText(getContext(), "Seleccione parqueo", Toast.LENGTH_SHORT).show();
+
+                } else if (HorarioEntrada.equals(HorariosSalida)) {
+                    Toast.makeText(getActivity(), "Seleccione horario de salida diferente", Toast.LENGTH_SHORT).show();
+
+                } else if(Integer.valueOf(horaEntradaArray[0]) > Integer.valueOf(horaSalidaArray[0])){
+                    Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
 
                 } else if (fecha.isEmpty()){
                     Toast.makeText(getContext(), "Selecciona fecha", Toast.LENGTH_SHORT).show();
 
+                } else if (motivoReserva.isEmpty()){
+                    edtMotivoReservaRE.setError("Especifique el motivo");
+                    edtMotivoReservaRE.requestFocus();
+
                 } else {
+                    Log.i("Parqueo", DatosBuilding.getBuildingIdSelected());
+                    Log.i("Cantidad estacionamiento", cantidadReserva);
+                    Log.i("Horario entrada", HorarioEntrada);
+                    Log.i("Horario salida", HorariosSalida);
+                    Log.i("Fecha", fecha);
+                    Log.i("Motivo reserva", motivoReserva);
+
                     changeFragments(new InicioAdmin());
                 }
                 break;
@@ -180,6 +269,14 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
 
                 edtHorariosSalida.setVisibility(View.VISIBLE);
                 edtHorariosEntrada.setVisibility(View.VISIBLE);
+
+                if (!HorarioEntrada.isEmpty()){
+                    edtHorariosEntrada.setText(HorarioEntrada);
+                }
+
+                if (!HorariosSalida.isEmpty()){
+                    edtHorariosSalida.setText(HorariosSalida);
+                }
 
                 break;
             case R.id.rdbSelccionable:

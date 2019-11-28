@@ -80,6 +80,7 @@ public class SelectedTeacher extends Fragment {
                 } else {
 
                     DatosTeacher.setTeacherSelected(i);
+                    DatosTeacher.setTeacherIdSelected(i);
 
                 }
 

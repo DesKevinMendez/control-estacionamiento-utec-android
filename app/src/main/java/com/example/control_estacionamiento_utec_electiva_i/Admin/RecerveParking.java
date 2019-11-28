@@ -8,9 +8,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -53,6 +55,8 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
     Spinner  spCantidadHorariosRP;
     EditText edtComentario;
     EditText edtFecha;
+
+    String cantidadReservaEstacionamiento;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -106,6 +110,20 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
         edtFecha.setOnClickListener(this);
 
+        spCantidadHorariosRP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                cantidadReservaEstacionamiento = spCantidadHorariosRP.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+
+        });
         return view;
     }
 
@@ -148,7 +166,12 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btnAceptarRP:
                 String comentario = edtComentario.getText().toString().trim();
-                if (btnSeleccionarDocenteRP.getText().equals(getString(R.string.selectedTeacher))){
+                String fecha = edtFecha.getText().toString().trim();
+
+                if (fecha.isEmpty()){
+                    edtFecha.setError("Seleccione una fecha");
+
+                } else if (btnSeleccionarDocenteRP.getText().equals(getString(R.string.selectedTeacher))){
 
                     Toast.makeText(getActivity(), "Debe de seleccionar un maestro", Toast.LENGTH_SHORT).show();
 
@@ -168,6 +191,12 @@ public class RecerveParking extends Fragment implements View.OnClickListener {
 
                 } else {
 
+                    Log.i("Fecha", fecha);
+                    Log.i("Maestro seleccionado", DatosTeacher.getTeacherIdSelected());
+                    Log.i("Edificio seleccionado", DatosBuilding.getBuildingIdSelected());
+                    Log.i("Cantida reservador", cantidadReservaEstacionamiento);
+                    Log.i("Horarios", DatosSchedule.getHoraEntrada() + " " + DatosSchedule.getHoraSalida());
+                    Log.i("Motivo de reserva", comentario);
                     changeFragments(new InicioAdmin());
                 }
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -127,8 +128,12 @@ public class AssignParking extends Fragment implements OnClickListener {
 
                 } else {
 
+                    Log.i("DATOS", DatosBuilding.getBuildingIdSelected());
+                    Log.i("DATOS", DatosTeacher.getTeacherIdSelected());
+                    Log.i("DATOS", DatosSchedule.getHoraEntrada());
+                    Log.i("DATOS", DatosSchedule.getHoraSalida());
+
                     changeFragments(new InicioAdmin());
-                    Toast.makeText(getActivity(), "Datos almacenados", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
@@ -158,6 +163,7 @@ public class AssignParking extends Fragment implements OnClickListener {
 
                 break;
             case R.id.btnSelectedTeacher:
+
                 if (DatosTeacher.getTotalTeacher() == 0 ){
 
                     httpRequestAdmin.HTTPrequestTeachers(getActivity(), "actionOfAssignParking",

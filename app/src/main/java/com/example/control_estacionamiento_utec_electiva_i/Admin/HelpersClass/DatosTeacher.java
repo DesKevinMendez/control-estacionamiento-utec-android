@@ -13,21 +13,15 @@ public final class DatosTeacher {
     private static ArrayList FilterCarnetTeacher= new ArrayList();
     private static ArrayList filterteacher = new ArrayList();
     private static String teacherSelected = "";
+    private static String teacherIdSelected = "";
 
-    /*static {
-        teacher.add("Jorge Acevedo");
-        teacher.add("Jorge Machado");
-        teacher.add("Ingrid Gonzales");
-        teacher.add("Jorge Aparicio");
-        teacher.add("Marte cualquiera");
+   public static String getTeacherIdSelected(){
+       return teacherIdSelected;
+   }
 
-        carnetTeacher.add("20-3453-3453");
-        carnetTeacher.add("45-3455-3454");
-        carnetTeacher.add("30-3458-3455");
-        carnetTeacher.add("70-3450-3456");
-        carnetTeacher.add("85-3453-3457");
-
-    }*/
+   public static void setTeacherIdSelected(int id){
+       teacherIdSelected = IdTeacher.get(id).toString();
+   }
 
     public static void setDataTeacher(String teachers, String carnet, int id) {
         teacher.add(teachers);
@@ -83,7 +77,6 @@ public final class DatosTeacher {
     }
 
     public static void setTeacherSelected (int value) {
-        Log.i("TEACHERSELECTED",  String.valueOf(value) +" " + String.valueOf(filterteacher.size()));
         if (value == -1) {
             teacherSelected = "";
         } else if(filterteacher.size() !=0 ) {

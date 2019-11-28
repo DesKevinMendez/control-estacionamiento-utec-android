@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,11 +109,8 @@ public class AssignWatchman extends Fragment implements View.OnClickListener {
                     Toast.makeText(getActivity(), "Debes de seleccionar un parqueo", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(getContext(), "ID vigilante: "+DatosVigilante.getVigilanteIDSelected(),
-                            Toast.LENGTH_SHORT).show();
-
-                    Toast.makeText(getContext(), "ID edificio: "+DatosBuilding.getBuildingIdSelected(),
-                            Toast.LENGTH_SHORT).show();
+                    Log.i("Id vigilante", DatosVigilante.getVigilanteIDSelected());
+                    Log.i("Id Edificio", DatosBuilding.getBuildingIdSelected());
 
                     changeFragments(new InicioAdmin());
                 }
