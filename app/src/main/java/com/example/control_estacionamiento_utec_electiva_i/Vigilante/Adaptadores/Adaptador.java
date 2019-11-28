@@ -1,4 +1,4 @@
-package com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos;
+package com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 import java.util.ArrayList;
 
@@ -37,11 +38,11 @@ public class Adaptador extends BaseAdapter {
         final View vista = inflater.inflate(R.layout.edificios_vigilante, null);
 
         TextView tvEdificio = vista.findViewById(R.id.tvEdificio);
-        TextView tvEstado = vista.findViewById(R.id.tvEstado);
+        TextView tvEstado = vista.findViewById(R.id.tvEstado) ;
         ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
 
         tvEdificio.setText(edificio.get(i).toString());
-        tvEstado.setText(estado.get(i).toString());
+        tvEstado.setText(estado.get(i).toString()+ "  estacionamientos disponibles");
 
         if (!DatosVigilante.getEdificioDisponible(i).equals("0")){
             imgEdificio.setImageResource(R.drawable.buildingg);

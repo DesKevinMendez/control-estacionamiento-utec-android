@@ -3,6 +3,8 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.DisponiblesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.NotificacionesVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.ReservadosVigilante;
 
 import org.json.JSONArray;
@@ -59,8 +62,10 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
                         int totalEstacionamiento = mJsonObject.getInt("num_parqueos");
                         int num_disponible = mJsonObject.getInt("num_disponible");
                         int idEdificio = mJsonObject.getInt("id");
+                        int num_ocupados = mJsonObject.getInt("num_ocupado");
+                        int num_reservados = mJsonObject.getInt("num_reservados");
                         DatosVigilante.setInfoEdificio(nombreEdificio, totalEstacionamiento,
-                                num_disponible, idEdificio);
+                                num_disponible, idEdificio, num_ocupados, num_reservados);
                         Log.i("TEST", "LLEGA");
 
 
@@ -98,7 +103,7 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
         progressDialog.show();
-        String url = BASE_URL+"reservas?api_token="+user.getApi_token();
+        String url = BASE_URL+"edificios?api_token="+user.getApi_token();
         RequestQueue queue = Volley.newRequestQueue(context);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -106,25 +111,20 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
             public void onResponse(JSONObject response) {
 
                 try {
-                    Log.i("TEST", "Se entro al try");
 
-
-                    JSONArray mnJsonArray = response.getJSONArray("reservas"); // ESTA LINEA NO SE EJECUTA
-                    Log.i("TEST", "se creo el json reservas");
+                    JSONArray mJsonArray = response.getJSONArray("edificios");
                     DatosVigilante.dataBuilding().clear();
                     DatosVigilante.dataTotalEsta().clear();
-
-
-                    for (int i = 0; i < mnJsonArray.length() ; i++) {
-                        JSONObject mnJsonObject = mnJsonArray.getJSONObject(i);
-                        JSONObject Edificio = mnJsonObject.getJSONObject("edificio");
-
-                        String nombreEdificio = Edificio.getString("nombre");
-                        int totalEstacionamiento = Edificio.getInt("num_parqueos");
-                        int num_disponible = Edificio.getInt("num_disponible");
-                        int idEdificio = Edificio.getInt("id");
+                    for (int i = 0; i < mJsonArray.length() ; i++) {
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        String nombreEdificio = mJsonObject.getString("nombre");
+                        int totalEstacionamiento = mJsonObject.getInt("num_parqueos");
+                        int num_disponible = mJsonObject.getInt("num_disponible");
+                        int idEdificio = mJsonObject.getInt("id");
+                        int num_ocupados = mJsonObject.getInt("num_ocupado");
+                        int num_reservados = mJsonObject.getInt("num_reservados");
                         DatosVigilante.setInfoEdificio(nombreEdificio, totalEstacionamiento,
-                                num_disponible, idEdificio);
+                                num_disponible, idEdificio, num_ocupados, num_reservados);
                         Log.i("TEST", "LLEGA");
 
                         mcontext.getSupportFragmentManager().beginTransaction()
@@ -183,11 +183,11 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
                 Log.i("MENS","TODO BIEN");
                 //for (int i = 0; i < mJsonArray.length() ; i++) {
 
-                    //JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                     JSONObject mJsonObject = response.getJSONObject("usuario");
                     String nombre = mJsonObject.getString("nombres");
                     String apellido = mJsonObject.getString("apellidos");
                     String placa = mJsonObject.getString("num_placa");
+                    Integer estado = mJsonObject.getInt("estado");
 
                     JSONObject Reserva = mJsonObject.getJSONObject("reserva");
                     JSONObject Edificio = Reserva.getJSONObject("edificio");
@@ -201,8 +201,7 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
                     int idUser = mJsonObject.getInt("id");
                     int idEdificio = Edificio.getInt("id");
 
-                    DatosVigilante.setUsuarioPlaca(nombre,apellido,placa,edificioAsignado,horaEntrada,horaSalida,idUser,idEdificio);
-                //}
+                    DatosVigilante.setUsuarioPlaca(nombre,apellido,placa,estado,edificioAsignado,horaEntrada,horaSalida,idUser,idEdificio);
             } catch (JSONException e){
 
                 Log.i("VOLLEY","Error "+ e.toString());
@@ -325,6 +324,120 @@ public class PeticionesVigilante extends AppCompatActivity implements Globals {
     }
 
 
+
+    public void EdificiosId(Context context, int id){
+
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Cargando datos");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        String url = BASE_URL+"edificios/{}?api_token="+user.getApi_token()+"&id="+id;
+        Map<String, Integer> params = new HashMap();
+        params.put("id", id);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        Log.i("TEST", "SE CONECTO A LA API");
+
+        final JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Log.i("TEST", "DENTRO DE TRY");
+
+                    JSONObject edificios= response.getJSONObject("edificio");
+                        String nombreEdificio = edificios.getString("nombre");
+                        int num_disponible = edificios.getInt("num_disponible");
+                        int num_ocupados = edificios.getInt("num_ocupado");
+                        DatosVigilante.llenarEdificio(nombreEdificio, num_ocupados, num_disponible);
+                        Log.i("TEST", "LLEGA EL CLICK");
+
+
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error "+ e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+    }
+
+
+
+
+
+
+
+
+    public void ObtenerHistorial(Context context){
+        final AppCompatActivity mcontext = (AppCompatActivity) context;
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Cargando datos");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        String url = BASE_URL+"historial?api_token="+user.getApi_token();
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+
+                    JSONArray mJsonArray = response.getJSONArray("historial");
+                    DatosVigilante.dataBuilding().clear();
+                    DatosVigilante.dataTotalEsta().clear();
+                    for (int i = 0; i < mJsonArray.length() ; i++) {
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        String Comentario = mJsonObject.getString("comentario");
+
+                        JSONObject Usuario = mJsonObject.getJSONObject("user");
+                        String Nombre = Usuario.getString("nombres");
+                        String Apellido = Usuario.getString("apellidos");
+                        String Num_placa = Usuario.getString("num_placa");
+
+                        DatosVigilante.llenarHistorial(Nombre,Apellido,Num_placa,Comentario);
+                        Log.i("TEST", "EJECUCION EXITOSA");
+
+                        mcontext.getSupportFragmentManager().beginTransaction()
+                                .addToBackStack(null).replace(R.id.nav_host_fragment,
+                                new NotificacionesVigilante()).commit();
+
+
+                    }
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error "+ e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+    }
 
 
 }

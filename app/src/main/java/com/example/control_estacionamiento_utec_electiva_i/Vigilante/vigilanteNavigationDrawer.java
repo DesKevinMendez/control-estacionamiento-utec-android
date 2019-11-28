@@ -91,10 +91,10 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
 
             case R.id.notificacionesVigilante:
-                frag = new NotificacionesVigilante();
+                Log.i("TEST", "Notificaciones");
                 getSupportActionBar().setTitle("Notificaciones");
-                getSupportFragmentManager().beginTransaction()
-                        .addToBackStack(null).replace(R.id.nav_host_fragment, frag).commit();
+                PeticionesVigilante peticion3 = new PeticionesVigilante();
+                peticion3.ObtenerHistorial(vigilanteNavigationDrawer.this);
                 break;
 
             case R.id.disponiblesVigilante:

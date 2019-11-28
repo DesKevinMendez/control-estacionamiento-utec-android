@@ -74,17 +74,15 @@ public class InicioVigilante extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
 
 
     }
 
-    //DatosVigilante datosVigilante;
     public static int idUsuario=0;
     public static int idEdificio=0;
 
-
+    DatosVigilante datosVigilante = new DatosVigilante();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -104,12 +102,12 @@ public class InicioVigilante extends Fragment {
         final TextView tvSalida = view.findViewById(R.id.tvSalida);
 
 
+
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Placa;
 
-                Placa = edtPlaca.getText().toString().trim();
+                String Placa = edtPlaca.getText().toString().trim();
                 PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
                 peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
                 DatosVigilante datosVigilante = new DatosVigilante();
@@ -127,19 +125,37 @@ public class InicioVigilante extends Fragment {
             }
         });
 
+
         btnValidar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
-                peticionesVigilante.ValidarEntrada(getActivity(),idUsuario,idEdificio);
+            String placas;
+            placas = tvPlaca.getText().toString().trim();
+                if (placas.isEmpty()){
+                    Toast.makeText(getActivity(), "Error: vuelva a buscar al usuario", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                    peticionesVigilante.ValidarEntrada(getActivity(),idUsuario,idEdificio);
+                }
+
             }
         });
 
         btnValidarSalida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
-                peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
+
+
+                String placas;
+                placas = tvPlaca.getText().toString().trim();
+                if (placas.isEmpty()){
+                    Toast.makeText(getActivity(), "Error: vuelva a buscar al usuario", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                    peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
+                }
             }
         });
 

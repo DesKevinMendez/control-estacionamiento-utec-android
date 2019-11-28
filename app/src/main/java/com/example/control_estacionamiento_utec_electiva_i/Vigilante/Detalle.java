@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
@@ -41,7 +42,23 @@ public class Detalle extends AppCompatActivity implements
 
         Button btnDenegar2 = findViewById(R.id.btnDenegar2);
         Button btnAceptar2 = findViewById(R.id.btnAceptar2);
+        TextView tvNombre = findViewById(R.id.tvNombre);
+        TextView tvPlaca = findViewById(R.id.tvPlaca);
+        TextView tvEdificio = findViewById(R.id.tvEdificio);
+        TextView tvHorario = findViewById(R.id.tvHorario);
+        TextView tvEstado = findViewById(R.id.tvEstado);
+
+
         final EditText edtComentario = findViewById(R.id.edtComentario);
+
+        Bundle Datos = getIntent().getExtras();
+
+        tvNombre.setText(Datos.getString("nombre"));
+        tvPlaca.setText(Datos.getString("placa"));
+        tvEdificio.setText(Datos.getString("edificio"));
+        tvHorario.setText(Datos.getString("horario"));
+        tvEstado.setText(Datos.getString("estado"));
+
 
         btnDenegar2.setOnClickListener(new View.OnClickListener() {
             @Override

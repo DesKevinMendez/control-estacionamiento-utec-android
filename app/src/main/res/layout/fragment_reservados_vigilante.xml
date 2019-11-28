@@ -45,7 +45,7 @@
                         android:id="@+id/tvEstado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Estacionamiento diponibles"
+                        android:text="Dar doble click a un edificio"
                         android:textColor="#0A9114" />
 
                     <TextView
@@ -60,7 +60,7 @@
                         android:id="@+id/tvEstacionamientosOcupados"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="15" />
+                        android:text="Dar doble click a un edificio" />
 
                     <TextView
                         android:id="@+id/textView31"
@@ -74,7 +74,7 @@
                         android:id="@+id/tvEstacionamientoDisponibles"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="15" />
+                        android:text="Dar doble click a un edificio" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

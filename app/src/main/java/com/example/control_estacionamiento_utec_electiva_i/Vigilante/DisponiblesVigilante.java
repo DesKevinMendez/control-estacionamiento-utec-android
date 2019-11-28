@@ -2,9 +2,6 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -14,22 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.ClearCacheRequest;
-import com.example.control_estacionamiento_utec_electiva_i.Estudiante.InicioEstudiante;
-import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestDocente;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.Adaptador;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.Adaptador;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
-
-import java.util.ArrayList;
 
 
 /**
@@ -95,12 +85,42 @@ public class DisponiblesVigilante extends Fragment {
         View view = inflater.inflate(R.layout.fragment_disponibles_vigilante, container, false);
 
         Button btnRegresar = (Button)view.findViewById(R.id.btnRegresar);
+        final TextView tvDisponibles = view.findViewById(R.id.tvEstacionamientoDisponibles);
+        final TextView tvOcupados = view.findViewById(R.id.tvEstacionamientosOcupados);
+        final TextView tvEstado = view.findViewById(R.id.tvEstado);
+
+
         lvEdificios = view.findViewById(R.id.lvEdificios);
         lvEdificios.setAdapter(new
                 Adaptador(getActivity(),
                 datosVigilante.dataBuilding(),
                 datosVigilante.dataEstaDispo()));
 
+        lvEdificios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                int idEdificio = i+1;
+                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.EdificiosId(getActivity(),idEdificio);
+
+
+                DatosVigilante datosVigilante = new DatosVigilante();
+
+                int estado = DatosVigilante.getNumDispo();
+                String dis = String.valueOf(datosVigilante.getNumDispo()) ;
+                String ocup = String.valueOf(datosVigilante.getNumOcupado());
+
+                tvDisponibles.setText(dis);
+                tvOcupados.setText(ocup);
+
+                if (estado >= 1 ){
+                    tvEstado.setText("Estacionamientos disponibles");
+                }else
+                {tvEstado.setText("Estacionamiento lleno");}
+
+            }
+        });
 
 
 

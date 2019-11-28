@@ -86,8 +86,7 @@
                     <TextView
                         android:id="@+id/tvNombre"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/textView16"
@@ -100,8 +99,7 @@
                     <TextView
                         android:id="@+id/tvPlaca"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4534-7" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/textView18"
@@ -114,8 +112,7 @@
                     <TextView
                         android:id="@+id/tvEdificio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Benito Juarez" />
+                        android:layout_height="wrap_content" />
 
                   <!--  <TextView
                         android:id="@+id/textView20"
@@ -142,8 +139,7 @@
                     <TextView
                         android:id="@+id/tvEntrada"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="6:30 am" />
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/textView24"
@@ -156,8 +152,7 @@
                     <TextView
                         android:id="@+id/tvSalida"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="8:30 am" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
