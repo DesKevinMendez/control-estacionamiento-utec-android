@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.EstudiantesDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
@@ -117,11 +118,23 @@ public class Login extends AppCompatActivity {
                     } else {
                         user.setCarnet("No disponible");
                     }
-                    Log.i("CARNET", mJsonObject.getString("carnet"));
-                    Log.i("CARNET", user.getCarnet());
 
                     if (mJsonObject.getInt("rol_id") == 5) {
-                        JSONArray vigilanteInfoEdificion = mJsonObject.getJSONArray("edificios");
+                        if (mJsonObject.getJSONArray("edificios").length() != 0){
+
+                            JSONArray edificios = mJsonObject.getJSONArray("edificios");
+
+                            for (int j = 0; j < edificios.length(); j++){
+                                JSONObject data = edificios.getJSONObject(j);
+                                User.setDataEdificioAsignadoVigilante(data.getString("nombre"),
+                                        data.getString("alias"));
+                            }
+
+                        } else {
+                            User.setDataEdificioAsignadoVigilante("No asignado",
+                                    "No");
+                        }
+
                     } else {
                         if (mJsonObject.getJSONArray("reservas").length() != 0){
                             JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
@@ -139,7 +152,6 @@ public class Login extends AppCompatActivity {
                     user.setLoggedUser(true);
                     render();
 
-                    Log.i("VOLLEY", mJsonRole.getString("nombre"));
 
                 } catch (JSONException e){
 

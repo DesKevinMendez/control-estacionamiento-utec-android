@@ -76,6 +76,11 @@ public final class User {
         name_role = name_roles;
     }
 
+    public static void setDataEdificioAsignadoVigilante(String edificio, String alias){
+        nombre_edificio_parqueo_asignado = edificio;
+        alias_edificio_parqueo_asignado = alias;
+    }
+
     public static void setDataParqueoAsignado(String edificio, String alias, int cantidad_resevado){
         nombre_edificio_parqueo_asignado = edificio;
         alias_edificio_parqueo_asignado = alias;
