@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
 
 
 /**
@@ -88,7 +90,7 @@ public class ComentariosVigilante extends Fragment {
          Button btnDetalle =view.findViewById(R.id.btnComentar);
          Button btnRegresar =view.findViewById(R.id.btnRegresar);
          Button btnBuscar = view.findViewById(R.id.btnBuscar);
-         final EditText edtPlaca = view.findViewById(R.id.edtClaveActual);
+         final EditText edtPlaca = view.findViewById(R.id.edtNumeroPlaca);
 
         final TextView tvNombre = view.findViewById(R.id.tvNombre);
         final TextView tvPlaca = view.findViewById(R.id.tvPlaca);
@@ -96,32 +98,54 @@ public class ComentariosVigilante extends Fragment {
         final TextView tvHorario = view.findViewById(R.id.tvHorario);
         final TextView tvEstado = view.findViewById(R.id.tvEstado);
 
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Placa;
+                Placa = edtPlaca.getText().toString().trim();
+                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
+                DatosVigilante datosVigilante = new DatosVigilante();
 
-        /*
-         btnBuscar.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 String Placa = edtPlaca.getText().toString().trim();
+                tvNombre.setText(datosVigilante.getNombreUser() +" "+datosVigilante.getApellidoUser());
+                tvPlaca.setText(datosVigilante.getPlacaUser());
+                tvEdificio.setText(datosVigilante.getEdificioAsignadoUser());
+                tvHorario.setText(datosVigilante.getHoraEntradaUser()+ " - "+datosVigilante.getHoraSalidaUser());
 
-                 String consultaDisponible = "select * from usuarios where numero_placa = '"+Placa+"'";
-                 base= objDatos.getWritableDatabase();
-                 Cursor cUsuarios = base.rawQuery(consultaDisponible,null);
-
-                 String horario = "";
-
-                 if(cUsuarios.moveToNext()) {
-                     tvNombre.setText(cUsuarios.getString(3));
-                     tvPlaca.setText(cUsuarios.getString(2));
-                     tvEdificio.setText(cUsuarios.getString(4));
-                     horario= (cUsuarios.getString(6));
-                     horario+= "  -  ";
-                     horario+=(cUsuarios.getString(7));
-                     tvHorario.setText(horario);
-
+                 int estado = datosVigilante.getEstadoUser();
+                 if (estado == 1){
+                     tvEstado.setText("Dentro del estacionado");
+                 } else{
+                     tvEstado.setText("Fuera del estacionamiento");
                  }
 
-             }
-         });*/
+            }
+        });
+
+        btnDetalle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                String Nombre= tvNombre.getText().toString().trim();
+                String Placa = tvPlaca.getText().toString().trim();
+                String Edificio = tvEdificio.getText().toString().trim();
+                String Horario = tvHorario.getText().toString().trim();
+                String Estado = tvEstado.getText().toString().trim();
+
+
+                Intent detalle = new Intent(getActivity(), Detalle.class);
+                detalle.putExtra("nombre",Nombre);
+                detalle.putExtra("placa",Placa);
+                detalle.putExtra("edificio",Edificio);
+                detalle.putExtra("horario",Horario);
+                detalle.putExtra("estado",Estado);
+
+                if (Placa.isEmpty()){Toast.makeText(getActivity(), "ERROR: vuelva a buscar el usuario", Toast.LENGTH_LONG).show();}
+                else {startActivityForResult(detalle,1);}
+            }
+        });
+
 
 
          btnRegresar.setOnClickListener(new View.OnClickListener() {
@@ -132,15 +156,6 @@ public class ComentariosVigilante extends Fragment {
                  startActivity(main);
              }
          });
-
-        btnDetalle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent detalle = new Intent(getActivity(),Detalle.class);
-                startActivity(detalle);
-            }
-        });
-
 
 
         return view;
