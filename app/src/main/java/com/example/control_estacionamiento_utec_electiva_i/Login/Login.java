@@ -119,7 +119,7 @@ public class Login extends AppCompatActivity {
                     Log.i("CARNET", mJsonObject.getString("carnet"));
                     Log.i("CARNET", user.getCarnet());
 
-                    if (mJsonObject.getString("reserva").length() > 4){
+                    if (mJsonObject.getJSONArray("reservas").length() != 0){
                         JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
                         JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
 
@@ -159,7 +159,6 @@ public class Login extends AppCompatActivity {
 
     }
 
-    private boolean isNull(Object obj) { return obj == null; }
     public void render(){
         if (user.getLoggedUser()){
             // Administrador 1

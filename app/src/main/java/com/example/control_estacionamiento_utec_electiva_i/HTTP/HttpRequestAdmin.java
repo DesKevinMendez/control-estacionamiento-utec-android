@@ -62,6 +62,10 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray mJsonArray = response.getJSONArray("edificios");
+                    if (mJsonArray.length()== 0 ){
+                        Toast.makeText(context, "Sin datos por mostrar", Toast.LENGTH_SHORT).show();
+
+                    }
                     for (int i = 0; i < mJsonArray.length() ; i++) {
 
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
@@ -98,7 +102,6 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
-
     public void HTTPrequestWatchMan(final Context context, final String putStringName, final String putStringDescription) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Obteniendo vigilantes...");
@@ -115,6 +118,10 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray mJsonArray = response.getJSONArray("usuarios");
+                    if (mJsonArray.length()== 0 ){
+                        Toast.makeText(context, "Sin datos por mostrar", Toast.LENGTH_SHORT).show();
+
+                    }
                     for (int i = 0; i < mJsonArray.length() ; i++) {
 
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
@@ -151,6 +158,7 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         queue.add(request);
 
     }
+
     public void HTTPrequestTeachers(final Context context, final String putStringName, final String putStringDescription) {
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Obteniendo maestros...");
@@ -167,6 +175,10 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray mJsonArray = response.getJSONArray("usuarios");
+                    if (mJsonArray.length()== 0 ){
+                        Toast.makeText(context, "Sin datos por mostrar", Toast.LENGTH_SHORT).show();
+
+                    }
                     for (int i = 0; i < mJsonArray.length() ; i++) {
 
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
@@ -198,6 +210,60 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
                 Toast.makeText(context, "Error al obtener los maestros :(", Toast.LENGTH_SHORT).show();
 
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
+    public void HTTPrequestReserverParking(final Context context, String user_id, String edificio_id,
+                                           String fecha, String entrada,
+                                    String salida, String cantidad, String comentario) {
+        progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Reservando parqueo...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"reservar-parqueo";
+        Map<String, String> params = new HashMap();
+        params.put("user_id", user_id);
+        params.put("edificio_id", edificio_id);
+        params.put("fecha", fecha);
+        params.put("hora_entrada", entrada);
+        params.put("hora_salida", salida);
+        params.put("cantidad", cantidad);
+        params.put("comentario", comentario);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+
+                    JSONObject mJsonObject = response.getJSONObject("data");
+
+                    Toast.makeText(context, "Parque reservado", Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e){
+
+                    Log.e("VOLLEY","Error de parcing en Login - method: LoginRequest "+ e.toString());
+                    e.printStackTrace();
+
+                }
+
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
 
             }
