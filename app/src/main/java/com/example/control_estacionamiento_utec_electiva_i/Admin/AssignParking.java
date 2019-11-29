@@ -19,6 +19,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedScheduleForAssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
@@ -158,7 +159,7 @@ public class AssignParking extends Fragment implements OnClickListener {
                 break;
             case R.id.btnSelectedSchedule:
 
-                    changeFragments(new SelectedSchedule(),
+                    changeFragments(new SelectedScheduleForAssignParking(),
                             "actionOfAssignParking", "SelectedSchedule");
 
                 break;
