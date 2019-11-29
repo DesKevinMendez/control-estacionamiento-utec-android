@@ -122,6 +122,8 @@ public class InicioVigilante extends Fragment {
                 idUsuario = datosVigilante.getIdUserUser();
                 idEdificio= datosVigilante.getIdEdificioUser();
 
+
+
             }
         });
 
@@ -156,6 +158,7 @@ public class InicioVigilante extends Fragment {
                     PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
                     peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
                 }
+
             }
         });
 

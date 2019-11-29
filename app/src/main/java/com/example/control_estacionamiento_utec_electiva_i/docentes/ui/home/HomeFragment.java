@@ -38,6 +38,12 @@ public class HomeFragment extends Fragment {
         tvCarne.setText(user.getEmail());
         tvCode.setText(user.getAlias_edificio_parqueo_asignado());
 
+        int estado = user.getEstado();
+        if (estado==0){
+            tvEstado.setText("Estacionamiento lleno");
+        } else {
+            tvEstado.setText("Estacionamientos disponibles");
+        }
 
         btnEstacionamiento.setOnClickListener(new View.OnClickListener() {
             @Override

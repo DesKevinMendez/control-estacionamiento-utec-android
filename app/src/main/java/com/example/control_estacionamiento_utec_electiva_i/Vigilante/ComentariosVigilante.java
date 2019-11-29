@@ -113,7 +113,7 @@ public class ComentariosVigilante extends Fragment {
                 tvHorario.setText(datosVigilante.getHoraEntradaUser()+ " - "+datosVigilante.getHoraSalidaUser());
 
                  int estado = datosVigilante.getEstadoUser();
-                 if (estado == 1){
+                 if (estado == 0){
                      tvEstado.setText("Dentro del estacionado");
                  } else{
                      tvEstado.setText("Fuera del estacionamiento");
