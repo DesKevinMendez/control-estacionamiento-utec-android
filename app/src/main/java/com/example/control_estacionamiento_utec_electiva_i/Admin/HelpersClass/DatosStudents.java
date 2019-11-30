@@ -1,6 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public final class DatosStudents {
 
@@ -36,9 +37,38 @@ public final class DatosStudents {
        StudentID.clear();
 
    }
+
+    public static void setClearAllFilterStudentsData(){
+        FilterStudentname.clear();
+        FilterStudentPlaca.clear();
+        FilterStudentCarnet.clear();
+        FilterStudentBuilding.clear();
+        FilterStudentID.clear();
+
+    }
    public static int getCountOfStudents(){
         return Studentname.size();
    }
+    public static ArrayList getFilterStudents(String value) {
+        setClearAllFilterStudentsData();
+
+        ArrayList<String> studentsFilter = new  ArrayList(Studentname);
+        for (Iterator<String> it = studentsFilter.iterator(); it.hasNext();) {
+            if (!it.next().contains(value))
+                it.remove(); // NOTE: Iterator's remove method, not ArrayList's, is used.
+        }
+
+
+        for (String edificio : studentsFilter) {
+            FilterStudentname.add(edificio);
+            FilterStudentCarnet.add(StudentCarnet.get(Studentname.indexOf(edificio)).toString());
+            FilterStudentPlaca.add(StudentPlaca.get(Studentname.indexOf(edificio)).toString());
+            FilterStudentBuilding.add(StudentBuilding.get(Studentname.indexOf(edificio)).toString());
+            FilterStudentID.add(StudentID.get(Studentname.indexOf(edificio)).toString());
+        }
+
+        return studentsFilter;
+    }
     public static ArrayList getStudentname() {
         return Studentname;
     }
@@ -53,5 +83,29 @@ public final class DatosStudents {
 
     public static ArrayList getStudentBuilding() {
         return StudentBuilding;
+    }
+
+    public static ArrayList getStudentID() {
+        return StudentID;
+    }
+
+    public static ArrayList getFilterStudentname() {
+        return FilterStudentname;
+    }
+
+    public static ArrayList getFilterStudentPlaca() {
+        return FilterStudentPlaca;
+    }
+
+    public static ArrayList getFilterStudentCarnet() {
+        return FilterStudentCarnet;
+    }
+
+    public static ArrayList getFilterStudentBuilding() {
+        return FilterStudentBuilding;
+    }
+
+    public static ArrayList getFilterStudentID() {
+        return FilterStudentID;
     }
 }
