@@ -1,13 +1,24 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosStudents;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -19,10 +30,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -35,8 +42,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
 
 public class MainActivityAdmin extends AppCompatActivity implements
@@ -111,8 +124,13 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
             case R.id.nav_students_active_not_active:
 
-                changeFragments(new StudentsActiveAndNotActive_admin(), 6);
+                if (DatosStudents.getCountOfStudents() > 0){
 
+                    changeFragments(new StudentsActiveAndNotActive(), 6);
+                } else {
+
+                    HTTPrequestStudentsActive("activo");
+                }
                 break;
 
             default:
@@ -123,7 +141,64 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
         return true;
     }
+    ProgressDialog progressDialog;
+    public void HTTPrequestStudentsActive(String tipoEstudiante) {
+        progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Obteniendo estudiantes...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
 
+        progressDialog.show();
+
+        String url = BASE_URL+"users-por-rol/alumno-"+tipoEstudiante+"?api_token="+user.getApi_token();
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray mJsonArray = response.getJSONArray("usuarios");
+                    if (mJsonArray.length()== 0 ){
+                        Toast.makeText(getApplicationContext(), "Sin datos por mostrar", Toast.LENGTH_SHORT).show();
+
+                    }
+                    for (int i = 0; i < mJsonArray.length() ; i++) {
+
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        String nombre = mJsonObject.getString("nombres");
+                        String apellido = mJsonObject.getString("apellidos");
+                        String carnet = mJsonObject.getString("carnet");
+                        String placa = mJsonObject.getString("num_placa");
+                        int idStudent = mJsonObject.getInt("id");
+
+                        DatosStudents.setDataStudents(nombre+" "+ apellido, carnet, placa,
+                                "no disponible", idStudent);
+
+                        changeFragments(new StudentsActiveAndNotActive(), 6);
+
+                    }
+
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY", e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error al obtener los vigilantes :(", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
     @Override
     public void onBackPressed() {
 

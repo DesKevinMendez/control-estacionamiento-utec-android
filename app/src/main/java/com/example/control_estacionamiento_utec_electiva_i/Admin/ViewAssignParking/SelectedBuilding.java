@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.BuildingAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Adapters.BuildingAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosStudents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ReserveEvents;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -41,6 +41,7 @@ public class SelectedBuilding extends Fragment {
 
     ListView ListBuilding;
     DatosBuilding datosBuilding;
+    DatosStudents datosStudents;
     EditText tvFindBuildingSB;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
