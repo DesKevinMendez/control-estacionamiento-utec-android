@@ -16,6 +16,7 @@ public class DataSchedule {
     public static String[] hora_salida_sabado = {""};
     public static String[] hora_entrada_domingo = {""};
     public static String[] hora_salida_domingo = {""};
+    
 
     public static String[] getHora_entrada_lunes() {
         return hora_entrada_lunes;
@@ -71,6 +72,29 @@ public class DataSchedule {
 
     public static String[] getHora_salida_domingo() {
         return hora_salida_domingo;
+    }
+
+    public static void setClearAllSchedules(){
+        hora_entrada_lunes[0] = "";
+        hora_salida_lunes[0] = "";
+
+        hora_entrada_martes[0] = "";
+        hora_salida_martes[0] = "";
+
+        hora_entrada_miercoles[0] = "";
+        hora_salida_miercoles[0] = "";
+
+        hora_entrada_jueves[0] = "";
+        hora_salida_jueves[0] = "";
+
+        hora_entrada_viernes[0] = "";
+        hora_salida_viernes[0] = "";
+
+        hora_entrada_sabado[0] = "";
+        hora_salida_sabado[0] = "";
+
+        hora_entrada_domingo[0] = "";
+        hora_salida_domingo[0] = "";
     }
 
     public static void setDataHorarioLunes(String entrada, String salida){

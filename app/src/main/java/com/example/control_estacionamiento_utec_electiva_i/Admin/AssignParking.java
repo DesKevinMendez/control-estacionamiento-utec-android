@@ -1,5 +1,6 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,9 +15,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DataSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedScheduleForAssignParking;
@@ -26,10 +36,17 @@ import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
+
 
 public class AssignParking extends Fragment implements OnClickListener {
 
-    private OnFragmentInteractionListener mListener;
 
     public AssignParking() {
         // Required empty public constructor
@@ -45,10 +62,11 @@ public class AssignParking extends Fragment implements OnClickListener {
     }
 
     Button btnAceptar, btnDenegar, btnAssingSchedule, btnAsssingTeacher, btnSelctedBuilding;
-    User user;
+    DataSchedule dataSchedule;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_assign_parking_admin, container, false);
 
@@ -57,11 +75,6 @@ public class AssignParking extends Fragment implements OnClickListener {
         btnAssingSchedule = view.findViewById(R.id.btnSelectedSchedule);
         btnAsssingTeacher = view.findViewById(R.id.btnSelectedTeacher);
         btnSelctedBuilding = view.findViewById(R.id.btnSelectedBuildingAP);
-
-        /*
-        if (DatosTeacher.getTotalTeacher() == 0){
-            httpRequestAdmin.HTTPrequestUsers(getActivity());
-        }*/
 
         btnAceptar.setOnClickListener(this);
         btnDenegar.setOnClickListener(this);
@@ -115,11 +128,11 @@ public class AssignParking extends Fragment implements OnClickListener {
         HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch(view.getId()){
             case R.id.btnAceptarAP:
-                if (btnAssingSchedule.getText().toString().equals(getString(R.string.selectedScedule))){
+                /*if (btnAssingSchedule.getText().toString().equals(getString(R.string.selectedScedule))){
 
                     Toast.makeText(getActivity(), "Debe de seleccionar horarios", Toast.LENGTH_SHORT).show();
 
-                } else if(btnAsssingTeacher.getText().equals(getString(R.string.selectedTeacher))) {
+                } else*/ if(btnAsssingTeacher.getText().equals(getString(R.string.selectedTeacher))) {
 
                     Toast.makeText(getActivity(), "Debe de seleccionar usuario", Toast.LENGTH_SHORT).show();
 
@@ -131,10 +144,15 @@ public class AssignParking extends Fragment implements OnClickListener {
 
                     Log.i("DATOS", DatosBuilding.getBuildingIdSelected());
                     Log.i("DATOS", DatosTeacher.getTeacherIdSelected());
-                    Log.i("DATOS", DatosSchedule.getHoraEntrada());
-                    Log.i("DATOS", DatosSchedule.getHoraSalida());
 
-                    changeFragments(new InicioAdmin());
+                    HTTPrequestAssignParking(DatosBuilding.getBuildingIdSelected(),  DatosTeacher.getTeacherIdSelected(),
+                            dataSchedule.getHora_entrada_lunes(), dataSchedule.getHora_salida_lunes(),
+                        dataSchedule.getHora_entrada_martes(), dataSchedule.getHora_salida_martes(),
+                        dataSchedule.getHora_entrada_miercoles(), dataSchedule.getHora_salida_miercoles(),
+                        dataSchedule.getHora_entrada_jueves(), dataSchedule.getHora_salida_jueves(),
+                        dataSchedule.getHora_entrada_viernes(), dataSchedule.getHora_salida_viernes(),
+                        dataSchedule.getHora_entrada_sabado(), dataSchedule.getHora_salida_sabado(),
+                        dataSchedule.getHora_entrada_domingo(), dataSchedule.getHora_salida_domingo());
                 }
 
                 break;
@@ -202,43 +220,91 @@ public class AssignParking extends Fragment implements OnClickListener {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+    ProgressDialog progressDialog;
+    public void HTTPrequestAssignParking(String vigilante_id, String edificio_id,
+                                         String[] entrada_lunes, String[] salida_lunes,
+                                         String[] entrada_martes, String[] salida_martes,
+                                         String[] entrada_miercoles, String[] salida_miercoles,
+                                         String[] entrada_jueves, String[] salida_jueves,
+                                         String[] entrada_viernes, String[] salida_viernes,
+                                         String[] entrada_sabado, String[] salida_sabado,
+                                         String[] entrada_domingo, String[] salida_domingo
+                                         ){
 
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
+        progressDialog.setMessage("Asignando vigilante...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"asignar-parqueo?user_id="+vigilante_id+"&edificio_id="+edificio_id+"" +
+                "&api_token="+User.getApi_token();
+        Map<String, String[]> params = new HashMap();
+        params.put("hora_entrada_lunes", entrada_lunes);
+        params.put("hora_salida_lunes", salida_lunes);
+
+
+        params.put("hora_entrada_martes", entrada_martes);
+        params.put("hora_salida_martes", salida_martes);
+
+
+        params.put("hora_entrada_miercoles", entrada_miercoles);
+        params.put("hora_salida_miercoles", salida_miercoles);
+
+
+        params.put("hora_entrada_jueves", entrada_jueves);
+        params.put("hora_salida_jueves", salida_jueves);
+
+
+        params.put("hora_entrada_viernes", entrada_viernes);
+        params.put("hora_salida_viernes", salida_viernes);
+
+
+        params.put("hora_entrada_sabado", entrada_sabado);
+        params.put("hora_salida_sabado", salida_sabado);
+
+
+        params.put("hora_entrada_domingo", entrada_domingo);
+        params.put("hora_salida_domingo", salida_domingo);
+
+        JSONObject parameters = new JSONObject(params);
+
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                    DatosVigilante.clearDatavigilante();
+                    DatosVigilante.setClearFilter();
+                    dataSchedule.setClearAllSchedules();
+                    Toast.makeText(getActivity(), "Parqueo asignado", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+
+                    changeFragments(new InicioAdmin());
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+            }
+        }){
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };
+
+        queue.add(request);
+
     }
+
 }

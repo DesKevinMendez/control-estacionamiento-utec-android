@@ -73,6 +73,72 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
         hora_salida_domingo.setOnClickListener(this);
         btnAceptarHorariosAssignParking.setOnClickListener(this);
 
+        if (!dataSchedule.getHora_entrada_lunes()[0].isEmpty()){
+            hora_entrada_lunes.setText(dataSchedule.getHora_entrada_lunes()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_lunes()[0].isEmpty()){
+
+            hora_salida_lunes.setText(dataSchedule.getHora_salida_lunes()[0]);
+        }
+        
+
+        if (!dataSchedule.getHora_entrada_martes()[0].isEmpty()){
+            hora_entrada_martes.setText(dataSchedule.getHora_entrada_martes()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_martes()[0].isEmpty()){
+
+            hora_salida_martes.setText(dataSchedule.getHora_salida_martes()[0]);
+        }
+
+
+        if (!dataSchedule.getHora_entrada_miercoles()[0].isEmpty()){
+            hora_entrada_miercoles.setText(dataSchedule.getHora_entrada_miercoles()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_miercoles()[0].isEmpty()){
+
+            hora_salida_miercoles.setText(dataSchedule.getHora_salida_miercoles()[0]);
+        }
+
+        if (!dataSchedule.getHora_entrada_jueves()[0].isEmpty()){
+            hora_entrada_jueves.setText(dataSchedule.getHora_entrada_jueves()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_jueves()[0].isEmpty()){
+
+            hora_salida_jueves.setText(dataSchedule.getHora_salida_jueves()[0]);
+        }
+
+        if (!dataSchedule.getHora_entrada_viernes()[0].isEmpty()){
+            hora_entrada_viernes.setText(dataSchedule.getHora_entrada_viernes()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_viernes()[0].isEmpty()){
+
+            hora_salida_viernes.setText(dataSchedule.getHora_salida_viernes()[0]);
+        }
+
+
+        if (!dataSchedule.getHora_entrada_sabado()[0].isEmpty()){
+            hora_entrada_sabado.setText(dataSchedule.getHora_entrada_sabado()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_sabado()[0].isEmpty()){
+
+            hora_salida_sabado.setText(dataSchedule.getHora_salida_sabado()[0]);
+        }
+
+
+        if (!dataSchedule.getHora_entrada_domingo()[0].isEmpty()){
+            hora_entrada_domingo.setText(dataSchedule.getHora_entrada_domingo()[0]);
+        }
+
+        if (!dataSchedule.getHora_salida_domingo()[0].isEmpty()){
+
+            hora_salida_domingo.setText(dataSchedule.getHora_salida_domingo()[0]);
+        }
         
         return view;
     }
@@ -217,6 +283,7 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 showClockPickerDialog(R.id.hora_salida_domingo);
                 break;
             case R.id.btnAceptarHorariosAssignParking:
+                String errors = "";
                 String entrada_lunes = hora_entrada_lunes.getText().toString().trim();
                 String salida_lunes = hora_salida_lunes.getText().toString().trim();
                 String entrada_martes = hora_entrada_martes.getText().toString().trim();
@@ -236,6 +303,7 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                         || entrada_lunes.isEmpty() && !salida_lunes.isEmpty()){
                            
                     Toast.makeText(getContext(), "Ingrese horarios para lunes", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
                     if (!entrada_lunes.isEmpty() && !salida_lunes.isEmpty()){
                         String[] lunesEntrada = entrada_lunes.split(":");
@@ -243,11 +311,14 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
 
                         if (entrada_lunes.equals(salida_lunes)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(lunesEntrada[0]) > Integer.valueOf(lunesSalida[0]) ||
                                 lunesEntrada[0].equals(lunesSalida[0]) && Integer.valueOf(lunesEntrada[1]) > Integer.valueOf(lunesSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
                             dataSchedule.setDataHorarioLunes(entrada_lunes, salida_lunes);
+                            errors = "";
                         }
                     }
                 }
@@ -256,20 +327,23 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_martes.isEmpty() && salida_martes.isEmpty()
                         || entrada_martes.isEmpty() && !salida_martes.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para martes", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_martes.isEmpty() && !salida_martes.isEmpty()){
                         String[] martesEntrada = entrada_martes.split(":");
                         String[] martesSalida = salida_martes.split(":");
 
                         if (entrada_martes.equals(salida_martes)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(martesEntrada[0]) > Integer.valueOf(martesSalida[0]) ||
                                 martesEntrada[0].equals(martesSalida[0]) && Integer.valueOf(martesEntrada[1]) > Integer.valueOf(martesSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioMartes(entrada_martes, salida_martes);
+                            errors = "";
                         }
                     }
                 }
@@ -278,20 +352,23 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_miercoles.isEmpty() && salida_miercoles.isEmpty()
                         || entrada_miercoles.isEmpty() && !salida_miercoles.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para miércoles", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_miercoles.isEmpty() && !salida_miercoles.isEmpty()){
                         String[] miercolesEntrada = entrada_miercoles.split(":");
                         String[] miercolesSalida = salida_miercoles.split(":");
 
                         if (entrada_miercoles.equals(salida_miercoles)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(miercolesEntrada[0]) > Integer.valueOf(miercolesSalida[0]) ||
                                 miercolesEntrada[0].equals(miercolesSalida[0]) && Integer.valueOf(miercolesEntrada[1]) > Integer.valueOf(miercolesSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioMiercoles(entrada_miercoles, salida_miercoles);
+                            errors = "";
 
                         }
                     }
@@ -301,20 +378,23 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_jueves.isEmpty() && salida_jueves.isEmpty()
                         || entrada_jueves.isEmpty() && !salida_jueves.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para jueves", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_jueves.isEmpty() && !salida_jueves.isEmpty()){
                         String[] juevesEntrada = entrada_jueves.split(":");
                         String[] juevesSalida = salida_jueves.split(":");
 
                         if (entrada_jueves.equals(salida_jueves)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(juevesEntrada[0]) > Integer.valueOf(juevesSalida[0]) ||
                                 juevesEntrada[0].equals(juevesSalida[0]) && Integer.valueOf(juevesEntrada[1]) > Integer.valueOf(juevesSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioJueves(entrada_jueves, salida_jueves);
+                            errors = "";
                         }
                     }
                 }
@@ -323,20 +403,23 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_viernes.isEmpty() && salida_viernes.isEmpty()
                         || entrada_viernes.isEmpty() && !salida_viernes.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para viernes", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_viernes.isEmpty() && !salida_viernes.isEmpty()){
                         String[] viernesEntrada = entrada_viernes.split(":");
                         String[] viernesSalida = salida_viernes.split(":");
 
                         if (entrada_viernes.equals(salida_viernes)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(viernesEntrada[0]) > Integer.valueOf(viernesSalida[0]) ||
                                 viernesEntrada[0].equals(viernesSalida[0]) && Integer.valueOf(viernesEntrada[1]) > Integer.valueOf(viernesSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioViernes(entrada_viernes, salida_viernes);
+                            errors = "";
                         }
                     }
                 }
@@ -345,20 +428,23 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_sabado.isEmpty() && salida_sabado.isEmpty()
                         || entrada_sabado.isEmpty() && !salida_sabado.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para sábado", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_sabado.isEmpty() && !salida_sabado.isEmpty()){
                         String[] sabadoEntrada = entrada_sabado.split(":");
                         String[] sabadoSalida = salida_sabado.split(":");
 
                         if (entrada_sabado.equals(salida_sabado)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(sabadoEntrada[0]) > Integer.valueOf(sabadoSalida[0]) ||
                                 sabadoEntrada[0].equals(sabadoSalida[0]) && Integer.valueOf(sabadoEntrada[1]) > Integer.valueOf(sabadoSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioSabado(entrada_sabado, salida_sabado);
+                            errors = "";
                         }
                     }
                 }
@@ -367,24 +453,31 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
                 if (!entrada_domingo.isEmpty() && salida_domingo.isEmpty()
                         || entrada_domingo.isEmpty() && !salida_domingo.isEmpty()){
                     Toast.makeText(getContext(), "Ingrese horarios para domingo", Toast.LENGTH_SHORT).show();
+                    errors = "Existe error";
                 } else {
-                    // Toast.makeText(getContext(), "Todo bien", Toast.LENGTH_SHORT).show();
                     if (!entrada_domingo.isEmpty() && !salida_domingo.isEmpty()){
                         String[] domingoEntrada = entrada_domingo.split(":");
                         String[] domingoSalida = salida_domingo.split(":");
 
                         if (entrada_domingo.equals(salida_domingo)){
                             Toast.makeText(getActivity(), "Horario inválido", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else if(Integer.valueOf(domingoEntrada[0]) > Integer.valueOf(domingoSalida[0]) ||
                                 domingoEntrada[0].equals(domingoSalida[0]) && Integer.valueOf(domingoEntrada[1]) > Integer.valueOf(domingoSalida[1])){
                             Toast.makeText(getActivity(), "Hora entrada debe de ser menor que la de salida", Toast.LENGTH_SHORT).show();
+                            errors = "Existe error";
                         } else {
 
                             dataSchedule.setDataHorarioDomingo(entrada_domingo, salida_domingo);
+                            errors = "";
                         }
                     }
                 }
 
+
+                if (errors.isEmpty()){
+                    getActivity().onBackPressed();
+                }
 
                 break;
                 default:

@@ -42,7 +42,6 @@ import java.util.Arrays;
 public class MainActivityAdmin extends AppCompatActivity implements
         InicioAdmin.OnFragmentInteractionListener,
         ProfileUser.OnFragmentInteractionListener,
-        AssignParking.OnFragmentInteractionListener,
         ReserveEvents.OnFragmentInteractionListener,
         SelectedBuilding.OnFragmentInteractionListener,
         SelectedSchedule.OnFragmentInteractionListener,
