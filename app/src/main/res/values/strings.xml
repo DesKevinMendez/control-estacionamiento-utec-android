@@ -15,7 +15,7 @@
     <string-array name="horarios">
         <item>"6:30"</item>
         <item>"8:00"</item>
-        <item>"9:30"</item>
+        <item>"9:30"</item>menu_admin_asignar_estacionamiento
         <item>"11:00"</item>
         <item>"13:00"</item>
         <item>"14:30"</item>
@@ -33,6 +33,7 @@
         <item>"Reservar evento"</item>
         <item>"Reservar estacionamiento"</item>
         <item>"Asigna vigilante"</item>
+        <item>"Estudiantes activos/inactivos"</item>
     </string-array>
 
     <string-array name="cantidad_parqueo">
@@ -114,6 +115,7 @@
     <string name="menu_admin_home">Inicio</string>
     <string name="menu_admin_perfil">Perfil</string>
     <string name="menu_admin_asignar_estacionamiento">Asignar estacionamiento</string>
+    <string name="menu_admin_students_active_not_active">Estudiantes activos/inactivos</string>
     <string name="menu_admin_reservar_evento">Reservar evento</string>
     <string name="menu_admin_reservar_estacionamiento">Reservar estacionamiento</string>
     <string name="menu_admin_asignar_vigilante">Asignar vigilante</string>

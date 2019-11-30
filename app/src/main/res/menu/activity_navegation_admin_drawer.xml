@@ -12,6 +12,7 @@
             android:id="@+id/nav_profile_admin"
             android:icon="@drawable/ic_nav_profile_admin"
             android:title="@string/menu_admin_perfil" />
+       
         <item
             android:id="@+id/nav_assign_parking"
             android:icon="@drawable/ic_assign_parking_nav_admin"
@@ -29,6 +30,11 @@
             android:id="@+id/nav_assing_watchman"
             android:icon="@drawable/ic_asssing_watchman_nav_admin"
             android:title="@string/menu_admin_asignar_vigilante" />
+
+        <item
+            android:id="@+id/nav_students_active_not_active"
+            android:icon="@drawable/ic_group_black_24dp"
+            android:title="@string/menu_admin_students_active_not_active" />
 
     </group>
 

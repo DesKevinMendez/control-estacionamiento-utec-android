@@ -109,6 +109,12 @@ public class MainActivityAdmin extends AppCompatActivity implements
 
                 break;
 
+            case R.id.nav_students_active_not_active:
+
+                changeFragments(new StudentsActiveAndNotActive_admin(), 6);
+
+                break;
+
             default:
                 throw new IllegalArgumentException("menu option not implemented!!");
         }

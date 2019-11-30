@@ -42,4 +42,11 @@
         android:label="@string/menu_admin_reservar_estacionamiento"
         tools:layout="@layout/fragment_recerve_parking_admin" />
 
+    <fragment
+        android:id="@+id/nav_students_active_not_active"
+        android:name="com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking"
+        android:label="@string/menu_admin_students_active_not_active"
+        tools:layout="@layout/fragment_students_active_and_not_active_admin" />
+        
+
 </navigation>
