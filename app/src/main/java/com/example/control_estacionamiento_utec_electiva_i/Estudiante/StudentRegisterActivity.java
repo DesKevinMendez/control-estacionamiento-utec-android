@@ -1,4 +1,4 @@
-package com.example.control_estacionamiento_utec_electiva_i;
+package com.example.control_estacionamiento_utec_electiva_i.Estudiante;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,21 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
-import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
@@ -86,10 +84,27 @@ public class StudentRegisterActivity extends AppCompatActivity {
                         edtConfirmPass.setText("");
                         edtPass.requestFocus();
                     } else {
-                        HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                        String regex = "^[0-9]{2}(?:-[0-9]{4})(?:-[0-9]{4})*$";
+                        boolean isRegulated = Pattern.matches(regex, carnet);
+                        if (!isRegulated) {
+                            Toast.makeText(StudentRegisterActivity.this,
+                                    "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
+                            edtCarnet.setText("");
+                            edtCarnet.requestFocus();
+                        } else {
+
+                            HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                        }
                     }
                 }
 
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -118,11 +133,12 @@ public class StudentRegisterActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         Log.i("VOLLEY", url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters,
+                                                            new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 
-                // TO DO your code to success request here
+                // TODO your code to success request here
                 progressDialog.dismiss();
 
             }
@@ -130,7 +146,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("ERROR", error.toString());
-                Toast.makeText(StudentRegisterActivity.this, "Error! Verifica tus credenciales", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StudentRegisterActivity.this,
+                                "Error! Verifica tus credenciales", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
             }
