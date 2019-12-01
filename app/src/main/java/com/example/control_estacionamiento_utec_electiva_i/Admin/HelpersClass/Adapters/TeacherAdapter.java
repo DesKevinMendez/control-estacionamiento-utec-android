@@ -1,4 +1,4 @@
-package com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass;
+package com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

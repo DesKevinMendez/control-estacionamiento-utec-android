@@ -38,7 +38,7 @@
             android:hint="Correo, placa o carnet"
             android:inputType="textPersonName"
             android:padding="15dp"
-            android:text="vigilante@gmail.com" />
+            android:text="admin@admin.com" />
 
         <EditText
             android:id="@+id/tvPasswordLG"

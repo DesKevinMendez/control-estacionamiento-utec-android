@@ -14,14 +14,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignWatchman;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.TeacherAdapter;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.VigilanteAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Adapters.TeacherAdapter;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Adapters.VigilanteAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.RecerveParking;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
