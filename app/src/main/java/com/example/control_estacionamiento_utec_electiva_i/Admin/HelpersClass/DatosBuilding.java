@@ -39,6 +39,10 @@ public final class DatosBuilding {
         IdEdificios.add(idEdificio);
     }
 
+    public static void setIdEdificio(String edifico) {
+        buildingIdSelected = IdEdificios.get(edificios.indexOf(edifico)).toString();
+    }
+
     public static ArrayList dataBuilding() {
         return edificios;
     }

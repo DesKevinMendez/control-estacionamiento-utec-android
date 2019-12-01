@@ -1,7 +1,11 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,10 +16,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,12 +36,16 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Ad
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Adapters.StudentsAdapter;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosStudents;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
@@ -78,6 +90,12 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
                 datosStudents.getStudentCarnet(),
                 datosStudents.getStudentBuilding()));
 
+        /*if (DatosBuilding.getTotalEdificios() == 0 ){
+            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+            httpRequestAdmin.HTTPrequestBuilding(getActivity(),
+                    "AlertDialog", "ShowSppinerInAlertDiaog");
+        }*/
+
         tvFindStudents.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -102,6 +120,68 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
                         datosStudents.getFilterStudentPlaca(),
                         datosStudents.getFilterStudentCarnet(),
                         datosStudents.getFilterStudentBuilding()));
+            }
+        });
+
+
+
+        ListStudents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (rdbInactivo.isChecked()){
+
+
+                    DatosStudents.setInfoSelectedStudents(i);
+
+
+
+                    final CharSequence[] dataStudentsSelected = {
+                            "Nombre: " + datosStudents.getName(),
+                            "Placa: " + datosStudents.getPlaca(),
+                            "Carnet: " + datosStudents.getCarnet(),
+                            "Building: " + datosStudents.getBuilding(),
+                    };
+
+
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                    alert.setTitle("¿Autorizar entrada?");
+                    View mView = getLayoutInflater().inflate(R.layout.dialog_spinner_students, null);
+                    final Spinner mSpinner = mView.findViewById(R.id.spinnerDialog);
+
+
+                    ArrayAdapter<String> adapterSpinnerDialog =
+                            new ArrayAdapter<String>(getActivity(),
+                                    android.R.layout.simple_spinner_item,
+                                    DatosBuilding.dataBuilding());
+
+
+                    adapterSpinnerDialog.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    mSpinner.setAdapter(adapterSpinnerDialog);
+
+                    alert.setItems(dataStudentsSelected, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                            // Do something with the selection
+                        }
+                    });
+                    alert.setPositiveButton("Otorgar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            DatosBuilding.setBuildingIdSelected(mSpinner.getSelectedItemPosition());
+
+                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                            httpRequestAdmin.HTTPrequestAssignParkingToStudents(getActivity(), String.valueOf(DatosStudents.getID()), String.valueOf(DatosBuilding.getBuildingIdSelected()));
+                        }
+                    });
+                    alert.setNegativeButton("Negar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    alert.setView(mView);
+                    alert.create().show();
+                }
             }
         });
         return view;
@@ -140,7 +220,6 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
 
                         DatosStudents.setDataStudents(nombre+" "+ apellido, carnet, placa,
                                 "no disponible", idStudent);
-
 
                     }
                     ListStudents.setAdapter(new
@@ -186,4 +265,5 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
 
         }
     }
+
 }

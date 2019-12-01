@@ -20,10 +20,12 @@ import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosStudents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.InicioAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.StudentsActiveAndNotActive;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
@@ -77,9 +79,13 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
                         DatosBuilding.setInfoEdificio(nombreEdificio, totalEstacionamiento,
                                 num_disponible, idEdificio);
+                        if (!putStringName.equals("AlertDialog") && !putStringDescription.equals("ShowSppinerInAlertDiaog")){
 
-                        changeFragments(context, new SelectedBuilding(),
-                                putStringName, putStringDescription);
+                            changeFragments(context, new SelectedBuilding(),
+                                    putStringName, putStringDescription);
+                        } else {
+                            changeFragments(context, new StudentsActiveAndNotActive());
+                        }
 
                     }
                 } catch (JSONException e){
@@ -235,6 +241,46 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
+    public void HTTPrequestAssignParkingToStudents(final Context context, String usuario, String edificio) {
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Asignado parqueo...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"asignar-parqueo-alumno?api_token="+user.getApi_token();
+        Map<String, String> params = new HashMap();
+        params.put("user_id", usuario);
+        params.put("edificio_id", edificio);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                DatosStudents.setClearAllStudentsData();
+                DatosStudents.setClearAllFilterStudentsData();
+
+                Toast.makeText(context, "Asignado correctamente", Toast.LENGTH_SHORT).show();
+
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
     public void HTTPrequestReserverParking(final Context context, String user_id, String edificio_id,
                                            String fecha, String entrada,
                                     String salida, String cantidad, String comentario) {
@@ -365,8 +411,8 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
     public void changeFragments(Context context, Fragment fragment){
         // Establece teacherSelected y a buildingSelected como ""
         AppCompatActivity activity = (AppCompatActivity) context;
-        DatosTeacher.setTeacherSelected(-1);
-        DatosBuilding.setBuildingSelected(-1);
+        /*DatosTeacher.setTeacherSelected(-1);
+        DatosBuilding.setBuildingSelected(-1);*/
 
         activity.getSupportFragmentManager().beginTransaction().addToBackStack(null).
                 replace(R.id.nav_host_fragment, fragment).commit();
