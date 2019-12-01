@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -18,11 +19,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.EstudiantesDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
+import com.example.control_estacionamiento_utec_electiva_i.StudentRegisterActivity;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.vigilanteNavigationDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
@@ -39,6 +40,7 @@ public class Login extends AppCompatActivity {
 
     Button btnLogin;
     EditText tvCorreoCarnetLG, tvPasswordLG;
+    TextView studentRegister;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,15 @@ public class Login extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
         tvCorreoCarnetLG = findViewById(R.id.tvCorreoCarnetLG);
         tvPasswordLG = findViewById(R.id.tvPasswordLG);
+        studentRegister = findViewById(R.id.tvLinkRegister);
+
+        studentRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent register = new Intent(Login.this, StudentRegisterActivity.class);
+                startActivity(register);
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
