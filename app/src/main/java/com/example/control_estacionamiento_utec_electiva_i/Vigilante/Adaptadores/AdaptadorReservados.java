@@ -7,10 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
 
 import java.util.ArrayList;
 
@@ -18,16 +15,22 @@ public class AdaptadorReservados extends BaseAdapter {
     private static LayoutInflater inflater = null;
 
     Context context;
+    ArrayList nombre;
+    ArrayList apellido;
+    ArrayList placa;
     ArrayList edificio;
-    ArrayList estado;
+    ArrayList horaEntrada;
+    ArrayList horaSalida;
     // ArrayList img;
 
-    public AdaptadorReservados(Context context, ArrayList edificio, ArrayList estado) {
-        this.edificio = edificio;
-        this.estado = estado;
-        //this.img = img;
-        this.context = context;
-
+    public AdaptadorReservados(Context context, ArrayList nombre, ArrayList apellido, ArrayList placa, ArrayList edificio,
+                               ArrayList horaEntrada, ArrayList horaSalida) {
+        this.nombre = nombre;
+        this.apellido=apellido;
+        this.placa=placa;
+        this.edificio=edificio;
+        this.horaEntrada=horaEntrada;
+        this.horaSalida=horaSalida;
         inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -35,22 +38,20 @@ public class AdaptadorReservados extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        final View vista = inflater.inflate(R.layout.edificios_vigilante, null);
+        final View vista = inflater.inflate(R.layout.edificios_reservas, null);
 
+        TextView tvNombres = vista.findViewById(R.id.tvNombres);
+        TextView tvPlaca = vista.findViewById(R.id.tvPlaca) ;
         TextView tvEdificio = vista.findViewById(R.id.tvEdificio);
-        TextView tvEstado = vista.findViewById(R.id.tvEstado) ;
-        ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
+        TextView tvHoraEntrada = vista.findViewById(R.id.tvHoraEntrada);
+        TextView tvHoraSalida = vista.findViewById(R.id.tvHoraSalida);
+        // ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
 
-        tvEdificio.setText(edificio.get(i).toString());
-        tvEstado.setText(estado.get(i).toString()+ "  estacionamientos reservados");
-
-        if (!DatosVigilante.getEdificioDisponible(i).equals("0")){
-            imgEdificio.setImageResource(R.drawable.buildingg);
-        }else {
-            imgEdificio.setImageResource(R.drawable.buildingr);
-        }
-
-
+        tvNombres.setText("Nombre: "+nombre.get(i).toString()+" "+apellido.get(i).toString());
+        tvPlaca.setText("Numero de placa: "+placa.get(i).toString());
+        tvEdificio.setText("Parqueo Asignado: "+edificio.get(i).toString());
+        tvHoraEntrada.setText("Hora de entrada: "+horaEntrada.get(i).toString());
+        tvHoraSalida.setText("Hora de salida: "+horaSalida.get(i).toString());
 
         return vista;
     }

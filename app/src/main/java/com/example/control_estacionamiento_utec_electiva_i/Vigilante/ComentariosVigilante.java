@@ -2,7 +2,6 @@ package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 
 
 /**
@@ -103,7 +102,7 @@ public class ComentariosVigilante extends Fragment {
             public void onClick(View v) {
                 String Placa;
                 Placa = edtPlaca.getText().toString().trim();
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                 peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
                 DatosVigilante datosVigilante = new DatosVigilante();
 
