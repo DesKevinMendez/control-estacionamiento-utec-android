@@ -98,24 +98,6 @@ public final class DatosVigilante  {
     public static Integer getNumOcupado(){return numOcupado;}
     public static Integer getNumDispo(){return numDispo;}
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-    private static ArrayList nomHistorial = new ArrayList();
-    private static ArrayList ApellHistorial= new ArrayList();
-    private static ArrayList placaHistorial= new ArrayList();
-    private static ArrayList comHistorial= new ArrayList();
-
-    public static void llenarHistorial(String nombreH, String apellidoH, String placaH, String comentarioH){
-            nomHistorial.add(nombreH);
-            ApellHistorial.add(apellidoH);
-            placaHistorial.add(placaH);
-            comHistorial.add(comentarioH);
-    }
-
-    public static ArrayList getNombreH(){return nomHistorial;}
-    public static ArrayList getApellidoH(){return ApellHistorial;}
-    public static ArrayList getPlacaH(){return  placaHistorial;}
-    public static ArrayList getComentarioH(){return comHistorial;}
 
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -143,6 +125,25 @@ public final class DatosVigilante  {
     public static ArrayList getEdificioR(){return edificioR;}
     public static ArrayList getEntradaR(){return entradaR;}
     public static ArrayList getSalidaR(){return salidaR;}
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private static ArrayList nomHistorial = new ArrayList();
+    private static ArrayList ApellHistorial= new ArrayList();
+    private static ArrayList placaHistorial= new ArrayList();
+    private static ArrayList comHistorial= new ArrayList();
+
+    public static void llenarHistorial(String nombreH, String apellidoH, String placaH, String comentarioH){
+        nomHistorial.add(nombreH);
+        ApellHistorial.add(apellidoH);
+        placaHistorial.add(placaH);
+        comHistorial.add(comentarioH);
+    }
+
+    public static ArrayList getNombreH(){return nomHistorial;}
+    public static ArrayList getApellidoH(){return ApellHistorial;}
+    public static ArrayList getPlacaH(){return  placaHistorial;}
+    public static ArrayList getComentarioH(){return comHistorial;}
 
 
 }
