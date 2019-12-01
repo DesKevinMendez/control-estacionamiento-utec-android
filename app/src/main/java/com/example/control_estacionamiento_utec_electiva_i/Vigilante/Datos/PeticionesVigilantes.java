@@ -11,6 +11,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals;
@@ -110,7 +111,14 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
                     JSONArray mJsonArray = response.getJSONArray("reservas");
                     Log.i("TEST", "ARRAY CREADO");
 
-                    for (int i = 0; i < mJsonArray.length() ; i++) {
+                    DatosVigilante.getNombreR().clear();
+                    DatosVigilante.getApellidoR().clear();
+                    DatosVigilante.getPlacaR().clear();
+                    DatosVigilante.getEdificioR().clear();
+                    DatosVigilante.getEntradaR().clear();
+                    DatosVigilante.getSalidaR().clear();
+
+                    for (int i = 0; i <= mJsonArray.length() ; i++) {
                         Log.i("TEST", "DENTRO DEL FOR");
 
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
@@ -245,7 +253,7 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
 
 
 
-    public void ValidarEntrada(final Context context, int edificioId, int userId){
+    public void ValidarEntrada(final Context context, int userId, int edificioId){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Cargando Datos...");
         progressDialog.setIndeterminate(true);
@@ -253,15 +261,16 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
         progressDialog.show();
         Log.i("LOGI","SE CREO EL METODO VALIDAR ENTRADA");
 
-        String url = BASE_URL+"users/validar-entrada?api_token="+user.getApi_token()+"&edificio_id"+edificioId+"&user_id"+userId;
+        String url = BASE_URL+"users/validar-entrada?api_token="+user.getApi_token()+"&user_id="+userId+"&edificio_id="+edificioId;
         Map<String, Integer> params = new HashMap();
-        params.put("edificio_id", edificioId);
         params.put("user_id", userId);
+        params.put("edificio_id", edificioId);
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
         Log.i("LOGI","SE REALIZO LA PETICION");
 
+        // A partir de aqui nose ejecuta   //MARIO
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -269,7 +278,7 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
                     Log.i("LOGI", "dentro de try");
                     String data = response.getString("message");
                     Toast.makeText(context, data, Toast.LENGTH_LONG).show();
-                    Log.i("LOGI", "Se valido la entrada");
+                    Log.i("LOGI", "Se valido la Entrada");
 
                 } catch (JSONException e){
 
@@ -309,13 +318,13 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
         JSONObject parameters = new JSONObject(params);
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        Log.i("MENS","SE REALIZO LA PETICION");
+        Log.i("LOGI","SE REALIZO LA PETICION");
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String data = response.getString("");
+                    String data = response.getString("message");
                     Toast.makeText(context, data, Toast.LENGTH_LONG).show();
                     Log.i("LOGI", "Se valido la Salida");
                 } catch (JSONException e){
@@ -417,13 +426,18 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
                 try {
                     Log.i("TEST", "DENTRO DE TRY");
                     JSONArray mJsonArray = response.getJSONArray("historial");
-                    DatosVigilante.dataBuilding().clear();
-                    DatosVigilante.dataTotalEsta().clear();
-                    for (int i = 0; i < mJsonArray.length() ; i++) {
+                    DatosVigilante.getNombreH().clear();
+                    DatosVigilante.getApellidoH().clear();
+                    DatosVigilante.getPlacaH().clear();
+                    DatosVigilante.getComentarioH().clear();
+                    for (int i = 0; i <= mJsonArray.length() ; i++) {
                         JSONObject mJsonObject = mJsonArray.getJSONObject(i);
                         String Comentario = mJsonObject.getString("comentario");
 
-                        JSONObject Usuario = mJsonObject.getJSONObject("user");
+                        JSONObject Reserva = mJsonObject.getJSONObject("reserva");
+                        JSONArray Usuario1 = Reserva.getJSONArray("users");
+                        JSONObject Usuario = Usuario1.getJSONObject(0);
+
                         String Nombre = Usuario.getString("nombres");
                         String Apellido = Usuario.getString("apellidos");
                         String Num_placa = Usuario.getString("num_placa");

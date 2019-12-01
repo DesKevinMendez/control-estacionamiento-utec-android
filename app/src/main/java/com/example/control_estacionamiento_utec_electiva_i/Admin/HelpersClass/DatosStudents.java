@@ -11,13 +11,55 @@ public final class DatosStudents {
    public static ArrayList StudentBuilding = new ArrayList();
    public static ArrayList StudentID = new ArrayList();
 
-   
-   public static ArrayList FilterStudentname = new ArrayList();
+    public static ArrayList FilterStudentname = new ArrayList();
    public static ArrayList FilterStudentPlaca = new ArrayList();
    public static ArrayList FilterStudentCarnet = new ArrayList();
    public static ArrayList FilterStudentBuilding = new ArrayList();
    public static ArrayList FilterStudentID = new ArrayList();
 
+    public static String Name = "";
+    public static String Placa = "";
+    public static String Carnet = "";
+    public static String Building = "";
+    public static String ID = "";
+
+    public static void setInfoSelectedStudents(int position){
+        if (FilterStudentname.size() > 0 ){
+
+            Name = FilterStudentname.get(position).toString();
+            Placa = FilterStudentPlaca.get(position).toString();
+            Carnet = FilterStudentCarnet.get(position).toString();
+            Building = FilterStudentBuilding.get(position).toString();
+            ID = FilterStudentID.get(position).toString();
+
+        } else {
+         
+            Name = Studentname.get(position).toString();
+            Placa = StudentPlaca.get(position).toString();
+            Carnet = StudentCarnet.get(position).toString();
+            Building = StudentBuilding.get(position).toString();
+            ID = StudentID.get(position).toString();   
+        }
+    }
+    public static String getName() {
+        return Name;
+    }
+
+    public static String getPlaca() {
+        return Placa;
+    }
+
+    public static String getCarnet() {
+        return Carnet;
+    }
+
+    public static String getBuilding() {
+        return Building;
+    }
+
+    public static String getID() {
+        return ID;
+    }
 
     public static void setDataStudents(String nombre, String placa, String carnet,
                                        String edificio, int id){

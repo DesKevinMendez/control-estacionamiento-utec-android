@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosStudents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
@@ -174,8 +175,15 @@ public class MainActivityAdmin extends AppCompatActivity implements
                         DatosStudents.setDataStudents(nombre+" "+ apellido, carnet, placa,
                                 "no disponible", idStudent);
 
-                        changeFragments(new StudentsActiveAndNotActive(), 6);
+                    }
 
+                    if (DatosBuilding.getTotalEdificios() == 0 ){
+                        HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
+                        httpRequestAdmin.HTTPrequestBuilding(MainActivityAdmin.this,
+                                "AlertDialog", "ShowSppinerInAlertDiaog");
+                    } else {
+
+                        changeFragments(new StudentsActiveAndNotActive(), 6);
                     }
 
                 } catch (JSONException e){
