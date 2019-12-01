@@ -21,7 +21,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -67,7 +67,7 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
 
     }
 
-    final PeticionesVigilante peticion = new PeticionesVigilante();
+    final PeticionesVigilantes peticion = new PeticionesVigilantes();
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 // Handle action bar item clicks here. The action bar will
@@ -93,7 +93,7 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
             case R.id.notificacionesVigilante:
                 Log.i("TEST", "Notificaciones");
                 getSupportActionBar().setTitle("Notificaciones");
-                PeticionesVigilante peticion3 = new PeticionesVigilante();
+                PeticionesVigilantes peticion3 = new PeticionesVigilantes();
                 peticion3.ObtenerHistorial(vigilanteNavigationDrawer.this);
                 break;
 
@@ -108,7 +108,7 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
             case R.id.reservadosVigilante:
                 Log.i("TEST", "Estacionamientos reservados");
                 getSupportActionBar().setTitle("Estacionamiento Reservados");
-                PeticionesVigilante peticion2 = new PeticionesVigilante();
+                PeticionesVigilantes peticion2 = new PeticionesVigilantes();
                 peticion2.ObtenerReservados(vigilanteNavigationDrawer.this);
                 break;
 

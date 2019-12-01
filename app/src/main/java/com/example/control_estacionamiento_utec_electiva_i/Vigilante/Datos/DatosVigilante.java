@@ -118,5 +118,31 @@ public final class DatosVigilante  {
     public static ArrayList getComentarioH(){return comHistorial;}
 
 
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    private static ArrayList nombreR = new ArrayList();
+    private static ArrayList apellidoR = new ArrayList();
+    private static ArrayList placaR = new ArrayList();
+    private static ArrayList edificioR = new ArrayList();
+    private static ArrayList entradaR = new ArrayList();
+    private static ArrayList salidaR = new ArrayList();
+    public  static  void setInfoReservas(String nombre, String apellido, String placa, String edificio,
+                                         String entrada, String salida){
+        nombreR.add(nombre);
+        apellidoR.add(apellido);
+        placaR.add(placa);
+        edificioR.add(edificio);
+        entradaR.add(entrada);
+        salidaR.add(salida);
+
+    }
+
+    public static ArrayList getNombreR(){return nombreR;}
+    public static ArrayList getApellidoR(){return apellidoR;}
+    public static ArrayList getPlacaR(){return placaR;}
+    public static ArrayList getEdificioR(){return edificioR;}
+    public static ArrayList getEntradaR(){return entradaR;}
+    public static ArrayList getSalidaR(){return salidaR;}
+
 
 }
