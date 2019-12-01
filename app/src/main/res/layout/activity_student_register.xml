@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llRegisterStudent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:orientation="vertical"
+    android:padding="30dp"
+    tools:context=".StudentRegisterActivity">
+
+    <EditText
+        android:id="@+id/edtNameRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/name_register"
+        android:inputType="textPersonName"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtSurnameRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/surname_register"
+        android:inputType="textPersonName"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtMailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtCarneRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/carnet_register"
+        android:inputType="textPersonName"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtPlacaRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/num_placa_register"
+        android:inputType="textPersonName"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtPassRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/pass_register"
+        android:inputType="textPassword"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/edtPassConfirmRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/oval_edt"
+        android:elevation="4dp"
+        android:ems="10"
+        android:hint="@string/pass_confirm_register"
+        android:inputType="textPassword"
+        android:padding="15dp" />
+
+    <LinearLayout
+        android:id="@+id/llButtonOptionRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancelarRegisterStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/oval"
+            android:textColor="#FFF"
+            android:layout_marginRight="5dp"
+            android:text="@string/btn_cancelar" />
+
+        <Button
+            android:id="@+id/btnRegisterStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/oval_white"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/btn_register_student" />
+    </LinearLayout>
+
+</LinearLayout>

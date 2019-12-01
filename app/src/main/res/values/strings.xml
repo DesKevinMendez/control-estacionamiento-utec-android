@@ -137,6 +137,16 @@
     <string name="menu_send">Send</string>
     <string name="title_activity_estudiantes_drawer">EstudiantesDrawer</string>
 
+    <!-- Strings related to student register -->
+    <string name="register_action">Regístrate aquí</string>
+    <string name="btn_register_student">Registrar</string>
+    <string name="name_register">Nombre</string>
+    <string name="surname_register">Apellido</string>
+    <string name="carnet_register">Carnet</string>
+    <string name="num_placa_register">Número de placa</string>
+    <string name="pass_register">Contraseña</string>
+    <string name="pass_confirm_register">Confirmar Contraseña</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -1,14 +1,12 @@
 package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 
 
 /**
@@ -108,7 +106,7 @@ public class InicioVigilante extends Fragment {
             public void onClick(View v) {
 
                 String Placa = edtPlaca.getText().toString().trim();
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                 peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
                 DatosVigilante datosVigilante = new DatosVigilante();
 
@@ -137,7 +135,7 @@ public class InicioVigilante extends Fragment {
                     Toast.makeText(getActivity(), "Error: vuelva a buscar al usuario", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                    PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                     peticionesVigilante.ValidarEntrada(getActivity(),idUsuario,idEdificio);
                 }
 
@@ -155,7 +153,7 @@ public class InicioVigilante extends Fragment {
                     Toast.makeText(getActivity(), "Error: vuelva a buscar al usuario", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                    PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                     peticionesVigilante.ValidarSalida(getActivity(),idUsuario);
                 }
 

@@ -14,12 +14,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.Adaptador;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 
 
 /**
@@ -101,7 +100,7 @@ public class DisponiblesVigilante extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 int idEdificio = i+1;
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                 peticionesVigilante.EdificiosId(getActivity(),idEdificio);
 
 

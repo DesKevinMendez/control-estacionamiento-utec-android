@@ -16,10 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.Adaptador;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.AdaptadorReservados;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 
 
 /**
@@ -89,15 +88,16 @@ public class ReservadosVigilante extends Fragment {
 
         lvEdificios.setAdapter(new
                 AdaptadorReservados(getActivity(),
-                datosVigilante.dataBuilding(),
-                datosVigilante.dataEstaReser()));
+                datosVigilante.getNombreR(),datosVigilante.getApellidoR(),datosVigilante.getPlacaR(),
+                datosVigilante.getEdificioR(),datosVigilante.getEntradaR(),datosVigilante.getSalidaR()
+                ));
 
         lvEdificios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 int idEdificio = i+1;
-                PeticionesVigilante peticionesVigilante = new PeticionesVigilante();
+                PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
                 peticionesVigilante.EdificiosId(getActivity(),idEdificio);
 
 
