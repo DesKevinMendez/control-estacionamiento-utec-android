@@ -2,11 +2,31 @@ package com.example.control_estacionamiento_utec_electiva_i;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
 public class StudentRegisterActivity extends AppCompatActivity {
 
@@ -66,19 +86,60 @@ public class StudentRegisterActivity extends AppCompatActivity {
                         edtConfirmPass.setText("");
                         edtPass.requestFocus();
                     } else {
-                        // TODO: continue with code...
+                        HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
                     }
                 }
 
             }
         });
     }
+    ProgressDialog progressDialog;
+    public void HTTPRegisterStudent(String name, String surname,
+                                    String mail, String carnet, String placa,
+                                    String pass, String confirm) {
+        progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Registrándose...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
 
-    /**
-     * Method to verify if @param editText is empty
-     * @param editText
-     * @return false if empty or true if not empty
-     */
+        progressDialog.show();
+
+        String url = BASE_URL+"register?rol_id=4&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
+        Map<String, String> params = new HashMap();
+        params.put("nombres", name);
+        params.put("apellidos", surname);
+        params.put("email", mail);
+        params.put("carnet", carnet);
+        params.put("num_placa", placa);
+        params.put("password", pass);
+        params.put("password_confirmation", confirm);
+
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        Log.i("VOLLEY", url);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                // TO DO your code to success request here
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                Toast.makeText(StudentRegisterActivity.this, "Error! Verifica tus credenciales", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
     public boolean isEmptyFields(EditText editText) {
         String stringText = editText.getText().toString().trim();
         if (stringText.isEmpty()) {

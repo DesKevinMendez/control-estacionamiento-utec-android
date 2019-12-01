@@ -38,7 +38,7 @@
             android:hint="Correo, placa o carnet"
             android:inputType="textPersonName"
             android:padding="15dp"
-            android:text="gmail.com" />
+            android:text="docented@mail.utec.edu.sv" />
 
         <EditText
             android:id="@+id/tvPasswordLG"

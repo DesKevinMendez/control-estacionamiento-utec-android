@@ -19,7 +19,8 @@
         android:ems="10"
         android:hint="@string/name_register"
         android:inputType="textPersonName"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="kevin mendez" />
 
     <EditText
         android:id="@+id/edtSurnameRegister"
@@ -31,7 +32,8 @@
         android:ems="10"
         android:hint="@string/surname_register"
         android:inputType="textPersonName"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="Apellido" />
 
     <EditText
         android:id="@+id/edtMailRegister"
@@ -43,7 +45,8 @@
         android:ems="10"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="kevin@test.com" />
 
     <EditText
         android:id="@+id/edtCarneRegister"
@@ -55,7 +58,8 @@
         android:ems="10"
         android:hint="@string/carnet_register"
         android:inputType="textPersonName"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="12-3485-8923" />
 
     <EditText
         android:id="@+id/edtPlacaRegister"
@@ -67,7 +71,8 @@
         android:ems="10"
         android:hint="@string/num_placa_register"
         android:inputType="textPersonName"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="98798-89" />
 
     <EditText
         android:id="@+id/edtPassRegister"
@@ -79,7 +84,8 @@
         android:ems="10"
         android:hint="@string/pass_register"
         android:inputType="textPassword"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="secret" />
 
     <EditText
         android:id="@+id/edtPassConfirmRegister"
@@ -91,7 +97,8 @@
         android:ems="10"
         android:hint="@string/pass_confirm_register"
         android:inputType="textPassword"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:text="secret" />
 
     <LinearLayout
         android:id="@+id/llButtonOptionRegister"
