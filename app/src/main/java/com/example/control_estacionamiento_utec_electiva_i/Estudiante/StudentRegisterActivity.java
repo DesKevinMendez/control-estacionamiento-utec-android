@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
@@ -83,7 +84,17 @@ public class StudentRegisterActivity extends AppCompatActivity {
                         edtConfirmPass.setText("");
                         edtPass.requestFocus();
                     } else {
-                        HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                        String regex = "^[0-9]{2}(?:-[0-9]{4})(?:-[0-9]{4})*$";
+                        boolean isRegulated = Pattern.matches(regex, carnet);
+                        if (!isRegulated) {
+                            Toast.makeText(StudentRegisterActivity.this,
+                                    "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
+                            edtCarnet.setText("");
+                            edtCarnet.requestFocus();
+                        } else {
+
+                            HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                        }
                     }
                 }
 

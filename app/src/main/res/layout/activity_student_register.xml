@@ -64,6 +64,7 @@
             android:ems="10"
             android:hint="@string/carnet_register"
             android:inputType="textPersonName"
+            android:maxLength="12"
             android:padding="15dp"
             android:text="12-3485-8923" />
 
@@ -77,6 +78,7 @@
             android:ems="10"
             android:hint="@string/num_placa_register"
             android:inputType="textPersonName"
+            android:maxLength="7"
             android:padding="15dp"
             android:text="98798-89" />
 
@@ -117,9 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/oval"
+                android:background="@drawable/oval_white"
                 android:text="@string/btn_cancelar"
-                android:textColor="#FFF" />
+                android:textColor="@color/colorPrimary" />
 
             <Button
                 android:id="@+id/btnRegisterStudent"
@@ -127,9 +129,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/oval_white"
+                android:background="@drawable/oval"
                 android:text="@string/btn_register_student"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="#FFF" />
         </LinearLayout>
     </LinearLayout>
 
