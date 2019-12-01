@@ -38,7 +38,7 @@
             android:hint="Correo, placa o carnet"
             android:inputType="textPersonName"
             android:padding="15dp"
-            android:text="admin@admin.com" />
+            android:text="gmail.com" />
 
         <EditText
             android:id="@+id/tvPasswordLG"
@@ -68,5 +68,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Iniciar sesión" />
+
+        <TextView
+            android:id="@+id/tvLinkRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@string/register_action"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#7588F7"
+            android:textStyle="italic" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

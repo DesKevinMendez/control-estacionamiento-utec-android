@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.control_estacionamiento_utec_electiva_i">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".StudentRegisterActivity"></activity>
         <activity
             android:name=".Admin.MainActivityAdmin"
             android:label="@string/title_activity_navegation_admin"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Estudiante.EstudiantesDrawer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Vigilante.Detalle" />
         <activity
             android:name=".Vigilante.vigilanteNavigationDrawer"
@@ -32,6 +33,7 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
