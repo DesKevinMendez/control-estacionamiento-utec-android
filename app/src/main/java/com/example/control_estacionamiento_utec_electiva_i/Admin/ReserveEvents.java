@@ -26,21 +26,25 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosEvents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -262,7 +266,7 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
                     Log.i("Horario salida", HorariosSalida);
                     Log.i("Fecha", fecha);
                     Log.i("Motivo reserva", motivoReserva);
-                    HTTPAssignEvents(DatosBuilding.getBuildingIdSelected(),
+                    HTTPrequestAssignWathMan(getActivity(), DatosBuilding.getBuildingIdSelected(),
                             fecha,
                             HorarioEntrada, HorariosSalida, cantidadReserva, motivoReserva);
 
@@ -328,65 +332,56 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
         }
     }
 
+        ProgressDialog progressDialog;
+        public void HTTPrequestAssignWathMan(final Context context,
+                                             final String edificio,
+                                             final String fecha, final String entrada, final String salida, final String canti,
+                                             final String comentario) {
 
-    ProgressDialog progressDialog;
-    public void HTTPAssignEvents(String edificio,
-                                 String fecha, String entrada, String salida, String canti,
-                                 String comentario) {
-        progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
-        progressDialog.setMessage("Asignando evento...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+            progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+            progressDialog.setMessage("Asignando vigilante...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
 
-        String url = BASE_URL+"crear-evento?api_token="+ User.getApi_token();
-        Map<String, String> params = new HashMap();
-        params.put("edificio_id", edificio);
-        params.put("fecha", fecha);
-        params.put("hora_entrada", entrada);
-        params.put("hora_salida", salida);
-        params.put("cantidad", canti);
-        params.put("comentario", comentario);
-        JSONObject parameters = new JSONObject(params);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+            progressDialog.show();
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+            String url = BASE_URL+"crear-evento?api_token="+User.getApi_token();
+            StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(context, "El evento ha sido guardado", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            changeFragments(new InicioAdmin());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Log.i("ERROR", error.toString());
+                            progressDialog.dismiss();
 
-                //try {
-
-
-                Toast.makeText(getActivity(), "Reserva asignada correctamente", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-                changeFragments(new InicioAdmin());
-
-            /*} catch (JSONException error){
-
-                Log.i("ERROR", error.toString());
-            }*/
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-                progressDialog.dismiss();
-
-            }
-        });
-    /*{
-        @Override
-        public Map getHeaders() throws AuthFailureError {
-            HashMap headers = new HashMap();
-            headers.put("Accept", "application/json");
-            return headers;
+                        }
+                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams()
+                {
+                    Map<String, String>  params = new HashMap<>();
+                    // the POST parameters:
+                    params.put("edificio_id", edificio);
+                    params.put("fecha", fecha);
+                    params.put("hora_entrada", entrada);
+                    params.put("hora_salida", salida);
+                    params.put("cantidad", canti);
+                    params.put("comentario", comentario);
+                    return params;
+                }
+            };
+            Volley.newRequestQueue(context).add(postRequest);
         }
-    };*/
 
-        queue.add(request);
-
-    }
 
 
     public void changeFragments(Fragment fragment, String actionOfReserverEvents, String ReserveEvents){

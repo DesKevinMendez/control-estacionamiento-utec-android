@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.RequestFuture;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.AssignParking;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
@@ -282,63 +283,6 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
-    public void HTTPAssignEvents(final Context context, String edificio,
-                                 String fecha, String entrada, String salida, String canti,
-                                 String comentario) {
-        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
-        progressDialog.setMessage("Asignando evento...");
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        String url = BASE_URL+"crear-evento?api_token="+User.getApi_token();
-        Map<String, String> params = new HashMap();
-        params.put("edificio_id", edificio);
-        params.put("fecha", fecha);
-        params.put("hora_entrada", entrada);
-        params.put("hora_salida", salida);
-        params.put("cantidad", canti);
-        params.put("comentario", comentario);
-        JSONObject parameters = new JSONObject(params);
-        RequestQueue queue = Volley.newRequestQueue(context);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                //try {
-
-
-                    Toast.makeText(context, "Reserva asignada correctamente", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                    changeFragments(context, new InicioAdmin());
-
-                /*} catch (JSONException error){
-
-                    Log.i("ERROR", error.toString());
-                }*/
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-                progressDialog.dismiss();
-
-            }
-        });
-        /*{
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                HashMap headers = new HashMap();
-                headers.put("Accept", "application/json");
-                return headers;
-            }
-        };*/
-
-        queue.add(request);
-
-    }
     public void HTTPrequestReserverParking(final Context context, String user_id, String edificio_id,
                                            String fecha, String entrada,
                                     String salida, String cantidad, String comentario) {
@@ -393,8 +337,8 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
-    public void HTTPrequesteChangePassword(final Context context, String passActual, String newPass,
-                                           String confiNewPass){
+    public void HTTPrequesteChangePassword(final Context context, final String passActual, final String newPass,
+                                           final String confiNewPass){
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Espere...");
         progressDialog.setIndeterminate(true);
@@ -403,54 +347,39 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
         progressDialog.show();
 
         String url = BASE_URL+"perfil/actualizar-contrasena?api_token="+user.getApi_token();
-        Map<String, String> params = new HashMap();
-        params.put("password", passActual);
-        params.put("new_password", newPass);
-        params.put("new_password_confirmation", confiNewPass);
-        JSONObject parameters = new JSONObject(params);
-        RequestQueue queue = Volley.newRequestQueue(context);
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url,null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, "La contraseña ha sido actualizada", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Log.i("ERROR", error.toString());
+                        progressDialog.dismiss();
 
-                try {
-                    Log.i("VOLLEY", "Se cambio contraseña");
-                    /*
-                    // Establece la sesion de usuario con falso, y limpia la data del usuario
-                    user.setLoggedUser(false);
-
-                    user.setDataUser(0, null, null, null, null,
-                            null, 0, 0, null);
-
-
-                    Intent login = new Intent(context, Login.class);
-                    context.startActivity(login);
-                    */
-                    String data = response.getString("success");
-                    Toast.makeText(context, data, Toast.LENGTH_SHORT).show();
-
-                } catch (JSONException e){
-
-                    Log.e("VOLLEY","Error de parcing en Login - method: LoginRequest "+ e.toString());
-                    e.printStackTrace();
-
+                    }
                 }
-
-                progressDialog.dismiss();
-
-            }
-        }, new Response.ErrorListener() {
+        ) {
             @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(context, "Error! Intentelo de nuevo", Toast.LENGTH_SHORT).show();
-
-                progressDialog.dismiss();
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<>();
+                // the POST parameters:
+                params.put("password", passActual);
+                params.put("new_password", newPass);
+                params.put("new_password_confirmation", confiNewPass);
+                return params;
             }
-        });
+        };
 
-        queue.add(request);
+        Volley.newRequestQueue(context).add(postRequest);
+
     }
 
     public void changeFragments(Context context, Fragment fragment, String putStringName, String putStringDescription) {
