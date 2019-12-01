@@ -3,6 +3,8 @@ package com.example.control_estacionamiento_utec_electiva_i.Estudiante;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.StringRequest;
+import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -92,8 +96,11 @@ public class StudentRegisterActivity extends AppCompatActivity {
                             edtCarnet.setText("");
                             edtCarnet.requestFocus();
                         } else {
-
-                            HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                            HTTPRegisterStudent(getApplicationContext(),name, surname, mail,
+                                                carnet, placa, pass, confirm);
+                            Intent login = new Intent(StudentRegisterActivity.this, Login.class);
+                            startActivity(login);
+                            finish();
                         }
                     }
                 }
@@ -109,9 +116,9 @@ public class StudentRegisterActivity extends AppCompatActivity {
         });
     }
     ProgressDialog progressDialog;
-    public void HTTPRegisterStudent(String name, String surname,
-                                    String mail, String carnet, String placa,
-                                    String pass, String confirm) {
+    public void HTTPRegisterStudent(final Context context, final String name, final String surname,
+                                    final String mail, final String carnet, final String placa,
+                                    final String pass, final String confirm) {
         progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
         progressDialog.setMessage("Registrándose...");
         progressDialog.setIndeterminate(true);
@@ -120,40 +127,41 @@ public class StudentRegisterActivity extends AppCompatActivity {
         progressDialog.show();
 
         String url = BASE_URL+"register?rol_id=4&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
-        Map<String, String> params = new HashMap();
-        params.put("nombres", name);
-        params.put("apellidos", surname);
-        params.put("email", mail);
-        params.put("carnet", carnet);
-        params.put("num_placa", placa);
-        params.put("password", pass);
-        params.put("password_confirmation", confirm);
 
-        JSONObject parameters = new JSONObject(params);
-        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(context, "Se registraron las credenciales", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    Log.i("ERROR", error.toString());
+                    progressDialog.dismiss();
 
-        Log.i("VOLLEY", url);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters,
-                                                            new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                // TODO your code to success request here
-                progressDialog.dismiss();
-
+                }
             }
-        }, new Response.ErrorListener() {
+        ){
             @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-                Toast.makeText(StudentRegisterActivity.this,
-                                "Error! Verifica tus credenciales", Toast.LENGTH_SHORT).show();
-                progressDialog.dismiss();
-
+            protected Map<String, String> getParams()
+            {
+                Map<String, String>  params = new HashMap<>();
+                // the POST parameters:
+                params.put("nombres", name);
+                params.put("apellidos", surname);
+                params.put("email", mail);
+                params.put("carnet", carnet);
+                params.put("num_placa", placa);
+                params.put("password", pass);
+                params.put("password_confirmation", confirm);
+                return params;
             }
-        });
+        };
 
-        queue.add(request);
+        Volley.newRequestQueue(context).add(postRequest);
 
     }
 
