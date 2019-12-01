@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -281,6 +282,63 @@ public class HttpRequestAdmin extends AppCompatActivity implements Globals {
 
     }
 
+    public void HTTPAssignEvents(final Context context, String edificio,
+                                 String fecha, String entrada, String salida, String canti,
+                                 String comentario) {
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Asignando evento...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        String url = BASE_URL+"crear-evento?api_token="+User.getApi_token();
+        Map<String, String> params = new HashMap();
+        params.put("edificio_id", edificio);
+        params.put("fecha", fecha);
+        params.put("hora_entrada", entrada);
+        params.put("hora_salida", salida);
+        params.put("cantidad", canti);
+        params.put("comentario", comentario);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                //try {
+
+
+                    Toast.makeText(context, "Reserva asignada correctamente", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    changeFragments(context, new InicioAdmin());
+
+                /*} catch (JSONException error){
+
+                    Log.i("ERROR", error.toString());
+                }*/
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+            }
+        });
+        /*{
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+        };*/
+
+        queue.add(request);
+
+    }
     public void HTTPrequestReserverParking(final Context context, String user_id, String edificio_id,
                                            String fecha, String entrada,
                                     String salida, String cantidad, String comentario) {

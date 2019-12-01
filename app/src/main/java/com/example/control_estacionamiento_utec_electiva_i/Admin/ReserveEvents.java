@@ -1,6 +1,7 @@
 package com.example.control_estacionamiento_utec_electiva_i.Admin;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.icu.util.Calendar;
@@ -25,13 +26,27 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosEvents;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
+import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
 
 public class ReserveEvents extends Fragment implements View.OnClickListener,
@@ -207,6 +222,23 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
                 horaSalidaArray = HorariosSalida.split(":");
                 horaEntradaArray = HorarioEntrada.split(":");
 
+
+                if (Integer.valueOf(horaSalidaArray[0]) <10 ){
+                    if (horaSalidaArray[0].length() < 2){
+
+                        HorariosSalida = "0"+horaSalidaArray[0]+":"+horaSalidaArray[1];
+                    }
+                }
+
+
+                if (Integer.valueOf(horaEntradaArray[0]) <10 ){
+                    if (horaEntradaArray[0].length() < 2){
+
+                        HorarioEntrada = "0"+horaEntradaArray[0]+":"+horaEntradaArray[1];
+                    }
+                }
+
+
                 if (btnSelectedBuilding.getText().toString().equals(getString(R.string.selectedBuilding))) {
                     Toast.makeText(getContext(), "Seleccione parqueo", Toast.LENGTH_SHORT).show();
 
@@ -230,8 +262,12 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
                     Log.i("Horario salida", HorariosSalida);
                     Log.i("Fecha", fecha);
                     Log.i("Motivo reserva", motivoReserva);
+                    HTTPAssignEvents(DatosBuilding.getBuildingIdSelected(),
+                            fecha,
+                            HorarioEntrada, HorariosSalida, cantidadReserva, motivoReserva);
 
-                    changeFragments(new InicioAdmin());
+
+                    //changeFragments(new InicioAdmin());
                 }
                 break;
             case R.id.btnDenegarRP:
@@ -293,6 +329,66 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
     }
 
 
+    ProgressDialog progressDialog;
+    public void HTTPAssignEvents(String edificio,
+                                 String fecha, String entrada, String salida, String canti,
+                                 String comentario) {
+        progressDialog = new ProgressDialog(getActivity(), R.style.AlertDialogStyle);
+        progressDialog.setMessage("Asignando evento...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        String url = BASE_URL+"crear-evento?api_token="+ User.getApi_token();
+        Map<String, String> params = new HashMap();
+        params.put("edificio_id", edificio);
+        params.put("fecha", fecha);
+        params.put("hora_entrada", entrada);
+        params.put("hora_salida", salida);
+        params.put("cantidad", canti);
+        params.put("comentario", comentario);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                //try {
+
+
+                Toast.makeText(getActivity(), "Reserva asignada correctamente", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                changeFragments(new InicioAdmin());
+
+            /*} catch (JSONException error){
+
+                Log.i("ERROR", error.toString());
+            }*/
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+            }
+        });
+    /*{
+        @Override
+        public Map getHeaders() throws AuthFailureError {
+            HashMap headers = new HashMap();
+            headers.put("Accept", "application/json");
+            return headers;
+        }
+    };*/
+
+        queue.add(request);
+
+    }
+
+
     public void changeFragments(Fragment fragment, String actionOfReserverEvents, String ReserveEvents){
         Bundle datosAEnviar = new Bundle();
         datosAEnviar.putString(actionOfReserverEvents, ReserveEvents);
@@ -315,6 +411,7 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
                 replace(R.id.nav_host_fragment, fragment).commit();
 
     }
+
     private void showDatePickerDialog() {
         Calendar mcurrentDate = Calendar.getInstance();
         int mYear = mcurrentDate.get(Calendar.YEAR);
@@ -325,7 +422,7 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
         mDatePicker = new DatePickerDialog(getActivity(), R.style.CustomDatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                 TextView PlannedDate = getActivity().findViewById(R.id.etPlannedDate);
-                String selectedDate = selectedday + " / " + (selectedmonth+1) + " / " + selectedyear;
+                String selectedDate = selectedyear + "-" + (selectedmonth+1) + "-" + selectedday;
                 PlannedDate.setText(selectedDate);
                 DatosEvents.setFecha(selectedDate);
             }

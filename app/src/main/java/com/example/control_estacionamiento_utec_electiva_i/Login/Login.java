@@ -148,12 +148,19 @@ public class Login extends AppCompatActivity {
 
                     } else {
                         if (mJsonObject.getJSONArray("reservas").length() != 0){
-                            JSONObject mJsonObjectReserva = mJsonObject.getJSONObject("reserva");
-                            JSONObject mJsonObjectEdificioReserva = mJsonObjectReserva.getJSONObject("edificio");
+                            JSONArray reservasArray = mJsonObject.getJSONArray("reservas");
 
-                            user.setDataParqueoAsignado(mJsonObjectEdificioReserva.getString("nombre"),
-                                    mJsonObjectEdificioReserva.getString("alias"),
-                                    mJsonObjectEdificioReserva.getInt("num_reservados"));
+                            for (int r=0; r<reservasArray.length(); r++){
+                                JSONObject data = reservasArray.getJSONObject(r);
+                                JSONArray edi = data.getJSONArray("edificios");
+                                for (int e=0; e<edi.length(); e++){
+                                    JSONObject infoFinal = edi.getJSONObject(e);
+                                    user.setDataParqueoAsignado(infoFinal.getString("nombre"),
+                                            infoFinal.getString("alias"),
+                                            infoFinal.getInt("num_reservados"));
+                                }
+                            }
+
 
                         } else {
                             user.setDataParqueoAsignado("No asignado", "desconocido", 0);
