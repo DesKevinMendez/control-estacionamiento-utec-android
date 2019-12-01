@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StudentRegisterActivity"></activity>
+        <activity android:name=".Estudiante.StudentRegisterActivity"></activity>
         <activity
             android:name=".Admin.MainActivityAdmin"
             android:label="@string/title_activity_navegation_admin"

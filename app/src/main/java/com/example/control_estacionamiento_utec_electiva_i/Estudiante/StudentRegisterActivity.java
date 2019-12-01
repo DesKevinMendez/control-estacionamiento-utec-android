@@ -1,4 +1,4 @@
-package com.example.control_estacionamiento_utec_electiva_i;
+package com.example.control_estacionamiento_utec_electiva_i.Estudiante;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.control_estacionamiento_utec_electiva_i.R;
 
 public class StudentRegisterActivity extends AppCompatActivity {
 
@@ -70,6 +72,13 @@ public class StudentRegisterActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

@@ -23,7 +23,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.MainActivityAdm
 import com.example.control_estacionamiento_utec_electiva_i.Estudiante.EstudiantesDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.StudentRegisterActivity;
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.StudentRegisterActivity;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.vigilanteNavigationDrawer;
 import com.example.control_estacionamiento_utec_electiva_i.docentes.DocenteHome;
 
