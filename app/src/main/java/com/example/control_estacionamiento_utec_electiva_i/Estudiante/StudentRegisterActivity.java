@@ -47,6 +47,8 @@ public class StudentRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
 
+        setTitle("Registro de estudiante");
+
         edtName = findViewById(R.id.edtNameRegister);
         edtSurname = findViewById(R.id.edtSurnameRegister);
         edtMail = findViewById(R.id.edtMailRegister);
