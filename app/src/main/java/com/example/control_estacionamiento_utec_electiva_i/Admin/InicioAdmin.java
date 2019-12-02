@@ -51,9 +51,7 @@ public class InicioAdmin extends Fragment {
         tvNombreIA = view.findViewById(R.id.tvNombreIA);
         tvEstacionamientoReservadoA = view.findViewById(R.id.tvEstacionamientoReservadoA);
 
-        tvScheduleAdmin = view.findViewById(R.id.tvScheduleAdmin);
         tvStateEstacionamientoAdmin = view.findViewById(R.id.tvStateEstacionamientoAdmin);
-        tvCantidadReservadoAdmin = view.findViewById(R.id.tvCantidadReservadoAdmin);
 
         tvNombreIA.setText(user.getNombres()+ " "+ user.getApellidos());
 
@@ -61,17 +59,20 @@ public class InicioAdmin extends Fragment {
         tvEstacionamientoReservadoA.setText(user.getNombre_edificio_parqueo_asignado() +" - " +
                 user.getAlias_edificio_parqueo_asignado());
 
-        tvCantidadReservadoAdmin.setText(String.valueOf(user.getNum_reservados_edificio_parqueo_asignado()));
 
+        if (user.getEstado() == 1){
+
+            tvStateEstacionamientoAdmin.setText("Disponible");
+        } else {
+
+            tvStateEstacionamientoAdmin.setText("No disponible");
+        }
 
         Resources r = getResources();
 
-        if (!user.getNum_placa().equals("")){
-            tvInfoPlaca.setText("Placa no disponible");
-            tvInfoPlaca.setTextColor(r.getColor(R.color.red));
-        } else {
-            tvInfoPlaca.setText(user.getNum_placa());
-        }
+        tvInfoPlaca.setText(User.getNum_placa());
+        tvInfoPlaca.setTextColor(r.getColor(R.color.red));
+
 
         return view;
     }
