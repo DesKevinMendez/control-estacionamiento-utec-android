@@ -293,15 +293,7 @@ public class AssignParking extends Fragment implements OnClickListener {
                 progressDialog.dismiss();
 
             }
-        }){
-            @Override
-            public Map getHeaders() throws AuthFailureError {
-                HashMap headers = new HashMap();
-                headers.put("Content-Type", "application/json");
-                headers.put("Accept", "application/json");
-                return headers;
-            }
-        };
+        });
 
         queue.add(request);
 

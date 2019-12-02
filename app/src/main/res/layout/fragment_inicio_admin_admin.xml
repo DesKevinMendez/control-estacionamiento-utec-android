@@ -131,29 +131,6 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tvScheduleUse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="24dp"
-
-                    android:text="@string/schedule_use"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvScheduleAdmin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
-
-                    android:text="@string/schedule"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textSize="16sp" />
-
-                <TextView
                     android:id="@+id/tvAvailabilityStation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -171,33 +148,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
 
+                    android:layout_marginBottom="20dp"
                     android:text="@string/state"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="#F00"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tvCantidadParqueoRes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="24dp"
-
-                    android:text="Cantidad de parqueo reservado"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvCantidadReservadoAdmin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="30dp"
-
-                    android:text="@string/state"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="#353030"
                     android:textSize="16sp" />
 
             </LinearLayout>
