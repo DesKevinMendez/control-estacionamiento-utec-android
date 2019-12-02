@@ -36,11 +36,12 @@ public class HomeFragment extends Fragment {
 
         tvName.setText(user.getNombres() + " " + user.getApellidos());
         tvCarne.setText(user.getEmail());
-        tvCode.setText(user.getAlias_edificio_parqueo_asignado());
+        tvCode.setText(user.getNombre_edificio_parqueo_asignado());
 
         int estado = user.getEstado();
         if (estado==0){
             tvEstado.setText("Estacionamiento lleno");
+            tvEstado.setTextColor(getResources().getColor(R.color.red));
         } else {
             tvEstado.setText("Estacionamientos disponibles");
         }

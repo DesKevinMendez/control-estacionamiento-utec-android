@@ -12,14 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
@@ -96,8 +95,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
                             edtCarnet.setText("");
                             edtCarnet.requestFocus();
                         } else {
-                            HTTPRegisterStudent(getApplicationContext(),name, surname, mail,
-                                                carnet, placa, pass, confirm);
+                            HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
                             Intent login = new Intent(StudentRegisterActivity.this, Login.class);
                             startActivity(login);
                             finish();
@@ -115,39 +113,40 @@ public class StudentRegisterActivity extends AppCompatActivity {
             }
         });
     }
+
     ProgressDialog progressDialog;
-    public void HTTPRegisterStudent(final Context context, final String name, final String surname,
+
+    public void HTTPRegisterStudent(final String name, final String surname,
                                     final String mail, final String carnet, final String placa,
                                     final String pass, final String confirm) {
         progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
         progressDialog.setMessage("Registrándose...");
         progressDialog.setIndeterminate(true);
         progressDialog.setCancelable(false);
-
         progressDialog.show();
 
         String url = BASE_URL+"register?rol_id=4&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Toast.makeText(context, "Se registraron las credenciales", Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                    Log.i("ERROR", error.toString());
-                    progressDialog.dismiss();
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
-                }
+                        Toast.makeText(StudentRegisterActivity.this, "Se registraron las credenciales", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
             }
+        }
         ){
             @Override
-            protected Map<String, String> getParams()
-            {
+            protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String>  params = new HashMap<>();
                 // the POST parameters:
                 params.put("nombres", name);
@@ -157,11 +156,11 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 params.put("num_placa", placa);
                 params.put("password", pass);
                 params.put("password_confirmation", confirm);
-                return params;
+                return super.getParams();
             }
         };
 
-        Volley.newRequestQueue(context).add(postRequest);
+        Volley.newRequestQueue(StudentRegisterActivity.this).add(postRequest);
 
     }
 
