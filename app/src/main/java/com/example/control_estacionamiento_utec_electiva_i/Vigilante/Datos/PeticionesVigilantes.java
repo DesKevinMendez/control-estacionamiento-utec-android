@@ -20,6 +20,7 @@ import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.DisponiblesVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.NotificacionesVigilante;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.ReservadosVigilante;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.eventosVigilante;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -470,5 +471,77 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
 
         queue.add(request);
     }
+
+
+    public void ObtenerEventos(Context context){
+        final AppCompatActivity mcontext = (AppCompatActivity) context;
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Cargando datos");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        String url = BASE_URL+"eventos?api_token="+user.getApi_token();
+        RequestQueue queue = Volley.newRequestQueue(context);
+        Log.i("TEST", "PETICION API");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Log.i("TEST", "DENTRO DE TRY");
+                    JSONArray mJsonArray = response.getJSONArray("eventos");
+                    DatosVigilante.getEdificioE().clear();
+                    DatosVigilante.getCantidadE().clear();
+                    DatosVigilante.getEntradaE().clear();
+                    DatosVigilante.getSalidaE().clear();
+                    DatosVigilante.getFechaE().clear();
+                    DatosVigilante.getComentarioE().clear();
+                    for (int i = 0; i <= mJsonArray.length() ; i++) {
+                        JSONObject mJsonObject = mJsonArray.getJSONObject(i);
+                        int cantidad = mJsonObject.getInt("cantidad");
+                        String fecha = mJsonObject.getString("fecha");
+                        String comentario = mJsonObject.getString("comentario");
+
+                        JSONObject Edificios = mJsonObject.getJSONObject("edificio");
+                        String edificio = Edificios.getString("nombre");
+
+                        JSONObject Horario = mJsonObject.getJSONObject("horario");
+                        String horaEntrada=Horario.getString("hora_entrada");
+                        String horaSalida=Horario.getString("hora_salida");
+
+
+                        DatosVigilante.setEventos(edificio,cantidad,horaEntrada,horaSalida,fecha,comentario);
+                        Log.i("TEST", "EJECUCION EXITOSA");
+
+
+                        mcontext.getSupportFragmentManager().beginTransaction()
+                                .addToBackStack(null).replace(R.id.nav_host_fragment,
+                                new eventosVigilante()).commit();
+
+
+                    }
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error "+ e.toString());
+                    e.printStackTrace();
+
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+    }
+
+
+
 
 }

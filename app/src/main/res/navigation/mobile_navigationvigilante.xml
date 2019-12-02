@@ -40,5 +40,10 @@
         android:name="com.example.control_estacionamiento_utec_electiva_i.docentes.ui.cerrar_sesion.CerrarSesionFragment"
         android:label="fragment_cerrar_sesion_docente"
         tools:layout="@layout/fragment_cerrar_sesion_docente" />
+    <fragment
+        android:id="@+id/eventosVigilante2"
+        android:name="com.example.control_estacionamiento_utec_electiva_i.Vigilante.eventosVigilante"
+        android:label="fragment_eventos_vigilante"
+        tools:layout="@layout/fragment_eventos_vigilante" />
 
 </navigation>

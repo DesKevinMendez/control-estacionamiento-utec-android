@@ -16,6 +16,9 @@
             android:id="@+id/reservadosVigilante"
             android:title="Estacionamientos Reservados" />
         <item
+            android:id="@+id/eventosVigilante"
+            android:title="Estacionamientos para eventos" />
+        <item
             android:id="@+id/comentariosVigilante"
             android:title="Comentarios" />
         <item

@@ -1,7 +1,6 @@
 package com.example.control_estacionamiento_utec_electiva_i.Vigilante;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,26 +9,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.AdaptadorReservados;
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Adaptadores.AdaptadorEventos;
 import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.DatosVigilante;
-import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ReservadosVigilante.OnFragmentInteractionListener} interface
+ * {@link eventosVigilante.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ReservadosVigilante#newInstance} factory method to
+ * Use the {@link eventosVigilante#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReservadosVigilante extends Fragment {
+public class eventosVigilante extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,7 +35,7 @@ public class ReservadosVigilante extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ReservadosVigilante() {
+    public eventosVigilante() {
         // Required empty public constructor
     }
 
@@ -51,11 +45,11 @@ public class ReservadosVigilante extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ReservadosVigilante.
+     * @return A new instance of fragment eventosVigilante.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReservadosVigilante newInstance(String param1, String param2) {
-        ReservadosVigilante fragment = new ReservadosVigilante();
+    public static eventosVigilante newInstance(String param1, String param2) {
+        eventosVigilante fragment = new eventosVigilante();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -72,25 +66,16 @@ public class ReservadosVigilante extends Fragment {
         }
     }
 
-    ListView lvEdificios;
     DatosVigilante datosVigilante;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reservados_vigilante, container, false);
+        View view = inflater.inflate(R.layout.fragment_eventos_vigilante, container, false);
 
-        Button btnRegresar = view.findViewById(R.id.btnRegresar);
-        ListView lvEdificios = view.findViewById(R.id.lvEdificios);
-        final TextView tvDisponibles = view.findViewById(R.id.tvEstacionamientoDisponibles);
-        final TextView tvOcupados = view.findViewById(R.id.tvEstacionamientosOcupados);
-        final TextView tvEstado = view.findViewById(R.id.tvEstado);
-
-        lvEdificios.setAdapter(new
-                AdaptadorReservados(getActivity(),
-                datosVigilante.getNombreR(),datosVigilante.getApellidoR(),datosVigilante.getPlacaR(),
-                datosVigilante.getEdificioR(),datosVigilante.getEntradaR(),datosVigilante.getSalidaR()
-                ));
+        ListView lvEventos = view.findViewById(R.id.lvEventos);
+        lvEventos.setAdapter(new AdaptadorEventos(getActivity(),datosVigilante.getEdificioE(),
+                datosVigilante.getCantidadE(),datosVigilante.getEntradaE(),datosVigilante.getSalidaE(),
+                datosVigilante.getFechaE(),datosVigilante.getComentarioE()));
 
 
         return view;

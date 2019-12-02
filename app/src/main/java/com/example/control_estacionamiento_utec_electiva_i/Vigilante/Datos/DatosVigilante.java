@@ -146,4 +146,35 @@ public final class DatosVigilante  {
     public static ArrayList getComentarioH(){return comHistorial;}
 
 
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private static ArrayList edificioE = new ArrayList();
+    private static ArrayList cantidadE = new ArrayList();
+    private static ArrayList entradaE = new ArrayList();
+    private static ArrayList salidaE = new ArrayList();
+    private static ArrayList fechaE = new ArrayList();
+    private static ArrayList comentarioE = new ArrayList();
+
+    public  static  void setEventos(String edifcioe, int cantidade, String entradae, String salidae,
+                                    String fechae, String comentarioe){
+        edificioE.add(edifcioe);
+        cantidadE.add(cantidade);
+        entradaE.add(entradae);
+        salidaE.add(salidae);
+        fechaE.add(fechae);
+        comentarioE.add(comentarioe);
+
+    }
+
+    public static ArrayList getEdificioE(){return edificioE;}
+    public static ArrayList getCantidadE(){return cantidadE;}
+    public static ArrayList getEntradaE(){return entradaE;}
+    public static ArrayList getSalidaE(){return salidaE;}
+    public static ArrayList getFechaE(){return fechaE;}
+    public static ArrayList getComentarioE(){return comentarioE;}
+
+
+
 }

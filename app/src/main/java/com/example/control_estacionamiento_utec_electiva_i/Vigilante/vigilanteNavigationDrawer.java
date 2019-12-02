@@ -39,6 +39,7 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
         NotificacionesVigilante.OnFragmentInteractionListener,
         DisponiblesVigilante.OnFragmentInteractionListener,
         ReservadosVigilante.OnFragmentInteractionListener,
+        eventosVigilante.OnFragmentInteractionListener,
         PerfilVigilante.OnFragmentInteractionListener,
         NavigationView.OnNavigationItemSelectedListener
 {
@@ -110,6 +111,12 @@ public class vigilanteNavigationDrawer extends AppCompatActivity implements
                 getSupportActionBar().setTitle("Estacionamiento Reservados");
                 PeticionesVigilantes peticion2 = new PeticionesVigilantes();
                 peticion2.ObtenerReservados(vigilanteNavigationDrawer.this);
+                break;
+
+            case R.id.eventosVigilante:
+                Log.i("TEST", "Eventos");
+                getSupportActionBar().setTitle("Eventos");
+                peticion.ObtenerEventos(vigilanteNavigationDrawer.this);
                 break;
 
             case R.id.perfilVigilante:

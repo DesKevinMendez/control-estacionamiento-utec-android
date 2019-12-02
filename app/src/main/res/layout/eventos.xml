@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
@@ -9,52 +7,56 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:padding="5dp">
+        android:layout_margin="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
-            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvNombres"
-                android:layout_width="match_parent"
+                android:id="@+id/tvEdificio"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#0C7410" />
 
             <TextView
-                android:id="@+id/tvPlaca"
-                android:layout_width="match_parent"
+                android:id="@+id/tvCantidad"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#000" />
 
             <TextView
-                android:id="@+id/tvEdificio"
-                android:layout_width="match_parent"
+                android:id="@+id/tvFecha"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#000" />
 
             <TextView
-                android:id="@+id/tvHoraEntrada"
-                android:layout_width="match_parent"
+                android:id="@+id/tvEntrada"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textColor="#000" />
 
             <TextView
-                android:id="@+id/tvHoraSalida"
-                android:layout_width="match_parent"
+                android:id="@+id/tvSalida"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hora Salida: "
+                android:text="TextView"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/tvComentario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
                 android:textColor="#000" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
