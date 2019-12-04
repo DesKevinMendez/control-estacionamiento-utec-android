@@ -54,11 +54,13 @@ public final class DatosVigilante  {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private  static String Nombre="", Apellido="", Placa="", EdificioAsignado="", HoraEntrada="", HoraSalida="";
+    private static String Nombre= "", Apellido="", Placa="", EdificioAsignado="", HoraEntrada="", HoraSalida="";
     private static int Estado, IdUser=0, IdEdificio=0;
 
     public static void setUsuarioPlaca(String nombre, String apellido, String placa, Integer estado, String edificioAsignado,
+
                                        String horaEntrada, String horaSalida , int idUser, int idEdificio){
+
         Nombre=nombre;
         Apellido=apellido;
         Placa=placa;
@@ -70,10 +72,10 @@ public final class DatosVigilante  {
         IdUser = idUser;
         IdEdificio=idEdificio;
 
-
     }
 
-    public static String getNombreUser (){ return Nombre;}
+
+    public static String getNombreUser (){return Nombre;}
     public static String getApellidoUser (){return Apellido;}
     public static String getPlacaUser (){return Placa;}
     public static Integer getEstadoUser (){return Estado;}
@@ -82,6 +84,9 @@ public final class DatosVigilante  {
     public static String getHoraSalidaUser (){return HoraSalida;}
     public static int getIdUserUser (){return IdUser;}
     public static int getIdEdificioUser (){return IdEdificio;}
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,15 +113,16 @@ public final class DatosVigilante  {
     private static ArrayList edificioR = new ArrayList();
     private static ArrayList entradaR = new ArrayList();
     private static ArrayList salidaR = new ArrayList();
+    private static ArrayList fechaR = new ArrayList();
     public  static  void setInfoReservas(String nombre, String apellido, String placa, String edificio,
-                                         String entrada, String salida){
+                                         String entrada, String salida, String fecha){
         nombreR.add(nombre);
         apellidoR.add(apellido);
         placaR.add(placa);
         edificioR.add(edificio);
         entradaR.add(entrada);
         salidaR.add(salida);
-
+        fechaR.add(fecha);
     }
 
     public static ArrayList getNombreR(){return nombreR;}
@@ -125,6 +131,7 @@ public final class DatosVigilante  {
     public static ArrayList getEdificioR(){return edificioR;}
     public static ArrayList getEntradaR(){return entradaR;}
     public static ArrayList getSalidaR(){return salidaR;}
+    public static ArrayList getFecharR(){return fechaR;}
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 

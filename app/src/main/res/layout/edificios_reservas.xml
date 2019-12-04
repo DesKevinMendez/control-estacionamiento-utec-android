@@ -42,6 +42,13 @@
                 android:textColor="#000" />
 
             <TextView
+                android:id="@+id/tvFecha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textColor="#000" />
+
+            <TextView
                 android:id="@+id/tvHoraEntrada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

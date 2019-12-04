@@ -89,9 +89,16 @@ public class ReservadosVigilante extends Fragment {
         lvEdificios.setAdapter(new
                 AdaptadorReservados(getActivity(),
                 datosVigilante.getNombreR(),datosVigilante.getApellidoR(),datosVigilante.getPlacaR(),
-                datosVigilante.getEdificioR(),datosVigilante.getEntradaR(),datosVigilante.getSalidaR()
+                datosVigilante.getEdificioR(),datosVigilante.getEntradaR(),datosVigilante.getSalidaR(),datosVigilante.getFecharR()
                 ));
 
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inicio = new Intent(getActivity(),vigilanteNavigationDrawer.class);
+                startActivity(inicio);
+            }
+        });
 
         return view;
     }

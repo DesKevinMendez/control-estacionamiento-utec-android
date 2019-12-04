@@ -106,7 +106,7 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
+                String Nombre = "No hay reservaciones", Apellidos ="", Placa="", Edificio="", HoraEntrada="", HoraSalida="";
                 try {
                     Log.i("TEST", "DENTRO DE TRY");
                     JSONArray mJsonArray = response.getJSONArray("reservas");
@@ -126,26 +126,27 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
                         JSONArray Usuario1 = mJsonObject.getJSONArray("users");
                         Log.i("TEST", "HASTA AQUI TODO BIEN");
 
-
+                        String Fecha = mJsonObject.getString("fecha");
                         JSONObject Usuario = Usuario1.getJSONObject(0);
 
-                        String Nombre = Usuario.getString("nombres");
-                        String Apellidos = Usuario.getString("apellidos");
-                        String Placa = Usuario.getString("num_placa");
+                         Nombre = Usuario.getString("nombres");
+                         Apellidos = Usuario.getString("apellidos");
+                         Placa = Usuario.getString("num_placa");
 
                         JSONArray Edificios = mJsonObject.getJSONArray("edificios");
                         JSONObject Edificio1 = Edificios.getJSONObject(0);
-                        String Edificio = Edificio1.getString("nombre");
+                         Edificio = Edificio1.getString("nombre");
 
 
                         JSONArray Horarios1 = mJsonObject.getJSONArray("horarios");
                         JSONObject Horarios = Horarios1.getJSONObject(0);
-                        String HoraEntrada = Horarios.getString("hora_entrada");
-                        String HoraSalida = Horarios.getString("hora_salida");
+                         HoraEntrada = Horarios.getString("hora_entrada");
+                         HoraSalida = Horarios.getString("hora_salida");
 
 
-                        DatosVigilante.setInfoReservas(Nombre,Apellidos,Placa,Edificio,HoraEntrada,HoraSalida);
+                        DatosVigilante.setInfoReservas(Nombre,Apellidos,Placa,Edificio,HoraEntrada,HoraSalida,Fecha);
                         Log.i("TEST", "LLEGA");
+
 
                         mcontext.getSupportFragmentManager().beginTransaction()
                                 .addToBackStack(null).replace(R.id.nav_host_fragment,
@@ -154,9 +155,9 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
 
                     }
                 } catch (JSONException e){
-
                     Log.i("VOLLEY","Error "+ e.toString());
                     e.printStackTrace();
+
 
                 }
                 progressDialog.dismiss();
@@ -180,6 +181,7 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
 
 
     public void UsuariosPlaca(final Context context, String numPlaca){
+        final AppCompatActivity mcontext = (AppCompatActivity) context;
         progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
         progressDialog.setMessage("Cargando Datos...");
         progressDialog.setIndeterminate(true);
@@ -209,14 +211,19 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
                     String placa = mJsonObject.getString("num_placa");
                     Integer estado = mJsonObject.getInt("estado");
 
+                    Log.i("MENS","SIGUE BIEN ");
                     JSONArray Reservas = mJsonObject.getJSONArray("reservas");
                     JSONObject Reserva = Reservas.getJSONObject(0);
+                    Log.i("MENS","PASO PRIMER ARRAY");
+
                     JSONArray Edificios1 = Reserva.getJSONArray("edificios");
                     JSONObject Edificios = Edificios1.getJSONObject(0);
+                    Log.i("MENS","PASO SEGUNDO ARRAY");
 
                     JSONArray Horario = Reserva.getJSONArray("horarios");
                     JSONObject Horario1 = Horario.getJSONObject(0);
                     // JSONObject Horario2 = Horario.getJSONObject(1);
+                    Log.i("MENS","PASO TERCER ARRAY");
 
                     String edificioAsignado = Edificios.getString("nombre");
                     String horaEntrada = Horario1.getString("hora_entrada");
@@ -226,6 +233,7 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
 
                     DatosVigilante.setUsuarioPlaca(nombre,apellido,placa,estado,edificioAsignado,horaEntrada,horaSalida,idUser,idEdificio);
                     Log.i("MENS","PETICION EXITOSA");
+
                 } catch (JSONException e){
 
                     Log.i("VOLLEY","Error "+ e.toString());
@@ -249,7 +257,6 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
         queue.add(request);
 
     }
-
 
 
 
@@ -542,6 +549,56 @@ public class PeticionesVigilantes extends AppCompatActivity implements Globals {
     }
 
 
+
+
+
+
+    public void AgregarComentario(final Context context, String userId, String Comentario){
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Enviando...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        Log.i("LOGI","SE CREO EL METODO AGREGAR COMENTARIOS");
+
+        String url = BASE_URL+"historial/agregar-comentario?api_token="+user.getApi_token()+"&user_id="+userId+"&comentario="+Comentario;
+        Map<String, String> params = new HashMap();
+        params.put("user_id", userId);
+        params.put("comentario", Comentario);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        Log.i("LOGI","SE REALIZO LA PETICION");
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Log.i("LOGI", "dentro de try");
+                    JSONObject respuesta = response.getJSONObject("historial");
+                    Log.i("LOGI", "Se Guardo el comentario");
+
+                } catch (JSONException e){
+
+                    Log.i("VOLLEY","Error "+ e.toString());
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(context, "Error al validar entrada", Toast.LENGTH_LONG).show();
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
 
 
 }

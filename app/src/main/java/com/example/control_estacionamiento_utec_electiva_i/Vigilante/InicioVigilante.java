@@ -80,6 +80,7 @@ public class InicioVigilante extends Fragment {
     public static int idUsuario=0;
     public static int idEdificio=0;
 
+
     DatosVigilante datosVigilante = new DatosVigilante();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,8 +106,10 @@ public class InicioVigilante extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 String Placa = edtPlaca.getText().toString().trim();
                 PeticionesVigilantes peticionesVigilante = new PeticionesVigilantes();
+
                 peticionesVigilante.UsuariosPlaca(getActivity(),Placa);
                 DatosVigilante datosVigilante = new DatosVigilante();
 

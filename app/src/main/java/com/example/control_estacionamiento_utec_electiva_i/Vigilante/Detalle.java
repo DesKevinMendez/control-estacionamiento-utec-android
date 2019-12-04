@@ -21,9 +21,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.control_estacionamiento_utec_electiva_i.R;
 
+import com.example.control_estacionamiento_utec_electiva_i.Vigilante.Datos.PeticionesVigilantes;
 import com.google.android.material.navigation.NavigationView;
 
 public class Detalle extends AppCompatActivity implements
@@ -58,6 +60,8 @@ public class Detalle extends AppCompatActivity implements
         tvEdificio.setText(Datos.getString("edificio"));
         tvHorario.setText(Datos.getString("horario"));
         tvEstado.setText(Datos.getString("estado"));
+        int idU = Datos.getInt("idUsuario");
+        final String idUser = String.valueOf(idU);
 
 
         btnDenegar2.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +76,15 @@ public class Detalle extends AppCompatActivity implements
         btnAceptar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                PeticionesVigilantes peticionesVigilantes = new PeticionesVigilantes();
                 String comentario = edtComentario.getText().toString().trim();
                 if (comentario.equals("")){
                     edtComentario.setError("Se debe agregar un comentario");
                 } else {
+                    peticionesVigilantes.AgregarComentario(Detalle.this,idUser,comentario);
                     Intent inicio = new Intent(getApplicationContext(), vigilanteNavigationDrawer.class);
                     startActivity(inicio);
+
                 }
 
             }

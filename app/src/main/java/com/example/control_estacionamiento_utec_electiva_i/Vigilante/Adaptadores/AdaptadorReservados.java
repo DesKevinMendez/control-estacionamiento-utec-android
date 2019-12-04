@@ -21,16 +21,18 @@ public class AdaptadorReservados extends BaseAdapter {
     ArrayList edificio;
     ArrayList horaEntrada;
     ArrayList horaSalida;
+    ArrayList fecha;
     // ArrayList img;
 
     public AdaptadorReservados(Context context, ArrayList nombre, ArrayList apellido, ArrayList placa, ArrayList edificio,
-                               ArrayList horaEntrada, ArrayList horaSalida) {
+                               ArrayList horaEntrada, ArrayList horaSalida, ArrayList fecha) {
         this.nombre = nombre;
         this.apellido=apellido;
         this.placa=placa;
         this.edificio=edificio;
         this.horaEntrada=horaEntrada;
         this.horaSalida=horaSalida;
+        this.fecha=fecha;
         inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -45,11 +47,13 @@ public class AdaptadorReservados extends BaseAdapter {
         TextView tvEdificio = vista.findViewById(R.id.tvEdificio);
         TextView tvHoraEntrada = vista.findViewById(R.id.tvHoraEntrada);
         TextView tvHoraSalida = vista.findViewById(R.id.tvHoraSalida);
+        TextView tvFecha = vista.findViewById(R.id.tvFecha);
         // ImageView imgEdificio = vista.findViewById(R.id.imgEdificio);
 
         tvNombres.setText("Nombre: "+nombre.get(i).toString()+" "+apellido.get(i).toString());
         tvPlaca.setText("Numero de placa: "+placa.get(i).toString());
         tvEdificio.setText("Parqueo Asignado: "+edificio.get(i).toString());
+        tvFecha.setText("Fecha: "+fecha.get(i).toString());
         tvHoraEntrada.setText("Hora de entrada: "+horaEntrada.get(i).toString());
         tvHoraSalida.setText("Hora de salida: "+horaSalida.get(i).toString());
 

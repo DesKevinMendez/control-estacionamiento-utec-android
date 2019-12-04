@@ -79,7 +79,7 @@ public class ComentariosVigilante extends Fragment {
 
     }
 
-
+    public int idUser;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -111,13 +111,14 @@ public class ComentariosVigilante extends Fragment {
                 tvEdificio.setText(datosVigilante.getEdificioAsignadoUser());
                 tvHorario.setText(datosVigilante.getHoraEntradaUser()+ " - "+datosVigilante.getHoraSalidaUser());
 
+
                  int estado = datosVigilante.getEstadoUser();
                  if (estado == 0){
                      tvEstado.setText("Dentro del estacionado");
                  } else{
                      tvEstado.setText("Fuera del estacionamiento");
                  }
-
+                idUser = datosVigilante.getIdUserUser();
             }
         });
 
@@ -139,7 +140,7 @@ public class ComentariosVigilante extends Fragment {
                 detalle.putExtra("edificio",Edificio);
                 detalle.putExtra("horario",Horario);
                 detalle.putExtra("estado",Estado);
-
+                detalle.putExtra("idUsuario",idUser);
                 if (Placa.isEmpty()){Toast.makeText(getActivity(), "ERROR: vuelva a buscar el usuario", Toast.LENGTH_LONG).show();}
                 else {startActivityForResult(detalle,1);}
             }
