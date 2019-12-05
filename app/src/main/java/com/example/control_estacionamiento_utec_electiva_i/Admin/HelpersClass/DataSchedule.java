@@ -16,7 +16,15 @@ public class DataSchedule {
     public static String[] hora_salida_sabado = {""};
     public static String[] hora_entrada_domingo = {""};
     public static String[] hora_salida_domingo = {""};
-    
+    public static String horariosSeleccionados = "Seleccione al menos un horario";
+
+    public static String getHorariosSeleccionados() {
+        return horariosSeleccionados;
+    }
+
+    public static void setHorariosSeleccionados(String horariosSeleccionados) {
+        DataSchedule.horariosSeleccionados = horariosSeleccionados;
+    }
 
     public static String[] getHora_entrada_lunes() {
         return hora_entrada_lunes;

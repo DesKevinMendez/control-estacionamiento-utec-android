@@ -27,9 +27,15 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -361,6 +367,22 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
                             error.printStackTrace();
                             Log.i("ERROR", error.toString());
                             progressDialog.dismiss();
+                            NetworkResponse networkResponse = error.networkResponse;
+                            if (networkResponse != null && networkResponse.statusCode == 422) {
+                                Toast.makeText(getActivity(), "Fecha incorrecta", Toast.LENGTH_SHORT).show();
+                            }
+                            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                                Toast.makeText(getActivity(),
+                                        "Tiempo de conexión excedido",
+                                        Toast.LENGTH_LONG).show();
+                            } else if (error instanceof ServerError) {
+                                // TO DO
+                            } else if (error instanceof NetworkError) {
+
+                                Toast.makeText(getActivity(), "Sin conexión a internet", Toast.LENGTH_LONG).show();
+                            } else if (error instanceof ParseError) {
+                                Toast.makeText(getActivity(), "Error de parcing", Toast.LENGTH_SHORT).show();
+                            }
 
                         }
                     }
@@ -417,7 +439,13 @@ public class ReserveEvents extends Fragment implements View.OnClickListener,
         mDatePicker = new DatePickerDialog(getActivity(), R.style.CustomDatePickerDialogTheme, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
                 TextView PlannedDate = getActivity().findViewById(R.id.etPlannedDate);
-                String selectedDate = selectedyear + "-" + (selectedmonth+1) + "-" + selectedday;
+                String dia = "";
+                if (selectedday < 9){
+                    dia = "0"+selectedday;
+                } else {
+                    dia = String.valueOf(selectedday);
+                }
+                String selectedDate = selectedyear + "-" + (selectedmonth+1) + "-" + dia;
                 PlannedDate.setText(selectedDate);
                 DatosEvents.setFecha(selectedDate);
             }

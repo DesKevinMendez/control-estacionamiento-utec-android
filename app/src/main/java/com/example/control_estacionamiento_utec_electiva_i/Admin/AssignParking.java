@@ -128,11 +128,11 @@ public class AssignParking extends Fragment implements OnClickListener {
         HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
         switch(view.getId()){
             case R.id.btnAceptarAP:
-                /*if (btnAssingSchedule.getText().toString().equals(getString(R.string.selectedScedule))){
+                if (!dataSchedule.getHorariosSeleccionados().isEmpty()){
 
-                    Toast.makeText(getActivity(), "Debe de seleccionar horarios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), dataSchedule.getHorariosSeleccionados(), Toast.LENGTH_SHORT).show();
 
-                } else*/ if(btnAsssingTeacher.getText().equals(getString(R.string.selectedTeacher))) {
+                } else if(btnAsssingTeacher.getText().equals(getString(R.string.selectedTeacher))) {
 
                     Toast.makeText(getActivity(), "Debe de seleccionar usuario", Toast.LENGTH_SHORT).show();
 
@@ -280,6 +280,7 @@ public class AssignParking extends Fragment implements OnClickListener {
                     DatosVigilante.clearDatavigilante();
                     DatosVigilante.setClearFilter();
                     dataSchedule.setClearAllSchedules();
+                    dataSchedule.setHorariosSeleccionados("Seleccione al menos un horario");
                     Toast.makeText(getActivity(), "Parqueo asignado", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
 

@@ -476,6 +476,7 @@ public class SelectedScheduleForAssignParking extends Fragment implements View.O
 
 
                 if (errors.isEmpty()){
+                    dataSchedule.setHorariosSeleccionados("");
                     getActivity().onBackPressed();
                 }
 
