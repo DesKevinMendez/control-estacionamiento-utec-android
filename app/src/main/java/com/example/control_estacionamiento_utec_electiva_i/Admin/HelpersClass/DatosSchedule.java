@@ -15,29 +15,38 @@ public final class DatosSchedule {
     }
 
     public static void setHoraEntrada(String hora) {
-        String[] horaEntrad = hora.split(":");
-        String Entrada = "";
+        if (hora.isEmpty()){
+            horaEntrada = hora;
+        } else {
+            String[] horaEntrad = hora.split(":");
+            String Entrada = "";
 
-        if (Integer.valueOf(horaEntrad[0])< 10){
-            Entrada = "0"+horaEntrad[0]+":"+horaEntrad[1];
+            if (Integer.valueOf(horaEntrad[0])< 10){
+                Entrada = "0"+horaEntrad[0]+":"+horaEntrad[1];
 
-        }else {
-            Entrada = hora;
+            }else {
+                Entrada = hora;
+            }
+            horaEntrada = Entrada;
         }
-        horaEntrada = Entrada;
     }
 
     public static void setHoraSalida(String hora) {
-        String[] horaSalidas = hora.split(":");
-        String Salida = "";
+        if(hora.isEmpty()){
+            horaSalida = hora;
+        } else {
+            String[] horaSalidas = hora.split(":");
+            String Salida = "";
 
-        if (Integer.valueOf(horaSalidas[0])< 10){
-            Salida = "0"+horaSalidas[0]+":"+horaSalidas[1];
+            if (Integer.valueOf(horaSalidas[0])< 10){
+                Salida = "0"+horaSalidas[0]+":"+horaSalidas[1];
 
-        }else {
-            Salida = hora;
+            }else {
+                Salida = hora;
+            }
+
+            horaSalida = Salida;
         }
 
-        horaSalida = Salida;
     }
 }
