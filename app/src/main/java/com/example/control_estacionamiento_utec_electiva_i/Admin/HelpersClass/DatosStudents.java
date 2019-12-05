@@ -5,17 +5,17 @@ import java.util.Iterator;
 
 public final class DatosStudents {
 
-   public static ArrayList Studentname = new ArrayList();
-   public static ArrayList StudentPlaca = new ArrayList();
-   public static ArrayList StudentCarnet = new ArrayList();
-   public static ArrayList StudentBuilding = new ArrayList();
-   public static ArrayList StudentID = new ArrayList();
+    public static ArrayList Studentname = new ArrayList();
+    public static ArrayList StudentPlaca = new ArrayList();
+    public static ArrayList StudentCarnet = new ArrayList();
+    public static ArrayList StudentBuilding = new ArrayList();
+    public static ArrayList StudentID = new ArrayList();
 
     public static ArrayList FilterStudentname = new ArrayList();
-   public static ArrayList FilterStudentPlaca = new ArrayList();
-   public static ArrayList FilterStudentCarnet = new ArrayList();
-   public static ArrayList FilterStudentBuilding = new ArrayList();
-   public static ArrayList FilterStudentID = new ArrayList();
+    public static ArrayList FilterStudentPlaca = new ArrayList();
+    public static ArrayList FilterStudentCarnet = new ArrayList();
+    public static ArrayList FilterStudentBuilding = new ArrayList();
+    public static ArrayList FilterStudentID = new ArrayList();
 
     public static String Name = "";
     public static String Placa = "";
@@ -41,6 +41,15 @@ public final class DatosStudents {
             ID = StudentID.get(position).toString();   
         }
     }
+
+    public static void setDeleteAtMostOneRegister(int position){
+        Studentname.remove(position);
+        StudentPlaca.remove(position);
+        StudentCarnet.remove(position);
+        StudentBuilding.remove(position);
+        StudentID.remove(position);
+    }
+    
     public static String getName() {
         return Name;
     }

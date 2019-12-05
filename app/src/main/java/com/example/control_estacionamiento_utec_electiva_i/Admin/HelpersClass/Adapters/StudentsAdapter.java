@@ -21,8 +21,8 @@ public class StudentsAdapter extends BaseAdapter {
     ArrayList edificios;
 
     //String nombre, String placa, String carnet, String edificio
-    public StudentsAdapter(Context contexto, ArrayList nombre, ArrayList placa,
-                           ArrayList carnet, ArrayList edificio) {
+    public StudentsAdapter(Context contexto, ArrayList nombre, ArrayList carnet, ArrayList placa,
+                            ArrayList edificio) {
         this.contexto = contexto;
         this.nombres = nombre;
         this.placas = placa;
@@ -39,10 +39,12 @@ public class StudentsAdapter extends BaseAdapter {
         TextView tvNameStudents = vista.findViewById(R.id.tvNameStudents);
         TextView tvBuildingStudents = vista.findViewById(R.id.tvBuildingStudents);
         TextView tvPlacaStudents = vista.findViewById(R.id.tvPlacaStudents);
+        TextView tvCarnetsStudents = vista.findViewById(R.id.tvCarnetStudents);
 
-        tvNameStudents.setText(nombres.get(i).toString());
-        tvBuildingStudents.setText(edificios.get(i).toString());
-        tvPlacaStudents.setText(placas.get(i).toString());
+        tvNameStudents.setText("Nombre: "+nombres.get(i).toString());
+        tvBuildingStudents.setText("Edificio: "+edificios.get(i).toString());
+        tvPlacaStudents.setText("Placa: "+ placas.get(i).toString());
+        tvCarnetsStudents.setText("Carnet: "+ carnets.get(i).toString());
 
         return vista;
     }

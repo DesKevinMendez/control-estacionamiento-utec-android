@@ -46,6 +46,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.control_estacionamiento_utec_electiva_i.Interfaces.Globals.BASE_URL;
 
@@ -127,13 +129,10 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
 
         ListStudents.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
                 if (rdbInactivo.isChecked()){
 
-
                     DatosStudents.setInfoSelectedStudents(i);
-
-
 
                     final CharSequence[] dataStudentsSelected = {
                             "Nombre: " + datosStudents.getName(),
@@ -142,13 +141,10 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
                             "Building: " + datosStudents.getBuilding(),
                     };
 
-
-
                     AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                     alert.setTitle("¿Autorizar entrada?");
                     View mView = getLayoutInflater().inflate(R.layout.dialog_spinner_students, null);
                     final Spinner mSpinner = mView.findViewById(R.id.spinnerDialog);
-
 
                     ArrayAdapter<String> adapterSpinnerDialog =
                             new ArrayAdapter<String>(getActivity(),
@@ -166,11 +162,13 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
                     });
                     alert.setPositiveButton("Otorgar", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                        public void onClick(DialogInterface dialogInterface, int idDialog) {
                             DatosBuilding.setBuildingIdSelected(mSpinner.getSelectedItemPosition());
 
-                            HttpRequestAdmin httpRequestAdmin = new HttpRequestAdmin();
-                            httpRequestAdmin.HTTPrequestAssignParkingToStudents(getActivity(), String.valueOf(DatosStudents.getID()), String.valueOf(DatosBuilding.getBuildingIdSelected()));
+                            HTTPrequestAssignParkingToStudents(getActivity(),
+                                    String.valueOf(DatosStudents.getID()),
+                                    String.valueOf(DatosBuilding.getBuildingIdSelected()),
+                                    i);
                         }
                     });
                     alert.setNegativeButton("Negar", new DialogInterface.OnClickListener() {
@@ -218,8 +216,19 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
                         String placa = mJsonObject.getString("num_placa");
                         int idStudent = mJsonObject.getInt("id");
 
+                        String edificio = "";
+                        JSONArray reserva = mJsonObject.getJSONArray("reservas");
+                        for (int res = 0; res < reserva.length(); res++){
+                            JSONObject resInfo = reserva.getJSONObject(res);
+
+                            JSONArray edi = resInfo.getJSONArray("edificios");
+                            for (int masInfo = 0 ; masInfo < edi.length(); masInfo++){
+                                JSONObject infoEd = edi.getJSONObject(masInfo);
+                                edificio = infoEd.getString("nombre");
+                            }
+                        }
                         DatosStudents.setDataStudents(nombre+" "+ apellido, carnet, placa,
-                                "no disponible", idStudent);
+                                edificio, idStudent);
 
                     }
                     ListStudents.setAdapter(new
@@ -241,7 +250,7 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error al obtener los vigilantes :(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error al obtener los estudiantes :(", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
 
             }
@@ -250,6 +259,54 @@ public class StudentsActiveAndNotActive extends Fragment implements RadioGroup.O
         queue.add(request);
 
     }
+
+    public void HTTPrequestAssignParkingToStudents(final Context context, String usuario, String edificio, final int Position) {
+
+        progressDialog = new ProgressDialog(context, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Asignado parqueo...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
+        String url = BASE_URL+"asignar-parqueo-alumno?api_token="+User.getApi_token();
+        Map<String, String> params = new HashMap();
+        params.put("user_id", usuario);
+        params.put("edificio_id", edificio);
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(context);
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                DatosStudents.setClearAllFilterStudentsData();
+
+                Toast.makeText(context, "Asignado correctamente", Toast.LENGTH_SHORT).show();
+
+                datosStudents.setDeleteAtMostOneRegister(Position);
+                ListStudents.setAdapter(new
+                        StudentsAdapter(getActivity(),
+                        datosStudents.getStudentname(),
+                        datosStudents.getStudentPlaca(),
+                        datosStudents.getStudentCarnet(),
+                        datosStudents.getStudentBuilding()));
+                progressDialog.dismiss();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 

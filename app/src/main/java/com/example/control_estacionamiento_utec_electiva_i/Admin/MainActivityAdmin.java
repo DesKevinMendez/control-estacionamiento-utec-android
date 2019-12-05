@@ -172,8 +172,20 @@ public class MainActivityAdmin extends AppCompatActivity implements
                         String placa = mJsonObject.getString("num_placa");
                         int idStudent = mJsonObject.getInt("id");
 
+                        String edificio = "";
+                        JSONArray reserva = mJsonObject.getJSONArray("reservas");
+                        for (int res = 0; res < reserva.length(); res++){
+                            JSONObject resInfo = reserva.getJSONObject(res);
+
+                            JSONArray edi = resInfo.getJSONArray("edificios");
+                            for (int masInfo = 0 ; masInfo < edi.length(); masInfo++){
+                                JSONObject infoEd = edi.getJSONObject(masInfo);
+                                edificio = infoEd.getString("nombre");
+                            }
+                        }
+
                         DatosStudents.setDataStudents(nombre+" "+ apellido, carnet, placa,
-                                "no disponible", idStudent);
+                                edificio, idStudent);
 
                     }
 
