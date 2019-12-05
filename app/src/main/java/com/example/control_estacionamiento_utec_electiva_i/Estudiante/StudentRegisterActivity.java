@@ -13,7 +13,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.RequestQueue;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.InicioAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.R;
 import com.android.volley.Request;
@@ -94,13 +103,10 @@ public class StudentRegisterActivity extends AppCompatActivity {
                         if (!isRegulated) {
                             Toast.makeText(StudentRegisterActivity.this,
                                     "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
-                            edtCarnet.setText("");
                             edtCarnet.requestFocus();
                         } else {
                             HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
-                            Intent login = new Intent(StudentRegisterActivity.this, Login.class);
-                            startActivity(login);
-                            finish();
+
                         }
                     }
                 }
@@ -129,40 +135,58 @@ public class StudentRegisterActivity extends AppCompatActivity {
 
         String url = BASE_URL+"register?rol_id=4&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+        Map<String, String> params = new HashMap();
+        params.put("nombres", name);
+        params.put("apellidos", surname);
+        params.put("email", mail);
+        params.put("carnet", carnet);
+        params.put("num_placa", placa);
+        params.put("password", pass);
+        params.put("password_confirmation", confirm);
 
-                        Toast.makeText(StudentRegisterActivity.this, "Se registraron las credenciales", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                }, new Response.ErrorListener() {
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                Log.i("RESPONSE", response.toString());
+                Toast.makeText(getApplicationContext(), "Has sido registrado; favor, inicia sesión", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                Intent login = new Intent(StudentRegisterActivity.this, Login.class);
+                startActivity(login);
+                finish();
+
+
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
                 Log.i("ERROR", error.toString());
                 progressDialog.dismiss();
 
-            }
-        }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String>  params = new HashMap<>();
-                // the POST parameters:
-                params.put("nombres", name);
-                params.put("apellidos", surname);
-                params.put("email", mail);
-                params.put("carnet", carnet);
-                params.put("num_placa", placa);
-                params.put("password", pass);
-                params.put("password_confirmation", confirm);
-                return super.getParams();
-            }
-        };
+                NetworkResponse networkResponse = error.networkResponse;
+                Log.i("ERROR", networkResponse.data.toString());
 
-        Volley.newRequestQueue(StudentRegisterActivity.this).add(postRequest);
+                if (networkResponse != null && networkResponse.statusCode == 422) {
+                    Toast.makeText(StudentRegisterActivity.this, "Datos inválidos", Toast.LENGTH_SHORT).show();
+                }
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Tiempo de conexión excedido",
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof NetworkError) {
+
+                    Toast.makeText(getApplicationContext(), "Sin conexión a internet", Toast.LENGTH_LONG).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(getApplicationContext(), "Error de parcing", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        queue.add(request);
 
     }
 

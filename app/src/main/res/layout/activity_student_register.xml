@@ -25,8 +25,7 @@
             android:ems="10"
             android:hint="@string/name_register"
             android:inputType="textPersonName"
-            android:padding="15dp"
-            android:text="kevin mendez" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/edtSurnameRegister"
@@ -38,8 +37,7 @@
             android:ems="10"
             android:hint="@string/surname_register"
             android:inputType="textPersonName"
-            android:padding="15dp"
-            android:text="Apellido" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/edtMailRegister"
@@ -51,8 +49,7 @@
             android:ems="10"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:text="kevin@test.com" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/edtCarneRegister"
@@ -65,8 +62,7 @@
             android:hint="@string/carnet_register"
             android:inputType="textPersonName"
             android:maxLength="12"
-            android:padding="15dp"
-            android:text="12-3485-8923" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/edtPlacaRegister"
@@ -79,8 +75,7 @@
             android:hint="@string/num_placa_register"
             android:inputType="textPersonName"
             android:maxLength="7"
-            android:padding="15dp"
-            android:text="98798-89" />
+            android:padding="15dp" />
 
         <EditText
             android:id="@+id/edtPassRegister"
