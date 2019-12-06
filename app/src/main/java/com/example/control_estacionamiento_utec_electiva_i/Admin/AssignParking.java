@@ -221,7 +221,7 @@ public class AssignParking extends Fragment implements OnClickListener {
     }
 
     ProgressDialog progressDialog;
-    public void HTTPrequestAssignParking(String vigilante_id, String edificio_id,
+    public void HTTPrequestAssignParking(String edificio_id, String vigilante_id,
                                          String[] entrada_lunes, String[] salida_lunes,
                                          String[] entrada_martes, String[] salida_martes,
                                          String[] entrada_miercoles, String[] salida_miercoles,
@@ -241,6 +241,7 @@ public class AssignParking extends Fragment implements OnClickListener {
 
         String url = BASE_URL+"asignar-parqueo?user_id="+vigilante_id+"&edificio_id="+edificio_id+"" +
                 "&api_token="+User.getApi_token();
+        Log.i("URL", url);
         Map<String, String[]> params = new HashMap();
         params.put("hora_entrada_lunes", entrada_lunes);
         params.put("hora_salida_lunes", salida_lunes);
