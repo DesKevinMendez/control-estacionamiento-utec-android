@@ -19,6 +19,7 @@ import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.Da
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedBuilding;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.ViewAssignParking.SelectedTeacher;
+import com.example.control_estacionamiento_utec_electiva_i.Estudiante.StudentRegisterActivity;
 import com.example.control_estacionamiento_utec_electiva_i.HTTP.HttpRequestAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.Models.User;
@@ -134,6 +135,12 @@ public class MainActivityAdmin extends AppCompatActivity implements
                 }
                 break;
 
+            case R.id.nav_add_new_uses:
+                Intent register = new Intent(this, StudentRegisterActivity.class);
+                register.putExtra("newUser", "Agrega nuevo registro desde admins");
+                startActivity(register);
+                finish();
+                break;
             default:
                 throw new IllegalArgumentException("menu option not implemented!!");
         }

@@ -15,6 +15,31 @@
         tools:context=".Estudiante.StudentRegisterActivity">
 
 
+        <TextView
+            android:id="@+id/tvNewTypeOfUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el tipo de usuario"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/spNewTypeOfUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Nombre"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/edtNameRegister"
             android:layout_width="match_parent"
@@ -25,7 +50,17 @@
             android:ems="10"
             android:hint="@string/name_register"
             android:inputType="textPersonName"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="Kevin" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Apellido"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtSurnameRegister"
@@ -37,7 +72,17 @@
             android:ems="10"
             android:hint="@string/surname_register"
             android:inputType="textPersonName"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="Mendez" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="@string/prompt_email"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtMailRegister"
@@ -49,7 +94,18 @@
             android:ems="10"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="kevin.mendez@gmail.com" />
+
+        <TextView
+            android:id="@+id/tvCarnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Carnet"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/edtCarneRegister"
@@ -62,7 +118,19 @@
             android:hint="@string/carnet_register"
             android:inputType="textPersonName"
             android:maxLength="12"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="25-3992-2105"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvPlaca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="@string/num_placa_register"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/edtPlacaRegister"
@@ -75,7 +143,18 @@
             android:hint="@string/num_placa_register"
             android:inputType="textPersonName"
             android:maxLength="7"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="979878-4"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView34"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Contraseña"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtPassRegister"
@@ -87,7 +166,17 @@
             android:ems="10"
             android:hint="@string/pass_register"
             android:inputType="textPassword"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="password" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Confirmar contraseña"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtPassConfirmRegister"
@@ -99,7 +188,8 @@
             android:ems="10"
             android:hint="@string/pass_confirm_register"
             android:inputType="textPassword"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="password" />
 
         <LinearLayout
             android:id="@+id/llButtonOptionRegister"

@@ -36,6 +36,10 @@
             android:icon="@drawable/ic_group_black_24dp"
             android:title="@string/menu_admin_students_active_not_active" />
 
+        <item
+            android:id="@+id/nav_add_new_uses"
+            android:icon="@drawable/ic_person_add_black_24dp"
+            android:title="@string/menu_admin_students_active_not_active" />
     </group>
 
 

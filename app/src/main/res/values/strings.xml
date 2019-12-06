@@ -34,6 +34,7 @@
         <item>"Reservar estacionamiento"</item>
         <item>"Asigna vigilante"</item>
         <item>"Estudiantes activos/inactivos"</item>
+        <item>"Agregar usuarios"</item>
     </string-array>
 
     <string-array name="cantidad_parqueo">
@@ -42,6 +43,13 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+    </string-array>
+
+    <string-array name="tipo_usuario">
+        <item>"Maestro"</item>
+        <item>"Administradores"</item>
+        <item>"Estudiantes"</item>
+        <item>"Vigilantes"</item>
     </string-array>
 
     <string-array name="dias">

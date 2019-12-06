@@ -8,8 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -22,6 +26,7 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.control_estacionamiento_utec_electiva_i.Admin.HelpersClass.DatosSchedule;
 import com.example.control_estacionamiento_utec_electiva_i.Admin.InicioAdmin;
 import com.example.control_estacionamiento_utec_electiva_i.Login.Login;
 import com.example.control_estacionamiento_utec_electiva_i.R;
@@ -51,13 +56,22 @@ public class StudentRegisterActivity extends AppCompatActivity {
     Button btnCancel
             ,btnConfirm;
 
+    Spinner spNewTypeOfUser;
+    TextView tvNewTypeOfUser, tvPlaca,tvCarnet;
+    int TypeOfRoleToUserRegister = 4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
 
-        setTitle("Registro de estudiante");
+        Bundle parametros = this.getIntent().getExtras();
+        String datos = "";
 
+        boolean userLogged = false;
+        spNewTypeOfUser = findViewById(R.id.spNewTypeOfUser);
+        tvNewTypeOfUser = findViewById(R.id.tvNewTypeOfUser);
+        tvPlaca = findViewById(R.id.tvPlaca);
+        tvCarnet = findViewById(R.id.tvCarnet);
         edtName = findViewById(R.id.edtNameRegister);
         edtSurname = findViewById(R.id.edtSurnameRegister);
         edtMail = findViewById(R.id.edtMailRegister);
@@ -66,8 +80,33 @@ public class StudentRegisterActivity extends AppCompatActivity {
         edtPass = findViewById(R.id.edtPassRegister);
         edtConfirmPass = findViewById(R.id.edtPassConfirmRegister);
 
+        if(parametros !=null){
+            datos = parametros.getString("newUser");
+            userLogged = true;
+        }
+        if (userLogged){
+            spNewTypeOfUser.setVisibility(View.VISIBLE);
+            tvNewTypeOfUser.setVisibility(View.VISIBLE);
+
+            ArrayAdapter<CharSequence> ad = ArrayAdapter.
+                    createFromResource(this, R.array.tipo_usuario, android.R.layout.simple_spinner_item);
+            ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spNewTypeOfUser.setAdapter(ad);
+
+            setTitle(datos);
+
+        } else {
+            setTitle("Registro de estudiante");
+            edtCarnet.setVisibility(View.VISIBLE);
+            tvPlaca.setVisibility(View.VISIBLE);
+            tvCarnet.setVisibility(View.VISIBLE);
+            edtPlaca.setVisibility(View.VISIBLE);
+        }
+
+
         btnCancel = findViewById(R.id.btnCancelarRegisterStudent);
         btnConfirm = findViewById(R.id.btnRegisterStudent);
+
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +144,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
                                     "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
                             edtCarnet.requestFocus();
                         } else {
-                            HTTPRegisterStudent(name, surname, mail, carnet, placa, pass, confirm);
+                            HTTPRegisterStudent(TypeOfRoleToUserRegister, name, surname, mail, carnet, placa, pass, confirm);
 
                         }
                     }
@@ -120,11 +159,73 @@ public class StudentRegisterActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        spNewTypeOfUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                if (spNewTypeOfUser.getItemAtPosition(position).toString().equals("Maestro")){
+                    TypeOfRoleToUserRegister = 3;
+
+                    tvCarnet.setVisibility(View.GONE);
+                    edtCarnet.setVisibility(View.GONE);
+                    edtPlaca.setVisibility(View.VISIBLE);
+
+                    /*if (TypeOfRoleToUserRegister == 5){
+                        tvCarnet.setText("No esta vacio");
+                        tvPlaca.setText("No esta vacio");
+                    }
+
+                    if (TypeOfRoleToUserRegister == 1){
+                        tvCarnet.setText("No esta vacio");
+                    }*/
+
+                }
+
+
+                if (spNewTypeOfUser.getItemAtPosition(position).toString().equals("Administradores")){
+                    TypeOfRoleToUserRegister = 1;
+
+                    tvCarnet.setVisibility(View.GONE);
+                    edtCarnet.setVisibility(View.GONE);
+
+                    tvPlaca.setVisibility(View.VISIBLE);
+                    edtPlaca.setVisibility(View.VISIBLE);
+                }
+
+
+                if (spNewTypeOfUser.getItemAtPosition(position).toString().equals("Estudiantes")){
+                    TypeOfRoleToUserRegister = 4;
+
+                    tvCarnet.setVisibility(View.VISIBLE);
+                    edtCarnet.setVisibility(View.VISIBLE);
+                    edtPlaca.setVisibility(View.VISIBLE);
+
+                }
+
+
+                if (spNewTypeOfUser.getItemAtPosition(position).toString().equals("Vigilantes")){
+                    TypeOfRoleToUserRegister = 5;
+
+                    tvCarnet.setVisibility(View.GONE);
+                    tvPlaca.setVisibility(View.GONE);
+                    edtCarnet.setVisibility(View.GONE);
+                    edtPlaca.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+
+        });
     }
 
     ProgressDialog progressDialog;
 
-    public void HTTPRegisterStudent(final String name, final String surname,
+    public void HTTPRegisterStudent(final int TypeOfRoleToUserRegister, final String name, final String surname,
                                     final String mail, final String carnet, final String placa,
                                     final String pass, final String confirm) {
         progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
@@ -133,8 +234,9 @@ public class StudentRegisterActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        String url = BASE_URL+"register?rol_id=4&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
+        String url = BASE_URL+"register?rol_id="+TypeOfRoleToUserRegister+"&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
 
+        Log.i("URL", url);
         Map<String, String> params = new HashMap();
         params.put("nombres", name);
         params.put("apellidos", surname);

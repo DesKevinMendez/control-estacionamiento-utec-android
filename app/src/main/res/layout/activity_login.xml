@@ -37,7 +37,8 @@
 
             android:hint="Correo, placa o carnet"
             android:inputType="textPersonName"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="admin@admin.com" />
 
         <EditText
             android:id="@+id/tvPasswordLG"
@@ -53,7 +54,8 @@
 
             android:hint="Contraseña"
             android:inputType="textPassword"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:text="password" />
 
         <Button
             android:id="@+id/btnLogin"
