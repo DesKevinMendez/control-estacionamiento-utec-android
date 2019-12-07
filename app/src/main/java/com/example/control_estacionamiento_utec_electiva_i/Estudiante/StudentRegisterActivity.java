@@ -59,6 +59,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
     Spinner spNewTypeOfUser;
     TextView tvNewTypeOfUser, tvPlaca,tvCarnet;
     int TypeOfRoleToUserRegister = 4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,43 +113,122 @@ public class StudentRegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (isEmptyFields(edtName)
-                        && isEmptyFields(edtSurname)
-                        && isEmptyFields(edtMail)
-                        && isEmptyFields(edtCarnet)
-                        && isEmptyFields(edtPlaca)
-                        && isEmptyFields(edtPass)
-                        && isEmptyFields(edtConfirmPass)) {
+                // Strings all EditText
+                String name = edtName.getText().toString().trim();
+                String surname = edtSurname.getText().toString().trim();
+                String mail = edtMail.getText().toString().trim();
+                String carnet = edtCarnet.getText().toString().trim();
+                String placa = edtPlaca.getText().toString().trim();
+                String pass = edtPass.getText().toString().trim();
+                String confirm = edtConfirmPass.getText().toString().trim();
+                
+                if (TypeOfRoleToUserRegister == 4) { // Is Student
 
-                    // Strings all EditText
-                    String name = edtName.getText().toString().trim();
-                    String surname = edtSurname.getText().toString().trim();
-                    String mail = edtMail.getText().toString().trim();
-                    String carnet = edtCarnet.getText().toString().trim();
-                    String placa = edtPlaca.getText().toString().trim();
-                    String pass = edtPass.getText().toString().trim();
-                    String confirm = edtConfirmPass.getText().toString().trim();
+                    // validate that the fields have data
+                    if (isEmptyFields(edtName)
+                            && isEmptyFields(edtSurname)
+                            && isEmptyFields(edtMail)
+                            && isEmptyFields(edtCarnet)
+                            && isEmptyFields(edtPlaca)
+                            && isEmptyFields(edtPass)
+                            && isEmptyFields(edtConfirmPass)) {
 
-                    // validate that the passwords match
-                    if (!pass.equals(confirm)) {
-                        Toast.makeText(StudentRegisterActivity.this,
-                                "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                        edtPass.setText("");
-                        edtConfirmPass.setText("");
-                        edtPass.requestFocus();
-                    } else {
-                        String regex = "^[0-9]{2}(?:-[0-9]{4})(?:-[0-9]{4})*$";
-                        boolean isRegulated = Pattern.matches(regex, carnet);
-                        if (!isRegulated) {
+                        // validate that the passwords match
+                        if (!pass.equals(confirm)) {
                             Toast.makeText(StudentRegisterActivity.this,
-                                    "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
-                            edtCarnet.requestFocus();
-                        } else {
-                            HTTPRegisterStudent(TypeOfRoleToUserRegister, name, surname, mail, carnet, placa, pass, confirm);
+                                    "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                            edtPass.setText("");
+                            edtConfirmPass.setText("");
+                            edtPass.requestFocus();
+                        }
+                        else {
 
+                            // validate the card format
+                            String regex = "^[0-9]{2}(?:-[0-9]{4})(?:-[0-9]{4})*$";
+                            boolean isRegulated = Pattern.matches(regex, carnet);
+                            if (!isRegulated) {
+                                Toast.makeText(StudentRegisterActivity.this,
+                                        "Formato de carnet inválido", Toast.LENGTH_SHORT).show();
+                                edtCarnet.requestFocus();
+                            } else {
+
+                                // REGISTER THE USER
+                                HTTPRegisterStudent(TypeOfRoleToUserRegister, name, surname, mail, carnet, placa, pass, confirm);
+                            }
                         }
                     }
-                }
+                } // End Student
+
+                else if (TypeOfRoleToUserRegister == 3) { // Is a Teacher
+
+                    // validate that the fields have data
+                    if (isEmptyFields(edtName)
+                            && isEmptyFields(edtSurname)
+                            && isEmptyFields(edtMail)
+                            && isEmptyFields(edtPlaca)
+                            && isEmptyFields(edtPass)
+                            && isEmptyFields(edtConfirmPass)) {
+
+                        // validate that the passwords match
+                        if (!pass.equals(confirm)) {
+                            Toast.makeText(StudentRegisterActivity.this,
+                                    "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                            edtPass.setText("");
+                            edtConfirmPass.setText("");
+                            edtPass.requestFocus();
+                        } else {
+                            // REGISTER THE USER
+                            HTTPRegisterAdminTeacher(TypeOfRoleToUserRegister, name, surname, mail, placa, pass, confirm);
+                        }
+                    }
+                } // End Teacher
+
+                else if (TypeOfRoleToUserRegister == 5) { // Is a Watchman
+
+                    // validate that the fields have data
+                    if (isEmptyFields(edtName)
+                            && isEmptyFields(edtSurname)
+                            && isEmptyFields(edtMail)
+                            && isEmptyFields(edtPass)
+                            && isEmptyFields(edtConfirmPass)) {
+
+                        // validate that the passwords match
+                        if (!pass.equals(confirm)) {
+                            Toast.makeText(StudentRegisterActivity.this,
+                                    "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                            edtPass.setText("");
+                            edtConfirmPass.setText("");
+                            edtPass.requestFocus();
+                        } else {
+                            // REGISTER THE USER
+                            HTTPRegisterWatchman(TypeOfRoleToUserRegister, name, surname, mail, pass, confirm);
+                        }
+                    }
+                } // End Watchman
+
+                else if (TypeOfRoleToUserRegister == 1) {
+
+                    // validate that the fields have data
+                    if (isEmptyFields(edtName)
+                            && isEmptyFields(edtSurname)
+                            && isEmptyFields(edtMail)
+                            && isEmptyFields(edtPlaca)
+                            && isEmptyFields(edtPass)
+                            && isEmptyFields(edtConfirmPass)) {
+
+                        // validate that the passwords match
+                        if (!pass.equals(confirm)) {
+                            Toast.makeText(StudentRegisterActivity.this,
+                                    "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                            edtPass.setText("");
+                            edtConfirmPass.setText("");
+                            edtPass.requestFocus();
+                        } else {
+                            // REGISTER THE USER
+                            HTTPRegisterAdminTeacher(TypeOfRoleToUserRegister, name, surname, mail, placa, pass, confirm);
+                        }
+                    }
+                } // End Admin
 
             }
         });
@@ -169,6 +249,7 @@ public class StudentRegisterActivity extends AppCompatActivity {
 
                     tvCarnet.setVisibility(View.GONE);
                     edtCarnet.setVisibility(View.GONE);
+                    tvPlaca.setVisibility(View.VISIBLE);
                     edtPlaca.setVisibility(View.VISIBLE);
 
                     /*if (TypeOfRoleToUserRegister == 5){
@@ -225,9 +306,9 @@ public class StudentRegisterActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
-    public void HTTPRegisterStudent(final int TypeOfRoleToUserRegister, final String name, final String surname,
-                                    final String mail, final String carnet, final String placa,
-                                    final String pass, final String confirm) {
+    public void HTTPRegisterStudent(final int TypeOfRoleToUserRegister, final String name,
+                                    final String surname, final String mail, final String carnet,
+                                    final String placa, final String pass, final String confirm) {
         progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
         progressDialog.setMessage("Registrándose...");
         progressDialog.setIndeterminate(true);
@@ -292,6 +373,137 @@ public class StudentRegisterActivity extends AppCompatActivity {
 
     }
 
+    public void HTTPRegisterAdminTeacher(final int TypeOfRoleToUserRegister, final String name,
+                                  final String surname, final String mail, final String placa,
+                                  final String pass, final String confirm) {
+        progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Registrándose...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        String url = BASE_URL+"register?rol_id="+TypeOfRoleToUserRegister+"&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
+
+        Log.i("URL", url);
+        Map<String, String> params = new HashMap();
+        params.put("nombres", name);
+        params.put("apellidos", surname);
+        params.put("email", mail);
+        params.put("num_placa", placa);
+        params.put("password", pass);
+        params.put("password_confirmation", confirm);
+
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                Log.i("RESPONSE", response.toString());
+                Toast.makeText(getApplicationContext(), "Has sido registrado; favor, inicia sesión", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                Intent login = new Intent(StudentRegisterActivity.this, Login.class);
+                startActivity(login);
+                finish();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+                NetworkResponse networkResponse = error.networkResponse;
+                Log.i("ERROR", networkResponse.data.toString());
+
+                if (networkResponse != null && networkResponse.statusCode == 422) {
+                    Toast.makeText(StudentRegisterActivity.this, "Datos inválidos", Toast.LENGTH_SHORT).show();
+                }
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Tiempo de conexión excedido",
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof NetworkError) {
+
+                    Toast.makeText(getApplicationContext(), "Sin conexión a internet", Toast.LENGTH_LONG).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(getApplicationContext(), "Error de parcing", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
+    public void HTTPRegisterWatchman(final int TypeOfRoleToUserRegister, final String name,
+                                    final String surname, final String mail,
+                                    final String pass, final String confirm) {
+        progressDialog = new ProgressDialog(this, R.style.AlertDialogStyle);
+        progressDialog.setMessage("Registrándose...");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        String url = BASE_URL+"register?rol_id="+TypeOfRoleToUserRegister+"&api_token=DNumbm6MXjORx7sW6eZRgVgtmX9YJDkroT9Nk3aYTSgVMaRDW7Jmx88OSKROYuA0NkIT3IsJ11xm6zaA";
+
+        Log.i("URL", url);
+        Map<String, String> params = new HashMap();
+        params.put("nombres", name);
+        params.put("apellidos", surname);
+        params.put("email", mail);
+        params.put("password", pass);
+        params.put("password_confirmation", confirm);
+
+        JSONObject parameters = new JSONObject(params);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, parameters, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                Log.i("RESPONSE", response.toString());
+                Toast.makeText(getApplicationContext(), "Has sido registrado; favor, inicia sesión", Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
+                Intent login = new Intent(StudentRegisterActivity.this, Login.class);
+                startActivity(login);
+                finish();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.i("ERROR", error.toString());
+                progressDialog.dismiss();
+
+                NetworkResponse networkResponse = error.networkResponse;
+                Log.i("ERROR", networkResponse.data.toString());
+
+                if (networkResponse != null && networkResponse.statusCode == 422) {
+                    Toast.makeText(StudentRegisterActivity.this, "Datos inválidos", Toast.LENGTH_SHORT).show();
+                }
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(getApplicationContext(),
+                            "Tiempo de conexión excedido",
+                            Toast.LENGTH_LONG).show();
+                } else if (error instanceof NetworkError) {
+
+                    Toast.makeText(getApplicationContext(), "Sin conexión a internet", Toast.LENGTH_LONG).show();
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(getApplicationContext(), "Error de parcing", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        queue.add(request);
+
+    }
+
     public boolean isEmptyFields(EditText editText) {
         String stringText = editText.getText().toString().trim();
         if (stringText.isEmpty()) {
@@ -301,4 +513,5 @@ public class StudentRegisterActivity extends AppCompatActivity {
         } else
             return true;
     }
+
 }
